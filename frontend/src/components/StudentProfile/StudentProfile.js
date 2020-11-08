@@ -47,7 +47,7 @@ function FieldsOfExperience(props) {
       </div>
       <div id="field"><ul>
         {value.map((v, i) =>
-          <li key={i} onDoubleClick={() => removeItem(i)}>{v}</li>
+          <li key={i}>{v}<button onClick={() => removeItem(i)}>x</button></li>
         )}
       </ul></div>
     </div>
