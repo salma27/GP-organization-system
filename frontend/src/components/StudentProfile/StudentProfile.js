@@ -26,7 +26,7 @@ function BasicInfo() {
 function FieldsOfExperience(props) {
   const [value, setValue] = useState([]);
   const [oneTech, setOne] = useState();
-  const selected = (event) => { if (oneTech) setValue([...value, oneTech]) };
+  const selected = () => { if (oneTech && !value.includes(oneTech) && oneTech != "-1") setValue([...value, oneTech]) };
   const setOneItem = (e) => setOne(e.target.value);
   const removeItem = (index) => {
     const temp = [];
