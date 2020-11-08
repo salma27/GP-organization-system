@@ -1,11 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useState } from 'react';
 import "./StudentProfile.css";
 
-function BasicInfo(){
+function BasicInfo() {
   return (
     <div >
       <pre id="name" >Name: Salma Essam Soliman</pre>
@@ -27,33 +23,48 @@ function BasicInfo(){
   );
 }
 
-function FieldsOfExperience(props){
-  const [value, setValue] = useState("None");
-  const selected = (event) => { setValue(event.target.value)};
-  const add = (value)=>{<ul>{value}</ul>};
-  return(
-     <div>
+function FieldsOfExperience(props) {
+  const [value, setValue] = useState([]);
+  const [oneTech, setOne] = useState();
+  const selected = (event) => { if (oneTech) setValue([...value, oneTech]) };
+  const setOneItem = (e) => setOne(e.target.value);
+  const removeItem = (index) => {
+    const temp = [];
+    value.forEach((v, i) => {
+      if (index !== i) {
+        temp.push(v);
+      }
+    })
+    setValue(temp);
+  }
+  return (
+    <div>
       <div>
-          <label>Fields Of Experience:</label>
-          <select onChange={selected}>{props.tech.map(addField => <option value={addField} key={addField}>{addField}</option>)}</select>
-          <button onClick={add}>+</button>
+        <label>Fields Of Experience:</label>
+        <select onChange={setOneItem}><option value="-1" >
+        </option>{props.tech.map(addField => <option value={addField} key={addField}>{addField}</option>)}</select>
+        <button onClick={selected}>+</button>
       </div>
-  <div id="field">{add}</div>
-     </div>
+      <div id="field"><ul>
+        {value.map((v, i) =>
+          <li key={i} onDoubleClick={() => removeItem(i)}>{v}</li>
+        )}
+      </ul></div>
+    </div>
   );
 }
 
-function Notes(){
-  return(
+function Notes() {
+  return (
     <div id="notesSection" >
       <div>
-          <textarea id="notes" placeholder="Notes(You may add your phone number, other mails, or any other notes here.
+        <textarea id="notes" placeholder="Notes(You may add your phone number, other mails, or any other notes here.
           ):" ></textarea>
 
       </div>
       <button id="updateNotes" >Update Notes</button>
 
-      
+
     </div>
     /*React.createElement(
       'div',
@@ -63,25 +74,25 @@ function Notes(){
       "You may add your phone number, other mails, or any other notes here"),
       React.createElement('button', "id=updateNotes", "Update Notes")
     )*/
-    
+
   );
 }
 
-function Title(props){
-  return(
+function Title(props) {
+  return (
     <div id="title"><h1> <span id="orange">{props.orange} </span> {props.black} </h1></div>
   );
 
 }
 
-function StudentProfile(){
-  const technology=["Machine Learning", "Artifical Intelligence", "Web Application", "Others"];
+function StudentProfile() {
+  const technology = ["Machine Learning", "Artifical Intelligence", "Web Application", "Others"];
   return (
-    
+
     <div>
-      <Title orange="Student's" black="Profile"/>
+      <Title orange="Student's" black="Profile" />
       <BasicInfo />
-      <FieldsOfExperience tech={technology}/>
+      <FieldsOfExperience tech={technology} />
       <Notes />
     </div>
   );
@@ -97,21 +108,10 @@ export default App;
 */
 
 //ReactDOM.render(
-  //<StudentProfile />,
-  //document.getElementById('mountNode'),
+//<StudentProfile />,
+//document.getElementById('mountNode'),
 //);
 
 
 
-ReactDOM.render(
-  //<React.StrictMode>
-    //<App />
-  //</React.StrictMode>,
-  <StudentProfile />,
-  document.getElementById('root')
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+export default StudentProfile;
