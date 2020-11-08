@@ -1,0 +1,49 @@
+#title{
+    padding-top: 1rem;
+	font-size: 2rem;
+	font-style: bold;
+    text-align: center;
+    background-color: lightgoldenrodyellow;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+body{
+    font-size: 20px;
+    margin-left: 3rem;;
+}
+
+#orange{
+    color: #ffa633;
+}
+
+
+#notesSection{
+    padding-top: 3rem;
+    float: left;
+
+}
+
+#notesSection div p{
+    float: left;
+    margin-top: 0px;
+    width: 500px;
+
+}
+#notesSection div{
+    height: 100px;
+}
+/*
+#notesSection div button{
+    min-width: 40%;
+}
+*/
+#notes{
+    width: 500px;
+    height: 70px;
+}
+
+#updateNotes{
+    height: 30px;
+    width: 150px;
+    margin-left: 50%;
+}
