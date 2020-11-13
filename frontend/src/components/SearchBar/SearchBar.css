@@ -1,0 +1,21 @@
+.searchBar{
+    position: fixed;
+    background-color: black;
+    padding: 7px 7px 7px 7px;
+    position: -webkit-sticky;
+    width: 100%;
+}
+
+#search{
+    width: 87%;
+    height: 25px;
+    margin-left: 5px;
+    margin-right: 15px;
+}
+
+#searchBtn{
+    background-color: #ffa633;
+    color: white;
+    width: 9%;
+    height: 32px;
+}
