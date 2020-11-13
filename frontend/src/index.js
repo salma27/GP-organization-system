@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {App} from "components/App";
+//import { App } from "components/App";
 import reportWebVitals from './reportWebVitals';
+import SearchBar from './components/SearchBar/SearchBar';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <SearchBar />
   </React.StrictMode>,
   document.getElementById('root')
 );

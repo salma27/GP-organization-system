@@ -11,6 +11,7 @@
     height: 25px;
     margin-left: 5px;
     margin-right: 15px;
+    border-radius: 0.7em;
 }
 
 #searchBtn{
@@ -18,4 +19,7 @@
     color: white;
     width: 9%;
     height: 32px;
+    border-radius: 0.7em;
+    font-weight: bold;
+    font-size: medium;
 }
