@@ -2,7 +2,7 @@ import React from "react";
 import BasicInfo from "./BasicInfo";
 import FieldsOfExperience from "./FieldsOfExperience";
 import Notes from "./Notes";
-import Title from "../../Utils/Title";
+import Title from "../../utils/Title";
 import "./StudentProfile.css";
 
 function StudentProfile() {

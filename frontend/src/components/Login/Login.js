@@ -1,31 +1,21 @@
 import React from "react";
 import "./Login.css";
-import Title from "../../Utils/Title";
-
-function Email(props) {
-    return (
-        <div id="emailDiv">
-            Email:
-            <input placeholder="example@gmail.com" id="emailInput" />
-        </div>
-    );
-}
-
-function Password(props) {
-    return (
-        <div id="passwordDiv">
-            Password:
-            <input type="password" id="passwordInput" />
-        </div>
-    );
-}
+import { ErrorHandlingInput, Title } from "utils";
 
 function LoginBox() {
     return (
         <div className="loginBox">
-            <Title orange="WELCOME!!" />
-            <Email />
-            <Password />
+            <ErrorHandlingInput
+                label="Email"
+                placeholder="example@gmail.com"
+                className="emailInput"
+            />
+
+            <ErrorHandlingInput
+                label="Password"
+                type="password"
+                className="passwordInput"
+            />
             <button type="submit">Login</button>
         </div>
     );
@@ -33,11 +23,12 @@ function LoginBox() {
 
 function Login() {
     return (
-        <>
-            <div className="loginPage">
+        <div className="loginPage">
+            <Title orange="WELCOME!!" />
+            <div>
                 <LoginBox />
             </div>
-        </>
+        </div>
     );
 }
 
