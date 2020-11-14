@@ -1,6 +1,6 @@
 import React from "react";
 import "./Login.css";
-//import Title from "../StudentProfile/Title";
+import Title from "../StudentProfile/Title";
 
 function Email(props) {
     return (
@@ -23,6 +23,7 @@ function Password(props) {
 function LoginBox() {
     return (
         <div className="loginBox">
+            <Title orange="WELCOME!!" />
             <Email />
             <Password />
             <button type="submit">Login</button>

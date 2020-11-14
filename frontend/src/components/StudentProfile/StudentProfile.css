@@ -1,35 +1,31 @@
-#title{
+#title {
     padding-top: 1rem;
-	font-size: 2rem;
-	font-style: bold;
+    font-size: 2rem;
+    font-style: bold;
     text-align: center;
-    background-color: lightgoldenrodyellow;
     padding-left: 0px;
     margin-left: 0px;
 }
-body{
+body {
     font-size: 20px;
-    margin-left: 3rem;;
+    margin-left: 3rem;
 }
 
-#orange{
+#orange {
     color: #ffa633;
 }
 
-
-#notesSection{
+#notesSection {
     padding-top: 3rem;
     float: left;
-
 }
 
-#notesSection div p{
+#notesSection div p {
     float: left;
     margin-top: 0px;
     width: 500px;
-
 }
-#notesSection div{
+#notesSection div {
     height: 100px;
 }
 /*
@@ -37,12 +33,12 @@ body{
     min-width: 40%;
 }
 */
-#notes{
+#notes {
     width: 500px;
     height: 70px;
 }
 
-#updateNotes{
+#updateNotes {
     height: 30px;
     width: 150px;
     margin-left: 50%;
