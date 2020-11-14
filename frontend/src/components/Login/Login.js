@@ -1,6 +1,6 @@
 import React from "react";
 import "./Login.css";
-import Title from "../StudentProfile/Title";
+import Title from "../../Utils/Title";
 
 function Email(props) {
     return (

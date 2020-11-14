@@ -28,11 +28,7 @@ body {
 #notesSection div {
     height: 100px;
 }
-/*
-#notesSection div button{
-    min-width: 40%;
-}
-*/
+
 #notes {
     width: 500px;
     height: 70px;
