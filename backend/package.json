@@ -5,13 +5,13 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build": "babel src -d dist --source-maps",
+        "build": "babel server -d dist --source-maps",
         "serve": "set NODE_ENV=production&&node dist/index.js",
-        "start": "set NODE_ENV=development&&babel-node src/index.js",
-        "dev": "set DEBUG=server:debug&&set NODE_ENV=development&&nodemon src/index.js --exec babel-node",
+        "dev": "set NODE_ENV=development&&babel-node server/index.js",
+        "start": "set DEBUG=server:debug&&set NODE_ENV=development&&nodemon server/index.js --exec babel-node",
         "test": "set DEBUG=server:debug&&set NODE_ENV=test&&mocha --exit tests/",
         "test:watch": "set DEBUG=server:debug&&set NODE_ENV=development&&nodemon --exec mocha tests/**/*Test.js",
-        "eslint": "eslint src/**/*.js --ignore-pattern \"node_modules/\""
+        "eslint": "eslint server/**/*.js --ignore-pattern \"node_modules/\""
     },
     "keywords": [],
     "author": "",
@@ -28,6 +28,8 @@
         "debug": "^4.2.0",
         "esm": "^3.2.25",
         "express": "^4.17.1",
+        "express-jwt": "^6.0.0",
+        "jsonwebtoken": "^8.5.1",
         "mocha": "^8.2.1",
         "mongoose": "^5.10.12",
         "nodemon": "^2.0.6",
