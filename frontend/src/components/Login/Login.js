@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
 import { ErrorHandlingInput, Title, Button } from "utils";
 import SearchBar from "../SearchBar/SearchBar";
 function LoginBox() {
+    const [email,setEmail] = useState("example@gmail.com");
+    const [password,setPassword] = useState("");
+    const [star,setStar] = useState("");
     return (
         <div className="loginBox">
             <div>
                 <ErrorHandlingInput
                     label="Email"
                     labelID="email"
-                    placeholder="example@gmail.com"
+                    placeholder={email}
                     className="emailInput"
                     onChange={(e) => {
-                        console.log(e.target.value);
+                        if(email==="example@gmail.com")
+                            setEmail(e.target.value);
+                        else
+                            setEmail(email+e.target.value);
                     }}
                 />
             </div>
@@ -22,6 +28,11 @@ function LoginBox() {
                     labelID="password"
                     type="password"
                     className="passwordInput"
+                    placeholder={star}
+                    onChange = {(e)=>{
+                        setPassword(password+e.target.value);
+                        setStar(star+'*');
+                    }}
                 />
             </div>
 
@@ -31,6 +42,7 @@ function LoginBox() {
                 height="30px"
                 width="7rem"
                 borderRadius="0.7rem"
+                onClick = {()=>console.log(password)}
             />
         </div>
     );

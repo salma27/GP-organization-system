@@ -4,10 +4,11 @@ const ErrorHandlingInput = ({
     type = "",
     name = "",
     value = "",
-    onChange = "()=>{}",
+    onChange = ()=>{},
     className = "",
     placeholder = "",
     labelID = "",
+    id ="",
 }) => {
     return (
         <>
@@ -19,6 +20,7 @@ const ErrorHandlingInput = ({
                 onChange={onChange}
                 className={className}
                 placeholder={placeholder}
+                id={id}
             />
             {error && <label>{error}</label>}
         </>

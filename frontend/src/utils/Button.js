@@ -5,8 +5,8 @@ const Button = ({
     height = "",
     borderRadius = "",
     value = "",
-    onChange = "()=>{}",
-    onClick = "()=>{}",
+    onChange = ()=>{},
+    onClick = ()=>{},
     className = "",
     error = "",
 }) => {
