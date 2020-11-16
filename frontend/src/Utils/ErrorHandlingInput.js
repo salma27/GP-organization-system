@@ -7,11 +7,11 @@ const ErrorHandlingInput = ({
     onChange = "()=>{}",
     className = "",
     placeholder = "",
+    labelID = "",
 }) => {
     return (
         <>
-            {/* Put input label here if no label do not render label */}
-            {label && <label>{label}</label>}
+            {label && <label id={labelID}>{label}</label>}
             <input
                 name={name}
                 type={type}

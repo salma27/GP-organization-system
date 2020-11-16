@@ -1,22 +1,37 @@
 import React from "react";
 import "./Login.css";
-import { ErrorHandlingInput, Title } from "utils";
-
+import { ErrorHandlingInput, Title, Button } from "utils";
+import SearchBar from "../SearchBar/SearchBar";
 function LoginBox() {
     return (
         <div className="loginBox">
-            <ErrorHandlingInput
-                label="Email"
-                placeholder="example@gmail.com"
-                className="emailInput"
-            />
+            <div>
+                <ErrorHandlingInput
+                    label="Email"
+                    labelID="email"
+                    placeholder="example@gmail.com"
+                    className="emailInput"
+                    onChange={(e) => {
+                        console.log(e.target.value);
+                    }}
+                />
+            </div>
+            <div>
+                <ErrorHandlingInput
+                    label="Password"
+                    labelID="password"
+                    type="password"
+                    className="passwordInput"
+                />
+            </div>
 
-            <ErrorHandlingInput
-                label="Password"
-                type="password"
-                className="passwordInput"
+            <Button
+                type="submit"
+                label="Login"
+                height="30px"
+                width="7rem"
+                borderRadius="0.7rem"
             />
-            <button type="submit">Login</button>
         </div>
     );
 }
@@ -24,6 +39,7 @@ function LoginBox() {
 function Login() {
     return (
         <div className="loginPage">
+            <SearchBar />
             <Title orange="WELCOME!!" />
             <div>
                 <LoginBox />

@@ -12,3 +12,18 @@
     height: 100vh;
     background-color: black;
 }
+#email,
+#password {
+    float: left;
+    padding-left: 10rem;
+    color: black;
+}
+
+.emailInput {
+    margin-right: 5rem;
+    width: 250px;
+}
+.passwordInput {
+    margin-right: 7.2rem;
+    width: 250px;
+}
