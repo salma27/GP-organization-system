@@ -9,6 +9,7 @@ const Button = ({
     onClick = ()=>{},
     className = "",
     error = "",
+    id = "",
 }) => {
     return (
         <>
@@ -18,6 +19,7 @@ const Button = ({
                 onClick={onClick}
                 className={className}
                 type={type}
+                id = {id}
                 style={{
                     width: width,
                     height: height,
