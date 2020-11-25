@@ -1,5 +1,5 @@
 .loginBox {
-    background-color: lightgoldenrodyellow;
+    background-color: rgb(183, 183, 218);
     text-align: center;
     height: 50vh;
     width: 60vw;
@@ -10,7 +10,7 @@
 
 .loginPage {
     height: 100vh;
-    background-color: black;
+    background-color: white;
 }
 #email,
 #password {

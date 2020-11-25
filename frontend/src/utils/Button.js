@@ -1,3 +1,5 @@
+import "./Button.css";
+
 const Button = ({
     width = "",
     label = "",
@@ -5,11 +7,11 @@ const Button = ({
     height = "",
     borderRadius = "",
     value = "",
-    onChange = ()=>{},
-    onClick = ()=>{},
+    onChange = () => {},
+    onClick = () => {},
     className = "",
     error = "",
-    id = "",
+    id = "btn",
 }) => {
     return (
         <>
@@ -19,7 +21,7 @@ const Button = ({
                 onClick={onClick}
                 className={className}
                 type={type}
-                id = {id}
+                id={id}
                 style={{
                     width: width,
                     height: height,

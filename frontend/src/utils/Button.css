@@ -1,0 +1,17 @@
+#btn {
+    background-color: rgb(238, 78, 20);
+    color: white;
+    width: 9%;
+    height: 32px;
+    border-radius: 0.7em;
+    font-weight: bold;
+    font-size: medium;
+}
+
+#btn:hover {
+    background-color: rgb(196, 71, 26);
+}
+#btn:active {
+    background-color: rgb(196, 71, 26);
+    color: black;
+}
