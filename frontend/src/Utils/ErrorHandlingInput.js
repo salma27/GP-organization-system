@@ -1,7 +1,7 @@
 const ErrorHandlingInput = ({
     label = "",
     error = "",
-    type = "",
+    type = "text",
     name = "",
     value = "",
     borderRadius = "0.7em",
@@ -11,6 +11,7 @@ const ErrorHandlingInput = ({
     labelID = "",
     id = "",
     height = "25px",
+    paddingLeft = "10px",
 }) => {
     return (
         <>
@@ -23,7 +24,11 @@ const ErrorHandlingInput = ({
                 className={className}
                 placeholder={placeholder}
                 id={id}
-                style={{ borderRadius: borderRadius, height: height }}
+                style={{
+                    borderRadius: borderRadius,
+                    height: height,
+                    paddingLeft: paddingLeft,
+                }}
             />
             {error && <label>{error}</label>}
         </>
