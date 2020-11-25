@@ -5,7 +5,7 @@ import { ErrorHandlingInput } from "utils";
 function BasicInfo() {
     return (
         <div>
-            <table>
+            <table id="personalInfoTable">
                 <tr>
                     <td>
                         <FaUser id="icon" />
