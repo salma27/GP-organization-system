@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Button from "../../utils/Button";
+import "./FieldsOfExperience.css";
+
 function FieldsOfExperience(props) {
     const [value, setValue] = useState([]);
     const [oneTech, setOne] = useState();
@@ -21,7 +23,7 @@ function FieldsOfExperience(props) {
         <div>
             <div>
                 <label>Fields Of Experience:</label>
-                <select onChange={setOneItem}>
+                <select onChange={setOneItem} id="experienceList">
                     <option value="-1"></option>
                     {props.tech.map((addField) => (
                         <option value={addField} key={addField}>
@@ -36,7 +38,13 @@ function FieldsOfExperience(props) {
                     {value.map((v, i) => (
                         <li key={i}>
                             {v}
-                            <Button onClick={() => removeItem(i)} label="x" />
+                            <Button
+                                onClick={() => removeItem(i)}
+                                label="X"
+                                className="delete"
+                                width="55px"
+                                height="25px"
+                            />
                         </li>
                     ))}
                 </ul>

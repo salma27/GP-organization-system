@@ -6,8 +6,7 @@ function Notes() {
             <div>
                 <textarea
                     id="notes"
-                    placeholder="Notes(You may add your phone number, other mails, or any other notes here.
-            ):"
+                    value="Notes(You may add your phone number, other mails, or any other notes here):"
                 ></textarea>
             </div>
             <button id="updateNotes">Update Notes</button>

@@ -1,0 +1,12 @@
+#experienceList {
+    border-radius: 0.7em;
+    height: 30px;
+    width: 550px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-left: 10px;
+}
+
+.delete {
+    margin-left: 40px;
+}
