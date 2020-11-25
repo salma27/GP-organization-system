@@ -3,6 +3,7 @@
     background-color: rgb(183, 183, 218);
     padding: 7px 7px 7px 7px;
     width: 100%;
+    border-bottom: 1px solid black;
 }
 
 #search {
