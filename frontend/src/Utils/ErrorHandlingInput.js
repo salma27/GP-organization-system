@@ -14,6 +14,7 @@ const ErrorHandlingInput = ({
     height = "25px",
     paddingLeft = "10px",
     readOnly = "",
+    outline = "none",
 }) => {
     return (
         <>
@@ -32,6 +33,7 @@ const ErrorHandlingInput = ({
                     borderRadius: borderRadius,
                     height: height,
                     paddingLeft: paddingLeft,
+                    outline: outline,
                 }}
             />
             {error && <label>{error}</label>}

@@ -6,6 +6,8 @@
     border-radius: 0.7em;
     border: 2px solid rgb(54, 53, 53);
     margin-bottom: 20px;
+    color: rgb(54, 53, 53);
+    outline: none;
 }
 
 .updateNotes {

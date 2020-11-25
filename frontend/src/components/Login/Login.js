@@ -23,7 +23,6 @@ function LoginBox() {
                     label="Email"
                     labelID="email"
                     value={email}
-                    //placeholder={email}
                     className="emailInput"
                     onClick={() => {
                         if (email === "example@gmail.com") setEmail("");
@@ -42,7 +41,6 @@ function LoginBox() {
                     type="password"
                     className="passwordInput"
                     value={password}
-                    //placeholder={star}
                     onChange={(e) => {
                         setPassword(e.target.value);
                     }}
@@ -57,7 +55,6 @@ function LoginBox() {
                 height="30px"
                 width="7rem"
                 borderRadius="0.7rem"
-                onClick={() => console.log(password)}
             />
         </div>
     );
