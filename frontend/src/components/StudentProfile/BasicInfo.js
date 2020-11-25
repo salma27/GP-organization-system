@@ -1,15 +1,19 @@
 import React from "react";
+import { FaUser, FaPen, FaMailBulk, FaPlus, FaMinus } from "react-icons/fa";
+import "./BasicInfo.css";
 
 function BasicInfo() {
     return (
         <div>
-            <div class="icons">
-                <i class="fa fa-mobile"></i>
-            </div>
+            <FaUser id="icon" />
             <pre id="name">Name: Salma Essam Soliman</pre>
+            <FaPen id="icon" />
             <pre id="id">ID: 20170115</pre>
+            <FaMailBulk id="icon" />
             <pre id="mail">FCAI Mail: ssalma.essamm@gmail.com</pre>
+            <FaPlus id="icon" />
             <pre id="major">Major: CS</pre>
+            <FaMinus id="icon" />
             <pre id="minor">Minor: DS</pre>
         </div>
         /*React.createElement(
