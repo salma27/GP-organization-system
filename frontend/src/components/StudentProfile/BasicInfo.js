@@ -1,14 +1,16 @@
 import React from "react";
 
-
 function BasicInfo() {
     return (
-        <div >
-            <pre id="name" >Name: Salma Essam Soliman</pre>
-            <pre id="id" >ID: 20170115</pre>
-            <pre id="mail" >FCAI Mail: ssalma.essamm@gmail.com</pre>
-            <pre id="major" >Major: CS</pre>
-            <pre id="minor" >Minor: DS</pre>
+        <div>
+            <div class="icons">
+                <i class="fa fa-mobile"></i>
+            </div>
+            <pre id="name">Name: Salma Essam Soliman</pre>
+            <pre id="id">ID: 20170115</pre>
+            <pre id="mail">FCAI Mail: ssalma.essamm@gmail.com</pre>
+            <pre id="major">Major: CS</pre>
+            <pre id="minor">Minor: DS</pre>
         </div>
         /*React.createElement(
           'div',
@@ -22,6 +24,5 @@ function BasicInfo() {
          )*/
     );
 }
-
 
 export default BasicInfo;

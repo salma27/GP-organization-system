@@ -3,7 +3,7 @@ import React from "react";
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 import { Login } from "../Login";
 import { StudentProfile } from "../StudentProfile";
-
+import { FaRocket } from "react-icons/fa";
 function App() {
     return (
         <>

@@ -3,6 +3,12 @@ body {
     margin-left: 3rem;
 }
 
+.studentInfo {
+    background-color: rgb(183, 183, 218);
+    margin: 80px;
+    padding: 50px;
+}
+
 #notesSection {
     padding-top: 3rem;
     float: left;

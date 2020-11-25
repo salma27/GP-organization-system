@@ -16,14 +16,12 @@ function StudentProfile() {
     return (
         <div>
             <SearchBar />
-            <Title
-                orange="Student's"
-                black="Profile"
-                backgroundColor="lightgoldenrodyellow"
-            />
-            <BasicInfo />
-            <FieldsOfExperience tech={technology} />
-            <Notes />
+            <Title orange="Student's" black="Profile" />
+            <div className="studentInfo">
+                <BasicInfo />
+                <FieldsOfExperience tech={technology} />
+                <Notes />
+            </div>
         </div>
     );
 }
