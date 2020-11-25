@@ -5,31 +5,35 @@ import { ErrorHandlingInput } from "utils";
 function BasicInfo() {
     return (
         <div>
-            <div>
-                <FaUser id="icon" />
-                <span id="name">Name:</span>
-                <ErrorHandlingInput id="personalInfo" readOnly="true" />
-            </div>
-            <div>
-                <FaPen id="icon" />
-                <span id="id">ID:</span>
-                <ErrorHandlingInput id="personalInfo" readOnly="true" />
-            </div>
-            <div>
-                <FaMailBulk id="icon" />
-                <span id="mail">FCAI Mail:</span>
-                <ErrorHandlingInput id="personalInfo" readOnly="true" />
-            </div>
-            <div>
-                <FaPlus id="icon" />
-                <span id="major">Major:</span>
-                <ErrorHandlingInput id="personalInfo" readOnly="true" />
-            </div>
-            <div>
-                <FaMinus id="icon" />
-                <span id="minor">Minor:</span>
-                <ErrorHandlingInput id="personalInfo" readOnly="true" />
-            </div>
+            
+            <table className = "center">
+                <tr>
+                    <td><FaUser id="icon" /></td>
+                    <td><span id="name">Name:</span></td>
+                    <td><ErrorHandlingInput id="personalInfo" readOnly="true" /> </td>
+                </tr>
+                <tr>
+                    <td><FaPen id="icon" /> </td>
+                    <td><span id="id">ID:</span> </td>
+                    <td><ErrorHandlingInput id="personalInfo" readOnly="true" /> </td>
+                </tr>
+                <tr>
+                    <td><FaMailBulk id="icon" /></td>
+                    <td><span id="mail">FCAI Mail:</span></td>
+                    <td><ErrorHandlingInput id="personalInfo" readOnly="true" /></td>
+                </tr>
+                <tr>
+                    <td><FaPlus id="icon" /></td>
+                    <td><span id="major">Major:</span></td>
+                    <td><ErrorHandlingInput id="personalInfo" readOnly="true" /></td>
+                </tr>
+                <tr>
+                    <td><FaMinus id="icon" /></td>
+                    <td><span id="minor">Minor:</span></td>
+                    <td><ErrorHandlingInput id="personalInfo" readOnly="true" /></td>
+                </tr>
+            </table>
+           
         </div>
     );
 }
