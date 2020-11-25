@@ -7,18 +7,16 @@ function SearchBar() {
     const [search, setSearch] = useState("Search...");
     return (
         <>
-
-            <div className="searchBar"> 
-                <ErrorHandlingInput 
-                    id="search" 
-                    value = {search}
-                    onClick = {() =>{
-                        if(search === "Search...")
-                            setSearch("");
+            <div className="searchBar">
+                <ErrorHandlingInput
+                    id="search"
+                    value={search}
+                    onClick={() => {
+                        if (search === "Search...") setSearch("");
                     }}
-                onChange = {e=>setSearch(e.target.value)
-                } />
-                <Button id="searchBtn" label = "search" />
+                    onChange={(e) => setSearch(e.target.value)}
+                />
+                <Button label="search" />
             </div>
         </>
     );
