@@ -4,6 +4,7 @@ import FieldsOfExperience from "./FieldsOfExperience";
 import Notes from "./Notes";
 import Title from "../../utils/Title";
 import "./StudentProfile.css";
+import SearchBar from "../SearchBar/SearchBar";
 
 function StudentProfile() {
     const technology = [
@@ -14,6 +15,7 @@ function StudentProfile() {
     ];
     return (
         <div>
+            <SearchBar />
             <Title
                 orange="Student's"
                 black="Profile"

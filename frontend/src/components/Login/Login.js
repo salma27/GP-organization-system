@@ -19,17 +19,15 @@ function LoginBox() {
 
             <div>
                 <ErrorHandlingInput
-                    type = "text"
+                    type="text"
                     label="Email"
                     labelID="email"
-                    value = {email}
+                    value={email}
                     //placeholder={email}
                     className="emailInput"
-                    onClick = {()=>{
-                        if (email === "example@gmail.com")
-                            setEmail("")
-                    }
-                    }
+                    onClick={() => {
+                        if (email === "example@gmail.com") setEmail("");
+                    }}
                     onChange={(e) => {
                         setEmail(e.target.value);
                     }}
@@ -43,10 +41,10 @@ function LoginBox() {
                     labelID="password"
                     type="password"
                     className="passwordInput"
-                    value = {password}
+                    value={password}
                     //placeholder={star}
                     onChange={(e) => {
-                        setPassword(e.target.value)
+                        setPassword(e.target.value);
                     }}
                 />
             </div>
@@ -68,7 +66,6 @@ function LoginBox() {
 function Login() {
     return (
         <div className="loginPage">
-            <SearchBar />
             <Title orange="WELCOME!!" />
             <div>
                 <LoginBox />
