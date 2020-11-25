@@ -1,31 +1,36 @@
 import React from "react";
 import { FaUser, FaPen, FaMailBulk, FaPlus, FaMinus } from "react-icons/fa";
 import "./BasicInfo.css";
-
+import { ErrorHandlingInput } from "utils";
 function BasicInfo() {
     return (
         <div>
-            <FaUser id="icon" />
-            <pre id="name">Name: Salma Essam Soliman</pre>
-            <FaPen id="icon" />
-            <pre id="id">ID: 20170115</pre>
-            <FaMailBulk id="icon" />
-            <pre id="mail">FCAI Mail: ssalma.essamm@gmail.com</pre>
-            <FaPlus id="icon" />
-            <pre id="major">Major: CS</pre>
-            <FaMinus id="icon" />
-            <pre id="minor">Minor: DS</pre>
+            <div>
+                <FaUser id="icon" />
+                <span id="name">Name:</span>
+                <ErrorHandlingInput id="personalInfo" readOnly="true" />
+            </div>
+            <div>
+                <FaPen id="icon" />
+                <span id="id">ID:</span>
+                <ErrorHandlingInput id="personalInfo" readOnly="true" />
+            </div>
+            <div>
+                <FaMailBulk id="icon" />
+                <span id="mail">FCAI Mail:</span>
+                <ErrorHandlingInput id="personalInfo" readOnly="true" />
+            </div>
+            <div>
+                <FaPlus id="icon" />
+                <span id="major">Major:</span>
+                <ErrorHandlingInput id="personalInfo" readOnly="true" />
+            </div>
+            <div>
+                <FaMinus id="icon" />
+                <span id="minor">Minor:</span>
+                <ErrorHandlingInput id="personalInfo" readOnly="true" />
+            </div>
         </div>
-        /*React.createElement(
-          'div',
-          null,
-          "Student's Profile",
-          React.createElement('pre', "id=name", "Name: "),
-          React.createElement('pre', "id=id", "ID: "),
-          React.createElement('pre', "id=mail", "FCAI Mail: "),
-          React.createElement('pre', "id=major", "Major: "),
-          React.createElement('pre', "id=minor", "Minor: ")
-         )*/
     );
 }
 
