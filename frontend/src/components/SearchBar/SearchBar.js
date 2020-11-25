@@ -8,13 +8,15 @@ function SearchBar() {
     return (
         <>
             <div className="searchBar"> 
-                <ErrorHandlingInput id="search" placeholder={search} 
-                onChange = {e=>{
-                    if(search==="Search...")
-                            setSearch(e.target.value);
-                        else
-                            setSearch(search+e.target.value);
-                }} />
+                <ErrorHandlingInput 
+                    id="search" 
+                    value = {search}
+                    onClick = {() =>{
+                        if(search === "Search...")
+                            setSearch("");
+                    }}
+                onChange = {e=>setSearch(e.target.value)
+                } />
                 <Button id="searchBtn" label = "search" />
             </div>
         </>
