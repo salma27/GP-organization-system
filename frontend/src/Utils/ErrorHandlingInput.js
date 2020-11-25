@@ -6,6 +6,7 @@ const ErrorHandlingInput = ({
     value = "",
     borderRadius = "0.7em",
     onChange = () => {},
+    onClick = () =>{},
     className = "",
     placeholder = "",
     labelID = "",
@@ -17,6 +18,7 @@ const ErrorHandlingInput = ({
         <>
             {label && <label id={labelID}>{label}</label>}
             <input
+                onClick = {onClick}
                 name={name}
                 type={type}
                 value={value}

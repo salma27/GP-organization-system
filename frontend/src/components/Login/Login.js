@@ -5,7 +5,6 @@ import SearchBar from "../SearchBar/SearchBar";
 function LoginBox() {
     const [email, setEmail] = useState("example@gmail.com");
     const [password, setPassword] = useState("");
-    const [star, setStar] = useState("");
     return (
         <div className="loginBox">
             <p
@@ -20,15 +19,19 @@ function LoginBox() {
 
             <div>
                 <ErrorHandlingInput
+                    type = "text"
                     label="Email"
                     labelID="email"
-                    placeholder={email}
+                    value = {email}
+                    //placeholder={email}
                     className="emailInput"
-                    onChange={(e) => {
+                    onClick = {()=>{
                         if (email === "example@gmail.com")
-                            setEmail(e.target.value);
-                        else setEmail(email + e.target.value);
-                        console.log(e.target.value);
+                            setEmail("")
+                    }
+                    }
+                    onChange={(e) => {
+                        setEmail(e.target.value);
                     }}
                 />
             </div>
@@ -40,10 +43,10 @@ function LoginBox() {
                     labelID="password"
                     type="password"
                     className="passwordInput"
-                    placeholder={star}
+                    value = {password}
+                    //placeholder={star}
                     onChange={(e) => {
-                        setPassword(password + e.target.value);
-                        setStar(star + "*");
+                        setPassword(e.target.value)
                     }}
                 />
             </div>
