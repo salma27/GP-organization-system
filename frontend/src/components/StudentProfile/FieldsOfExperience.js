@@ -34,7 +34,25 @@ function FieldsOfExperience(props) {
                 <Button onClick={selected} label="+" />
             </div>
             <div id="field">
-                <ul>
+                <table id = "addedFields">
+                    {value.map((v,i) => (
+                        <tr key = {i}>
+                            <td className = "choosen">- {v}</td>
+                            <td>
+                            <Button
+                                onClick={() => removeItem(i)}
+                                label="X"
+                                className="delete"
+                                width="55px"
+                                height="25px"
+                            />
+                            </td>
+                        </tr>
+                    ))
+
+                    }
+                </table>
+               {/* <ul>
                     {value.map((v, i) => (
                         <li key={i}>
                             {v}
@@ -47,7 +65,7 @@ function FieldsOfExperience(props) {
                             />
                         </li>
                     ))}
-                </ul>
+                    </ul>*/}
             </div>
         </div>
     );
