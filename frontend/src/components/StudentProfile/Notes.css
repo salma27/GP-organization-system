@@ -1,0 +1,13 @@
+#notes {
+    width: 91%;
+    height: 100px;
+    resize: none;
+    padding: 10px;
+    border-radius: 0.7em;
+    border: 2px solid rgb(54, 53, 53);
+    margin-bottom: 20px;
+}
+
+.updateNotes {
+    margin-left: 635px;
+}

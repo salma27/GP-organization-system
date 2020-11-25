@@ -10,28 +10,3 @@ body {
     font-weight: bold;
     font-family: "Courier New", Courier, monospace;
 }
-
-#notesSection {
-    padding-top: 3rem;
-    float: left;
-}
-
-#notesSection div p {
-    float: left;
-    margin-top: 0px;
-    width: 500px;
-}
-#notesSection div {
-    height: 100px;
-}
-
-#notes {
-    width: 500px;
-    height: 70px;
-}
-
-#updateNotes {
-    height: 30px;
-    width: 150px;
-    margin-left: 50%;
-}
