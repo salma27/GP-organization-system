@@ -52,8 +52,8 @@ function LoginBox() {
             <Button
                 type="submit"
                 label="Login"
-                height="30px"
-                width="7rem"
+                height="10%"
+                width="15%"
                 borderRadius="0.7rem"
             />
         </div>

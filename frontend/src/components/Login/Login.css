@@ -2,14 +2,13 @@
     background-color: rgb(183, 183, 218);
     text-align: center;
     height: 50vh;
-    width: 60vw;
+    width: 65%;
     margin-left: 20%;
     font-weight: bold;
     font-family: "Courier New", Courier, monospace;
 }
 
 .loginPage {
-    height: 100vh;
     background-color: white;
 }
 #email,
@@ -21,9 +20,9 @@
 
 .emailInput {
     margin-right: 5rem;
-    width: 250px;
+    width: 30%;
 }
 .passwordInput {
     margin-right: 7.2rem;
-    width: 250px;
+    width: 30%;
 }
