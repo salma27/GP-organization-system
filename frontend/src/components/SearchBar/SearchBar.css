@@ -16,3 +16,11 @@
 .navbar-custom {
     background-color: #00bfa6;
 }
+#list:active {
+    background-color: #00bfa6;
+}
+
+#list.dropdown-item.active {
+    color: black;
+    background-color: white;
+}

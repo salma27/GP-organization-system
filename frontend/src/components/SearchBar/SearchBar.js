@@ -55,17 +55,19 @@ function SearchBar() {
                         <Nav.Link href="#home">Newsfeeds</Nav.Link>
                         <Nav.Link href="#link">Team Info.</Nav.Link>
                         <NavDropdown title="Old Ideas" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">
+                            <NavDropdown.Item id="list" href="#action/3.1">
                                 2020
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
+                            <NavDropdown.Item id="list" href="#action/3.2">
                                 2019
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">
+                            <NavDropdown.Item id="list" href="#action/3.3">
                                 2018
                             </NavDropdown.Item>
+
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">
+
+                            <NavDropdown.Item id="list" href="#action/3.4">
                                 2017
                             </NavDropdown.Item>
                         </NavDropdown>
