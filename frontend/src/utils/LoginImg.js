@@ -1,4 +1,10 @@
-const LoginImg = ({ width = "200", height = "200", id = "" }) => {
+const LoginImg = ({
+    width = "200",
+    height = "200",
+    id = "",
+    color1 = "#00bfa6",
+    color2 = "#47e6b1",
+}) => {
     return (
         <>
             <svg
@@ -136,7 +142,7 @@ const LoginImg = ({ width = "200", height = "200", id = "" }) => {
                         y="482"
                         width="3"
                         height="17"
-                        fill="#47e6b1"
+                        fill={color2}
                     ></rect>
                     <rect
                         x="231.69716"
@@ -144,7 +150,7 @@ const LoginImg = ({ width = "200", height = "200", id = "" }) => {
                         width="3"
                         height="17"
                         transform="translate(684.3753 257.30284) rotate(90)"
-                        fill="#47e6b1"
+                        fill={color2}
                     ></rect>
                 </g>
                 <g opacity="0.5">
@@ -153,7 +159,7 @@ const LoginImg = ({ width = "200", height = "200", id = "" }) => {
                         y="270"
                         width="3"
                         height="17"
-                        fill="#47e6b1"
+                        fill={color2}
                     ></rect>
                     <rect
                         x="987.69716"
@@ -161,7 +167,7 @@ const LoginImg = ({ width = "200", height = "200", id = "" }) => {
                         width="3"
                         height="17"
                         transform="translate(1228.3753 -710.69716) rotate(90)"
-                        fill="#47e6b1"
+                        fill={color2}
                     ></rect>
                 </g>
                 <g opacity="0.5">
@@ -170,7 +176,7 @@ const LoginImg = ({ width = "200", height = "200", id = "" }) => {
                         y="59"
                         width="3"
                         height="17"
-                        fill="#47e6b1"
+                        fill={color2}
                     ></rect>
                     <rect
                         x="249.69716"
@@ -178,7 +184,7 @@ const LoginImg = ({ width = "200", height = "200", id = "" }) => {
                         width="3"
                         height="17"
                         transform="translate(279.3753 -183.69716) rotate(90)"
-                        fill="#47e6b1"
+                        fill={color2}
                     ></rect>
                 </g>
                 <g opacity="0.5">
@@ -187,7 +193,7 @@ const LoginImg = ({ width = "200", height = "200", id = "" }) => {
                         y="33"
                         width="3"
                         height="17"
-                        fill="#47e6b1"
+                        fill={color2}
                     ></rect>
                     <rect
                         x="897.69716"
@@ -195,7 +201,7 @@ const LoginImg = ({ width = "200", height = "200", id = "" }) => {
                         width="3"
                         height="17"
                         transform="translate(901.3753 -857.69716) rotate(90)"
-                        fill="#47e6b1"
+                        fill={color2}
                     ></rect>
                 </g>
                 <path
@@ -234,7 +240,7 @@ const LoginImg = ({ width = "200", height = "200", id = "" }) => {
                     cx="103.39431"
                     cy="541"
                     r="6"
-                    fill="#47e6b1"
+                    fill={color2}
                     opacity="0.5"
                 ></circle>
                 <circle
@@ -247,7 +253,7 @@ const LoginImg = ({ width = "200", height = "200", id = "" }) => {
                 <path
                     d="M407.19716,520.481l-24,36s8,37,185,36,191-36,191-36l-33-48-101-69Z"
                     transform="translate(-202.30284 -162.98099)"
-                    fill="#00bfa6"
+                    fill={color1}
                 ></path>
                 <path
                     d="M407.19716,520.481l-24,36s8,37,185,36,191-36,191-36l-33-48-101-69Z"
@@ -256,7 +262,7 @@ const LoginImg = ({ width = "200", height = "200", id = "" }) => {
                 ></path>
                 <polygon
                     points="715.394 224 400.394 363 16.394 224 368.394 64 541.184 143.67 547.374 146.53 715.394 224"
-                    fill="#00bfa6"
+                    fill={color1}
                 ></polygon>
                 <polygon
                     points="715.394 224 400.394 363 16.394 224 368.394 64 541.184 143.67 547.374 146.53 715.394 224"
@@ -269,7 +275,7 @@ const LoginImg = ({ width = "200", height = "200", id = "" }) => {
                 <path
                     d="M411.19716,386.481l-28,170s201-65,376,0l-26-180S498.19716,347.481,411.19716,386.481Z"
                     transform="translate(-202.30284 -162.98099)"
-                    fill="#00bfa6"
+                    fill={color1}
                 ></path>
                 <ellipse
                     cx="553.39431"

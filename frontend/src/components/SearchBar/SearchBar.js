@@ -15,6 +15,7 @@ import Container from "react-bootstrap/Container";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router } from "react-router-dom";
+import { LoginImg } from "utils";
 
 function SearchBar() {
     const [search, setSearch] = useState("Search...");
@@ -48,6 +49,12 @@ function SearchBar() {
                 expand="lg"
                 sticky="top"
             >
+                <LoginImg
+                    width="50px"
+                    height="40px"
+                    color1="white"
+                    color2="light-gray"
+                />
                 <Navbar.Brand href="#home">Personal Profile</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">

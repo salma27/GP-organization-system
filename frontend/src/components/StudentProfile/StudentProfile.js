@@ -18,6 +18,11 @@ function StudentProfile() {
         <>
             <SearchBar />
             <StudentProfileImg />
+            <div className="studentInfo">
+                <BasicInfo />
+                <FieldsOfExperience tech={technology} />
+                <Notes />
+            </div>
         </>
     );
 }

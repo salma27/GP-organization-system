@@ -4,9 +4,7 @@ import { Button } from "utils";
 import "./Notes.css";
 
 function Notes() {
-    const [note, setNote] = useState(
-        "(You may add your phone number, other mails, or any other notes here):"
-    );
+    const [note, setNote] = useState("Notes:");
     return (
         <div id="notesSection">
             <div>
@@ -15,11 +13,7 @@ function Notes() {
                     id="notes"
                     value={note}
                     onClick={() => {
-                        if (
-                            note ===
-                            "(You may add your phone number, other mails, or any other notes here):"
-                        )
-                            setNote("");
+                        if (note === "Notes:") setNote("");
                     }}
                     onChange={(e) => {
                         setNote(e.target.value);

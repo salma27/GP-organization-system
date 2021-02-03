@@ -1,5 +1,6 @@
 import { SearchBar } from "components/SearchBar";
 import { Container, Row, Col } from "react-bootstrap";
+import { FaBox } from "react-icons/fa";
 
 const StudentProfileImg = ({}) => {
     return (
@@ -12,7 +13,9 @@ const StudentProfileImg = ({}) => {
                             //height={height}
                             viewBox="0 0 100% 100%"
                             class="injected-svg gridItem__media"
-                            style={{ float: "left" }}
+                            style={{
+                                float: "left",
+                            }}
                         >
                             <circle
                                 cx="200"

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import Button from "../../utils/Button";
+//import Button from "../../utils/Button";
 import "./FieldsOfExperience.css";
+import { Button } from "react-bootstrap";
+//import {BootstrapButton}
 
 function FieldsOfExperience(props) {
     const [value, setValue] = useState([]);
@@ -40,30 +42,26 @@ function FieldsOfExperience(props) {
                             <td className="choosen">- {v}</td>
                             <td>
                                 <Button
+                                    block
+                                    size="lg"
+                                    type="submit"
+                                    //disabled={!validateForm()}
+                                    //id="loginBtn"
+
+                                    //variant="dark"
+                                    //bd="sm"
                                     onClick={() => removeItem(i)}
-                                    label="X"
-                                    className="delete"
+                                    //label="X"
+                                    //className="delete"
                                     width="55px"
                                     height="25px"
-                                />
+                                >
+                                    X
+                                </Button>
                             </td>
                         </tr>
                     ))}
                 </table>
-                {/* <ul>
-                    {value.map((v, i) => (
-                        <li key={i}>
-                            {v}
-                            <Button
-                                onClick={() => removeItem(i)}
-                                label="X"
-                                className="delete"
-                                width="55px"
-                                height="25px"
-                            />
-                        </li>
-                    ))}
-                    </ul>*/}
             </div>
         </div>
     );
