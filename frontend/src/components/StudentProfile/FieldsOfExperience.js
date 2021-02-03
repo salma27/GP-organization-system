@@ -6,7 +6,7 @@ function FieldsOfExperience(props) {
     const [value, setValue] = useState([]);
     const [oneTech, setOne] = useState();
     const selected = () => {
-        if (oneTech && !value.includes(oneTech) && oneTech != "-1")
+        if (oneTech && !value.includes(oneTech) && oneTech !== "-1")
             setValue([...value, oneTech]);
     };
     const setOneItem = (e) => setOne(e.target.value);
@@ -34,25 +34,23 @@ function FieldsOfExperience(props) {
                 <Button onClick={selected} label="+" />
             </div>
             <div id="field">
-                <table id = "addedFields">
-                    {value.map((v,i) => (
-                        <tr key = {i}>
-                            <td className = "choosen">- {v}</td>
+                <table id="addedFields">
+                    {value.map((v, i) => (
+                        <tr key={i}>
+                            <td className="choosen">- {v}</td>
                             <td>
-                            <Button
-                                onClick={() => removeItem(i)}
-                                label="X"
-                                className="delete"
-                                width="55px"
-                                height="25px"
-                            />
+                                <Button
+                                    onClick={() => removeItem(i)}
+                                    label="X"
+                                    className="delete"
+                                    width="55px"
+                                    height="25px"
+                                />
                             </td>
                         </tr>
-                    ))
-
-                    }
+                    ))}
                 </table>
-               {/* <ul>
+                {/* <ul>
                     {value.map((v, i) => (
                         <li key={i}>
                             {v}
