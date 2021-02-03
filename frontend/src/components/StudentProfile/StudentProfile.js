@@ -5,6 +5,34 @@ import Notes from "./Notes";
 import Title from "../../utils/Title";
 import "./StudentProfile.css";
 import SearchBar from "../SearchBar/SearchBar";
+import StudentProfileImg from "../../utils/StudentProfileImg";
+
+function StudentProfile() {
+    const technology = [
+        "Machine Learning",
+        "Artifical Intelligence",
+        "Web Application",
+        "Others",
+    ];
+    return (
+        <>
+            <SearchBar />
+            <StudentProfileImg />
+        </>
+    );
+}
+
+export default StudentProfile;
+
+/*
+
+import React from "react";
+import BasicInfo from "./BasicInfo";
+import FieldsOfExperience from "./FieldsOfExperience";
+import Notes from "./Notes";
+import Title from "../../utils/Title";
+import "./StudentProfile.css";
+import SearchBar from "../SearchBar/SearchBar";
 
 function StudentProfile() {
     const technology = [
@@ -27,3 +55,4 @@ function StudentProfile() {
 }
 
 export default StudentProfile;
+*/
