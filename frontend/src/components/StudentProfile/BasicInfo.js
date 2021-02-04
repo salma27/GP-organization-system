@@ -2,6 +2,56 @@ import React from "react";
 import { FaUser, FaPen, FaMailBulk, FaPlus, FaMinus } from "react-icons/fa";
 import "./BasicInfo.css";
 import { ErrorHandlingInput } from "utils";
+import { Form, Row, Col } from "react-bootstrap";
+
+function BasicInfo() {
+    return (
+        <>
+            <Form>
+                <Form.Row>
+                    <Col md={4} lg={4} sm={2}>
+                        <Form.Label>Name: </Form.Label>
+                    </Col>
+                    <Col md={6} lg={6} sm={8}>
+                        <Form.Control disabled />
+                    </Col>
+                </Form.Row>
+                <Form.Row>
+                    <Col md={4} lg={4} sm={2}>
+                        <Form.Label>ID: </Form.Label>
+                    </Col>
+                    <Col md={6} lg={6} sm={8}>
+                        <Form.Control disabled />
+                    </Col>
+                </Form.Row>
+                <Form.Row>
+                    <Col md={4} lg={4} sm={2}>
+                        <Form.Label>FCAI Mail: </Form.Label>
+                    </Col>
+                    <Col md={6} lg={6} sm={8}>
+                        <Form.Control disabled />
+                    </Col>
+                </Form.Row>
+                <Form.Row>
+                    <Col md={4} lg={4} sm={2}>
+                        <Form.Label>Department: </Form.Label>
+                    </Col>
+                    <Col md={6} lg={6} sm={8}>
+                        <Form.Control disabled />
+                    </Col>
+                </Form.Row>
+            </Form>
+        </>
+    );
+}
+
+export default BasicInfo;
+
+/*
+import React from "react";
+import { FaUser, FaPen, FaMailBulk, FaPlus, FaMinus } from "react-icons/fa";
+import "./BasicInfo.css";
+import { ErrorHandlingInput } from "utils";
 function BasicInfo() {
     return (
         <div>
@@ -67,3 +117,4 @@ function BasicInfo() {
 }
 
 export default BasicInfo;
+*/

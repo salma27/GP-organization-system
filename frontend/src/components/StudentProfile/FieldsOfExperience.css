@@ -12,3 +12,13 @@
 .delete {
     margin-left: 40px;
 }
+#addBtn {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 50%;
+}
+#list:active {
+    display: block;
+    background-color: #00bfa6;
+}

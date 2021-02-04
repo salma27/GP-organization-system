@@ -85,7 +85,7 @@ function SearchBar() {
                             placeholder="Search"
                             className="mr-sm-2"
                         />
-                        <Button variant="dark">Search</Button>
+                        <Button variant="secondary">Search</Button>
                     </Form>
                 </Navbar.Collapse>
             </Navbar>

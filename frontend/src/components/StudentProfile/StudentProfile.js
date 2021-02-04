@@ -20,7 +20,11 @@ function StudentProfile() {
             <StudentProfileImg />
             <div className="studentInfo">
                 <BasicInfo />
+            </div>
+            <div className="studentInfo">
                 <FieldsOfExperience tech={technology} />
+            </div>
+            <div className="studentInfo">
                 <Notes />
             </div>
         </>

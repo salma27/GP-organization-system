@@ -13,3 +13,10 @@
 .updateNotes {
     margin-left: 635px;
 }
+
+#notesBtn {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 50%;
+}
