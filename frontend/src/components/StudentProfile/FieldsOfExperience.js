@@ -2,6 +2,7 @@ import React, { useState } from "react";
 //import Button from "../../utils/Button";
 import "./FieldsOfExperience.css";
 import { Button, Form, Col, Row, Container } from "react-bootstrap";
+import { BsButton } from "utils";
 
 function FieldsOfExperience(props) {
     const [value, setValue] = useState([]);
@@ -40,15 +41,7 @@ function FieldsOfExperience(props) {
                         ))}
                     </Form.Control>
                 </Form.Group>
-                <Button
-                    block
-                    size="sm"
-                    variant="secondary"
-                    id="addBtn"
-                    onClick={selected}
-                >
-                    +
-                </Button>
+                <BsButton size="sm" id="addBtn" onClick={selected} label="+" />
             </Form>
             <hr
                 style={{

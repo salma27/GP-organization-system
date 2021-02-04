@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./SearchBar.css";
 import ErrorHandlingInput from "../../utils/ErrorHandlingInput";
-//import { Button } from "utils";
+import { BsButton } from "utils";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
@@ -85,7 +85,7 @@ function SearchBar() {
                             placeholder="Search"
                             className="mr-sm-2"
                         />
-                        <Button variant="secondary">Search</Button>
+                        <BsButton label="Search" block="" size="md" />
                     </Form>
                 </Navbar.Collapse>
             </Navbar>

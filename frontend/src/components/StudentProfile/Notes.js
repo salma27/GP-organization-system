@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-//import { Button } from "utils";
+import { BsButton } from "utils";
 import "./Notes.css";
 
 function Notes() {
@@ -27,17 +27,12 @@ function Notes() {
                         }}
                     />
                 </Form.Group>
-                <Button
-                    block
+                <BsButton
                     size="sm"
-                    variant="secondary"
                     id="notesBtn"
-                    //className="updateNotes"
-                    //label=""
                     width="300px"
-                >
-                    Add Notes
-                </Button>
+                    label="Add Notes"
+                />
             </Form>
         </>
     );

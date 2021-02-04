@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Login.css";
+import { BsButton } from "utils";
 //import { ErrorHandlingInput, Title, Button } from "utils";
 import LoginImg from "../../utils/LoginImg";
 import { Button } from "react-bootstrap";
@@ -48,15 +49,13 @@ function Login() {
                                         }
                                     />
                                 </Form.Group>
-                                <Button
-                                    block
+                                <BsButton
                                     size="lg"
                                     type="submit"
                                     disabled={!validateForm()}
                                     id="loginBtn"
-                                >
-                                    Login
-                                </Button>
+                                    label="Login"
+                                />
                             </Form>
                         </Container>
                     </Col>
