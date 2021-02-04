@@ -8,8 +8,8 @@ const TeamProfileImg = ({
     return (
         <>
             <svg
-                width="250"
-                height="250"
+                width="25%"
+                //height="250"
                 viewBox="0 0 781.43 756.44"
                 class="injected-svg gridItem__media"
             >
