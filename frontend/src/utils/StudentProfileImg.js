@@ -51,15 +51,6 @@ const StudentProfileImg = ({}) => {
                                     ></stop>
                                 </linearGradient>
                             </defs>
-                            <title>profile pic</title>
-                            <g opacity="0.5">
-                                <circle
-                                    cx="349"
-                                    cy="349"
-                                    r="349"
-                                    fill="url(#b247946c-c62f-4d08-994a-4c3d64e1e98f-192)"
-                                ></circle>
-                            </g>
                             <circle
                                 cx="349.68"
                                 cy="346.77"
@@ -129,9 +120,6 @@ const StudentProfileImg = ({}) => {
                     </Col>
                     <Col sm={12} md={6} lg={6} width="50%">
                         <svg
-                            //width="100%"
-                            //height={height}
-                            //viewBox="0 0 100% 100%"
                             class="injected-svg gridItem__media"
                             style={{
                                 display: "block",

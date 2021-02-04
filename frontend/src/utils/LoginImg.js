@@ -8,9 +8,6 @@ const LoginImg = ({
     return (
         <>
             <svg
-                xmlns="http://www.w3.org/2000/svg"
-                xlink="http://www.w3.org/1999/xlink"
-                data-name="Layer 1"
                 width={width}
                 height={height}
                 id={id}
@@ -19,7 +16,6 @@ const LoginImg = ({
             >
                 <defs>
                     <linearGradient
-                        id="b2a81085-935f-40be-bb27-75940df8c338-1039"
                         x1="-450.78971"
                         y1="2803.04671"
                         x2="-450.78971"
