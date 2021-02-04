@@ -55,12 +55,14 @@ function SearchBar() {
                     color1="white"
                     color2="light-gray"
                 />
-                <Navbar.Brand href="#home">Personal Profile</Navbar.Brand>
+                <Navbar.Brand href="/StudentProfile">
+                    Personal Profile
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
                         <Nav.Link href="#home">Newsfeeds</Nav.Link>
-                        <Nav.Link href="#link">Team Info.</Nav.Link>
+                        <Nav.Link href="/TeamProfile">Team Info.</Nav.Link>
                         <NavDropdown title="Old Ideas" id="basic-nav-dropdown">
                             <NavDropdown.Item id="list" href="#action/3.1">
                                 2020
