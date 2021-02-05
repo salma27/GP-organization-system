@@ -1,7 +1,5 @@
 #sidebar {
-    float: right;
     margin-top: 20vh;
-    /*display: inline-block;
-    vertical-align: middle;
-*/
+    position: fixed;
+    right: 0;
 }
