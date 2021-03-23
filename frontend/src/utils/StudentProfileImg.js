@@ -1,6 +1,5 @@
-import { SearchBar } from "components/SearchBar";
+import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { FaBox } from "react-icons/fa";
 
 const StudentProfileImg = ({}) => {
     return (

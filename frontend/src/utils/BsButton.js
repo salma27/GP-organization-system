@@ -1,5 +1,7 @@
 //import "./Button.css";
-import { Button } from "react-bootstrap";
+import React from "react";
+import {Button} from "react-bootstrap";
+
 const BsButton = ({
     width = "",
     label = "",

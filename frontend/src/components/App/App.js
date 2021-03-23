@@ -1,8 +1,8 @@
 import "./App.css";
 import React from "react";
-import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
-import { Login } from "../Login";
-import { StudentProfile } from "../StudentProfile";
+import {BrowserRouter, Link, Route, Switch} from "react-router-dom";
+import {Login} from "components/Login";
+import {StudentProfile} from "components/StudentProfile";
 
 function App() {
     return (

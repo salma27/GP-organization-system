@@ -1,21 +1,19 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import "./SearchBar.css";
-import ErrorHandlingInput from "../../utils/ErrorHandlingInput";
-import { BsButton } from "utils";
+import {BsButton, ErrorHandlingInput, LoginImg} from "utils";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { Button } from "react-bootstrap";
+import {Button} from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router } from "react-router-dom";
-import { LoginImg } from "utils";
+import {BrowserRouter as Router} from "react-router-dom";
 
 function SearchBar() {
     const [search, setSearch] = useState("Search...");

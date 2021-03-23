@@ -1,15 +1,11 @@
-import React, { useState } from "react";
-
-import { BsButton } from "utils";
-//import { ErrorHandlingInput, Title, Button } from "utils";
-import LoginImg from "../../utils/LoginImg";
-import { Button } from "react-bootstrap";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import React, {useState} from "react";
+import {BsButton, LoginImg} from "utils";
+import {Container, Row, Col, Form} from "react-bootstrap";
 import "./Login.css";
 function Login() {
     const [id, setID] = useState("");
     const [email, setEmail] = useState("");
-    
+
     function validateForm() {
         return email.length > 0 && id.length > 7;
     }
@@ -22,11 +18,11 @@ function Login() {
         <>
             <Container fluid id="login-container">
                 <Row id="form">
-                    <Col sm={12} className="centerImg" >
+                    <Col sm={12} className="centerImg">
                         <LoginImg id="img" />
                     </Col>
-                    
-                    <Col sm={12} >
+
+                    <Col sm={12}>
                         <Container fluid id="loginForm">
                             <Form onSubmit={submit}>
                                 <Form.Group size="lg" controlId="id">
