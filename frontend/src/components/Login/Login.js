@@ -25,6 +25,7 @@ function Login() {
                     <Col sm={12} className="centerImg" >
                         <LoginImg id="img" />
                     </Col>
+                    
                     <Col sm={12} >
                         <Container fluid id="loginForm">
                             <Form onSubmit={submit}>
