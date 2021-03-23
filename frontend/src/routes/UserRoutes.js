@@ -14,11 +14,11 @@ const UserRoutes = () => {
                 <Route path={r.loginRoute}>
                     <pages.LoginPage />
                 </Route>
-                {/* <PrivateRoute */}
                 <Route
-                    user
+                // <PrivateRoute
+                    // user
                     path={r.dashboardRoute}
-                    component={pages.DashboardPage}
+                    component={pages.DashboardTabs}
                 />
                 <Route
                     user

@@ -4,7 +4,7 @@ import {dashboardRoute} from "routes/routes";
 
 const NotFound = () => {
     return (
-        <div id="wrapper">
+        <div id="wrapper" style={{height: "100%"}}>
             <div id="content-wrapper" class="d-flex flex-column">
                 <div id="content">
                     <div class="container-fluid">
