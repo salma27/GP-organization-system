@@ -1,11 +1,11 @@
-import {Login} from "components/Login";
+import {FormWrapper, LoginForm} from "components/Login";
 import React from "react";
 
 const LoginPage = () => {
     return (
-        <div>
-            <Login />
-        </div>
+        <FormWrapper>
+            <LoginForm />
+        </FormWrapper>
     );
 };
 export default LoginPage;
