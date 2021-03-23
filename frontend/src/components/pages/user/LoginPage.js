@@ -1,4 +1,4 @@
-import {FormWrapper, LoginForm} from "components/Login";
+import {FormWrapper, LoginForm} from "components/forms";
 import React from "react";
 
 const LoginPage = () => {
