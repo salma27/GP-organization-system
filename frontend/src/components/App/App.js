@@ -1,31 +1,35 @@
-import "./App.css";
 import React from "react";
 import {BrowserRouter, Link, Route, Switch} from "react-router-dom";
-import {Login} from "components/Login";
-import {StudentProfile} from "components/StudentProfile";
+import {AdminRoutes, UserRoutes} from "routes";
+import * as r from "routes/routes";
+import "jquery";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "./App.css";
+import {ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const Links = () => (
+    <div>
+        <Link to={r.root}> home </Link>
+        <br />
+        <Link to={r.loginRoute}> login </Link>
+        <br />
+        <Link to={r.studentProfileRoute}> student profile </Link>
+        <br />
+    </div>
+);
 
 function App() {
     return (
         <>
-            <div>
-                <BrowserRouter>
-                    <Link to="/home"> home | </Link>
-                    <Link to="/login"> login | </Link>
-                    <Link to="/studentProfile"> student Profile | </Link>
-                    <div>
-                        <Switch>
-                            <Route path="/home">
-                                <div>you're in home</div>
-                            </Route>
-                            <Route path="/login" component={Login}></Route>
-                            <Route
-                                path="/StudentProfile"
-                                component={StudentProfile}
-                            ></Route>
-                        </Switch>
-                    </div>
-                </BrowserRouter>
-            </div>
+            <ToastContainer />
+            <BrowserRouter>
+                <Links />
+                <Switch>
+                    <Route path={r.adminRoute} component={AdminRoutes} />
+                    <Route path="/" component={UserRoutes} />
+                </Switch>
+            </BrowserRouter>
         </>
     );
 }

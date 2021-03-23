@@ -1,6 +1,6 @@
 import React from "react";
 import {Redirect, Route, Switch} from "react-router-dom";
-import PrivateRoute from "./PrivateRoute";
+// import PrivateRoute from "./PrivateRoute";
 import * as r from "./routes";
 import * as pages from "components/pages";
 
@@ -14,10 +14,16 @@ const UserRoutes = () => {
                 <Route path={r.loginRoute}>
                     <pages.LoginPage />
                 </Route>
-                <PrivateRoute
+                {/* <PrivateRoute */}
+                <Route
                     user
                     path={r.dashboardRoute}
                     component={pages.DashboardPage}
+                />
+                <Route
+                    user
+                    path={r.studentProfileRoute}
+                    component={pages.StudentProfilePage}
                 />
                 <Route
                     path="*"
@@ -25,7 +31,7 @@ const UserRoutes = () => {
                         if (staticContext) staticContext.statusCode = 404;
                         return (
                             <>
-                                <Title title="404 - page not found" />
+                                {/* <Title title="404 - page not found" /> */}
                                 <pages.NotFound />
                             </>
                         );
