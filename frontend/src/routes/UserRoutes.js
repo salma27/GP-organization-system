@@ -15,15 +15,25 @@ const UserRoutes = () => {
                     <pages.LoginPage />
                 </Route>
                 <Route
-                // <PrivateRoute
+                    // <PrivateRoute
                     // user
                     path={r.dashboardRoute}
                     component={pages.DashboardTabs}
                 />
-                <Route
+                {/* <Route
                     user
                     path={r.studentProfileRoute}
                     component={pages.StudentProfilePage}
+                /> */}
+                <Route
+                    user
+                    path={r.newsFeedRoute}
+                    component={pages.NewsFeedPage}
+                />
+                <Route
+                    user
+                    path={r.oldProjectsRoute}
+                    component={pages.OldProjectsPage}
                 />
                 <Route
                     path="*"

@@ -1,28 +1,45 @@
 import React from "react";
 import NotificationDropdown from "./NotificationDropdown";
+import {SearchBar} from "components/SearchBar";
+import {Link} from "react-router-dom";
+import * as r from "routes/routes";
+import {Nav, Navbar} from "react-bootstrap";
+import {MdExpandMore} from "react-icons/md";
 
-const Navbar = ({onClick}) => {
+const Navbar_ = ({onClick}) => {
     return (
-        <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <Navbar bg="white" expand="lg">
             {onClick && (
                 <button
                     id="sidebarToggleTop"
                     className="btn btn-link d-md-none rounded-circle mr-3"
                     onClick={onClick}
+                    style={{color: "#00BFA6"}}
                 >
                     <i className="fa fa-bars"></i>
                 </button>
             )}
-
-            <ul className="navbar-nav ml-auto">
-                <li className="nav-item d-flex justify-content-center align-items-center">
-                    <span className="mr-2 d-none d-lg-inline text-gray-600">
-                        user.username
-                    </span>
-                </li>
-                <NotificationDropdown />
-            </ul>
-        </nav>
+            <Navbar.Toggle aria-controls="basic-navbar-nav">
+                <MdExpandMore />
+            </Navbar.Toggle>
+            <Navbar.Collapse id="basic-navbar-nav">
+                <SearchBar />
+                <Nav className="ml-auto">
+                    <Nav.Item className="my-md-auto mx-2">
+                        <Link to={r.newsFeedRoute}>News Feed</Link>
+                    </Nav.Item>
+                    <Nav.Item className="my-md-auto mx-2">
+                        <Link to={r.oldProjectsRoute}>Old Ideas</Link>
+                    </Nav.Item>
+                    <Nav.Item className="my-md-auto mx-2">
+                        <Link to={r.studentProfileRoute}>username</Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <NotificationDropdown />
+                    </Nav.Item>
+                </Nav>
+            </Navbar.Collapse>
+        </Navbar>
     );
 };
-export default Navbar;
+export default Navbar_;

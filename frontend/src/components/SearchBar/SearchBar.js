@@ -1,25 +1,24 @@
 import React, {useState} from "react";
 import "./SearchBar.css";
-import {BsButton, ErrorHandlingInput, LoginImg} from "utils";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
+import {BsButton, LoginImg} from "utils";
+// import Navbar from "react-bootstrap/Navbar";
+// import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
-import InputGroup from "react-bootstrap/InputGroup";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import {Button} from "react-bootstrap";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import {BrowserRouter as Router} from "react-router-dom";
 
 function SearchBar() {
     const [search, setSearch] = useState("Search...");
+    const onChangeHandler = ({target: {name, value}}) => {
+        setSearch(value);
+    };
+    const onSubmit = (e) => {
+        e.preventDefault();
+    };
     return (
         <>
-            <script
+            {/* <script
                 src="https://unpkg.com/react/umd/react.production.min.js"
                 crossorigin
             ></script>
@@ -55,68 +54,25 @@ function SearchBar() {
                 />
                 <Navbar.Brand href="#home">Personal Profile</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
-                        <Nav.Link href="#home">Newsfeeds</Nav.Link>
-                        <Nav.Link href="#link">Team Info.</Nav.Link>
-                        <NavDropdown title="Old Ideas" id="basic-nav-dropdown">
-                            <NavDropdown.Item id="list" href="#action/3.1">
-                                2020
-                            </NavDropdown.Item>
-                            <NavDropdown.Item id="list" href="#action/3.2">
-                                2019
-                            </NavDropdown.Item>
-                            <NavDropdown.Item id="list" href="#action/3.3">
-                                2018
-                            </NavDropdown.Item>
-
-                            <NavDropdown.Divider />
-
-                            <NavDropdown.Item id="list" href="#action/3.4">
-                                2017
-                            </NavDropdown.Item>
-                        </NavDropdown>
-                    </Nav>
-                    <Form inline>
-                        <FormControl
-                            type="text"
-                            placeholder="Search"
-                            className="mr-sm-2"
-                        />
-                        <BsButton label="Search" block="" size="md" />
-                    </Form>
-                </Navbar.Collapse>
-            </Navbar>
-        </>
-    );
-}
-
-export default SearchBar;
-
-/*
-import React, { useState } from "react";
-import "./SearchBar.css";
-import ErrorHandlingInput from "../../utils/ErrorHandlingInput";
-import { Button } from "utils";
-
-function SearchBar() {
-    const [search, setSearch] = useState("Search...");
-    return (
-        <>
-            <div className="searchBar">
-                <ErrorHandlingInput
-                    id="search"
+                <Navbar.Collapse id="basic-navbar-nav"> */}
+            <Form inline onSubmit={onSubmit}>
+                <FormControl
+                    type="text"
+                    placeholder="Search"
+                    className="mr-sm-2"
                     value={search}
-                    onClick={() => {
-                        if (search === "Search...") setSearch("");
-                    }}
-                    onChange={(e) => setSearch(e.target.value)}
+                    onChange={onChangeHandler}
                 />
-                <Button label="search" />
-            </div>
+                <BsButton label="Search" block="" size="md" />
+            </Form>
+            {/* <Nav className="mr-auto">
+                        <Nav.Link href="#home">News Feed</Nav.Link>
+                        <Nav.Link href="#link">Old Ideas</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar> */}
         </>
     );
 }
 
 export default SearchBar;
-*/

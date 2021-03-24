@@ -3,7 +3,6 @@ import BasicInfo from "./BasicInfo";
 import FieldsOfExperience from "./FieldsOfExperience";
 import Notes from "./Notes";
 import "./StudentProfile.css";
-import {SearchBar} from "components/SearchBar";
 import {StudentProfileImg} from "utils";
 
 function StudentProfile() {
@@ -15,7 +14,7 @@ function StudentProfile() {
     ];
     return (
         <>
-            <SearchBar />
+            {/* <SearchBar /> */}
             <StudentProfileImg />
             <div className="studentInfo">
                 <BasicInfo />
