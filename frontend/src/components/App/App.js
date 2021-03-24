@@ -24,7 +24,7 @@ function App() {
         <>
             <ToastContainer />
             <BrowserRouter>
-                <Links />
+                {/* <Links /> */}
                 <Switch>
                     <Route path={r.adminRoute} component={AdminRoutes} />
                     <Route path="/" component={UserRoutes} />

@@ -1,17 +1,21 @@
 import React from "react";
 import {Card} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import moment from "moment";
 
-const FeedCard = () => {
+const FeedCard = ({title, time, description}) => {
     return (
         <Card className="mb-3">
             <Card.Body>
                 <Card.Title>
-                    <b>title</b>
+                    <b>{title}</b>
                 </Card.Title>
-                <Card.Text>other body</Card.Text>
+                <Card.Text>
+                    <span className="text-small">
+                        {moment(time).format("DD/MM/YYYY  hh:mm a")}
+                    </span>
+                </Card.Text>
                 <hr />
-                <Card.Text className="d-flex">body</Card.Text>
+                <Card.Text className="d-flex">{description}</Card.Text>
             </Card.Body>
         </Card>
     );
