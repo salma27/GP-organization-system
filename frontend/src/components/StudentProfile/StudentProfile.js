@@ -15,15 +15,25 @@ function StudentProfile() {
     return (
         <>
             {/* <SearchBar /> */}
-            <StudentProfileImg />
-            <div className="studentInfo">
-                <BasicInfo />
-            </div>
-            <div className="studentInfo">
-                <FieldsOfExperience tech={technology} />
-            </div>
-            <div className="studentInfo">
-                <Notes />
+            <div className="row">
+                <div className="col-12 col-md-6 mb-5">
+                    <StudentProfileImg />
+                </div>
+                <div className="col-12 col-md-6 mb-5">
+                    <div className="studentInfo">
+                        <BasicInfo />
+                    </div>
+                </div>
+                <div className="col-12 col-md-6 mb-5">
+                    <div className="studentInfo">
+                        <FieldsOfExperience tech={technology} />
+                    </div>
+                </div>
+                <div className="col-12 col-md-6 mb-5">
+                    <div className="studentInfo">
+                        <Notes />
+                    </div>
+                </div>
             </div>
         </>
     );

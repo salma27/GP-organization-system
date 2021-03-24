@@ -22,7 +22,7 @@ function FieldsOfExperience(props) {
     };
     return (
         <>
-            <Form>
+            <Form onSubmit={(e) => e.preventDefault()} className="w-100">
                 <Form.Group as={Col} controlId="formGridState">
                     <Form.Label>Fields Of Experience:</Form.Label>
                     <Form.Control
@@ -42,37 +42,47 @@ function FieldsOfExperience(props) {
                 </Form.Group>
                 <BsButton size="sm" id="addBtn" onClick={selected} label="+" />
             </Form>
-            <hr
-                style={{
-                    color: "teal",
-                    backgroundColor: "teal",
-                    height: "1px",
-                }}
-            />
-
-            <Container id="field">
-                {value.map((v, i) => (
-                    <Row key={i} style={{marginTop: "10px"}} width="100%">
-                        <Col
-                            style={{marginLeft: "5px", float: "left"}}
-                            className="choosen"
-                        >
-                            {v}
-                        </Col>
-                        <Col>
-                            <Button
-                                style={{float: "right", marginRight: "5px"}}
-                                size="sm"
-                                type="submit"
-                                onClick={() => removeItem(i)}
-                                variant="secondary"
+            {value.length ? (
+                <>
+                    <hr
+                        style={{
+                            color: "teal",
+                            backgroundColor: "teal",
+                            height: "1px",
+                        }}
+                    />
+                    <Container id="field">
+                        {value.map((v, i) => (
+                            <Row
+                                key={i}
+                                style={{marginTop: "10px"}}
+                                width="100%"
                             >
-                                X
-                            </Button>
-                        </Col>
-                    </Row>
-                ))}
-            </Container>
+                                <Col
+                                    style={{marginLeft: "5px", float: "left"}}
+                                    className="choosen"
+                                >
+                                    {v}
+                                </Col>
+                                <Col>
+                                    <Button
+                                        style={{
+                                            float: "right",
+                                            marginRight: "5px",
+                                        }}
+                                        size="sm"
+                                        type="submit"
+                                        onClick={() => removeItem(i)}
+                                        variant="secondary"
+                                    >
+                                        X
+                                    </Button>
+                                </Col>
+                            </Row>
+                        ))}
+                    </Container>
+                </>
+            ) : null}
         </>
     );
 }

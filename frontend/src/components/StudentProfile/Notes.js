@@ -7,7 +7,7 @@ function Notes() {
     const [note, setNote] = useState("Any notes?");
     return (
         <>
-            <Form>
+            <Form onSubmit={(e) => e.preventDefault()} className="w-100">
                 <Form.Group>
                     <Form.Label>Notes: </Form.Label>
                     <Form.Control

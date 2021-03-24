@@ -1,12 +1,12 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import {Container, Row, Col} from "react-bootstrap";
 
 const StudentProfileImg = ({}) => {
     return (
         <>
             <Container>
                 <Row width="100%">
-                    <Col sm={12} lg={6} md={6} width="50%">
+                    <Col sm={12} width="50%">
                         <svg
                             width="100%"
                             //height={height}
@@ -37,13 +37,13 @@ const StudentProfileImg = ({}) => {
                             <circle cx="208" cy="55" r="4"></circle>
                         </svg>
                     </Col>
-                    <Col sm={12} md={6} lg={6} width="50%">
+                    <Col sm={12} width="50%">
                         <svg
                             width="100%"
                             //height={height}
                             viewBox="0 0 100% 100%"
                             class="injected-svg gridItem__media"
-                            style={{ float: "left" }}
+                            style={{float: "left"}}
                         >
                             <circle
                                 cx="5"
