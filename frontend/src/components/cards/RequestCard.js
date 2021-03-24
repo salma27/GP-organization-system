@@ -17,20 +17,23 @@ const RequestCard = ({name, join}) => {
                         ? "This student wants you to join their team!"
                         : "This supervisor wants to supervise your team!"}
                 </Card.Text>
-                <div className="ml-auto">
-                    <button
-                        className="btn btn-primary py-1 px-2 mr-1"
-                        style={{
-                            backgroundColor: "#00BFA6",
-                            borderColor: "#00BFA6",
-                        }}
-                    >
-                        Accept
-                    </button>
-                    <button className="btn btn-outline-danger py-1 px-2 mr-1">
-                        Decline
-                    </button>
-                </div>
+                <hr/>
+                <Card.Text className="d-flex">
+                    <div className="ml-auto">
+                        <button
+                            className="btn btn-primary py-1 px-2 mr-1"
+                            style={{
+                                backgroundColor: "#00BFA6",
+                                borderColor: "#00BFA6",
+                            }}
+                        >
+                            Accept
+                        </button>
+                        <button className="btn btn-outline-danger py-1 px-2 mr-1">
+                            Decline
+                        </button>
+                    </div>
+                </Card.Text>
             </Card.Body>
         </Card>
     );

@@ -7,20 +7,24 @@ const projects = [
         title: "Tbdel",
         brief_description:
             "an online platform that people can exchange their old items together on",
+        tech: ["ML", "Web development", "Mobile app development"],
     },
     {
         title: "GP organizer",
         brief_description:
             "A fuckulty platformfor student to register their ideas and form teams on",
+        tech: ["ML", "Web development", "Mobile app development"],
     },
     {
         title: "Gold digger",
         brief_description: "a gold stock pridector using ML",
+        tech: ["ML", "Web development"],
     },
     {
         title: "Tbdel",
         brief_description:
             "an online platform that people can exchange their old items together on",
+        tech: ["Mobile app development"],
     },
     {
         title: "Gold digger",
@@ -31,11 +35,13 @@ const projects = [
         title: "GP organizer",
         brief_description:
             "A fuckulty platformfor student to register their ideas and form teams on",
+        tech: ["ML", "Web development"],
     },
     {
         title: "GP organizer",
         brief_description:
             "A fuckulty platformfor student to register their ideas and form teams on",
+        tech: ["ML", "Web development", "Mobile app development"],
     },
     {
         title: "GP organizer",
