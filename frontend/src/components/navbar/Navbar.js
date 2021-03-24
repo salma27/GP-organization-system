@@ -6,21 +6,11 @@ import * as r from "routes/routes";
 import {Nav, Navbar} from "react-bootstrap";
 import {MdExpandMore} from "react-icons/md";
 
-const Navbar_ = ({onClick, filled}) => {
+const Navbar_ = ({filled}) => {
     let style = filled ? {color: "white", backgroundColor: "#00bfa6"} : {};
     style = {...style, borderRadius: "2rem"};
     return (
         <Navbar expand="lg" style={style} className="pl-4 pl-lg-5">
-            {onClick && (
-                <button
-                    id="sidebarToggleTop"
-                    className="btn btn-link d-md-none rounded-circle mr-3"
-                    onClick={onClick}
-                    style={{color: "#00BFA6"}}
-                >
-                    <i className="fa fa-bars"></i>
-                </button>
-            )}
             <Navbar.Toggle
                 aria-controls="basic-navbar-nav"
                 className="bg-white"
@@ -35,6 +25,9 @@ const Navbar_ = ({onClick, filled}) => {
                     </Nav.Item>
                     <Nav.Item className="my-md-auto mx-2">
                         <Link to={r.oldProjectsRoute}>Old Ideas</Link>
+                    </Nav.Item>
+                    <Nav.Item className="my-md-auto mx-2">
+                        <Link to={r.loginRoute}>login</Link>
                     </Nav.Item>
                     <Nav.Item className="my-md-auto mx-2">
                         <Link to={r.studentProfileRoute}>username</Link>
