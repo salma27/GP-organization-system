@@ -7,6 +7,7 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import {Col, Row} from "react-bootstrap";
 
 function SearchBar() {
     const [search, setSearch] = useState("Search...");
@@ -56,14 +57,20 @@ function SearchBar() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav"> */}
             <Form inline onSubmit={onSubmit}>
-                <FormControl
-                    type="text"
-                    placeholder="Search"
-                    className="mr-sm-2"
-                    value={search}
-                    onChange={onChangeHandler}
-                />
-                <BsButton label="Search" block="" size="md" />
+                <div className="row pr-2 my-2">
+                    <div className="col-8 pr-0 pr-lg-2">
+                        <FormControl
+                            type="text"
+                            placeholder="Search"
+                            className="mr-sm-2"
+                            value={search}
+                            onChange={onChangeHandler}
+                        />
+                    </div>
+                    <div className="col-4">
+                        <BsButton label="Search" block="" size="md" />
+                    </div>
+                </div>
             </Form>
             {/* <Nav className="mr-auto">
                         <Nav.Link href="#home">News Feed</Nav.Link>

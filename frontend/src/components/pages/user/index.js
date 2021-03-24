@@ -7,3 +7,4 @@ export {default as StudentTeamPage} from "./StudentTeamPage";
 export {default as DashboardTabs} from "./DashboardTabs";
 export {default as NewsFeedPage} from "./NewsFeedPage";
 export {default as OldProjectsPage} from "./OldProjectsPage";
+export {default as HomePage} from "./HomePage";

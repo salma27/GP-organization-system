@@ -8,8 +8,11 @@ const UserRoutes = () => {
     return (
         <>
             <Switch>
-                <Route exact path={r.root}>
+                {/* <Route exact path={r.root}>
                     <Redirect to={r.dashboardRoute} />
+                </Route> */}
+                <Route exact path={r.root}>
+                    <pages.HomePage />
                 </Route>
                 <Route path={r.loginRoute}>
                     <pages.LoginPage />
@@ -25,13 +28,8 @@ const UserRoutes = () => {
                     path={r.studentProfileRoute}
                     component={pages.StudentProfilePage}
                 /> */}
+                <Route path={r.newsFeedRoute} component={pages.NewsFeedPage} />
                 <Route
-                    user
-                    path={r.newsFeedRoute}
-                    component={pages.NewsFeedPage}
-                />
-                <Route
-                    user
                     path={r.oldProjectsRoute}
                     component={pages.OldProjectsPage}
                 />

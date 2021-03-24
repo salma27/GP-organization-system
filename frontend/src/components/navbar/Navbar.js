@@ -6,9 +6,11 @@ import * as r from "routes/routes";
 import {Nav, Navbar} from "react-bootstrap";
 import {MdExpandMore} from "react-icons/md";
 
-const Navbar_ = ({onClick}) => {
+const Navbar_ = ({onClick, filled}) => {
+    let style = filled ? {color: "white", backgroundColor: "#00bfa6"} : {};
+    style = {...style, borderRadius: "2rem"};
     return (
-        <Navbar bg="white" expand="lg">
+        <Navbar expand="lg" style={style} className="pl-4 pl-lg-5">
             {onClick && (
                 <button
                     id="sidebarToggleTop"
@@ -19,7 +21,10 @@ const Navbar_ = ({onClick}) => {
                     <i className="fa fa-bars"></i>
                 </button>
             )}
-            <Navbar.Toggle aria-controls="basic-navbar-nav">
+            <Navbar.Toggle
+                aria-controls="basic-navbar-nav"
+                className="bg-white"
+            >
                 <MdExpandMore />
             </Navbar.Toggle>
             <Navbar.Collapse id="basic-navbar-nav">
