@@ -23,26 +23,24 @@ const DashboardTabs = () => {
                     </div>
                 </div>
                 <div className="col-12 col-lg-9">
-                    <div className="content-section">
-                        <Switch>
-                            <Route exact path={r.dashboardRoute}>
-                                {/* <Redirect to={r.studentTeamRoute} /> */}
-                                <div>dashb zeft</div>
-                            </Route>
-                            <Route path={r.studentTeamRoute}>
-                                <pages.StudentTeamPage />
-                            </Route>
-                            <Route path={r.studentRequestsRoute}>
-                                <pages.StudentRequestsPage />
-                            </Route>
-                            <Route path={r.studentProjectsRoute}>
-                                <pages.StudentProjectsPage />
-                            </Route>
-                            <Route path={r.studentProfileRoute}>
-                                <pages.StudentProfilePage />
-                            </Route>
-                        </Switch>
-                    </div>
+                    <Switch>
+                        <Route exact path={r.dashboardRoute}>
+                            {/* <Redirect to={r.studentTeamRoute} /> */}
+                            <div>dashb zeft</div>
+                        </Route>
+                        <Route path={r.studentTeamRoute}>
+                            <pages.StudentTeamPage />
+                        </Route>
+                        <Route path={r.studentRequestsRoute}>
+                            <pages.StudentRequestsPage />
+                        </Route>
+                        <Route path={r.studentProjectsRoute}>
+                            <pages.StudentProjectsPage />
+                        </Route>
+                        <Route path={r.studentProfileRoute}>
+                            <pages.StudentProfilePage />
+                        </Route>
+                    </Switch>
                 </div>
             </div>
         </div>

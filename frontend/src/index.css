@@ -19,7 +19,10 @@ body {
     line-height: 1.5;
     color: #858796;
     text-align: left;
-    background-color: #fff;
+    /* background-color: #fff; */
+    background-color: #f8f9fc;
+    width: 100%;
+    overflow-x: hidden;
 }
 #root {
     /* position: absolute;
