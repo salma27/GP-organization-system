@@ -1,7 +1,7 @@
 import {Navbar} from "components/navbar";
 import React, {useEffect, useState} from "react";
 import {NavLink, useHistory} from "react-router-dom";
-import "./sidebar.css";
+// import "./sidebar.css";
 import {
     AiOutlineArrowRight,
     AiOutlineArrowLeft,
