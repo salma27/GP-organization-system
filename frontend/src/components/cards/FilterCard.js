@@ -20,7 +20,7 @@ const cardStyle = {
     backgroundColor: "#00bfa6",
     color: "white",
     borderStyle: "solid",
-    borderColor: "white",
+    borderColor: "#00bfa6",
 };
 const FilterCard = ({}) => {
     const [filter, setFilter] = useState({regex: "", tech: [], year: ""});
