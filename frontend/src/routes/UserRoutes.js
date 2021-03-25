@@ -12,7 +12,7 @@ const UserRoutes = () => {
                     <Redirect to={r.dashboardRoute} />
                 </Route> */}
                 <Route exact path={r.root}>
-                    <pages.HomePage />
+                    <pages.LoginPage />
                 </Route>
                 <Route path={r.loginRoute}>
                     <pages.LoginPage />

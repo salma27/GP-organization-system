@@ -6,7 +6,7 @@ export default function useAxios() {
     const {auth} = useContext(AuthContext);
     const {access_token} = {...auth};
 
-    const baseURL = "http://api.pointxcm.com/";
+    const baseURL = "/api";
 
     const defaultAxios = Axios.create({
         baseURL,
