@@ -70,19 +70,20 @@ const feeds = [
         bibendum. Quisque semper mauris ac nisi elementum lacinia.`,
     },
 ];
+const style = {
+    // backgrounds from 1 to 5 i.e. feed_4
+    backgroundImage: "url(/feed_2.svg)",
+    backgroundRepeat: "no-repeat",
+    backgroundAttachment: "fixed",
+    backgroundSize: "100% 100%",
+    backgroundSize: "cover",
+};
 const NewsFeedPage = () => {
-    const style = {
-        backgroundImage: "url(/feed_5.svg)",
-        backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
-        backgroundSize: "100% 100%",
-        backgroundSize: "cover",
-    };
     return (
         <div className="container-fluid" style={style}>
             <div className="row">
                 <div className="col-12">
-                    <Navbar filled/>
+                    <Navbar />
                 </div>
                 <div className="col-12">
                     <div className="row">

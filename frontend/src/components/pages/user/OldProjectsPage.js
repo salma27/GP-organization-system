@@ -50,9 +50,17 @@ const projects = [
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac nisl rhoncus, dapibus felis vel, aliquet mi. Praesent non turpis nec sapien faucibus ornare eu efficitur eros. In finibus ultrices porttitor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi vitae mattis nisl.",
     },
 ];
+const style = {
+    // backgrounds from 1 to 5 i.e. feed_4
+    backgroundImage: "url(/feed_7.svg)",
+    backgroundRepeat: "no-repeat",
+    backgroundAttachment: "fixed",
+    backgroundSize: "100% 100%",
+    backgroundSize: "cover",
+};
 const OldProjectsPage = () => {
     return (
-        <div className="container-fluid">
+        <div className="container-fluid" style={style}>
             <div className="row">
                 <div className="col-12">
                     <Navbar />
