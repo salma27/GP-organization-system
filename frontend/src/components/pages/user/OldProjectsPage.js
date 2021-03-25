@@ -55,7 +55,6 @@ const style = {
     backgroundImage: "url(/feed_7.svg)",
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
-    backgroundSize: "100% 100%",
     backgroundSize: "cover",
 };
 const OldProjectsPage = () => {

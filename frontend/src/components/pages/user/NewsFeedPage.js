@@ -75,7 +75,6 @@ const style = {
     backgroundImage: "url(/feed_2.svg)",
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
-    backgroundSize: "100% 100%",
     backgroundSize: "cover",
 };
 const NewsFeedPage = () => {

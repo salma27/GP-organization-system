@@ -7,7 +7,6 @@ const style = {
     backgroundImage: "url(/login.svg)",
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
-    backgroundSize: "100% 100%",
     backgroundSize: "cover",
 };
 const FormWrapper = ({children}) => {
