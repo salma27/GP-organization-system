@@ -1,7 +1,7 @@
 import {Navbar} from "components/navbar";
 import {ProfileSidebar} from "components/sidebar";
 import React from "react";
-import "./stickey.css";
+import "styles/stickey.css";
 import {Redirect, Route, Switch} from "react-router";
 import * as r from "routes/routes";
 import * as pages from "./";
