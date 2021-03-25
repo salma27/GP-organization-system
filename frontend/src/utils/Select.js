@@ -12,6 +12,8 @@ const SingleSelect = ({
     isSearchable = true,
     name = "",
     options = [],
+    onChange = () => {},
+    ...rest
 }) => {
     return (
         <Select
@@ -25,7 +27,8 @@ const SingleSelect = ({
             isSearchable={isSearchable}
             name={name}
             options={options}
-            onChange={(props) => console.log(props)}
+            onChange={(value) => onChange({target: {name, value}})}
+            {...rest}
         />
     );
 };

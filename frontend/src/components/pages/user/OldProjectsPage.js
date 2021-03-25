@@ -59,12 +59,15 @@ const OldProjectsPage = () => {
                 </div>
                 <div className="col-12">
                     <div className="row">
+                        <div className="col-12 d-inline d-lg-none">
+                            <FilterCard />
+                        </div>
                         <div className="col-12 col-lg-7 offset-lg-1">
                             {projects.map((p, i) => (
                                 <OldProjectCard {...p} key={i} />
                             ))}
                         </div>
-                        <div className="col-12 col-lg-4">
+                        <div className="d-none d-lg-inline col-lg-4">
                             <div className="sidebar-item">
                                 <div className="make-me-sticky">
                                     <FilterCard />
