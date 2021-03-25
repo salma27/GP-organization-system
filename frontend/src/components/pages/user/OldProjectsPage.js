@@ -59,7 +59,7 @@ const OldProjectsPage = () => {
                 </div>
                 <div className="col-12">
                     <div className="row">
-                        <div className="col-12 col-lg-8">
+                        <div className="col-12 col-lg-7 offset-lg-1">
                             {projects.map((p, i) => (
                                 <OldProjectCard {...p} key={i} />
                             ))}

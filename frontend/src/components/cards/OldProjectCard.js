@@ -17,34 +17,32 @@ const OldProjectCard = ({title, brief_description, tech = []}) => {
                     <b>{title}</b>
                 </Card.Title>
                 <hr />
-                <Card.Text>
-                    <div className="row">
-                        <div className="col-12 col-lg-8 border-right">
-                            <Card.Text>{brief_description}</Card.Text>
-                        </div>
-                        <div className="col-12 col-lg-4">
-                            <Card.Text>
-                                {tech.map((t, i) => (
-                                    <Badge
-                                        pill
-                                        style={{
-                                            // backgroundColor: "white",
-                                            color: "#00BFA6",
-                                            borderColor: "#00BFA6",
-                                            borderWidth: "1px",
-                                            borderStyle: "solid",
-                                        }}
-                                        className="mr-1 mb-1"
-                                        key={i}
-                                    >
-                                        {t}
-                                    </Badge>
-                                ))}
-                                {!tech.length && "No technologies provided"}
-                            </Card.Text>
-                        </div>
+                <div className="row">
+                    <div className="col-12 col-lg-8 border-right">
+                        <Card.Text>{brief_description}</Card.Text>
                     </div>
-                </Card.Text>
+                    <div className="col-12 col-lg-4">
+                        <Card.Text>
+                            {tech.map((t, i) => (
+                                <Badge
+                                    pill
+                                    style={{
+                                        // backgroundColor: "white",
+                                        color: "#00BFA6",
+                                        borderColor: "#00BFA6",
+                                        borderWidth: "1px",
+                                        borderStyle: "solid",
+                                    }}
+                                    className="mr-1 mb-1"
+                                    key={i}
+                                >
+                                    {t}
+                                </Badge>
+                            ))}
+                            {!tech.length && "No technologies provided"}
+                        </Card.Text>
+                    </div>
+                </div>
             </Card.Body>
         </Card>
     );
