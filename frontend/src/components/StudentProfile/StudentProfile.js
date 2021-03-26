@@ -4,8 +4,10 @@ import FieldsOfExperience from "./FieldsOfExperience";
 import Notes from "./Notes";
 import "./StudentProfile.css";
 import {StudentProfileImg} from "utils";
+import {useAuthContext} from "hooks";
 
 function StudentProfile() {
+    const [auth] = useAuthContext();
     const technology = [
         "Machine Learning",
         "Artifical Intelligence",

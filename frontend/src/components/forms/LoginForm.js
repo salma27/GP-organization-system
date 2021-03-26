@@ -2,22 +2,42 @@ import React, {useState} from "react";
 import {BsButton} from "utils";
 import {Form} from "react-bootstrap";
 import "./Login.css";
-import {useValidation} from "hooks";
+import {useAuthContext, useRequest, useValidation} from "hooks";
 import loginFormValidations from "./loginFormValidations";
+import {loginRequests} from "requests";
+import {useHistory} from "react-router";
+import {dashboardRoute} from "routes/routes";
 
 function LoginForm() {
     const [user, setUser] = useState({id: "", password: ""});
-    const {errors, validate} = useValidation(loginFormValidations);
+    const {errors, validate, addErrors} = useValidation(loginFormValidations);
+    const [request, requesting] = useRequest(loginRequests);
+    const history = useHistory();
+    const [, setAuth] = useAuthContext();
 
     const onChangeHandler = ({target: {name, value}}) => {
         const newUser = {...user, [name]: value};
-        validate(user, name).catch((e) => {});
+        validate(newUser, name).catch((e) => {});
         setUser(newUser);
     };
     function submit(event) {
         event.preventDefault();
         validate(user)
-            .then(() => {})
+            .then(() => {
+                request(user)
+                    .then((r) => {
+                        setAuth({...r.data.student});
+                        history.push(dashboardRoute);
+                        // console.log(r.data);
+                    })
+                    .catch((e) => {
+                        const err = {
+                            id: "Invalid id/password",
+                            password: "Invalid id/password",
+                        };
+                        addErrors(err);
+                    });
+            })
             .catch((e) => {});
     }
 

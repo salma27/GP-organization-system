@@ -29,7 +29,7 @@ const TeamInfoCard = ({}) => {
                         </dd>
 
                         <dt>Supervising TA</dt>
-                        <dd>Sara Elnady {"<3"}</dd>
+                        <dd>Sara Elnady</dd>
 
                         <dt>Team's selected project</dt>
                         <dd>Online disney land</dd>

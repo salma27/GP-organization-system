@@ -3,6 +3,7 @@ import {
     Model,
     hasMany,
     belongsTo,
+    Response,
     RestSerializer,
     Factory,
 } from "miragejs";
@@ -11,18 +12,22 @@ let paragraph = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabi
 
 export default function server() {
     createServer({
-        // serializers: {
-        //     reminder: RestSerializer.extend({
-        //         include: ["list"],
-        //         embed: true,
-        //     }),
-        // },
+        serializers: {
+            //     reminder: RestSerializer.extend({
+            //         include: ["list"],
+            //         embed: true,
+            //     }),
+            student: RestSerializer.extend({
+                include: ["technology", "department"],
+                embed: true,
+            }),
+        },
         models: {
             student: Model.extend({
                 technology: hasMany("technology"),
                 project: hasMany(),
                 invitation: hasMany(),
-                department: hasMany("department"),
+                department: belongsTo("department"),
             }),
 
             project: Model.extend({
@@ -210,32 +215,46 @@ export default function server() {
             // server.create("list");
         },
         routes() {
-            this.get("/api/lists", (schema, request) => {
-                return schema.lists.all();
-            });
-
-            this.get("/api/reminders", (schema) => {
-                return schema.reminders.all();
-            });
-
-            this.post("/api/auth/login", (schema, request) => {
+            this.post("/api/user/auth", (schema, request) => {
                 let attrs = JSON.parse(request.requestBody);
                 console.log(attrs);
-
-                return schema.reminders.create(attrs);
+                let student = schema.students.where(
+                    (s) =>
+                        s.stud_id === attrs.id && s.password === attrs.password
+                ).models[0];
+                console.log(student);
+                if (student) return student;
+                return new Response(
+                    404,
+                    {some: "header"},
+                    {errors: ["undefined user"]}
+                );
             });
-
-            this.delete("/api/reminders/:id", (schema, request) => {
-                let id = request.params.id;
-
-                return schema.reminders.find(id).destroy();
+            this.post("/api/user/me", (schema, request) => {
+                let attrs = JSON.parse(request.requestBody);
             });
-            this.get("/api/lists/:id/reminders", (schema, request) => {
-                let listId = request.params.id;
-                let list = schema.lists.find(listId);
+            this.get("/api/technologies", (schema)=>{
+                return schema.technology.all();
+            })
+            // this.get("/api/lists", (schema, request) => {
+            //     return schema.lists.all();
+            // });
 
-                return list.reminders;
-            });
+            // this.get("/api/reminders", (schema) => {
+            //     return schema.reminders.all();
+            // });
+
+            // this.delete("/api/reminders/:id", (schema, request) => {
+            //     let id = request.params.id;
+
+            //     return schema.reminders.find(id).destroy();
+            // });
+            // this.get("/api/lists/:id/reminders", (schema, request) => {
+            //     let listId = request.params.id;
+            //     let list = schema.lists.find(listId);
+
+            //     return list.reminders;
+            // });
         },
     });
 }

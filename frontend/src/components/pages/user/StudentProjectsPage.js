@@ -12,7 +12,7 @@ const projects = [
     {
         title: "GP organizer",
         brief_description:
-            "A fuckulty platformfor student to register their ideas and form teams on",
+            "A faculty platformfor student to register their ideas and form teams on",
         tech: ["ML", "Web development", "Mobile app development"],
     },
     {
@@ -34,13 +34,13 @@ const projects = [
     {
         title: "GP organizer",
         brief_description:
-            "A fuckulty platformfor student to register their ideas and form teams on",
+            "A faculty platformfor student to register their ideas and form teams on",
         tech: ["ML", "Web development"],
     },
     {
         title: "GP organizer",
         brief_description:
-            "A fuckulty platformfor student to register their ideas and form teams on",
+            "A faculty platformfor student to register their ideas and form teams on",
         tech: ["ML", "Web development", "Mobile app development"],
     },
     {
