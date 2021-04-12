@@ -17,7 +17,7 @@ const StudentCard = ({name, num,isStudent, department, tech = []}) => {
                         <div className="col-3 col-md-1">
                             <img src="\profile.svg" className="mw-100"/>
                         </div>
-                        <div className="col-7 col-md-8">
+                        <div className="col-9 col-md-7 col-lg-8">
                             <b className="h6 font-weight-bold" style={{color:"black"}}>{name}</b>
                             <p className="mb-0" style={{fontSize:"small",color:"black"}}>Department: <b style={{font:"caption"}}>{department}</b></p>
                             { !isStudent ? 
@@ -26,7 +26,7 @@ const StudentCard = ({name, num,isStudent, department, tech = []}) => {
                                     :<></>
                             }
                         </div>
-                        <div className="col-3">
+                        <div className="d-none d-md-inline col-md-4 col-lg-3">
                             <button
                                 className="btn btn-primary py-1 px-2 mr-1 mb-1"
                                 style={{
@@ -44,9 +44,6 @@ const StudentCard = ({name, num,isStudent, department, tech = []}) => {
                 </Card.Title>
                 <hr />
                 <div className="row">
-                    {/* <div className="col-12 col-lg-8 border-right">
-                        <Card.Text>{brief_description}</Card.Text>
-                    </div> */}
                     <div className="col-12 mb-1">
                         <Card.Text>
                             {tech.map((t, i) => (
@@ -68,19 +65,24 @@ const StudentCard = ({name, num,isStudent, department, tech = []}) => {
                             {!tech.length && "No technologies provided"}
                         </Card.Text>
                     </div>
-                    {/* <div className="col-12">
-                    <button
-                            className="btn btn-primary py-1 px-2 mr-1"
+                </div>
+                {/* <hr className="d-inline d-md-none"/> */}
+                <div className="row">
+                <div className="d-inline d-md-none col-12">
+                        <button
+                            className="btn btn-primary py-1 px-2 mr-1 mb-1"
                             style={{
+                                fontSize:"small",
                                 backgroundColor: "#00BFA6",
                                 borderColor: "#00BFA6",
                                 width:"100%"
                             }}
                         >
-                            Ask To Join In My Team
+                            Ask to join in my team
                         </button>
-                    </div> */}
+                    </div>
                 </div>
+
             </Card.Body>
         </Card>
     );

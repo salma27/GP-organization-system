@@ -58,7 +58,7 @@ const StudentsSearchResult = () => {
                 <div className="col-12">
                     <Navbar />
                 </div>
-                <div className="col-10 offset-lg-1">
+                <div className="col-10 offset-1">
                     <div className="row">
                         <div className="col-12 d-inline d-lg-none">
                             <FilterStudents />
