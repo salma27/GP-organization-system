@@ -29,6 +29,7 @@ const UserRoutes = () => {
                     component={pages.StudentProfilePage}
                 /> */}
                 <Route path={r.newsFeedRoute} component={pages.NewsFeedPage} />
+                <Route path={r.studentsSearchResult} component={pages.StudentsSearchResult} />
                 <Route
                     path={r.oldProjectsRoute}
                     component={pages.OldProjectsPage}

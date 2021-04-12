@@ -4,3 +4,5 @@ export {default as TeamInfoCard} from "./TeamInfoCard";
 export {default as FeedCard} from "./FeedCard";
 export {default as FilterCard} from "./FilterCard";
 export {default as OldProjectCard} from "./OldProjectCard";
+export {default as FilterStudents} from "./FilterStudents";
+export {default as StudentCard} from "./StudentCard";
