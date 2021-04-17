@@ -10,7 +10,7 @@ function EditProject(props) {
 
     const setOneItem = (e) => setOne(e.target.value);
 
-    const [title, setTitle] = useState("");
+    const [title, setTitle] = useState(props.title);
     const inputRef = useRef();
     const [tech, setTech] = useState(props.tech);
     const [description, setDescription] = useState(props.brief_description);
@@ -52,7 +52,10 @@ function EditProject(props) {
                                     borderWidth: "1px",
                                     borderStyle: "solid",
                                 }}
-                                placeholder={props.title}
+                                placeholder={title}
+                                onChange={(e) => {
+                                    setTitle(e.target.value);
+                                }}
                             />
                         </Form.Group>
                         <Form.Group>
