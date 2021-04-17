@@ -13,6 +13,7 @@ function EditProject(props) {
     const [title, setTitle] = useState("");
     const inputRef = useRef();
     const [tech, setTech] = useState(props.tech);
+    const [description, setDescription] = useState(props.brief_description);
     const technology = [
         "Machine Learning",
         "Artifical Intelligence",
@@ -37,64 +38,81 @@ function EditProject(props) {
             <Modal centered show={props.show} onHide={props.hide}>
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        {/**
-                        <Editable
-                            text={title}
-                            value={title}
-                            placeholder={title}
-                            childRef={inputRef}
-                            type="input"
-                        >
-                            <input
-                                ref={inputRef}
-                                type="text"
-                                name="title"
-                                placeholder={title}
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
-                            />
-                        </Editable>
-                        **/}
+                        <Row>
+                            <Col lg={3}>Title: </Col>
+                            <Col lg={9}>
+                                <Form.Control
+                                    className="w-100"
+                                    style={{
+                                        width: "100%",
+                                        borderColor: "#00BFA6",
+                                        borderWidth: "1px",
+                                        borderStyle: "solid",
+                                    }}
+                                    placeholder={props.title}
+                                />
+                            </Col>
+                        </Row>
                     </Modal.Title>
                 </Modal.Header>
-                <Modal.Body>{props.brief_description}</Modal.Body>
+                <Modal.Body>
+                    <Form
+                        onSubmit={(e) => e.preventDefault()}
+                        className="w-100"
+                    >
+                        <Form.Label>Brief Description: </Form.Label>
+                        <Form.Control
+                            as="textarea"
+                            rows={3}
+                            style={{
+                                resize: "none",
+                                borderColor: "#00BFA6",
+                                borderWidth: "1px",
+                                borderStyle: "solid",
+                            }}
+                            value={description}
+                            placeholder={description}
+                            onChange={(e) => {
+                                setDescription(e.target.value);
+                            }}
+                        />
+                    </Form>
+                </Modal.Body>
                 <Modal.Footer>
                     <Row className="w-100">
                         <label className="form-label">Used Technologies:</label>
                     </Row>
                     <Row className="w-100">
-                        <Col lg={9}>
+                        <Col lg={9} sm={12}>
                             <Form
                                 onSubmit={(e) => e.preventDefault()}
                                 className="w-100"
                             >
-                                <Form.Group>
-                                    <Form.Control
-                                        as="select"
-                                        style={{
-                                            color: "#00BFA6",
-                                            borderColor: "#00BFA6",
-                                            borderWidth: "1px",
-                                            borderStyle: "solid",
-                                        }}
-                                        onChange={setOneItem}
-                                    >
-                                        <option value="-1" id="list"></option>
+                                <Form.Control
+                                    as="select"
+                                    style={{
+                                        color: "#00BFA6",
+                                        borderColor: "#00BFA6",
+                                        borderWidth: "1px",
+                                        borderStyle: "solid",
+                                    }}
+                                    onChange={setOneItem}
+                                >
+                                    <option value="-1" id="list"></option>
 
-                                        {technology.map((addField) => (
-                                            <option
-                                                id="list"
-                                                value={addField}
-                                                key={addField}
-                                            >
-                                                {addField}
-                                            </option>
-                                        ))}
-                                    </Form.Control>
-                                </Form.Group>
+                                    {technology.map((addField) => (
+                                        <option
+                                            id="list"
+                                            value={addField}
+                                            key={addField}
+                                        >
+                                            {addField}
+                                        </option>
+                                    ))}
+                                </Form.Control>
                             </Form>
                         </Col>
-                        <Col lg={3}>
+                        <Col lg={3} sm={12}>
                             <Button
                                 className="w-100"
                                 size="sm"
@@ -139,6 +157,20 @@ function EditProject(props) {
                         </Badge>
                     ))}
                     {!props.tech.length && "No technologies provided"}
+                </Modal.Footer>
+                <Modal.Footer>
+                    <Button
+                        className="w-100"
+                        size="sm"
+                        type="submit"
+                        id="addBtn"
+                        style={{
+                            backgroundColor: "#00BFA6",
+                            color: "white",
+                        }}
+                    >
+                        Update
+                    </Button>
                 </Modal.Footer>
             </Modal>
         </>
