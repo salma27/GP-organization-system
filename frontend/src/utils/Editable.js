@@ -4,6 +4,7 @@ const Editable = ({
     text = "string",
     type = "",
     placeholder = "",
+    children = "",
     value = "",
     childRef = "",
 }) => {
@@ -28,7 +29,7 @@ const Editable = ({
                         onBlur={() => setEditing(false)}
                         onKeyDown={(e) => handleKeyDown(e, type)}
                     >
-                        {value}
+                        {children}
                     </div>
                 ) : (
                     <div onClick={() => setEditing(true)}>

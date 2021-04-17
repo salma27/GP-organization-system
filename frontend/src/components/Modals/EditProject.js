@@ -1,14 +1,23 @@
 import React, { useRef, useState } from "react";
 import { Modal, Badge } from "react-bootstrap";
 import { Editable } from "utils";
+import FieldsOfExperience from "../StudentProfile/FieldsOfExperience";
+
 function EditProject(props) {
     const [title, setTitle] = useState("");
     const inputRef = useRef();
+    const technology = [
+        "Machine Learning",
+        "Artifical Intelligence",
+        "Web Application",
+        "Others",
+    ];
     return (
         <>
             <Modal centered show={props.show} onHide={props.hide}>
                 <Modal.Header closeButton>
                     <Modal.Title>
+                        {/**
                         <Editable
                             text={title}
                             value={title}
@@ -25,26 +34,12 @@ function EditProject(props) {
                                 onChange={(e) => setTitle(e.target.value)}
                             />
                         </Editable>
+                        **/}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>{props.brief_description}</Modal.Body>
                 <Modal.Footer>
-                    {props.tech.map((t, i) => (
-                        <Badge
-                            pill
-                            style={{
-                                color: "#00BFA6",
-                                borderColor: "#00BFA6",
-                                borderWidth: "1px",
-                                borderStyle: "solid",
-                            }}
-                            className="mr-1 mb-1"
-                            key={i}
-                        >
-                            {t}
-                        </Badge>
-                    ))}
-                    {!props.tech.length && "No technologies provided"}
+                    <FieldsOfExperience tech={technology} />
                 </Modal.Footer>
             </Modal>
         </>
