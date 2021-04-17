@@ -63,15 +63,18 @@ function EditProject(props) {
                         onSubmit={(e) => e.preventDefault()}
                         className="w-100"
                     >
-                        <Form.Group as={Col} controlId="formGridState">
+                        <Form.Group>
                             <Form.Label>Fields Of Experience:</Form.Label>
                             <Form.Control
+                                className="w-50"
                                 as="select"
                                 style={{
                                     color: "#00BFA6",
                                     borderColor: "#00BFA6",
                                     borderWidth: "1px",
                                     borderStyle: "solid",
+                                    float: "left",
+                                    width: "50%",
                                 }}
                                 onChange={setOneItem}
                             >
@@ -87,10 +90,20 @@ function EditProject(props) {
                                     </option>
                                 ))}
                             </Form.Control>
+                            <Button
+                                className="w-25"
+                                size="sm"
+                                type="submit"
+                                id="addBtn"
+                                onClick={selected}
+                                style={{
+                                    backgroundColor: "#00BFA6",
+                                    color: "white",
+                                }}
+                            >
+                                +
+                            </Button>
                         </Form.Group>
-                        <Button size="sm" id="addBtn" onClick={selected}>
-                            +
-                        </Button>
                     </Form>
 
                     {tech.map((t, i) => (
@@ -102,14 +115,13 @@ function EditProject(props) {
                                 borderWidth: "1px",
                                 borderStyle: "solid",
                             }}
-                            className="mr-1 mb-1"
+                            className=" mb-1"
                             key={i}
                         >
                             {t}
                             <a
                                 href="#"
                                 style={{
-                                    float: "right",
                                     marginLeft: "15px",
                                 }}
                                 size="sm"
