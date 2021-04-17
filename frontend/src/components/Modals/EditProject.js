@@ -3,7 +3,7 @@ import { Modal, Badge } from "react-bootstrap";
 import { Editable, BsButton } from "utils";
 import FieldsOfExperience from "../StudentProfile/FieldsOfExperience";
 import "../StudentProfile/FieldsOfExperience.css";
-import { Button, Form, Col, Row, Container } from "react-bootstrap";
+import { Button, Form, Table, Col, Row, Container } from "react-bootstrap";
 
 function EditProject(props) {
     const [oneTech, setOne] = useState();
@@ -59,6 +59,51 @@ function EditProject(props) {
                 </Modal.Header>
                 <Modal.Body>{props.brief_description}</Modal.Body>
                 <Modal.Footer>
+                    <Row className="w-100">
+                        <label className="form-label">Used Technologies:</label>
+                    </Row>
+                    <Row className="w-100">
+                        <Col
+                            className="from-group w-50 from-control"
+                            as="select"
+                            style={{
+                                color: "#00BFA6",
+                                borderColor: "#00BFA6",
+                                borderWidth: "1px",
+                                borderStyle: "solid",
+                                width: "75%",
+                            }}
+                            onChange={setOneItem}
+                        >
+                            <option value="-1" id="list"></option>
+
+                            {technology.map((addField) => (
+                                <option
+                                    id="list"
+                                    value={addField}
+                                    key={addField}
+                                >
+                                    {addField}
+                                </option>
+                            ))}
+                        </Col>
+                        <Col>
+                            <Button
+                                className="w-25"
+                                size="sm"
+                                type="submit"
+                                id="addBtn"
+                                onClick={selected}
+                                style={{
+                                    backgroundColor: "#00BFA6",
+                                    color: "white",
+                                }}
+                            >
+                                +
+                            </Button>
+                        </Col>
+                    </Row>
+
                     <Form
                         onSubmit={(e) => e.preventDefault()}
                         className="w-100"
