@@ -63,33 +63,40 @@ function EditProject(props) {
                         <label className="form-label">Used Technologies:</label>
                     </Row>
                     <Row className="w-100">
-                        <Col
-                            className="from-group w-50 from-control"
-                            as="select"
-                            style={{
-                                color: "#00BFA6",
-                                borderColor: "#00BFA6",
-                                borderWidth: "1px",
-                                borderStyle: "solid",
-                                width: "75%",
-                            }}
-                            onChange={setOneItem}
-                        >
-                            <option value="-1" id="list"></option>
+                        <Col lg={9}>
+                            <Form
+                                onSubmit={(e) => e.preventDefault()}
+                                className="w-100"
+                            >
+                                <Form.Group>
+                                    <Form.Control
+                                        as="select"
+                                        style={{
+                                            color: "#00BFA6",
+                                            borderColor: "#00BFA6",
+                                            borderWidth: "1px",
+                                            borderStyle: "solid",
+                                        }}
+                                        onChange={setOneItem}
+                                    >
+                                        <option value="-1" id="list"></option>
 
-                            {technology.map((addField) => (
-                                <option
-                                    id="list"
-                                    value={addField}
-                                    key={addField}
-                                >
-                                    {addField}
-                                </option>
-                            ))}
+                                        {technology.map((addField) => (
+                                            <option
+                                                id="list"
+                                                value={addField}
+                                                key={addField}
+                                            >
+                                                {addField}
+                                            </option>
+                                        ))}
+                                    </Form.Control>
+                                </Form.Group>
+                            </Form>
                         </Col>
-                        <Col>
+                        <Col lg={3}>
                             <Button
-                                className="w-25"
+                                className="w-100"
                                 size="sm"
                                 type="submit"
                                 id="addBtn"
@@ -103,53 +110,6 @@ function EditProject(props) {
                             </Button>
                         </Col>
                     </Row>
-
-                    <Form
-                        onSubmit={(e) => e.preventDefault()}
-                        className="w-100"
-                    >
-                        <Form.Group>
-                            <Form.Label>Fields Of Experience:</Form.Label>
-                            <Form.Control
-                                className="w-50"
-                                as="select"
-                                style={{
-                                    color: "#00BFA6",
-                                    borderColor: "#00BFA6",
-                                    borderWidth: "1px",
-                                    borderStyle: "solid",
-                                    float: "left",
-                                    width: "50%",
-                                }}
-                                onChange={setOneItem}
-                            >
-                                <option value="-1" id="list"></option>
-
-                                {technology.map((addField) => (
-                                    <option
-                                        id="list"
-                                        value={addField}
-                                        key={addField}
-                                    >
-                                        {addField}
-                                    </option>
-                                ))}
-                            </Form.Control>
-                            <Button
-                                className="w-25"
-                                size="sm"
-                                type="submit"
-                                id="addBtn"
-                                onClick={selected}
-                                style={{
-                                    backgroundColor: "#00BFA6",
-                                    color: "white",
-                                }}
-                            >
-                                +
-                            </Button>
-                        </Form.Group>
-                    </Form>
 
                     {tech.map((t, i) => (
                         <Badge
