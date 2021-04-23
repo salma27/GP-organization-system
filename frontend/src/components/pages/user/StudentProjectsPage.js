@@ -55,19 +55,17 @@ const StudentProjectsPage = () => {
     const [showModal, setShowModal] = useState(false);
     return (
         <div>
-            <div>
-                <button
-                    onClick={() => setShowModal(true)}
-                    className="btn btn-lg btn-primary py-1 px-2 mr-1 mt-1 w-100"
-                    style={{
-                        backgroundColor: "#00BFA6",
-                        borderColor: "#00BFA6",
-                        marginBottom: "10px",
-                    }}
-                >
-                    Add New Project
-                </button>
-            </div>
+            <button
+                onClick={() => setShowModal(true)}
+                className="btn btn-lg btn-primary py-1 px-2 mr-1 mt-2 w-100"
+                style={{
+                    backgroundColor: "#00BFA6",
+                    borderColor: "#00BFA6",
+                    marginBottom: "10px",
+                }}
+            >
+                Add New Project
+            </button>
             <EditProject
                 show={showModal}
                 hide={() => setShowModal(false)}
