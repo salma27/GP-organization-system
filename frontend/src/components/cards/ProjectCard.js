@@ -24,6 +24,7 @@ const ProjectCard = ({ title, brief_description, tech = [] }) => {
                                 <AiFillEdit />
                             </button>
                             <EditProject
+                                btn="Update"
                                 show={showModal}
                                 hide={() => setShowModal(false)}
                                 title={title}

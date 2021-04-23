@@ -12,14 +12,15 @@ function EditProject(props) {
     const [oneTech, setOne] = useState();
     //const [formState, setFormState] = useState({});
     const [project, setProject] = useState({
-        ptitle: props.title,
-        description: props.brief_description,
+        ptitle: props.title ? props.title : "",
+        description: props.brief_description ? props.brief_description : "",
     });
+
     const result = suite.get();
     const setOneItem = (e) => setOne(e.target.value);
     const { errors, validate } = useValidation(EditProjectValidations);
     //const [title, setTitle] = useState(props.title);
-    const [tech, setTech] = useState(props.tech);
+    const [tech, setTech] = useState(props.tech ? props.tech : []);
     //const [description, setDescription] = useState(props.brief_description);
     const technology = [
         "Machine Learning",
@@ -209,7 +210,7 @@ function EditProject(props) {
                             color: "white",
                         }}
                     >
-                        Update
+                        {props.btn}
                     </Button>
                 </Modal.Footer>
             </Modal>
