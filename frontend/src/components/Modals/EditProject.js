@@ -1,13 +1,9 @@
 import React, { useRef, useState } from "react";
 import { Modal, Badge } from "react-bootstrap";
+import { Editable, BsButton } from "utils";
 import FieldsOfExperience from "../StudentProfile/FieldsOfExperience";
 import "../StudentProfile/FieldsOfExperience.css";
-import { Button, Form, Col, Row } from "react-bootstrap";
-import { useAuthContext, useRequest, useValidation } from "hooks";
-import EditProjectFormValidation from "./EditProjectFormValidation";
-import { EditProjectRequests } from "requests";
-import { useHistory } from "react-router";
-import { dashboardRoute } from "routes/routes";
+import { Button, Form, Table, Col, Row, Container } from "react-bootstrap";
 
 function EditProject(props) {
     const [oneTech, setOne] = useState();
@@ -37,45 +33,6 @@ function EditProject(props) {
         if (oneTech && !tech.includes(oneTech) && oneTech !== "-1")
             setTech([...tech, oneTech]);
     };
-    ////////////////////////////////////////////////////////////////////////
-    //const [user, setUser] = useState({ id: "", password: "" });
-
-    const { errors, validate, addErrors } = useValidation(
-        EditProjectFormValidation
-    );
-    const [request, requesting] = useRequest(EditProjectRequests);
-    const history = useHistory();
-    const [, setAuth] = useAuthContext();
-    const [project, setProject] = useState({
-        title: { title },
-        description: { description },
-        tech: { tech },
-    });
-    function submit(event) {
-        event.preventDefault();
-        setProject(
-            (title = { title }),
-            (description = { description }),
-            (tech = { tech })
-        );
-        validate(project)
-            .then(() => {
-                request(project)
-                    .then((r) => {
-                        setAuth({ ...r.data.student });
-                        history.push(dashboardRoute);
-                    })
-                    .catch((e) => {
-                        const err = {
-                            title: "Invalid title",
-                            description: "Invalid description",
-                        };
-                        addErrors(err);
-                    });
-            })
-            .catch((e) => {});
-    }
-    //////////////////////////////////////////////////////////////////////
     return (
         <>
             <Modal centered show={props.show} onHide={props.hide}>
@@ -84,12 +41,10 @@ function EditProject(props) {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <Form onSubmit={submit}>
+                    <Form>
                         <Form.Group>
                             <Form.Label>Title:</Form.Label>
                             <Form.Control
-                                autoFocus
-                                value={title}
                                 className="w-100"
                                 style={{
                                     width: "100%",
@@ -99,24 +54,13 @@ function EditProject(props) {
                                 }}
                                 placeholder={title}
                                 onChange={(e) => {
-                                    validate(
-                                        e.target.value,
-                                        e.target.name
-                                    ).catch((event) => {});
                                     setTitle(e.target.value);
                                 }}
-                                isInvalid={errors.title}
                             />
-                            {errors.title && (
-                                <Form.Control.Feedback type="invalid">
-                                    {errors.title}
-                                </Form.Control.Feedback>
-                            )}
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Brief Description: </Form.Label>
                             <Form.Control
-                                autoFocus
                                 as="textarea"
                                 rows={3}
                                 style={{
@@ -128,20 +72,9 @@ function EditProject(props) {
                                 value={description}
                                 placeholder={description}
                                 onChange={(e) => {
-                                    validate(
-                                        e.target.value,
-                                        e.target.name
-                                    ).catch((event) => {});
                                     setDescription(e.target.value);
                                 }}
-                                //onChange={onChangeHandler}
-                                isInvalid={errors.brief_description}
                             />
-                            {errors.brief_description && (
-                                <Form.Control.Feedback type="invalid">
-                                    {errors.brief_description}
-                                </Form.Control.Feedback>
-                            )}
                         </Form.Group>
                         <Form.Group>
                             <Row className="w-100">
@@ -232,7 +165,6 @@ function EditProject(props) {
 
                 <Modal.Footer>
                     <Button
-                        onSubmit={submit}
                         className="w-100"
                         size="sm"
                         type="submit"
