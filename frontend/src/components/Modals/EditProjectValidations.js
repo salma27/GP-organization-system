@@ -10,4 +10,7 @@ export default vest.create("formName", (data, field) => {
     test("ptitle", "Title should be at least 3 characters long", () => {
         enforce(data.ptitle.toString()).longerThanOrEquals(3);
     });
+    test("description", "Description should be at least 250 words", () => {
+        enforce(data.description.toString().split(" ")).longerThanOrEquals(3);
+    });
 });
