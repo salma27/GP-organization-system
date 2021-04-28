@@ -8,39 +8,47 @@ const res = [
         name: "Sarah Saeed Ibrahim Rofail",
         department : "cs",
         tech: ["ML", "Web development", "Mobile app development"],
+        num : 3
     },
     {
         name: "Sarah Saeed Ibrahim Rofail",
         department : "cs",
         tech: ["ML", "Web development", "Mobile app development"],
+        num : 2
     },
     {
         name: "Sarah Saeed Ibrahim Rofail",
         department : "cs",
         tech: ["ML", "Web development"],
+        num : 0
     },
     {
         name: "Sarah Saeed Ibrahim Rofail",
         department : "Is",
         tech: ["Mobile app development"],
+        num : 5
     },
     {
         name: "Sarah Saeed Ibrahim Rofail",
         department : "CS",
+        num : 1
     },
     {
         name: "Sarah Saeed Ibrahim Rofail",
         tech: ["ML", "Web development"],
         department : "CS",
+        num : 5
     },
     {
         name: "Sarah Saeed Ibrahim Rofail",
         tech: ["ML", "Web development", "Mobile app development"],
         department : "DS",
+        num : 0
     },
     {
         name: "Sarah Saeed Ibrahim Rofail",
         department : "CS",
+        num : 3
     },
 ];
 const style = {
@@ -51,7 +59,10 @@ const style = {
     backgroundSize: "cover",
 };
 
-const StudentsSearchResult = () => {
+const StudentsSearchResult = (props) => {
+    // console.log(props)
+    const search = {search:props.match.params.id,type:props.match.params.type};
+    console.log(search)
     return (
         <div className="container-fluid" style={style}>
             <div className="row">
@@ -65,7 +76,7 @@ const StudentsSearchResult = () => {
                         </div>
                         <div className="col-12 col-lg-8">
                             {res.map((p, i) => (
-                                <StudentCard {...p} isStudent={true} key={i} />
+                                <StudentCard {...p} isStudent={search.type==="students"} key={i} />
                             ))}
                         </div>
                         <div className="d-none d-lg-inline col-lg-4">

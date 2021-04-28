@@ -21,7 +21,7 @@ const StudentCard = ({name, num,isStudent, department, tech = []}) => {
                             <b className="h6 font-weight-bold" style={{color:"black"}}>{name}</b>
                             <p className="mb-0" style={{fontSize:"small",color:"black"}}>Department: <b style={{font:"caption"}}>{department}</b></p>
                             { !isStudent ? 
-                                num > 0 ? <p className="mb-0 text-success" style={{fontSize:"small"}}>Can take <b>3</b> teams</p>
+                                num > 0 ? <p className="mb-0 text-success" style={{fontSize:"small"}}>Can take <b>{num}</b> teams</p>
                                     :<p className="mb-0 text-danger" style={{fontSize:"small"}}>Completed</p>
                                     :<></>
                             }

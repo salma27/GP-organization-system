@@ -10,4 +10,4 @@ export const dashboardRoute = "/dashboard";
 export const adminRoute = "/admin";
 export const adminLoginRoute = "/admin/login";
 export const adminDashboard = "/admin/dashboard";
-export const studentsSearchResult = "/students-filter";
+export const studentsSearchResult = "/search";
