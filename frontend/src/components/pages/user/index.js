@@ -8,4 +8,4 @@ export {default as DashboardTabs} from "./DashboardTabs";
 export {default as NewsFeedPage} from "./NewsFeedPage";
 export {default as OldProjectsPage} from "./OldProjectsPage";
 export {default as HomePage} from "./HomePage";
-export {default as StudentsSearchResult} from "./StudentsSearchResult";
+export {default as SearchResult} from "./SearchResult";

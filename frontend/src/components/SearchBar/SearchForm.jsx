@@ -14,9 +14,9 @@ const SearchForm = () => {
         e.preventDefault();
         console.log(search)
         if(search.search.length > 0)
-            history.push(`${r.studentsSearchResult}/${search.search}/${search.type}`)
+            history.push(`${r.SearchResult}/${search.search}/${search.type}`)
         else 
-            history.push(`${r.studentsSearchResult}/all/${search.type}`)
+            history.push(`${r.SearchResult}/all/${search.type}`)
     };
     return ( 
         <div>

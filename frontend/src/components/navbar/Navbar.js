@@ -20,9 +20,6 @@ const Navbar_ = ({filled}) => {
             <Navbar.Collapse id="basic-navbar-nav">
                 <SearchBar />
                 <Nav className="ml-auto">
-                     <Nav.Item className="my-md-auto mx-2">
-                        <Link to={r.studentsSearchResult}>students</Link>
-                    </Nav.Item>
                     <Nav.Item className="my-md-auto mx-2">
                         <Link to={r.newsFeedRoute}>News Feed</Link>
                     </Nav.Item>
