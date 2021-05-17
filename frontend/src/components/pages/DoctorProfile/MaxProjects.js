@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { BsButton } from "utils";
 
 function MaxProjects() {
+    const [max, setMax] = useState(0);
     return (
         <>
             <Form className="w-100">
@@ -15,13 +16,25 @@ function MaxProjects() {
                 <div id="notesBtn" style={{ width: "200px" }}>
                     <Row>
                         <Col>
-                            <BsButton size="sm" label="<" />
+                            <BsButton
+                                size="sm"
+                                label="<"
+                                onClick={() => {
+                                    setMax(max > 0 ? max - 1 : 0);
+                                }}
+                            />
                         </Col>
                         <Col>
-                            <label>0</label>
+                            <label>{max}</label>
                         </Col>
                         <Col>
-                            <BsButton size="sm" label=">" />
+                            <BsButton
+                                size="sm"
+                                label=">"
+                                onClick={() => {
+                                    setMax(max < 5 ? max + 1 : 5);
+                                }}
+                            />
                         </Col>
                     </Row>
                 </div>
