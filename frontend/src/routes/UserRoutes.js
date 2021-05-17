@@ -29,8 +29,10 @@ const UserRoutes = () => {
                     component={pages.StudentProfilePage}
                 /> */}
                 <Route path={r.newsFeedRoute} component={pages.NewsFeedPage} />
-                <Route path="/search/:id/:type" component={pages.SearchResult} />
+                <Route path={r.search} component={pages.SearchResult} />
+                <Route path={r.userInfo} component={pages.UserInfo} />
                 <Route path={r.SearchResult} component={pages.SearchResult} />
+                
                 <Route
                     path={r.oldProjectsRoute}
                     component={pages.OldProjectsPage}

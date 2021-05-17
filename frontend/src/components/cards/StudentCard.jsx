@@ -1,5 +1,8 @@
 import React from "react";
 import {Badge, Card} from "react-bootstrap";
+import {Link} from  "react-router-dom";
+import * as r from "routes/routes";
+import {Technologies} from "components/cards"
 
 const StudentCard = ({name, num,isStudent, department, tech = []}) => {
     const style = {
@@ -18,7 +21,7 @@ const StudentCard = ({name, num,isStudent, department, tech = []}) => {
                             <img src="\profile.svg" className="mw-100"/>
                         </div>
                         <div className="col-9 col-md-7 col-lg-8">
-                            <b className="h6 font-weight-bold" style={{color:"black"}}>{name}</b>
+                            <Link to={r.userInfo}><b className="h6 font-weight-bold" style={{color:"black"}}>{name}</b></Link>
                             <p className="mb-0" style={{fontSize:"small",color:"black"}}>Department: <b style={{font:"caption"}}>{department}</b></p>
                             { !isStudent ? 
                                 num > 0 ? <p className="mb-0 text-success" style={{fontSize:"small"}}>Can take <b>{num}</b> teams</p>
@@ -45,7 +48,7 @@ const StudentCard = ({name, num,isStudent, department, tech = []}) => {
                 <hr />
                 <div className="row">
                     <div className="col-12 mb-1">
-                        <Card.Text>
+                        {/* <Card.Text>
                             {tech.map((t, i) => (
                                 <Badge
                                     pill
@@ -63,7 +66,8 @@ const StudentCard = ({name, num,isStudent, department, tech = []}) => {
                                 </Badge>
                             ))}
                             {!tech.length && "No technologies provided"}
-                        </Card.Text>
+                        </Card.Text> */}
+                        <Technologies tech={tech} />
                     </div>
                 </div>
                 {/* <hr className="d-inline d-md-none"/> */}

@@ -6,3 +6,6 @@ export {default as FilterCard} from "./FilterCard";
 export {default as OldProjectCard} from "./OldProjectCard";
 export {default as FilterStudents} from "./FilterStudents";
 export {default as StudentCard} from "./StudentCard";
+export {default as PersonInfo} from "./PersonInfo";
+export {default as Technologies} from "./Technologies";
+export {default as Note} from "./Note"

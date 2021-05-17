@@ -11,3 +11,5 @@ export const adminRoute = "/admin";
 export const adminLoginRoute = "/admin/login";
 export const adminDashboard = "/admin/dashboard";
 export const SearchResult = "/search";
+export const search = "/search/:id/:type"
+export const userInfo = "/search/:id"
