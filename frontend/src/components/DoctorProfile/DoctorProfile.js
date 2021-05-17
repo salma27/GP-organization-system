@@ -1,7 +1,11 @@
 import React from "react";
-
+import { DoctorProfileImg } from "./DoctorProfileImg";
 function DoctorProfile() {
-    return <></>;
+    return (
+        <>
+            <DoctorProfileImg />
+        </>
+    );
 }
 
 export default DoctorProfile;
