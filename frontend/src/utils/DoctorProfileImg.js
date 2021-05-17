@@ -1,15 +1,7 @@
-const DoctorProfileImg = () => {
+const DoctorProfileImg = (height = "600", width = "790", id = "") => {
     return (
         <>
-            <svg
-                id="b4850822-491f-41e2-90b8-9be7376dfe8f"
-                data-name="Layer 1"
-                xmlns="http://www.w3.org/2000/svg"
-                width="798.62718"
-                height="689.22258"
-                viewBox="0 0 798.62718 689.22258"
-            >
-                <title>dev_productivity</title>
+            <svg id={id} width="790" height="590">
                 <circle
                     cx="435.92153"
                     cy="118.40512"

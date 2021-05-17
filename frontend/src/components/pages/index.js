@@ -1,3 +1,4 @@
 export * from "./user";
 export * from "./admin";
-export {default as NotFound} from "./NotFound";
+export * from "./DoctorProfile";
+export { default as NotFound } from "./NotFound";
