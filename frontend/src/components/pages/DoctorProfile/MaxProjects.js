@@ -1,5 +1,5 @@
 import { Button, Form, Col, Row } from "react-bootstrap";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { BsButton } from "utils";
 import { useHistory } from "react-router-dom";
 import supervisedProjects from "./supervisedProjects";
@@ -12,6 +12,11 @@ function MaxProjects() {
         let path = "./supervisedProjects";
         history.push(path);
     };
+    const inc = useCallback(() => {
+        if (max < 5) setMax(max + 1);
+        else setMax(5);
+    }, []);
+
     return (
         <>
             <Form className="w-100">
@@ -36,13 +41,7 @@ function MaxProjects() {
                             <label>{max}</label>
                         </Col>
                         <Col>
-                            <BsButton
-                                size="sm"
-                                label=">"
-                                onClick={() => {
-                                    setMax(max < 5 ? max + 1 : 5);
-                                }}
-                            />
+                            <BsButton size="sm" label=">" onClick={inc} />
                         </Col>
                     </Row>
                 </div>
