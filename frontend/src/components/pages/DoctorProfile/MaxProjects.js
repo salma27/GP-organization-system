@@ -1,9 +1,17 @@
 import { Button, Form, Col, Row } from "react-bootstrap";
 import React, { useState } from "react";
 import { BsButton } from "utils";
+import { useHistory } from "react-router-dom";
+import supervisedProjects from "./supervisedProjects";
 
 function MaxProjects() {
     const [max, setMax] = useState(0);
+    const history = useHistory();
+
+    const seeProjects = () => {
+        let path = "./supervisedProjects";
+        history.push(path);
+    };
     return (
         <>
             <Form className="w-100">
@@ -44,6 +52,7 @@ function MaxProjects() {
                         label="See My Projects"
                         id="notesBtn"
                         width="300px"
+                        onClick={seeProjects}
                     />
                 </Row>
             </Form>
