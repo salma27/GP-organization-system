@@ -36,6 +36,10 @@ const UserRoutes = () => {
                     path={r.doctorProfileRoute}
                     component={pages.DoctorProfile}
                 />
+                <Route
+                    path={r.supervisedProjectsRoute}
+                    component={pages.SupervisedProjects}
+                />
 
                 <Route
                     path={r.oldProjectsRoute}

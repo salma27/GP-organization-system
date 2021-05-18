@@ -1,16 +1,16 @@
 import { Button, Form, Col, Row } from "react-bootstrap";
 import React, { useState, useCallback } from "react";
 import { BsButton } from "utils";
-import { useHistory } from "react-router-dom";
-import supervisedProjects from "./supervisedProjects";
+import { useHistory, Link, BrowserRouter } from "react-router-dom";
+import * as r from "routes/routes";
 
 function MaxProjects() {
     const [max, setMax] = useState(0);
     const history = useHistory();
 
     const seeProjects = () => {
-        let path = "./supervisedProjects";
-        history.push(path);
+        let path = r.supervisedProjectsRoute;
+        history.replace(path);
     };
     const inc = useCallback(() => {
         if (max < 5) setMax(max + 1);
@@ -46,6 +46,53 @@ function MaxProjects() {
                     </Row>
                 </div>
                 <Row>
+                    {/*<Link to={r.supervisedProjectsRoute}>
+                        <BsButton
+                            size="sm"
+                            label="See My Projects"
+                            id="notesBtn"
+                            width="300px"
+                            onClick={seeProjects}
+                        />
+                    </Link>
+                    {/*<BrowserRouter>
+                        <button>
+                            <Link to="/abc" target="_blank">
+                                {" "}
+                                Me{" "}
+                            </Link>
+                        </button>
+                    </BrowserRouter>
+                    */}
+                    {/** <Link to={"/supervisedProjects"}>
+                        <button> Click Me </button>
+                    </Link>
+                    <button
+                        type="submit"
+                        size="lg"
+                        variant="secondary"
+                        block="block"
+                        onClick={seeProjects}
+                    >
+                        See
+                    </button>
+                    <Button>
+                        <a type="button" className>
+                            See My Projects
+                        </a>
+                    </Button>
+                    <a
+                        target="supervisedProjects"
+                        type="button"
+                        size="sm"
+                        label="See My Projects"
+                        id="notesBtn"
+                        width="300px"
+                        //onClick={seeProjects}
+                    >
+                        See My Projects
+                    </a>
+                    */}
                     <BsButton
                         size="sm"
                         label="See My Projects"

@@ -14,3 +14,4 @@ export const SearchResult = "/search";
 export const search = "/search/:id/:type";
 export const userInfo = "/search/:id";
 export const doctorProfileRoute = "/doctor-profile";
+export const supervisedProjectsRoute = "/supervised-projects";

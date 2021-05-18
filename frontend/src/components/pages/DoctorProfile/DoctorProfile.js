@@ -12,6 +12,7 @@ function DoctorProfile() {
         "Web Application",
         "Others",
     ];
+
     return (
         <>
             <div className="row">
