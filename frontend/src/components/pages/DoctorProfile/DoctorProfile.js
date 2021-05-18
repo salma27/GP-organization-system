@@ -27,18 +27,18 @@ function DoctorProfile() {
                     </div>
                 </div>
                 <div className="col-sm-12 col-xs-12 col-md-6 col-lg-6">
-                    <div className="row ml-5 mr-5 mt-5">
+                    <div className="row ml-4 mr-4 mt-5">
                         <div className=" col-12 studentInfo">
                             <BasicInfo />
                         </div>
                     </div>
                     <br></br>
-                    <div className="row ml-5 mr-5 mt-5">
+                    <div className="row ml-4 mr-4 mt-5">
                         <div className="col-12 studentInfo">
                             <FieldsOfExperience tech={technology} />
                         </div>
                     </div>
-                    <div className="row ml-5 mr-5 mt-5">
+                    <div className="row ml-4 mr-4 mt-5">
                         <div className="col-12 studentInfo">
                             <Notes />
                         </div>
