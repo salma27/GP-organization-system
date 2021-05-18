@@ -10,7 +10,8 @@ function MaxProjects() {
 
     const seeProjects = () => {
         let path = r.supervisedProjectsRoute;
-        history.replace(path);
+
+        history.push(path);
     };
     const inc = useCallback(() => {
         if (max < 5) setMax(max + 1);
@@ -46,53 +47,6 @@ function MaxProjects() {
                     </Row>
                 </div>
                 <Row>
-                    {/*<Link to={r.supervisedProjectsRoute}>
-                        <BsButton
-                            size="sm"
-                            label="See My Projects"
-                            id="notesBtn"
-                            width="300px"
-                            onClick={seeProjects}
-                        />
-                    </Link>
-                    {/*<BrowserRouter>
-                        <button>
-                            <Link to="/abc" target="_blank">
-                                {" "}
-                                Me{" "}
-                            </Link>
-                        </button>
-                    </BrowserRouter>
-                    */}
-                    {/** <Link to={"/supervisedProjects"}>
-                        <button> Click Me </button>
-                    </Link>
-                    <button
-                        type="submit"
-                        size="lg"
-                        variant="secondary"
-                        block="block"
-                        onClick={seeProjects}
-                    >
-                        See
-                    </button>
-                    <Button>
-                        <a type="button" className>
-                            See My Projects
-                        </a>
-                    </Button>
-                    <a
-                        target="supervisedProjects"
-                        type="button"
-                        size="sm"
-                        label="See My Projects"
-                        id="notesBtn"
-                        width="300px"
-                        //onClick={seeProjects}
-                    >
-                        See My Projects
-                    </a>
-                    */}
                     <BsButton
                         size="sm"
                         label="See My Projects"
