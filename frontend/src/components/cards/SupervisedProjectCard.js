@@ -48,9 +48,18 @@ const SupervisedProjectCard = ({ title, brief_description, tech = [] }) => {
                 </Card.Text>
                 <hr />
                 <div style={{ display: "flex", justifyContent: "center" }}>
-                    <a className="block-example border-bottom border-info text-info font-weight-bold">
+                    <Button
+                        className=" text-info font-weight-bold"
+                        style={{
+                            background: "none",
+                            border: "none",
+                            padding: "0",
+                            textDecoration: "underline",
+                            cursor: "pointer",
+                        }}
+                    >
                         See More...
-                    </a>
+                    </Button>
                 </div>
             </Card.Body>
         </Card>
