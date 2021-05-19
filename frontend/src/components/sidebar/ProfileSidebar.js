@@ -26,7 +26,7 @@ const ProfileSidebar = () => {
                 <h3>GP Organizer</h3>
 
                 <button
-                    class="navbar-toggler"
+                    className="navbar-toggler"
                     type="button"
                     data-toggle="collapse"
                     data-target="#navbarTogglerDemo01"
@@ -34,12 +34,12 @@ const ProfileSidebar = () => {
                     aria-expanded="false"
                     aria-label="Toggle navigation"
                 >
-                    <span class="navbar-toggler-icon">
+                    <span className="navbar-toggler-icon">
                         <FaBars />
                     </span>
                 </button>
             </div>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <ul className="list-unstyled components w-100">
                     <li>
                         <NavLink to={r.studentTeamRoute}>

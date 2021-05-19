@@ -1,14 +1,14 @@
 import React from "react";
 import NotificationDropdown from "./NotificationDropdown";
-import {SearchBar} from "components/SearchBar";
-import {Link} from "react-router-dom";
+import { SearchBar } from "components/SearchBar";
+import { Link } from "react-router-dom";
 import * as r from "routes/routes";
-import {Nav, Navbar} from "react-bootstrap";
-import {MdExpandMore} from "react-icons/md";
+import { Nav, Navbar } from "react-bootstrap";
+import { MdExpandMore } from "react-icons/md";
 
-const Navbar_ = ({filled}) => {
-    let style = filled ? {color: "white", backgroundColor: "#00bfa6"} : {};
-    style = {...style, borderRadius: "2rem"};
+const Navbar_ = ({ filled }) => {
+    let style = filled ? { color: "white", backgroundColor: "#00bfa6" } : {};
+    style = { ...style, borderRadius: "2rem" };
     return (
         <Navbar expand="lg" style={style} className="pl-4 pl-lg-5">
             <Navbar.Toggle
@@ -28,6 +28,9 @@ const Navbar_ = ({filled}) => {
                     </Nav.Item>
                     <Nav.Item className="my-md-auto mx-2">
                         <Link to={r.loginRoute}>login</Link>
+                    </Nav.Item>
+                    <Nav.Item className="my-md-auto mx-2">
+                        <Link to={r.doctorProfileRoute}>Dr</Link>
                     </Nav.Item>
                     <Nav.Item className="my-md-auto mx-2">
                         <Link to={r.studentProfileRoute}>username</Link>

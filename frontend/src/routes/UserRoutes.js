@@ -1,5 +1,5 @@
 import React from "react";
-import {Redirect, Route, Switch} from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 // import PrivateRoute from "./PrivateRoute";
 import * as r from "./routes";
 import * as pages from "components/pages";
@@ -29,13 +29,25 @@ const UserRoutes = () => {
                     component={pages.StudentProfilePage}
                 /> */}
                 <Route path={r.newsFeedRoute} component={pages.NewsFeedPage} />
+                <Route path={r.search} component={pages.SearchResult} />
+                <Route path={r.userInfo} component={pages.UserInfo} />
+                <Route path={r.SearchResult} component={pages.SearchResult} />
+                <Route
+                    path={r.doctorProfileRoute}
+                    component={pages.DoctorProfile}
+                />
+                <Route
+                    path={r.supervisedProjectsRoute}
+                    component={pages.SupervisedProjects}
+                />
+
                 <Route
                     path={r.oldProjectsRoute}
                     component={pages.OldProjectsPage}
                 />
                 <Route
                     path="*"
-                    render={({staticContext}) => {
+                    render={({ staticContext }) => {
                         if (staticContext) staticContext.statusCode = 404;
                         return (
                             <>
