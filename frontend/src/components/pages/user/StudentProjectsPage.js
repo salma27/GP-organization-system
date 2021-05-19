@@ -1,6 +1,7 @@
-import {ProjectCard} from "components/cards";
-import React from "react";
-import {CardColumns} from "react-bootstrap";
+import { ProjectCard } from "components/cards";
+import { CardColumns } from "react-bootstrap";
+import { EditProject } from "components/Modals";
+import React, { useState } from "react";
 
 const projects = [
     {
@@ -51,8 +52,29 @@ const projects = [
 ];
 
 const StudentProjectsPage = () => {
+    const [showModal, setShowModal] = useState(false);
     return (
         <div>
+            <button
+                onClick={() => setShowModal(true)}
+                className="btn btn-lg btn-primary py-1 px-2 mr-1 mt-2 w-100"
+                style={{
+                    backgroundColor: "#00BFA6",
+                    borderColor: "#00BFA6",
+                    marginBottom: "10px",
+                }}
+            >
+                Add New Project
+            </button>
+            <EditProject
+                show={showModal}
+                hide={() => setShowModal(false)}
+                title=""
+                brief_description=""
+                tech={[]}
+                btn="Add Project"
+            />
+
             <div className="row">
                 <CardColumns>
                     {projects.map((p, i) => (

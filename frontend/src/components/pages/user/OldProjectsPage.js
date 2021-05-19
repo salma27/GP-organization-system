@@ -1,5 +1,5 @@
-import {FilterCard, OldProjectCard} from "components/cards";
-import {Navbar} from "components/navbar";
+import { FilterCard, OldProjectCard } from "components/cards";
+import { Navbar } from "components/navbar";
 import React from "react";
 import "styles/stickey.css";
 
