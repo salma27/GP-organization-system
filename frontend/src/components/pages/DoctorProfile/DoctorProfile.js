@@ -10,13 +10,6 @@ import { ProfileSidebar } from "components/sidebar";
 import "styles/stickey.css";
 
 function DoctorProfile() {
-    const style = {
-        // backgrounds from 1 to 5 i.e. feed_4
-        backgroundImage: "url(/feed_7.svg)",
-        backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
-        backgroundSize: "cover",
-    };
     const technology = [
         "Machine Learning",
         "Artifical Intelligence",
