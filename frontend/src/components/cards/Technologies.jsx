@@ -5,7 +5,7 @@ import "./../../css/personInfoCard.css";
 const Technologies = (props) => {
     return ( 
         <div className="personinfo-block">
-            <h5 className="personInfo-hidder w-fit-mb">Technologies </h5>
+            <h5 className="personInfo-hidder w-fit-mb">Technologies </h5> <hr />
             <Card.Text>
                 {props.tech.map((t, i) => (
                     <Badge

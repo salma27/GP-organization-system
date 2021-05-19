@@ -11,7 +11,7 @@
 }
 .personInfo{
     display: flex;
-    margin-bottom:10px
+    /* margin-bottom:10px */
 }
 .links-list{
     background-color:var(--primary-color);
@@ -53,7 +53,11 @@
 .personInfo-second-text{
     color:black;
     margin-bottom: 0;
+    background-color: #D3F0EF;
+    padding: 5px 10px;
+    border-radius: .25rem;
 }
+
 .personinfo-body{
     display: flex;
     flex-direction: column;

@@ -5,8 +5,8 @@ import "./../../../css/personInfoCard.css";
 import {ProfileSidebar} from "components/sidebar";
 import {IoPeopleCircle} from "react-icons/io5";
 import {FaHandPointRight} from "react-icons/fa";
-import {RiProfileLine} from "react-icons/ri";
-import {Link, NavLink} from "react-router-dom"
+import {RiMailSendFill} from "react-icons/ri";
+import {Link} from "react-router-dom"
 import * as r from "routes/routes";
 
 const style = {
@@ -54,14 +54,23 @@ const UserInfo = () => {
                     <Note />
                     <hr />
                     <div className="left-link">
+                        <Link to="/" className="personInfo-hidder link-btn w-auto mr-2"><RiMailSendFill /> Ask To Join
+                        </Link>
                         <Link to="/" className="personInfo-hidder link-btn w-auto">Go To Team <FaHandPointRight />
                         </Link>
                     </div>
                     
                 </div>
-                {/* <div className="col-3 " className="back" >
-                    <img src="/imgs/profileInfo.svg" /> */}
-                    {/* <div className="card links-list">
+                {/* <div className="col-2" >
+                <Link to="/" className="personInfo-hidder link-btn"><RiMailSendFill /> Ask To Join
+                        </Link>
+                        <hr />
+                        <Link to="/" className="personInfo-hidder link-btn ">Go To Team <FaHandPointRight />
+                        </Link>
+                </div> */}
+                {/* <div className="col-2 " className="back" >
+                    <img src="/imgs/profileInfo.svg" /> 
+                     <div className="card links-list">
                         <button className="btn link-btn">
                             <RiProfileLine />
                             <label className="link-btn-title">Profile</label>
@@ -70,9 +79,9 @@ const UserInfo = () => {
                             <IoPeopleCircle />
                             <label className="link-btn-title">Team Info</label>
                         </button>
-                    </div> */}
+                    </div>
                     
-                {/* </div> */}
+                </div> */}
                 
             </div>
         </div>
