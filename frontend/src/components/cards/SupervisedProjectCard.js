@@ -3,7 +3,14 @@ import React, { useState } from "react";
 import { Badge, Card, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { ImExit } from "react-icons/im";
 
-const SupervisedProjectCard = ({ title, brief_description, tech = [] }) => {
+const SupervisedProjectCard = ({
+    title,
+    brief_description,
+    tech = [],
+    students = [],
+    TA = [],
+    Dr = [],
+}) => {
     const [showModal, setShowModal] = useState(false);
 
     const renderTooltip = (props) => (
@@ -67,10 +74,12 @@ const SupervisedProjectCard = ({ title, brief_description, tech = [] }) => {
                     <SupervisedProjectSeeMore
                         show={showModal}
                         hide={() => setShowModal(false)}
-                        title=""
-                        brief_description=""
-                        tech={[]}
-                        btn="Add Project"
+                        title={title}
+                        brief_description={brief_description}
+                        tech={tech}
+                        students={students}
+                        TA={TA}
+                        Dr={Dr}
                     />
                 </div>
             </Card.Body>
