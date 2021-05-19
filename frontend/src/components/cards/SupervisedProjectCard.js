@@ -19,10 +19,7 @@ const SupervisedProjectCard = ({ title, brief_description, tech = [] }) => {
                             delay={{ show: 0, hide: 0 }}
                             overlay={renderTooltip}
                         >
-                            <Button
-                                variant="danger"
-                                className="btn btn-lg py-1 px-2 mr-1"
-                            >
+                            <Button className="btn btn-lg btn-danger py-1 px-2 mr-1">
                                 <ImExit />
                             </Button>
                         </OverlayTrigger>
