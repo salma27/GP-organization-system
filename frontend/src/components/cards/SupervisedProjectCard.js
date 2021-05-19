@@ -45,8 +45,9 @@ const SupervisedProjectCard = ({ title, brief_description, tech = [] }) => {
                     ))}
                     {!tech.length && "No technologies provided"}
                 </Card.Text>
+                <hr />
                 <div style={{ display: "flex", justifyContent: "center" }}>
-                    <a className="block-example border-bottom border-info text-info">
+                    <a className="block-example border-bottom border-info text-info font-weight-bold">
                         See More...
                     </a>
                 </div>
