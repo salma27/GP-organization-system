@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router-dom";
 import * as r from "./routes";
 import * as pages from "components/pages";
 import PrivateRoute from "./PrivateRoute";
@@ -23,7 +23,7 @@ const AdminRoutes = () => {
                 />
                 <Route
                     path="*"
-                    render={({ staticContext }) => {
+                    render={({staticContext}) => {
                         if (staticContext) staticContext.statusCode = 404;
                         return <pages.NotFound />;
                     }}

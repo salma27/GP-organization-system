@@ -1,11 +1,11 @@
 import React from "react";
-import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
-import { AdminRoutes, UserRoutes } from "routes";
+import {BrowserRouter, Link, Route, Switch} from "react-router-dom";
+import {AdminRoutes, UserRoutes} from "routes";
 import * as r from "routes/routes";
 import "jquery";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./App.css";
-import { ToastContainer } from "react-toastify";
+import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Links = () => (

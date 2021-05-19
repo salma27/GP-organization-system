@@ -15,7 +15,7 @@ const LoginImg = ({
                 height={height}
                 id={id}
                 viewBox="0 0 795.39431 574.03802"
-                className="injected-svg gridItem__media"
+                class="injected-svg gridItem__media"
             >
                 <defs>
                     <linearGradient
@@ -29,18 +29,18 @@ const LoginImg = ({
                     >
                         <stop
                             offset="0"
-                            stopColor="gray"
-                            stopOpacity="0.25"
+                            stop-color="gray"
+                            stop-opacity="0.25"
                         ></stop>
                         <stop
                             offset="0.53514"
-                            stopColor="gray"
-                            stopOpacity="0.12"
+                            stop-color="gray"
+                            stop-opacity="0.12"
                         ></stop>
                         <stop
                             offset="1"
-                            stopColor="gray"
-                            stopOpacity="0.1"
+                            stop-color="gray"
+                            stop-opacity="0.1"
                         ></stop>
                     </linearGradient>
                 </defs>

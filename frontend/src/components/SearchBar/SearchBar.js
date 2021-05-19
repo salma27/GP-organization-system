@@ -10,7 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {Col, Row} from "react-bootstrap";
 
 function SearchBar() {
-    const [search, setSearch] = useState("");
+    const [search, setSearch] = useState("Search...");
     const onChangeHandler = ({target: {name, value}}) => {
         setSearch(value);
     };
