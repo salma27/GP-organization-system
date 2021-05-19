@@ -1,7 +1,7 @@
 import { Button, Form, Col, Row } from "react-bootstrap";
 import React, { useState } from "react";
 import { BsButton } from "utils";
-import { ProjectCard } from "components/cards";
+import { SupervisedProjectCard } from "components/cards";
 import { CardColumns } from "react-bootstrap";
 import { Navbar } from "components/navbar";
 import "styles/dashboard.css";
@@ -59,7 +59,7 @@ function SupervisedProjects() {
                     <div className="col-sm-12 col-xs-12 col-md-10 col-lg-10">
                         <CardColumns>
                             {projects.map((p, i) => (
-                                <ProjectCard {...p} key={i} />
+                                <SupervisedProjectCard {...p} key={i} />
                             ))}
                         </CardColumns>
                     </div>
