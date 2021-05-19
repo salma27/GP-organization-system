@@ -3,6 +3,10 @@ import React, { useState } from "react";
 import { BsButton } from "utils";
 import { ProjectCard } from "components/cards";
 import { CardColumns } from "react-bootstrap";
+import { Navbar } from "components/navbar";
+import "styles/dashboard.css";
+import { ProfileSidebar } from "components/sidebar";
+import "styles/stickey.css";
 
 function SupervisedProjects() {
     const projects = [
@@ -38,13 +42,27 @@ function SupervisedProjects() {
 
     return (
         <>
-            <div>
+            <div className="container-fluid">
                 <div className="row">
-                    <CardColumns>
-                        {projects.map((p, i) => (
-                            <ProjectCard {...p} key={i} />
-                        ))}
-                    </CardColumns>
+                    <div className="col-12">
+                        <Navbar />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-sm-12 col-xs-12 col-md-2 col-lg-2">
+                        <div className="sidebar-item">
+                            <div className="make-me-sticky">
+                                <ProfileSidebar />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-sm-12 col-xs-12 col-md-10 col-lg-10">
+                        <CardColumns>
+                            {projects.map((p, i) => (
+                                <ProjectCard {...p} key={i} />
+                            ))}
+                        </CardColumns>
+                    </div>
                 </div>
             </div>
         </>
