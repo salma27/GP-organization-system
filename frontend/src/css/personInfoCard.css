@@ -1,0 +1,77 @@
+:root{
+    --secondery-color:white;
+}
+/* .personInfoCard{
+    background-color:var(--secondery-color);
+} */
+.personImg{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -70px);
+}
+.personInfo{
+    display: flex;
+    margin-bottom:10px
+}
+.links-list{
+    background-color:var(--primary-color);
+    border:1px;
+    padding: 20px 10px;
+}
+.link-btn{
+    padding:10px;
+    color:var(--secondery-color);
+    border-radius: 0;
+}
+.link-btn:hover{
+    background-color:var(--secondery-color);
+    color:var(--primary-color);
+}
+.link-btn-title{
+    margin-left: 10px;
+    margin-bottom: 0;
+}
+.personProfile{
+    background-color: var(--secondery-color);
+    height: fit-content ;
+    border-radius: .25rem;
+}
+.primary-color-background{
+    background-color: var(--primary-color)
+}
+.personInfo-hidder{
+    background-color: var(--primary-color);
+    color:white;
+    width: 100%;
+    padding:5px 10px;
+    /* border-bottom: 1px solid var(--primary-color); */
+    border-radius: .25rem;
+    /* font-weight:800; */
+    margin-bottom: 0;
+    text-align: center;
+}
+.personInfo-second-text{
+    color:black;
+    margin-bottom: 0;
+}
+.personinfo-body{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    /* justify-content: end; */
+    justify-content: center;
+}
+.personinfo-block{
+    background-color: var(--secondery-color);
+    padding: 15px 20px;
+    border-radius: .25rem;
+    border: 1px solid var(--primary-color);
+}
+.w-fit-mb{
+    width: fit-content;
+    margin-bottom: 15px;
+}
+.left-link{
+    display: flex;
+    justify-content: flex-end;
+}

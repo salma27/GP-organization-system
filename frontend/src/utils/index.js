@@ -7,3 +7,4 @@ export { default as Title } from "./Title";
 export { default as SpinnerButton } from "./SpinnerButton";
 export { default as Select } from "./Select";
 export { default as Editable } from "./Editable";
+export { default as DoctorProfileImg } from "./DoctorProfileImg";
