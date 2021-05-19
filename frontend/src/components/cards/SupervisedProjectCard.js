@@ -1,8 +1,11 @@
-import React from "react";
+import SupervisedProjectSeeMore from "components/Modals/SupervisedProjectSeeMore";
+import React, { useState } from "react";
 import { Badge, Card, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { ImExit } from "react-icons/im";
 
 const SupervisedProjectCard = ({ title, brief_description, tech = [] }) => {
+    const [showModal, setShowModal] = useState(false);
+
     const renderTooltip = (props) => (
         <Tooltip id="button-tooltip" {...props}>
             Leave Team
@@ -49,6 +52,7 @@ const SupervisedProjectCard = ({ title, brief_description, tech = [] }) => {
                 <hr />
                 <div style={{ display: "flex", justifyContent: "center" }}>
                     <Button
+                        onClick={() => setShowModal(true)}
                         className=" text-info font-weight-bold"
                         style={{
                             background: "none",
@@ -60,6 +64,14 @@ const SupervisedProjectCard = ({ title, brief_description, tech = [] }) => {
                     >
                         See More...
                     </Button>
+                    <SupervisedProjectSeeMore
+                        show={showModal}
+                        hide={() => setShowModal(false)}
+                        title=""
+                        brief_description=""
+                        tech={[]}
+                        btn="Add Project"
+                    />
                 </div>
             </Card.Body>
         </Card>
