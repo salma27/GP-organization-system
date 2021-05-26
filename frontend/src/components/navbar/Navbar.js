@@ -3,12 +3,18 @@ import NotificationDropdown from "./NotificationDropdown";
 import { SearchBar } from "components/SearchBar";
 import { Link } from "react-router-dom";
 import * as r from "routes/routes";
-import { Nav, Navbar } from "react-bootstrap";
+import { Nav, Navbar, Tooltip, OverlayTrigger, Button } from "react-bootstrap";
 import { MdExpandMore } from "react-icons/md";
+import { AiOutlinePoweroff } from "react-icons/ai";
 
 const Navbar_ = ({ filled }) => {
     let style = filled ? { color: "white", backgroundColor: "#00bfa6" } : {};
     style = { ...style, borderRadius: "2rem" };
+    const renderTooltip = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+            Logout
+        </Tooltip>
+    );
     return (
         <Navbar expand="lg" style={style} className="pl-4 pl-lg-5">
             <Navbar.Toggle
@@ -35,8 +41,23 @@ const Navbar_ = ({ filled }) => {
                     <Nav.Item className="my-md-auto mx-2">
                         <Link to={r.studentProfileRoute}>username</Link>
                     </Nav.Item>
+
                     <Nav.Item>
-                        <NotificationDropdown />
+                        <NotificationDropdown
+                            class="artboard t-material-light"
+                            id="artboard-1"
+                        />
+                    </Nav.Item>
+                    <Nav.Item className="my-md-auto mx-2">
+                        <Link to={r.loginRoute}>
+                            <OverlayTrigger
+                                placement="bottom"
+                                delay={{ show: 0, hide: 0 }}
+                                overlay={renderTooltip}
+                            >
+                                <AiOutlinePoweroff />
+                            </OverlayTrigger>
+                        </Link>
                     </Nav.Item>
                 </Nav>
             </Navbar.Collapse>
