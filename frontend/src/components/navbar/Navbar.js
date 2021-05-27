@@ -44,8 +44,8 @@ const Navbar_ = ({ filled }) => {
 
                     <Nav.Item>
                         <NotificationDropdown
-                        //class="artboard t-material-light"
-                        //id="artboard-1"
+                            class="artboard t-material-light"
+                            id="artboard-1"
                         />
                     </Nav.Item>
                     <Nav.Item className="my-md-auto mx-2">

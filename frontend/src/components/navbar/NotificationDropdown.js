@@ -1,20 +1,7 @@
 import React from "react";
-//import NotifyMe from "react-notification-timeline";
 
 const NotificationDropdown = () => {
     return (
-        /*      <NotifyMe
-            data={data}
-            storageKey="notific_key"
-            notific_key="timestamp"
-            notific_value="update"
-            heading="Notification Alerts"
-            sortedByKey={false}
-            showDate={true}
-            size={64}
-            color="yellow"
-        />
-    */
         <li className="nav-item dropdown no-arrow mx-1">
             <a
                 className="nav-link dropdown-toggle"
