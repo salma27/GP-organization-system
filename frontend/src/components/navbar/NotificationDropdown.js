@@ -1,8 +1,78 @@
-import React from "react";
+import { React, Component, useCallback, useState } from "react";
 //import NotifyMe from "react-notification-timeline";
+import Notification from "./Notification";
 
 const NotificationDropdown = () => {
+    const soundUrl = `https://ia800203.us.archive.org/14/items/slack_sfx/been_tree.mp3`;
+    const notificationSound = new Audio(soundUrl);
+    const [count, setCount] = useState(0);
+    const [mute, setMute] = useState(false);
+    const [isAnimating, setIsAnimating] = useState(false);
+    const [countNotifications, setCountNotifications] = useState();
+    const handleClick = useCallback(() => {
+        setMute(!mute);
+    }, []);
+
+    const notify = useCallback(() => {
+        if (mute) return null;
+        setCount(count + 1);
+        setIsAnimating(!this.state.mute ? true : false);
+        notificationSound.play();
+        setTimeout(() => setIsAnimating(false), 1000);
+    }, []);
+
+    const componentDidMount = () => {
+        setCountNotifications(setInterval(notify, 2000));
+    };
+
+    const componentWillUnmount = () => {
+        clearInterval(countNotifications);
+    };
+
     return (
+        <>
+            <li className="nav-item dropdown no-arrow mx-1">
+                <a
+                    className="nav-link dropdown-toggle"
+                    href="#"
+                    id="alertsDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    data-target="#noti"
+                    aria-haspopup="true"
+                >
+                    <div onClick={handleClick}>
+                        <Notification
+                            count={count}
+                            isAnimating={isAnimating}
+                            mute={mute}
+                        />
+                    </div>
+                    {/*<i className="fas fa-bell fa-fw"></i>*/}
+                </a>
+                <div
+                    className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                    aria-labelledby="alertsDropdown"
+                    id="noti"
+                >
+                    <h6 className="dropdown-header">Notifications</h6>
+                    <a
+                        className="dropdown-item d-flex align-items-center"
+                        href="#"
+                    >
+                        <div className="mr-3">
+                            <div className="icon-circle bg-danger">
+                                <i className="fas fa-exclamation-triangle text-white" />
+                            </div>
+                        </div>
+                        <div>
+                            <div className="text-gray-500">Message</div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+        </>
+
         /*      <NotifyMe
             data={data}
             storageKey="notific_key"
@@ -15,7 +85,7 @@ const NotificationDropdown = () => {
             color="yellow"
         />
     */
-        <li className="nav-item dropdown no-arrow mx-1">
+        /* <li className="nav-item dropdown no-arrow mx-1">
             <a
                 className="nav-link dropdown-toggle"
                 href="#"
@@ -45,6 +115,7 @@ const NotificationDropdown = () => {
                 </a>
             </div>
         </li>
+    */
     );
 };
 
