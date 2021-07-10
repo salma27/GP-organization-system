@@ -1,6 +1,13 @@
 import React from "react";
+import { AdminFormWrapper, AdminLoginForm } from "components/forms";
 
 const AdminLoginPage = () => {
-    return <div>hi</div>;
+    return (
+        <>
+            <AdminFormWrapper>
+                <AdminLoginForm />
+            </AdminFormWrapper>
+        </>
+    );
 };
 export default AdminLoginPage;
