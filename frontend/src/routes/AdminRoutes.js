@@ -16,11 +16,16 @@ const AdminRoutes = () => {
                     path={r.adminLoginRoute}
                     component={pages.AdminLoginPage}
                 />
-                <PrivateRoute
-                    admin
+                <Route
+                    exact
                     path={r.adminDashboard}
                     component={pages.AdminDashboard}
                 />
+                {/*<PrivateRoute
+                    admin
+                    path={r.adminDashboard}
+                    component={pages.AdminDashboard}
+                />*/}
                 <Route
                     path="*"
                     render={({ staticContext }) => {
