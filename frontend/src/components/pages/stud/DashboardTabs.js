@@ -4,9 +4,9 @@ import React from "react";
 import "styles/stickey.css";
 import {Redirect, Route, Switch} from "react-router";
 import * as r from "routes/routes";
-import * as pages from "./";
+import * as pages from ".";
 
-const DashboardTabs = () => {
+const DashboardPage = () => {
     const style = {
         // backgrounds from 1 to 5 i.e. feed_4
         backgroundImage: "url(/feed_7.svg)",
@@ -31,7 +31,7 @@ const DashboardTabs = () => {
                 </div>
                 <div className="col-12 col-lg-9">
                     <Switch>
-                        <Route exact path={r.dashboardRoute}>
+                        <Route exact path={r.studentDashboardRoute}>
                             <Redirect to={r.studentRequestsRoute} />
                             {/* <div>dashb zeft</div> */}
                         </Route>
@@ -53,4 +53,4 @@ const DashboardTabs = () => {
         </div>
     );
 };
-export default DashboardTabs;
+export default DashboardPage;
