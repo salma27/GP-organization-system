@@ -31,16 +31,16 @@ const AdminNavbar = ({ filled }) => {
                 </div>
                 <Nav className="ml-auto">
                     <Nav.Item className="my-md-auto mx-2">
-                        <Link to={r.doctorProfileRoute}>Students</Link>
+                        <Link to={r.staffProfileRoute}>Students</Link>
                     </Nav.Item>
                     <Nav.Item className="my-md-auto mx-2">
-                        <Link to={r.doctorProfileRoute}>Teams</Link>
+                        <Link to={r.staffProfileRoute}>Teams</Link>
                     </Nav.Item>
                     <Nav.Item className="my-md-auto mx-2">
-                        <Link to={r.doctorProfileRoute}>TAs</Link>
+                        <Link to={r.staffProfileRoute}>TAs</Link>
                     </Nav.Item>
                     <Nav.Item className="my-md-auto mx-2">
-                        <Link to={r.doctorProfileRoute}>Doctors</Link>
+                        <Link to={r.staffProfileRoute}>Doctors</Link>
                     </Nav.Item>
 
                     <Nav.Item className="my-md-auto mx-2">
