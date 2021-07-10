@@ -7,6 +7,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./App.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import StaffRoutes from "routes/StaffRoutes";
 
 const Links = () => (
     <div>
@@ -27,6 +28,7 @@ function App() {
                 {/* <Links /> */}
                 <Switch>
                     <Route path={r.adminRoute} component={AdminRoutes} />
+                    <Route path={r.staffBase} component={StaffRoutes} />
                     <Route path="/" component={UserRoutes} />
                 </Switch>
             </BrowserRouter>

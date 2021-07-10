@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {dashboardRoute} from "routes/routes";
+import {studentDashboardRoute} from "routes/routes";
 
 const NotFound = () => {
     return (
@@ -19,7 +19,7 @@ const NotFound = () => {
                                 It looks like you found a glitch in the
                                 matrix...
                             </p>
-                            <Link to={dashboardRoute}>
+                            <Link to={studentDashboardRoute}>
                                 &larr; Back to Dashboard
                             </Link>
                         </div>

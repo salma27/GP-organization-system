@@ -6,7 +6,7 @@ import {useAuthContext, useRequest, useValidation} from "hooks";
 import loginFormValidations from "./loginFormValidations";
 import {loginRequests} from "requests";
 import {useHistory} from "react-router";
-import {dashboardRoute} from "routes/routes";
+import {studentDashboardRoute,staffDashboradRoute, staffBase, staffProfileRoute} from "routes/routes";
 
 function LoginForm() {
     const [user, setUser] = useState({id: "", password: ""});
@@ -27,7 +27,13 @@ function LoginForm() {
                 request(user)
                     .then((r) => {
                         setAuth({...r.data.student});
-                        history.push(dashboardRoute);
+                        // if("".match("/.stud./g"))
+                             history.push(studentDashboardRoute);
+                        // else
+                        //     history.push(StaffDashboradRoute);
+                        //history.push(staffProfileRoute);
+
+                        
                         // console.log(r.data);
                     })
                     .catch((e) => {

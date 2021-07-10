@@ -20,7 +20,7 @@ const UserRoutes = () => {
                 <Route
                     // <PrivateRoute
                     // user
-                    path={r.dashboardRoute}
+                    path={r.studentDashboardRoute}
                     component={pages.DashboardTabs}
                 />
                 {/* <Route
@@ -33,7 +33,7 @@ const UserRoutes = () => {
                 <Route path={r.userInfo} component={pages.UserInfo} />
                 <Route path={r.SearchResult} component={pages.SearchResult} />
                 <Route
-                    path={r.doctorProfileRoute}
+                    path={r.staffProfileRoute}
                     component={pages.DoctorProfile}
                 />
                 <Route

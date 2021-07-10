@@ -31,7 +31,7 @@ const DashboardTabs = () => {
                 </div>
                 <div className="col-12 col-lg-9">
                     <Switch>
-                        <Route exact path={r.dashboardRoute}>
+                        <Route exact path={r.studentDashboardRoute}>
                             <Redirect to={r.studentRequestsRoute} />
                             {/* <div>dashb zeft</div> */}
                         </Route>
