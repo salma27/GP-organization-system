@@ -28,10 +28,10 @@ function LoginForm() {
                     .then((r) => {
                         setAuth({...r.data.student});
                         // if("".match("/.stud./g"))
-                             history.push(studentDashboardRoute);
+                             //history.push(studentDashboardRoute);
                         // else
                         //     history.push(StaffDashboradRoute);
-                        //history.push(staffProfileRoute);
+                        history.push(staffProfileRoute);
 
                         
                         // console.log(r.data);

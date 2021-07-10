@@ -11,20 +11,19 @@ const StaffRoutes = () => {
                 <div>staff route</div> 
                 </Route> */}
             
-                {/* <Route
-                    // <PrivateRoute
-                    // user
-                    path={r.staffDashboradRoute}
-                    component={pages.DashboardTabs}
-                /> */}
+                <Route
+                    path={r.staffDashboradRoute} 
+                    component={pages.StaffDashboardPage}
+                />
                 <Route
                     path={r.staffProfileRoute}
                     component={pages.DoctorProfile}
                 />
                 <Route
-                    path={r.supervisedProjectsRoute}
+                    path={r.staffSupervisedProjectsRoute}
                     component={pages.SupervisedProjects}
                 />
+                
 
                
             </Switch>

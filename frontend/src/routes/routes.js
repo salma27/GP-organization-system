@@ -1,3 +1,5 @@
+import { StaffDashboardPage } from "components/pages";
+
 export const root = "/";
 export const loginRoute = "/login";
 
@@ -21,6 +23,8 @@ export const adminDashboard = "/admin/dashboard";
 
 export const staffBase = "/staff";
 export const staffDashboradRoute = `${staffBase}/dashboard`;
-export const staffProfileRoute = `${staffDashboradRoute}/staff-profile`;
-
-export const supervisedProjectsRoute = "/supervised-projects";
+export const staffProfileRoute = `${staffDashboradRoute}/profile`;
+export const staffProjects = `${staffDashboradRoute}/projects`;
+export const staffAllProjects = `${staffDashboradRoute}/all-projects`;
+export const staffSupervisedProjectsRoute = `${staffDashboradRoute}/supervised-projects`;
+export const staffRequests = `${staffDashboradRoute}/requests`;
