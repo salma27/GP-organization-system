@@ -1,7 +1,14 @@
-const DoctorProfileImg = (height = "600", width = "790", id = "") => {
+const DoctorProfileImg = (height = "800", width = "790", id = "") => {
     return (
         <>
-            <svg id={id} width="790" height="590">
+            <svg
+                id={id}
+                width={width}
+                height={height}
+                id={id}
+                viewBox="0 0 795.39431 574.03802"
+                className="injected-svg gridItem__media"
+            >
                 <circle
                     cx="435.92153"
                     cy="118.40512"
