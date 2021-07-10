@@ -20,7 +20,10 @@ function MaxProjects() {
 
     return (
         <>
-            <Form className="w-100">
+            <Form
+                className="w-100"
+                style={{ paddingBottom: "40px", paddingTop: "20px" }}
+            >
                 <Row>
                     <Col>
                         <Form.Label>Maximum Projects: </Form.Label>
@@ -46,7 +49,7 @@ function MaxProjects() {
                         </Col>
                     </Row>
                 </div>
-                <Row>
+                <Row style={{ marginTop: "7px" }}>
                     <BsButton
                         size="sm"
                         label="See My Projects"
