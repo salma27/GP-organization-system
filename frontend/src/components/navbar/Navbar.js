@@ -36,9 +36,6 @@ const Navbar_ = ({ filled }) => {
                         <Link to={r.loginRoute}>login</Link>
                     </Nav.Item>
                     <Nav.Item className="my-md-auto mx-2">
-                        <Link to={r.doctorProfileRoute}>Dr</Link>
-                    </Nav.Item>
-                    <Nav.Item className="my-md-auto mx-2">
                         <Link to={r.studentProfileRoute}>username</Link>
                     </Nav.Item>
                     <Nav.Item>

@@ -9,7 +9,7 @@ function MaxProjects() {
     const history = useHistory();
 
     const seeProjects = () => {
-        let path = r.supervisedProjectsRoute;
+        let path = r.staffSupervisedProjectsRoute;
 
         history.push(path);
     };

@@ -20,19 +20,12 @@ function DoctorProfile() {
     return (
         <>
             <div className="container-fluid">
-                <div className="row">
+                {/* <div className="row">
                     <div className="col-12">
                         <Navbar />
                     </div>
-                </div>
+                </div> */}
                 <div className="row">
-                    <div className="col-sm-12 col-xs-12 col-md-3 col-lg-3">
-                        <div className="sidebar-item">
-                            <div className="make-me-sticky">
-                                <ProfileSidebar />
-                            </div>
-                        </div>
-                    </div>
                     <div className="col-sm-12 col-xs-12 col-md-5 col-lg-5">
                         <div className="row ml-1 mr-1 mt-4">
                             <DoctorProfileImg />
