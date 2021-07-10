@@ -1,10 +1,12 @@
 import React from "react";
-import { AdminLoginForm } from "components/forms";
+import { AdminFormWrapper, AdminLoginForm } from "components/forms";
 
 const AdminLoginPage = () => {
     return (
         <>
-            <AdminLoginForm />
+            <AdminFormWrapper>
+                <AdminLoginForm />
+            </AdminFormWrapper>
         </>
     );
 };
