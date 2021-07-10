@@ -24,8 +24,8 @@ The system provides a search bar on student home page to search for other studen
 ##### Termination Outcome
 | Outcome          | Condition |
 |------------------|-----------|
-| Single backticks | 'fun?'    |
-| Quotes           | "fun?"    |
+|  |     |
+
 
 ##### Notes
 none

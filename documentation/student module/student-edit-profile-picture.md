@@ -24,8 +24,7 @@ The system provides a student profile page in which the student can upload a pro
 ##### Termination Outcome
 | Outcome          | Condition |
 |------------------|-----------|
-| Single backticks | 'fun?'    |
-| Quotes           | "fun?"    |
+|  |     |
 
 ##### Notes
 none

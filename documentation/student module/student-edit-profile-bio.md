@@ -24,8 +24,7 @@ The system provides a student profile page in which the actor can add/update a b
 ##### Termination Outcome
 | Outcome          | Condition |
 |------------------|-----------|
-| Single backticks | 'fun?'    |
-| Quotes           | "fun?"    |
+|  |     |
 
 ##### Notes
 none

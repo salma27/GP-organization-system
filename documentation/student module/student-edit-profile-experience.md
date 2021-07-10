@@ -30,8 +30,7 @@ The system provides a student profile page in which the student can add and remo
 ##### Termination Outcome
 | Outcome          | Condition |
 |------------------|-----------|
-| Single backticks | 'fun?'    |
-| Quotes           | "fun?"    |
+|  |     |
 
 ##### Notes
 none

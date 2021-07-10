@@ -25,8 +25,7 @@ The system provides a student login page for any registered student to login usi
 ##### Termination Outcome
 | Outcome          | Condition |
 |------------------|-----------|
-| Single backticks | 'fun?'    |
-| Quotes           | "fun?"    |
+|  |     |
 
 ##### Notes
 none
