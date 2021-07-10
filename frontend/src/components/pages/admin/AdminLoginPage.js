@@ -1,6 +1,11 @@
 import React from "react";
+import { AdminLoginForm } from "components/forms";
 
 const AdminLoginPage = () => {
-    return <div>hi</div>;
+    return (
+        <>
+            <AdminLoginForm />
+        </>
+    );
 };
 export default AdminLoginPage;
