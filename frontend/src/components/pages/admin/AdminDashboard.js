@@ -7,7 +7,7 @@ const AdminDashboard = () => {
     return (
         <>
             <AdminNavbar />
-            {/* <StudentsDataTable /> */}
+
             <AdminStat />
         </>
     );

@@ -31,7 +31,7 @@ const SearchForm = () => {
                         <option value="TAs">Teacher Assistants</option>
                     </select>
                 </div>
-                <button className="btn btn-outline-success" type="submit">Search</button>
+                <button className="btn btn-outline-info" type="submit">Search</button>
             </form>
         </div>
      );
