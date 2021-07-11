@@ -10,3 +10,5 @@ export { default as PersonInfo } from "./PersonInfo";
 export { default as Technologies } from "./Technologies";
 export { default as Note } from "./Note";
 export { default as SupervisedProjectCard } from "./SupervisedProjectCard";
+export {default as StatNum} from "./StatNum";
+export {default as MyChart} from "./Chart"
