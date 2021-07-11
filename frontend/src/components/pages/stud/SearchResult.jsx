@@ -8,7 +8,7 @@ const res = [
         name: "Sarah Saeed Ibrahim Rofail",
         department : "cs",
         tech: ["ML", "Web development", "Mobile app development"],
-        projects:["pro1", "pro2", "pro3", "pro4", "pro5", "pro6"],
+        projects:["pro1", "pro2", "pro3", "pro4", "pro5", "pro6", "pro7", "pro8"],
         num : 3
     },
     {

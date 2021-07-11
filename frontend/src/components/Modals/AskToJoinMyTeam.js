@@ -1,8 +1,13 @@
-import { React } from "react";
+import { React, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 
 function AskToJoinMyTeam(props) {
+    const [selectedProject, setSelectedProject] = useState();
+    const changeHandler = (e) => {
+        setSelectedProject(e.target.value);
+        console.log(e.target.value); ///return the index of the project not the project name itself
+    };
     return (
         <>
             <Modal centered show={props.show} onHide={props.hide}>
@@ -19,6 +24,7 @@ function AskToJoinMyTeam(props) {
                                 as="select"
                                 custom
                                 className="border border-info"
+                                onChange={changeHandler}
                             >
                                 {props.projects.map((t, i) => (
                                     <option value={i} key={i}>
@@ -29,6 +35,10 @@ function AskToJoinMyTeam(props) {
                                     <option value="none">None</option>
                                 )}
                             </Form.Control>
+                            {/*<div
+                                class="modal-body"
+                                style={{ overflowY: "inherit !important" }}
+                            ></div>*/}
                         </Form.Group>
                     </Form>
                 </Modal.Body>
