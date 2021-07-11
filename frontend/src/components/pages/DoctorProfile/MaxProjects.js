@@ -28,9 +28,8 @@ function MaxProjects() {
                     <Col>
                         <Form.Label>Maximum Projects: </Form.Label>
                     </Col>
-                    <Col></Col>
                 </Row>
-                <div id="notesBtn" style={{ width: "200px" }}>
+                <div id="notesBtn" style={{ width: "40%" }}>
                     <Row>
                         <Col>
                             <BsButton
@@ -42,7 +41,7 @@ function MaxProjects() {
                             />
                         </Col>
                         <Col>
-                            <label>{max}</label>
+                            <label centered>{max}</label>
                         </Col>
                         <Col>
                             <BsButton size="sm" label=">" onClick={inc} />
