@@ -27,7 +27,13 @@ const AdminNavbar = ({ filled }) => {
         <Navbar expand="lg" style={style} className="pl-4 pl-lg-5">
             <Navbar.Collapse id="basic-navbar-nav">
                 <div>
-                    <Form.Label>Admin Control Center </Form.Label>
+                    <Form.Label>
+                        <Nav.Item>
+                            <Link to={r.adminDashboard}>
+                                Admin Control Center
+                            </Link>
+                        </Nav.Item>
+                    </Form.Label>
                 </div>
                 <Nav className="ml-auto">
                     <Nav.Item className="my-md-auto mx-2">
