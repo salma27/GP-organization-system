@@ -5,9 +5,17 @@ import * as pages from "components/pages";
 import * as datatables from "components/datatables";
 import PrivateRoute from "./PrivateRoute";
 
+const style = {
+    // backgrounds from 1 to 5 i.e. feed_4
+    backgroundImage: "url(/Hexagon.svg)",
+    backgroundRepeat: "no-repeat",
+    backgroundAttachment: "fixed",
+    backgroundSize: "cover",
+};
+
 const AdminRoutes = () => {
     return (
-        <>
+        <div style={style}>
             <Switch>
                 <Route exact path={r.adminRoute}>
                     <Redirect to={r.adminDashboard} />
@@ -52,7 +60,7 @@ const AdminRoutes = () => {
                     }}
                 />
             </Switch>
-        </>
+        </div>
     );
 };
 export default AdminRoutes;
