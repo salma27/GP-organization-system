@@ -1,23 +1,61 @@
 import React from "react";
-import MUIDataTable from "mui-datatables";
-import { data } from "./../data/data";
+import data from "components/data";
 import { AdminNavbar } from "components/navbar";
+import { DataTable } from "utils";
 
-const columns = ["ID", "Name", "Mail", "Department", "GPA", "Team"];
-
-const options = {
-    filterType: "dropdown",
-};
+const columns = [
+    {
+        name: "id",
+        label: "ID",
+        options: {
+            filter: false,
+        },
+    },
+    {
+        name: "name",
+        label: "Name",
+        options: {
+            filterType: "textField",
+        },
+    },
+    {
+        name: "email",
+        label: "Mail",
+        options: {
+            filterType: "textField",
+        },
+    },
+    {
+        name: "major",
+        label: "Department",
+        options: {
+            filterType: "checkbox",
+        },
+    },
+    {
+        name: "gpa",
+        label: "GPA",
+        options: {
+            filter: false,
+        },
+    },
+    {
+        name: "team",
+        label: "Team",
+        options: {
+            filterType: "multiselect",
+        },
+    },
+];
 
 function TeamsDataTable() {
     return (
         <>
             <AdminNavbar />
-            <MUIDataTable
-                title={"Teams List"}
+            <DataTable
+                title="Teams List"
                 data={data}
                 columns={columns}
-                options={options}
             />
         </>
     );
