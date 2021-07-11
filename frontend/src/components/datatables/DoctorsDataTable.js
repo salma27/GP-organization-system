@@ -2,29 +2,21 @@ import React from "react";
 import MUIDataTable from "mui-datatables";
 import { data } from "./../data/data";
 import { AdminNavbar } from "components/navbar";
+import { DataTable } from "utils";
 
 const columns = [
-    { name: "ID", options: { display: "excluded" } },
-    "Name",
-    "Mail",
-    "Department",
-    { name: "GPA", options: { display: "excluded" } },
-    { name: "Team", options: { display: "excluded" } },
+    { name: "ID", options: { display: "excluded", filter: false } },
+    { name: "Name", options: { filterType: "textField" } },
+    { name: "Mail", options: { filterType: "textField" } },
+    { name: "Department", options: { filterType: "checkbox" } },
+    { name: "GPA", options: { display: "excluded", filter: false } },
+    { name: "Team", options: { display: "excluded", filter: false } },
 ];
-
-const options = {
-    filterType: "checkbox",
-};
 
 function DoctorsDataTable() {
     return (
         <>
-            <MUIDataTable
-                title={"Doctors List"}
-                data={data}
-                columns={columns}
-                options={options}
-            />
+            <DataTable title={"Doctors List"} data={data} columns={columns} />
         </>
     );
 }
