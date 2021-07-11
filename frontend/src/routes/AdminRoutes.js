@@ -2,6 +2,7 @@ import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import * as r from "./routes";
 import * as pages from "components/pages";
+import * as datatables from "components/datatables";
 import PrivateRoute from "./PrivateRoute";
 
 const AdminRoutes = () => {
@@ -26,6 +27,23 @@ const AdminRoutes = () => {
                     path={r.adminDashboard}
                     component={pages.AdminDashboard}
                 />*/}
+
+                <Route
+                    path={r.studentsDataTable}
+                    component={datatables.StudentsDataTable}
+                />
+                <Route
+                    path={r.doctorsDataTable}
+                    component={datatables.DoctorsDataTable}
+                />
+                <Route
+                    path={r.teamsDataTable}
+                    component={datatables.TeamsDataTable}
+                />
+                <Route
+                    path={r.taDataTable}
+                    component={datatables.TADataTable}
+                />
                 <Route
                     path="*"
                     render={({ staticContext }) => {
