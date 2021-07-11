@@ -19,7 +19,6 @@ const options = {
 function DoctorsDataTable() {
     return (
         <>
-            <AdminNavbar />
             <MUIDataTable
                 title={"Doctors List"}
                 data={data}

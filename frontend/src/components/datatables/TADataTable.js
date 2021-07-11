@@ -19,7 +19,6 @@ const options = {
 function TADataTable() {
     return (
         <>
-            <AdminNavbar />
             <MUIDataTable
                 title={"TAs List"}
                 data={data}

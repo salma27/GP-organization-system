@@ -2,7 +2,6 @@ import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import * as r from "./routes";
 import * as pages from "components/pages";
-import * as datatables from "components/datatables";
 import PrivateRoute from "./PrivateRoute";
 
 const style = {
@@ -38,20 +37,17 @@ const AdminRoutes = () => {
 
                 <Route
                     path={r.studentsDataTable}
-                    component={datatables.StudentsDataTable}
+                    component={pages.StudentsTablePage}
                 />
                 <Route
                     path={r.doctorsDataTable}
-                    component={datatables.DoctorsDataTable}
+                    component={pages.DoctorsTablePage}
                 />
                 <Route
                     path={r.teamsDataTable}
                     component={pages.TeamTablePage}
                 />
-                <Route
-                    path={r.taDataTable}
-                    component={datatables.TADataTable}
-                />
+                <Route path={r.taDataTable} component={pages.TATablePage} />
                 <Route
                     path="*"
                     render={({ staticContext }) => {

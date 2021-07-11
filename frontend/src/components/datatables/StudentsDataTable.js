@@ -18,7 +18,6 @@ const options = {
 function StudentsDataTable() {
     return (
         <>
-            <AdminNavbar />
             <MUIDataTable
                 title={"Students List"}
                 data={data}
