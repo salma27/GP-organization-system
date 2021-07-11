@@ -2,7 +2,14 @@ import { Button, Form, Col, Row } from "react-bootstrap";
 import React, { useState } from "react";
 import MUIDataTable from "mui-datatables";
 import { data } from "./../data/data";
-const columns = ["ID", "Name", "Mail", "Major", "GPA", "Team"];
+const columns = [
+    { name: "ID", options: { display: false } },
+    "Name",
+    "Mail",
+    "Major",
+    "GPA",
+    "Team",
+];
 /*
 const data = [
     ["Joe James", "Test Corp", "Yonkers", "NY"],
