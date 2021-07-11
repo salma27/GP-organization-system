@@ -32,7 +32,7 @@ const StaffNavbar = ({ filled }) => {
                     <Nav.Item className="my-md-auto mx-2">
                         <Link to={r.oldProjectsRoute}>Old Ideas</Link>
                     </Nav.Item>
-                    
+
                     <Nav.Item>
                         <NotificationDropdown
                             class="artboard t-material-light"
@@ -42,7 +42,7 @@ const StaffNavbar = ({ filled }) => {
                     <Nav.Item className="my-md-auto mx-2">
                         <Link to={r.staffProfileRoute}>profile</Link>
                     </Nav.Item>
-                    {/* <Nav.Item className="my-md-auto mx-2">
+                    <Nav.Item className="my-md-auto mx-2">
                         <Link to={r.loginRoute}>
                             <OverlayTrigger
                                 placement="bottom"
@@ -52,7 +52,7 @@ const StaffNavbar = ({ filled }) => {
                                 <AiOutlinePoweroff />
                             </OverlayTrigger>
                         </Link>
-                    </Nav.Item> */}
+                    </Nav.Item>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
