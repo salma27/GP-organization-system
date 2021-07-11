@@ -21,11 +21,11 @@ function StudentsDataTable() {
         <>
         <div>
             <MUIDataTable
-  title={"Students List"}
-  data={data}
-  columns={columns}
-  options={options}
-/>
+            title={"Students List"}
+            data={data}
+            columns={columns}
+            options={options}
+            />
         </div>
          
         </>
