@@ -1,0 +1,24 @@
+.stat-num{
+    font-weight: 700;
+    color:black;
+    display: flex;
+    justify-content: center;
+}
+.stat-label{
+    font-size: small;
+    font-weight:600;
+    
+}
+.stat-num-header{
+    font-weight: 700;
+    color:black;
+    display: flex;
+    justify-content:flex-end;
+    margin-right: 10px;
+}
+.statNum-board{
+    box-shadow: 0 14px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    background-color:white;
+    border-radius: .25rem;
+    padding: 15px 20px;
+}
