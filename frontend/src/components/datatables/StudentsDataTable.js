@@ -3,28 +3,21 @@ import React, { useState } from "react";
 import MUIDataTable from "mui-datatables";
 import { data } from "./../data/data";
 import { AdminNavbar } from "components/navbar";
+import { DataTable } from "utils";
 
-const columns = ["ID", "Name", "Mail", "Major", "GPA", "Team"];
-
-const options = {
-    //hasIndex: true /* <-- use numbers for rows*/,
-    //customAction: action /* <-- use action button for row */,
-    //searchBox: true /* <-- search true or false */,
-    csv: true /* <-- csv download true or false */,
-
-    filterType: "checkbox",
-};
+const columns = [
+    { name: "ID", options: { filter: "textfield" } },
+    { name: "Name", options: { filter: "textfiled" } },
+    { name: "Mail", options: { filter: "textfiled" } },
+    { name: "Major", options: { filterType: "checkbox" } },
+    { name: "GPA", options: { filter: false } },
+    { name: "Team", options: { filterType: "multiselect" } },
+];
 
 function StudentsDataTable() {
     return (
         <>
-            <AdminNavbar />
-            <MUIDataTable
-                title={"Students List"}
-                data={data}
-                columns={columns}
-                options={options}
-            />
+            <DataTable title={"Students List"} data={data} columns={columns} />
         </>
     );
 }

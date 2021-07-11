@@ -3,8 +3,8 @@ import BasicInfo from "./BasicInfo";
 import FieldsOfExperience from "./FieldsOfExperience";
 import Notes from "./Notes";
 import "./StudentProfile.css";
-import {StudentProfileImg} from "utils";
-import {useAuthContext} from "hooks";
+import { StudentProfileImg, ProfileImg } from "utils";
+import { useAuthContext } from "hooks";
 
 function StudentProfile() {
     const [auth] = useAuthContext();
@@ -19,7 +19,7 @@ function StudentProfile() {
             {/* <SearchBar /> */}
             <div className="row">
                 <div className="col-12 col-md-6 mb-5">
-                    <StudentProfileImg />
+                    <ProfileImg />
                 </div>
                 <div className="col-12 col-md-6 mb-5">
                     <div className="studentInfo">
