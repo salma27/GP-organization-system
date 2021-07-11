@@ -1,14 +1,15 @@
 import React from "react";
 import MUIDataTable from "mui-datatables";
 import { data } from "./../data/data";
+import { AdminNavbar } from "components/navbar";
 
 const columns = [
-    { name: "ID", options: { display: false } },
+    { name: "ID", options: { display: "excluded" } },
     "Name",
     "Mail",
     "Department",
-    { name: "GPA", options: { display: false } },
-    { name: "Team", options: { display: false } },
+    { name: "GPA", options: { display: "excluded" } },
+    { name: "Team", options: { display: "excluded" } },
 ];
 
 const options = {
@@ -18,14 +19,13 @@ const options = {
 function DoctorsDataTable() {
     return (
         <>
-            <div>
-                <MUIDataTable
-                    title={"Doctors List"}
-                    data={data}
-                    columns={columns}
-                    options={options}
-                />
-            </div>
+            <AdminNavbar />
+            <MUIDataTable
+                title={"Doctors List"}
+                data={data}
+                columns={columns}
+                options={options}
+            />
         </>
     );
 }
