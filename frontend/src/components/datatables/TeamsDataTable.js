@@ -1,6 +1,5 @@
 import React from "react";
 import data from "components/data";
-import { AdminNavbar } from "components/navbar";
 import { DataTable } from "utils";
 
 const columns = [
@@ -51,12 +50,7 @@ const columns = [
 function TeamsDataTable() {
     return (
         <>
-            <AdminNavbar />
-            <DataTable
-                title="Teams List"
-                data={data}
-                columns={columns}
-            />
+            <DataTable title="Teams List" data={data} columns={columns} />
         </>
     );
 }

@@ -38,7 +38,7 @@ const AdminRoutes = () => {
                 />
                 <Route
                     path={r.teamsDataTable}
-                    component={datatables.TeamsDataTable}
+                    component={pages.TeamTablePage}
                 />
                 <Route
                     path={r.taDataTable}
