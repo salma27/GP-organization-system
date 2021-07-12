@@ -1,7 +1,7 @@
 import React from "react";
 import {Badge, Card} from "react-bootstrap";
-
-const OldProjectCard = ({title, brief_description, tech = []}) => {
+import {RiMailSendLine} from "react-icons/ri"
+const OldProjectCard = ({title, brief_description, tech = [],btn=false}) => {
     const style = {
         border: "none",
         borderLeft: "1px solid hsla(200, 10%, 50%,100)",
@@ -13,8 +13,14 @@ const OldProjectCard = ({title, brief_description, tech = []}) => {
     return (
         <Card className="mb-3">
             <Card.Body>
-                <Card.Title className="d-flex">
-                    <b>{title}</b>
+                <Card.Title className="row team-header mw-100">
+                    <div className="col-12 col-lg-8">
+                        <b>{title}</b>
+                    </div>
+                    {btn===true &&
+                    <div className="col-12 col-lg-4 ">
+                        <button className="primary-btn py-1 px-2 mr-1 mb-1"><RiMailSendLine className="mr-1"/> Ask To Be Supervisor</button>
+                    </div>}                    
                 </Card.Title>
                 <hr />
                 <div className="row">
