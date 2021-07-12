@@ -10,3 +10,4 @@ export { default as Select } from "./Select";
 export { default as Editable } from "./Editable";
 export { default as DoctorProfileImg } from "./DoctorProfileImg";
 export { default as DataTable } from "./DataTable";
+export { default as confirmAction } from "./confirmAction";
