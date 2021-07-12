@@ -8,24 +8,28 @@ const res = [
         name: "Sarah Saeed Ibrahim Rofail",
         department : "cs",
         tech: ["ML", "Web development", "Mobile app development"],
+        projects:["pro1", "pro2", "pro3", "pro4", "pro5", "pro6", "pro7", "pro8"],
         num : 3
     },
     {
         name: "Sarah Saeed Ibrahim Rofail",
         department : "cs",
         tech: ["ML", "Web development", "Mobile app development"],
+        projects:["pro1", "pro2", "pro3", "pro4"],
         num : 2
     },
     {
         name: "Sarah Saeed Ibrahim Rofail",
         department : "cs",
         tech: ["ML", "Web development"],
+        projects:["pro1", "pro2", "pro5"],
         num : 0
     },
     {
         name: "Sarah Saeed Ibrahim Rofail",
         department : "Is",
         tech: ["Mobile app development"],
+        projects:["pro3", "pro4", "pro5"],
         num : 5
     },
     {
@@ -48,6 +52,7 @@ const res = [
     {
         name: "Sarah Saeed Ibrahim Rofail",
         department : "CS",
+        projects:["pro1", "pro4", "pro5"],
         num : 3
     },
 ];

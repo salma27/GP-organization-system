@@ -20,11 +20,6 @@ function DoctorProfile() {
     return (
         <>
             <div className="container-fluid">
-                {/* <div className="row">
-                    <div className="col-12">
-                        <Navbar />
-                    </div>
-                </div> */}
                 <div className="row">
                     <div className="col-sm-12 col-xs-12 col-md-6 col-lg-6">
                         <div className="row ml-1 mr-1 mt-4">
@@ -43,13 +38,12 @@ function DoctorProfile() {
                                 <BasicInfo />
                             </div>
                         </div>
-                        <br></br>
-                        <div className="row ml-1 mr-1 mt-2">
+                        <div className="row ml-1 mr-1 mt-1">
                             <div className="col-12 studentInfo">
                                 <FieldsOfExperience tech={technology} />
                             </div>
                         </div>
-                        <div className="row ml-1 mr-1 mt-3">
+                        <div className="row ml-1 mr-1 mt-1">
                             <div className="col-12 studentInfo">
                                 <Notes />
                             </div>
