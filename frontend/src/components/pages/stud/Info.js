@@ -21,20 +21,20 @@ const Info = () => {
             <div className="row">
                 <div className="col-12 col-lg-7 m-auto">
                     <nav>
-                        <div class="row nav nav-tabs" id="nav-tab" role="tablist">
-                            <a class="col-4 info-tab nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Profile</a>
-                            <a class="col-4 info-tab nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Team</a>
-                            <a class="col-4 info-tab nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Projects</a>
+                        <div className="row nav nav-tabs" id="nav-tab" role="tablist">
+                            <a className="col-4 info-tab nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Profile</a>
+                            <a className="col-4 info-tab nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Team</a>
+                            <a className="col-4 info-tab nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Projects</a>
                         </div>
                     </nav>
                     {/* <ul className="row nav nav-tabs" id="myTab" role="tablist">
                         <li className="col-4 nav-item" role="presentation">
                             <button className="nav-link active info-tab" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Profile</button>
                         </li>
-                        <li class="col-4 nav-item" role="presentation">
+                        <li className="col-4 nav-item" role="presentation">
                             <button className="nav-link info-tab" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Team</button>
                         </li>
-                        <li class="col-4 nav-item" role="presentation">
+                        <li className="col-4 nav-item" role="presentation">
                             <button className="nav-link info-tab" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Projects</button>
                         </li>
                     </ul>
@@ -49,14 +49,14 @@ const Info = () => {
                             <pages.Projects />
                         </div>
                     </div> */}
-                    <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div className="tab-content" id="nav-tabContent">
+                        <div className="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                             <pages.UserInfo />
                         </div>
-                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        <div className="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                             <pages.ShowingTeam />
                         </div>
-                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                             <pages.Projects />
                         </div>
                     </div>
