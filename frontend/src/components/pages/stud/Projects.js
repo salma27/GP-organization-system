@@ -57,18 +57,17 @@ const style = {
     backgroundSize: "cover",
 };
 const Projects = () => {
+    const user = "doctor";
+
     return (
         <div className="container-fluid" style={style}>
             <div className="row">
-                {/* <div className="col-12">
-                    <Navbar />
-                </div> */}
                 <div className="col-12">
                     <div className="row">
                         
                         <div className="col-12  m-auto">
                             {projects.map((p, i) => (
-                                <OldProjectCard {...p} key={i} />
+                                <OldProjectCard {...p} key={i} btn={user!=="student"}/>
                             ))}
                         </div>
                         

@@ -38,7 +38,7 @@ const StudentCard = ({name, num,isStudent, department, tech = [], projects=[]}) 
                                 
                                 onClick={() => setShowModal(true)}
                                 >
-                                    <RiMailSendLine /> Ask to join my team
+                                    <RiMailSendLine className="mr-1"/> Ask to join my team
                                 </button>
                                 <AskToJoinMyTeam
                                 show={showModal}

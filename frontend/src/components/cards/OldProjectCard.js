@@ -19,7 +19,7 @@ const OldProjectCard = ({title, brief_description, tech = [],btn=false}) => {
                     </div>
                     {btn===true &&
                     <div className="col-12 col-lg-4 ">
-                        <button className="primary-btn py-1 px-2 mr-1 mb-1"><RiMailSendLine />Ask To Be Supervisor</button>
+                        <button className="primary-btn py-1 px-2 mr-1 mb-1"><RiMailSendLine className="mr-1"/> Ask To Be Supervisor</button>
                     </div>}                    
                 </Card.Title>
                 <hr />
