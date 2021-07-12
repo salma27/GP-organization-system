@@ -41,7 +41,7 @@ const options = {
 };
 
 const VerticalBar = () => (
-  <>
+  <div className="statNum-board">
     <div className='header'>
       <h2 className='title' style={{color:"black",fontWeight:"700"}}>Vertical Bar Chart</h2>
       <div className='links'>
@@ -54,7 +54,7 @@ const VerticalBar = () => (
         </div>
     </div>
     
-  </>
+  </div>
 );
 
 export default VerticalBar;
