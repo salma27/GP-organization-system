@@ -22,7 +22,7 @@ function DoctorProfile() {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-sm-12 col-xs-12 col-md-6 col-lg-6">
-                        <div className="row ml-1 mr-1 mt-5">
+                        <div className="row ml-1 mr-1 mt-4">
                             <DoctorProfileImg />
                         </div>
 
@@ -33,7 +33,7 @@ function DoctorProfile() {
                         </div>
                     </div>
                     <div className="col-sm-12 col-xs-12 col-md-6 col-lg-6">
-                        <div className="row ml-1 mr-1 mt-1">
+                        <div className="row ml-1 mr-1 mt-2">
                             <div className=" col-12 studentInfo">
                                 <BasicInfo />
                             </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import "./SearchBar.css"
 import * as r from "routes/routes";
 import {useHistory} from "react-router";
+import {BsSearch} from "react-icons/bs"
 
 const SearchForm = () => {
     const [search, setSearch] = React.useState({search:"",type:""});
@@ -31,7 +32,7 @@ const SearchForm = () => {
                         <option value="TAs">Teacher Assistants</option>
                     </select>
                 </div>
-                <button className="btn btn-outline-info" type="submit">Search</button>
+                <button className="primary-btn w-auto" type="submit"><BsSearch className="mr-1"/> Search</button>
             </form>
         </div>
      );

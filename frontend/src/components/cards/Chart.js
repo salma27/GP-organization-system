@@ -41,19 +41,22 @@ const options = {
 };
 
 const VerticalBar = () => (
-    <div className="statNum-board">
-        <div className="header">
-            <h2 className="title" style={{ color: "black", fontWeight: "700" }}>
-                Vertical Bar Chart
-            </h2>
-            <div className="links"></div>
-        </div>
-        <div className="row">
-            <div className="col-6 m-auto">
-                <Bar data={data} options={options} />
-            </div>
+
+  <div className="statNum-board">
+    <div className='header'>
+      <h2 className='title' style={{color:"black",fontWeight:"700"}}>Vertical Bar Chart</h2>
+      <div className='links'>
+        
+      </div>
+    </div>
+    <div className="row">
+        <div className="col-6 m-auto">
+            <Bar data={data} options={options} />
         </div>
     </div>
+    
+  </div>
+
 );
 
 export default VerticalBar;
