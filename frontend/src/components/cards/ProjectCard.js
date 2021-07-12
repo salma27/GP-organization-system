@@ -8,7 +8,7 @@ const ProjectCard = ({ title, brief_description, tech = [] }) => {
     const [showModal, setShowModal] = useState(false);
     const deleteProject = () => {
         confirmAction({
-            message: "are you sure you want to delete this project?",
+            message: "Are you sure you want to delete this project?",
             onConfirm: () => {},
         });
     };
