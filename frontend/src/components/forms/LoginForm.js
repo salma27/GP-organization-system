@@ -13,7 +13,7 @@ function LoginForm() {
     const {errors, validate, addErrors} = useValidation(loginFormValidations);
     const [request, requesting] = useRequest(loginRequests);
     const history = useHistory();
-    const [, setAuth] = useAuthContext();
+    const {setAuth} = useAuthContext();
 
     const onChangeHandler = ({target: {name, value}}) => {
         const newUser = {...user, [name]: value};

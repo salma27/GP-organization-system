@@ -7,7 +7,7 @@ import { StudentProfileImg, ProfileImg } from "utils";
 import { useAuthContext } from "hooks";
 
 function StudentProfile() {
-    const [auth] = useAuthContext();
+    const {auth} = useAuthContext();
     const technology = [
         "Machine Learning",
         "Artifical Intelligence",
