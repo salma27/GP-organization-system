@@ -4,7 +4,7 @@ import {Link} from  "react-router-dom";
 import * as r from "routes/routes";
 import {Technologies} from "components/cards";
 import AskToJoinMyTeam from "components/Modals/AskToJoinMyTeam";
-
+import {RiMailSendLine} from "react-icons/ri"
 
 const StudentCard = ({name, num,isStudent, department, tech = [], projects=[]}) => {
     const style = {
@@ -34,16 +34,11 @@ const StudentCard = ({name, num,isStudent, department, tech = [], projects=[]}) 
                         </div>
                         <div className="d-none d-md-inline col-md-4 col-lg-3">
                             <button
-                                className="btn btn-primary py-1 px-2 mr-1 mb-1"
-                                style={{
-                                    fontSize:"small",
-                                    backgroundColor: "#00BFA6",
-                                    borderColor: "#00BFA6",
-                                    width:"100%"
-                                }}
+                                className="btn primary-btn py-1 px-2 mr-1 mb-1"
+                                
                                 onClick={() => setShowModal(true)}
                                 >
-                                    Ask to join my team
+                                    <RiMailSendLine /> Ask to join my team
                                 </button>
                                 <AskToJoinMyTeam
                                 show={showModal}

@@ -65,17 +65,17 @@ const AllProjects = () => {
                 <div className="col-12">
                     <div className="row">
                         <div className="col-12 d-inline d-lg-none">
-                            <FilterCard />
+                            <FilterCard year={false}/>
                         </div>
                         <div className="col-12 col-lg-8 ">
                             {projects.map((p, i) => (
-                                <OldProjectCard {...p} key={i} />
+                                <OldProjectCard {...p} key={i} btn={true}/>
                             ))}
                         </div>
                         <div className="d-none d-lg-inline col-lg-4">
                             <div className="sidebar-item">
                                 <div className="make-me-sticky">
-                                    <FilterCard />
+                                    <FilterCard year={false}/>
                                 </div>
                             </div>
                         </div>
