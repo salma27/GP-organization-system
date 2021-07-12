@@ -2,8 +2,23 @@ import React from "react";
 import {Card} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {studentProfileRoute} from "routes/routes";
+import { confirmAction } from "utils";
 
 const RequestCard = ({name, join}) => {
+    const accept = () => {
+        confirmAction({
+            message: "Are you sure you want to accept this request?",
+            onConfirm: () => {},
+        });
+    };
+
+    const decline = () => {
+        confirmAction({
+            message: "Are you sure you want to decline this request?",
+            onConfirm: () => {},
+        });
+    };
+
     return (
         <Card className="mb-3">
             <Card.Body>
@@ -26,10 +41,11 @@ const RequestCard = ({name, join}) => {
                                 backgroundColor: "#00BFA6",
                                 borderColor: "#00BFA6",
                             }}
+                            onClick={accept}
                         >
                             Accept
                         </button>
-                        <button className="btn btn-outline-danger py-1 px-2 mr-1">
+                        <button className="btn btn-outline-danger py-1 px-2 mr-1" onClick={decline}>
                             Decline
                         </button>
                     </div>

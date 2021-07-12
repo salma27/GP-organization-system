@@ -2,6 +2,7 @@ import SupervisedProjectSeeMore from "components/Modals/SupervisedProjectSeeMore
 import React, { useState } from "react";
 import { Badge, Card, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { ImExit } from "react-icons/im";
+import { confirmAction } from "utils";
 
 const SupervisedProjectCard = ({
     title,
@@ -12,6 +13,13 @@ const SupervisedProjectCard = ({
     Dr = [],
 }) => {
     const [showModal, setShowModal] = useState(false);
+
+    const leaveTeam = () => {
+        confirmAction({
+            message: "Are you sure you want to leave this team?",
+            onConfirm: () => {},
+        });
+    };
 
     const renderTooltip = (props) => (
         <Tooltip id="button-tooltip" {...props}>
@@ -29,7 +37,7 @@ const SupervisedProjectCard = ({
                             delay={{ show: 0, hide: 0 }}
                             overlay={renderTooltip}
                         >
-                            <Button className="btn btn-lg btn-danger py-1 px-2 mr-1">
+                            <Button className="btn btn-lg btn-danger py-1 px-2 mr-1" onClick={leaveTeam}>
                                 <ImExit />
                             </Button>
                         </OverlayTrigger>
