@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Link } from "react";
 import { BsCheckCircle } from "react-icons/bs";
-import { FormattedMessage } from "react-intl";
+// import { FormattedMessage } from "react-intl";
 import { useRequest } from "hooks";
 //import { clientSubInfo } from "requests";
 import moment from "moment";
@@ -100,7 +100,7 @@ const NotificationDropdown = () => {
                                 </div>
                             ) : (
                                 <div className="text-gray-500">
-                                    <FormattedMessage
+                                    {/* <FormattedMessage
                                         id="remaining"
                                         defaultMessage="Remaining days until renewal:"
                                     />{" "}
@@ -111,7 +111,7 @@ const NotificationDropdown = () => {
                                             id="never"
                                             defaultMessage="Never"
                                         />
-                                    )}
+                                    )} */}
                                 </div>
                             )}
                         </div>
@@ -129,10 +129,10 @@ const NotificationDropdown = () => {
                         </div>
                         <div>
                             <div className="text-gray-500">
-                                <FormattedMessage
+                                {/* <FormattedMessage
                                     id="remaining_til_expiration"
                                     defaultMessage="Remaining days until expiration:"
-                                />{" "}
+                                />{" "} */}
                                 <b>{renewal + 14}</b>
                             </div>
                         </div>
@@ -153,10 +153,10 @@ const NotificationDropdown = () => {
                         </div>
                         <div>
                             <div className="text-gray-500">
-                                <FormattedMessage
+                                {/* <FormattedMessage
                                     id="remaining_til_dataloss"
                                     defaultMessage="Remaining days until data loss:"
-                                />{" "}
+                                />{" "} */}
                                 <b>{renewal + 45}</b>
                             </div>
                         </div>

@@ -12,3 +12,4 @@ export { default as Note } from "./Note";
 export { default as SupervisedProjectCard } from "./SupervisedProjectCard";
 export {default as StatNum} from "./StatNum";
 export {default as MyChart} from "./Chart"
+export {default as ShowingNames} from "./ShowingNames"
