@@ -81,3 +81,7 @@ code {
     /* display: flex; */
     align-items:center;
 }
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link{
+    background-color: #00BFA6;
+}
