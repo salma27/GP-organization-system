@@ -19,10 +19,10 @@ const useAuthentication = (defaultAuth) => {
                     setCookie(key, data[key], config);
                 }
                 setAuth(data)
-                    .then(() => {
+                    // .then(() => {
                         resolve();
-                    })
-                    .catch(() => {});
+                    // })
+                    // .catch(() => {});
             });
         },
         [auth]
