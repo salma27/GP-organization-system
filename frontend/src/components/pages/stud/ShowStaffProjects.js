@@ -80,7 +80,7 @@ const ShowStaffProjects = () => {
                         </div>
                         <div className="col-12 col-lg-8 ">
                             {projects.map((p, i) => (
-                                <OldProjectCard {...p} key={i} btn={true}/>
+                                <OldProjectCard {...p} key={i} btn={true} showDr={true}/>
                             ))}
                         </div>
                         <div className="d-none d-lg-inline col-lg-4">
