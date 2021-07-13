@@ -51,24 +51,31 @@ const NotificationDropdown = () => {
                 aria-labelledby="alertsDropdown"
                 id="noti"
                 style={{
+                    width: "310px",
                     height: "500px",
-                    overflowX: "auto",
                     overflowY: "auto",
                 }}
             >
-                <h6 className="dropdown-header" id="notifications">
+                <h6
+                    className="font-weight-bold text-info d-flex justify-content-center text-center"
+                    id="notifications"
+                >
                     Notifications
                 </h6>
                 <hr />
-                <a className="dropdown-item " href="#">
-                    <div>
-                        <h6 className="dropdown-header">Join Requests:</h6>
+                <h6 className="dropdown-header">Join Requests:</h6>
+                <hr />
+
+                {requests.map((r, i) => (
+                    <>
+                        <a className="dropdown-item " href="#">
+                            <div>
+                                <NotificationRequestCard {...r} key={i} />
+                            </div>
+                        </a>
                         <hr />
-                        {requests.map((r, i) => (
-                            <NotificationRequestCard {...r} key={i} />
-                        ))}
-                    </div>
-                </a>
+                    </>
+                ))}
             </div>
         </li>
     );
