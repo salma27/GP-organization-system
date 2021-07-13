@@ -1,8 +1,11 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {studentDashboardRoute} from "routes/routes";
+import {studentDashboardRoute,staffDashboradRoute} from "routes/routes";
+import { useAuthContext } from "hooks";
 
 const NotFound = () => {
+    const { isStaff } = useAuthContext();
+    
     return (
         <div id="wrapper" style={{height: "100%"}}>
             <div id="content-wrapper" class="d-flex flex-column">
@@ -19,7 +22,7 @@ const NotFound = () => {
                                 It looks like you found a glitch in the
                                 matrix...
                             </p>
-                            <Link to={studentDashboardRoute}>
+                            <Link to={isStaff?staffDashboradRoute:studentDashboardRoute}>
                                 &larr; Back to Dashboard
                             </Link>
                         </div>

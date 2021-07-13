@@ -14,8 +14,7 @@ const style = {
 };
 
 const Info = () => {
-    // const { isStaff } = useAuthContext();
-    const isStaff = true;
+    const { isStaff } = useAuthContext();
     return (
         <div className="container-fluid" style={style}>
             <div className="row">
