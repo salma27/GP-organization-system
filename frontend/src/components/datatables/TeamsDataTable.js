@@ -113,6 +113,11 @@ function TeamsDataTable() {
 */
     const options = {
         selectableRows: "multiple",
+        draggableColumns: { enabled: true },
+        jumpToPage: true,
+        //indexColumn: "index",
+        hasIndex: true,
+        //customAction: action,
         /* responsive: "stacked",
         page: 2,
         customToolbar: () => {
