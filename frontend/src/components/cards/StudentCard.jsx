@@ -57,7 +57,7 @@ const StudentCard = ({name, num,isStudent, department, tech = [], projects=[], i
                         </div>
                         
                             <div className="d-none d-md-inline col-md-4 col-lg-3">
-                            {(!isStaff || (isStaff && isStudent)) &&
+                            {((!isStaff || (isStaff && isStudent)) && (!isStudent && num > 0)) && 
                             <>
                                 <button
                                     className="btn primary-btn py-1 px-2 mr-1 mb-1"
