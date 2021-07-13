@@ -59,10 +59,12 @@ const style = {
 };
 const AllProjects = () => {
     return (
-        <div className="container-fluid" >
+        <div className="container-fluid" style={style}>
             <div className="row">
-                
                 <div className="col-12">
+                    <Navbar />
+                </div>
+                <div className="col-12 col-lg-10 m-auto">
                     <div className="row">
                         <div className="col-12 d-inline d-lg-none">
                             <FilterCard year={false}/>

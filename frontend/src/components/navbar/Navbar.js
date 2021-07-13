@@ -30,7 +30,7 @@ const Navbar_ = ({ filled }) => {
                 <Nav className="ml-auto">
                     {isStaff?
                         <Nav.Item className="my-md-auto mx-2">
-                            <Link to={r.staffAllProjects}>All Projects</Link>
+                            <Link to={r.showStudAllProjects}>All Projects</Link>
                         </Nav.Item>:
                         <Nav.Item className="my-md-auto mx-2">
                             <Link to={r.showStaffProjects}>Dr's Projects</Link>

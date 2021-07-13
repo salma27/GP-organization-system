@@ -55,12 +55,12 @@ const ProfileSidebar = () => {
                             My Projects
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink to={r.staffAllProjects}>
+                    {/* <li>
+                        <NavLink to={r.showStudAllProjects}>
                             <IoPeopleCircle />
                             All Projects
                         </NavLink>
-                    </li>
+                    </li> */}
                     <li>
                         <NavLink to={r.staffRequests}>
                             <BsChatSquareQuote />

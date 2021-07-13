@@ -7,6 +7,7 @@ import * as pages from "../";
 import {StaffSideBar} from "components/sidebar";
 
 
+
 const DashboardPage = () => {
     const style = {
         // backgrounds from 1 to 5 i.e. feed_4
@@ -33,7 +34,7 @@ const DashboardPage = () => {
                  <div className="col-12 col-lg-9">
                     <Switch>
                         <Route exact path={r.staffDashboradRoute}>
-                            <Redirect to={r.studentRequestsRoute} />
+                            <Redirect to={r.staffRequests} />
                         </Route>
                         
                         <Route path={r.staffProfileRoute}>
@@ -42,18 +43,15 @@ const DashboardPage = () => {
                         <Route path={r.staffProjects}>
                             <pages.StaffProjectsPage />
                         </Route>
-                        <Route path={r.staffAllProjects}>
+                        {/* <Route path={r.showStudAllProjects}>
                             <pages.StaffAllProjectsPage />
-                        </Route>
+                        </Route> */}
                         <Route
                             path={r.staffSupervisedProjectsRoute}
                             component={pages.SupervisedProjects}
                         />
                         <Route path={r.staffRequests}>
                             <pages.StaffRequests />
-                        </Route>
-                        <Route path={r.staffAllProjects}>
-                            <pages.StaffAllProjectsPage />
                         </Route>
                     </Switch>
                 </div> 
