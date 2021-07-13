@@ -1,17 +1,17 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./SearchBar.css";
-import {BsButton, LoginImg} from "utils";
+import { BsButton, LoginImg } from "utils";
 // import Navbar from "react-bootstrap/Navbar";
 // import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Col, Row} from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 
 function SearchBar() {
     const [search, setSearch] = useState("");
-    const onChangeHandler = ({target: {name, value}}) => {
+    const onChangeHandler = ({ target: { name, value } }) => {
         setSearch(value);
     };
     const onSubmit = (e) => {
