@@ -50,6 +50,11 @@ const NotificationDropdown = () => {
                 className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                 aria-labelledby="alertsDropdown"
                 id="noti"
+                style={{
+                    height: "500px",
+                    overflowX: "auto",
+                    overflowY: "auto",
+                }}
             >
                 <h6 className="dropdown-header" id="notifications">
                     Notifications
