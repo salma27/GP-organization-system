@@ -30,7 +30,7 @@ const InfoStaff = () => {
                         className="nav-justified"
                     >
                         <Tab eventKey="profile" title="Profile">
-                            <pages.UserInfo show={true}/>
+                            <pages.UserInfo show={true} btn={true}/>
                         </Tab>
                         <Tab eventKey="projects" title="Projects">
                             <pages.Projects btn={isStaff?false:true}/>

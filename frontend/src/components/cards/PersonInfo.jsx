@@ -1,7 +1,18 @@
 import React from 'react';
-import "./../../css/personInfoCard.css"
+import "./../../css/personInfoCard.css";
+import {RiMailSendLine} from "react-icons/ri"
+import { confirmAction } from "utils";
+import { useAuthContext } from "hooks";
 
-const PersonInfo = ({show=false}) => {
+const PersonInfo = ({show=false,btn=false}) => {
+    const { isStaff } = useAuthContext();
+
+    const confirm = () => {
+        confirmAction({
+            message: "Are you sure you want to send this request?",
+            onConfirm: () => {},
+        });
+    };
     return ( 
         // <div className="personInfoCard row">
         //     <figure className="figure col-12 personImg ">
@@ -10,6 +21,16 @@ const PersonInfo = ({show=false}) => {
         //     </figure>
         // </div>
         <div className="personinfo-block" >
+            {(!isStaff && btn) &&
+                <>
+                <div className="left-link">
+                    <button className="btn primary-btn py-1 px-2 mr-1 mb-1 w-auto" onClick={confirm}>
+                        <RiMailSendLine className="mr-1"/>Ask To Be Supervisor
+                    </button>
+                </div>
+                <hr className="mt-1"/> 
+                </>
+            }           
             <div className="row container">
                 {/* <div className="col-2"> */}
                     {/* <figure className="figure col-12 ">
@@ -56,11 +77,10 @@ const PersonInfo = ({show=false}) => {
                             </>
                         )}
                     </div>
-                    <div className="personInfo row ">
-                        
-                    </div>
                 </div>
             </div>
+            {/* <hr /> */}
+            
         </div>
     );
 }
