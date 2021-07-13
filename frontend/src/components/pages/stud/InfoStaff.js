@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar } from "components/navbar";
 import * as pages from "./";
-import { Tab, Tabs, Nav } from "react-bootstrap";
+import { Tab, Tabs } from "react-bootstrap";
 import { useAuthContext } from "hooks";
 
 const style = {
@@ -13,9 +13,8 @@ const style = {
     // height:"100vh",
 };
 
-const Info = () => {
-    // const { isStaff } = useAuthContext();
-    const isStaff = true;
+const InfoStaff = () => {
+    const { isStaff } = useAuthContext();
     return (
         <div className="container-fluid" style={style}>
             <div className="row">
@@ -31,21 +30,15 @@ const Info = () => {
                         className="nav-justified"
                     >
                         <Tab eventKey="profile" title="Profile">
-                            <pages.UserInfo />
+                            <pages.UserInfo show={true}/>
                         </Tab>
-                        <Tab eventKey="team" title="Team">
-                            <pages.ShowingTeam />
+                        <Tab eventKey="projects" title="Projects">
+                            <pages.Projects btn={isStaff?false:true}/>
                         </Tab>
-                        {isStaff && (
-                            <Tab eventKey="projects" title="Projects">
-                                <pages.Projects />
-                            </Tab>
-                        )}
                     </Tabs>
                 </div>
             </div>
         </div>
-    );
-};
+    );};
 
-export default Info;
+export default InfoStaff;

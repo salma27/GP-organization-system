@@ -17,10 +17,7 @@ const style = {
 
 const tech = ["ML", "Web development","AI"]
 
-const UserInfo = () => {
-    
-    
-    
+const UserInfo = ({show=false}) => {
     return (
         <div className="container-fluid" style={style}>
             <div className="row" >
@@ -36,7 +33,7 @@ const UserInfo = () => {
                         <button style={{width:"50%",backgroundColor:"green"}}>person information</button>
                         <button style={{width:"50%",backgroundColor:"green"}}>team information</button>
                     </div> */}
-                    <PersonInfo />
+                    <PersonInfo show={show}/>
                     <hr />
                     
                     <Technologies tech={tech} />

@@ -1,4 +1,4 @@
-import {StaffNavbar} from "components/navbar";
+import {Navbar} from "components/navbar";
 import React from "react";
 import "styles/stickey.css";
 import {Redirect, Route, Switch} from "react-router";
@@ -19,7 +19,7 @@ const DashboardPage = () => {
         <div className="container-fluid h-100" style={style}>
              <div className="row">
                 <div className="col">
-                    <StaffNavbar />
+                    <Navbar />
                 </div>
             </div>
             <div className="row">

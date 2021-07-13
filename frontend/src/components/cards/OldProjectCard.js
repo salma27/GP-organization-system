@@ -1,7 +1,10 @@
 import React from "react";
 import {Badge, Card} from "react-bootstrap";
-import {RiMailSendLine} from "react-icons/ri"
-const OldProjectCard = ({title, brief_description, tech = [],btn=false}) => {
+import {RiMailSendLine} from "react-icons/ri";
+import {Link} from "react-router-dom";
+import * as r from "routes/routes";
+
+const OldProjectCard = ({title, brief_description, tech = [],btn=false,name}) => {
     const style = {
         border: "none",
         borderLeft: "1px solid hsla(200, 10%, 50%,100)",
@@ -16,6 +19,7 @@ const OldProjectCard = ({title, brief_description, tech = [],btn=false}) => {
                 <Card.Title className="row team-header mw-100">
                     <div className="col-12 col-lg-8">
                         <b>{title}</b>
+                        <Link to={r.staffInfo}><p style={{fontSize:"small"}}>dr / <b>{name}</b></p></Link>
                     </div>
                     {btn===true &&
                     <div className="col-12 col-lg-4 ">

@@ -14,7 +14,9 @@ export const newsFeedRoute = "/news-feed";
 export const oldProjectsRoute = "/old-projects";
 export const SearchResult = "/search";
 export const search = "/search/:id/:type";
-export const userInfo = "/user/:id";
+export const userInfo = "/user/stud/:id";
+export const staffInfo = "/user/staff/:id";
+export const showStaffProjects = "/show-staff-projects";
 // export const teamInfo = "/team/:id";
 // export const projects = "/team/:id/projects";
 

@@ -13,4 +13,6 @@ export {default as UserInfo} from "./UserInfo";
 export {default as ShowingTeam} from "./ShowingTeam";
 export {default as Projects} from "./Projects";
 export {default as Info} from "./Info";
+export {default as InfoStaff} from "./InfoStaff";
+export {default as ShowStaffProjects} from "./ShowStaffProjects"
 

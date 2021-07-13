@@ -13,7 +13,6 @@ const SearchForm = () => {
     };
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(search)
         if(search.search.length > 0)
             history.push(`${r.SearchResult}/${search.search}/${search.type}`)
         else 
@@ -28,8 +27,8 @@ const SearchForm = () => {
                     <select className="form-select text-center no-border" aria-label="Default select example" name="type" value={search.type} onChange={onChangeHandler} required>
                         <option value="" >select</option>
                         <option value="students">Students</option>
-                        <option value="Drs">Doctors</option>
-                        <option value="TAs">Teacher Assistants</option>
+                        <option value="doctors">Doctors</option>
+                        <option value="tas">Teacher Assistants</option>
                     </select>
                 </div>
                 <button className="primary-btn w-auto" type="submit"><BsSearch className="mr-1"/> Search</button>

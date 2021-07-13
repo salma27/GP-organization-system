@@ -5,6 +5,7 @@ import "styles/stickey.css";
 
 const res = [
     {
+        id:1,
         name: "Sarah Saeed Ibrahim Rofail",
         department : "cs",
         tech: ["ML", "Web development", "Mobile app development"],
@@ -12,6 +13,7 @@ const res = [
         num : 3
     },
     {
+        id:2,
         name: "Sarah Saeed Ibrahim Rofail",
         department : "cs",
         tech: ["ML", "Web development", "Mobile app development"],
@@ -19,6 +21,7 @@ const res = [
         num : 2
     },
     {
+        id:3,
         name: "Sarah Saeed Ibrahim Rofail",
         department : "cs",
         tech: ["ML", "Web development"],
@@ -26,6 +29,7 @@ const res = [
         num : 0
     },
     {
+        id:4,
         name: "Sarah Saeed Ibrahim Rofail",
         department : "Is",
         tech: ["Mobile app development"],
@@ -33,23 +37,27 @@ const res = [
         num : 5
     },
     {
+        id:5,
         name: "Sarah Saeed Ibrahim Rofail",
         department : "CS",
         num : 1
     },
     {
+        id:6,
         name: "Sarah Saeed Ibrahim Rofail",
         tech: ["ML", "Web development"],
         department : "CS",
         num : 5
     },
     {
+        id:7,
         name: "Sarah Saeed Ibrahim Rofail",
         tech: ["ML", "Web development", "Mobile app development"],
         department : "DS",
         num : 0
     },
     {
+        id:8,
         name: "Sarah Saeed Ibrahim Rofail",
         department : "CS",
         projects:["pro1", "pro4", "pro5"],
@@ -81,7 +89,7 @@ const StudentsSearchResult = (props) => {
                         </div>
                         <div className="col-12 col-lg-8">
                             {res.map((p, i) => (
-                                <StudentCard {...p} isStudent={search.type==="students"} key={i} />
+                                <StudentCard {...p} isStudent={search.type==="students"} key={i} id={p.id}/>
                             ))}
                         </div>
                         <div className="d-none d-lg-inline col-lg-4">

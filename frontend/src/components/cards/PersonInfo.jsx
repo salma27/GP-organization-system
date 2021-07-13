@@ -1,7 +1,7 @@
 import React from 'react';
 import "./../../css/personInfoCard.css"
 
-const PersonInfo = () => {
+const PersonInfo = ({show=false}) => {
     return ( 
         // <div className="personInfoCard row">
         //     <figure className="figure col-12 personImg ">
@@ -23,7 +23,7 @@ const PersonInfo = () => {
                 </div>
                 <div className="col-12 col-lg-9 personinfo-body" style={{}}>
                     <div className="personInfo row">
-                        <div className="col-7 col-lg-3 mb-1">
+                        <div className="col-12 col-lg-3 mb-1">
                             <label className="personInfo-hidder">Name</label>
                         </div>
                         <div className="col-12 col-lg-9">
@@ -31,7 +31,7 @@ const PersonInfo = () => {
                         </div>
                     </div>
                     <div className="personInfo row">
-                        <div className="col-7 col-lg-3 mb-1">
+                        <div className="col-12 col-lg-3 mb-1">
                             <label className="personInfo-hidder">Email</label>
                         </div>
                         <div className="col-12 col-lg-9">
@@ -39,12 +39,25 @@ const PersonInfo = () => {
                         </div>
                     </div>
                     <div className="personInfo row ">
-                        <div className="col-7 col-lg-3 mb-1">
+                        <div className="col-12 col-lg-3 mb-1">
                             <label className="personInfo-hidder">Department</label>
                         </div>
-                        <div className="col-5 col-lg-9">
+                        <div className="col-12 col-lg-2">
                             <p className="personInfo-second-text">CS</p>
                         </div>
+                        {show && (
+                            <>
+                                <div className="col-12 col-lg-4 mb-1">
+                                    <label className="personInfo-hidder">Number Of Teams</label>
+                                </div>
+                                <div className="col-12 col-lg-3">
+                                    <p className="personInfo-second-text">5</p>
+                                </div>
+                            </>
+                        )}
+                    </div>
+                    <div className="personInfo row ">
+                        
                     </div>
                 </div>
             </div>
