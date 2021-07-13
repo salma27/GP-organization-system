@@ -3,6 +3,7 @@ import {Badge, Card} from "react-bootstrap";
 import {RiMailSendLine} from "react-icons/ri";
 import {Link} from "react-router-dom";
 import * as r from "routes/routes";
+import { confirmAction } from "utils";
 
 const OldProjectCard = ({title, brief_description, tech = [],btn=false,name,showDr=false,showTeam=false,team}) => {
     const style = {
@@ -10,6 +11,13 @@ const OldProjectCard = ({title, brief_description, tech = [],btn=false,name,show
         borderLeft: "1px solid hsla(200, 10%, 50%,100)",
         minHeight: "100px",
         width: "1px",
+    };
+
+    const confirm = () => {
+        confirmAction({
+            message: "Are you sure you want to send this request?",
+            onConfirm: () => {},
+        });
     };
 
     const Hr = () => <hr style={style} />;
@@ -24,7 +32,7 @@ const OldProjectCard = ({title, brief_description, tech = [],btn=false,name,show
                     </div>
                     {btn===true &&
                     <div className="col-12 col-lg-4 ">
-                        <button className="primary-btn py-1 px-2 mr-1 mb-1"><RiMailSendLine className="mr-1"/> Ask To Be Supervisor</button>
+                        <button className="primary-btn py-1 px-2 mr-1 mb-1" onClick={confirm}><RiMailSendLine className="mr-1"/> Ask To Be Supervisor</button>
                     </div>}                    
                 </Card.Title>
                 <hr />
