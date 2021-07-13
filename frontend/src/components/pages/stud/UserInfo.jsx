@@ -36,7 +36,10 @@ const UserInfo = ({show=false}) => {
                     <PersonInfo show={show}/>
                     <hr />
                     
-                    <Technologies tech={tech} />
+                    <div className="personinfo-block">
+                        <h5 className="personInfo-hidder w-fit-mb">Technologies </h5>
+                        <Technologies tech={tech} />
+                    </div>
                     <hr />
                     <Note />
                     {/* <hr />
