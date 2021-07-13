@@ -6,6 +6,7 @@ import {Technologies} from "components/cards";
 import AskToJoinMyTeam from "components/Modals/AskToJoinMyTeam";
 import {RiMailSendLine} from "react-icons/ri"
 import { useAuthContext } from "hooks";
+import { confirmAction } from "utils";
 
 const StudentCard = ({name, num,isStudent, department, tech = [], projects=[], id}) => {
     const { isStaff } = useAuthContext();
@@ -16,6 +17,13 @@ const StudentCard = ({name, num,isStudent, department, tech = [], projects=[], i
         width: "1px",
     };
     const [showModal, setShowModal] = useState(false);
+
+    const confirm = () => {
+        confirmAction({
+            message: "Are you sure you want to send this request?",
+            onConfirm: () => {},
+        });
+    };
 
     return (
         <Card className="mb-3">
@@ -54,7 +62,7 @@ const StudentCard = ({name, num,isStudent, department, tech = [], projects=[], i
                                 <button
                                     className="btn primary-btn py-1 px-2 mr-1 mb-1"
                                     
-                                    onClick={() => setShowModal(true)}
+                                    onClick={() => isStaff?setShowModal(true):confirm()}
                                     >
                                         <RiMailSendLine className="mr-1"/> {isStaff?"Ask To Be Supervisor":"Ask to join my team"}
                                     </button>
@@ -108,7 +116,7 @@ const StudentCard = ({name, num,isStudent, department, tech = [], projects=[], i
                                     borderColor: "#00BFA6",
                                     width:"100%"
                                 }}
-                                onClick={() => setShowModal(true)}
+                                onClick={() => isStaff?setShowModal(true):confirm()}
                             >
                                 <RiMailSendLine className="mr-1"/> {isStaff?"Ask To Be Supervisor":"Ask to join my team"}
                             </button>

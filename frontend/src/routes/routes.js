@@ -16,7 +16,7 @@ export const userInfo = "/user/stud/:id";
 export const staffInfo = "/user/staff/:id";
 export const showStaffProjects = "/show-staff-projects";
 export const showStudAllProjects = "/show-students-projects";
-// export const teamInfo = "/team/:id";
+export const teamInfo = "/team/:id";
 // export const projects = "/team/:id/projects";
 
 export const adminRoute = "/admin";

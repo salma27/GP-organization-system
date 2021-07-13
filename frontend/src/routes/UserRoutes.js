@@ -36,6 +36,7 @@ const UserRoutes = () => {
                 {/* <Route path={r.projects} component={pages.Projects} />
                 <Route path={r.teamInfo} component={pages.ShowingTeam} /> */}
                 <Route path={r.SearchResult} component={pages.SearchResult} />
+                <Route path={r.teamInfo} component={pages.TeamInfo} />
                 
                 <Route path={r.showStudAllProjects} component={pages.StaffAllProjectsPage} />
 

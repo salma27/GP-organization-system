@@ -4,7 +4,7 @@ import {RiMailSendLine} from "react-icons/ri";
 import {Link} from "react-router-dom";
 import * as r from "routes/routes";
 
-const OldProjectCard = ({title, brief_description, tech = [],btn=false,name,showDr=false}) => {
+const OldProjectCard = ({title, brief_description, tech = [],btn=false,name,showDr=false,showTeam=false,team}) => {
     const style = {
         border: "none",
         borderLeft: "1px solid hsla(200, 10%, 50%,100)",
@@ -20,6 +20,7 @@ const OldProjectCard = ({title, brief_description, tech = [],btn=false,name,show
                     <div className="col-12 col-lg-8">
                         <b>{title}</b>
                         {showDr && <Link to={r.staffInfo}><p style={{fontSize:"small"}}>dr / <b>{name}</b></p></Link>}
+                        {showTeam && <Link to={r.teamInfo}><p style={{fontSize:"small"}}>team / <b>{team}</b></p></Link>}
                     </div>
                     {btn===true &&
                     <div className="col-12 col-lg-4 ">

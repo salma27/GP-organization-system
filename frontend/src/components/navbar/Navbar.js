@@ -10,6 +10,7 @@ import { useAuthContext } from "hooks";
 
 const Navbar_ = ({ filled }) => {
     const { isStaff } = useAuthContext();
+    // const isStaff = true;
     let style = filled ? { color: "white", backgroundColor: "#00bfa6" } : {};
     style = { ...style, borderRadius: "2rem" };
     const renderTooltip = (props) => (

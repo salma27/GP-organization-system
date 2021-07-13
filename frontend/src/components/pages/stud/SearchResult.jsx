@@ -73,9 +73,7 @@ const style = {
 };
 
 const StudentsSearchResult = (props) => {
-    // console.log(props)
     const search = {search:props.match.params.id,type:props.match.params.type};
-    console.log(search)
     return (
         <div className="container-fluid" style={style}>
             <div className="row">
