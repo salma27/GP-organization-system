@@ -98,7 +98,7 @@ function TeamsDataTable() {
         },*/
     ];
 
-    /*const getMuiTheme = () =>
+    const getMuiTheme = () =>
         createTheme({
             overrides: {
                 MUIDataTableToolbar: {
@@ -110,7 +110,7 @@ function TeamsDataTable() {
                 },
             },
         });
-*/
+
     const options = {
         selectableRows: "multiple",
         draggableColumns: { enabled: true },
@@ -118,26 +118,37 @@ function TeamsDataTable() {
         //indexColumn: "index",
         hasIndex: true,
         //customAction: action,
-        /* responsive: "stacked",
-        page: 2,
+        //responsive: "stacked",
+        //page: 2,
         customToolbar: () => {
+            const tmp = [
+                "20170115",
+                "Salma Essam",
+                "s@gmail.com",
+                "CS",
+                "3.2",
+                "33",
+            ];
             return (
-                <IconButton style={{ order: -1 }}>
+                <IconButton
+                    style={{ order: -1 }}
+                    onClick={() => setState((oldArray) => [...oldArray, tmp])}
+                >
                     <AddIcon />
                 </IconButton>
             );
-        },*/
+        },
     };
     return (
         <>
-            {/*<MuiThemeProvider theme={getMuiTheme()}>*/}
-            <MUIDataTable
-                options={options}
-                title="Teams List"
-                data={state}
-                columns={columns}
-            />
-            {/*</MuiThemeProvider>*/}
+            <MuiThemeProvider theme={getMuiTheme()}>
+                <MUIDataTable
+                    options={options}
+                    title="Teams List"
+                    data={state}
+                    columns={columns}
+                />
+            </MuiThemeProvider>
         </>
     );
 }
