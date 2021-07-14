@@ -8,9 +8,11 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import MUIDataTable from "mui-datatables";
+import AddDatatableRow from "components/Modals/AddDatatableRow";
 
 function TeamsDataTable() {
     const [state, setState] = useState(data);
+    const [showModal, setShowModal] = useState(false);
     const columns = [
         {
             name: "id",
@@ -54,27 +56,7 @@ function TeamsDataTable() {
                 filterType: "multiselect",
             },
         },
-        /*{
-            name: "Delete",
-            options: {
-                filter: true,
-                sort: false,
-                empty: true,
-                customBodyRender: (value, tableMeta, updateValue) => {
-                    return (
-                        <button
-                            onClick={() => {
-                                const tmpData = state;
 
-                                setState(tmpData.shift());
-                            }}
-                        >
-                            <DeleteIcon />
-                        </button>
-                    );
-                },
-            },
-        },
         {
             name: "Edit",
             options: {
@@ -83,19 +65,20 @@ function TeamsDataTable() {
                 empty: true,
                 customBodyRender: (value, tableMeta, updateValue) => {
                     return (
-                        <EditIcon>
-                            <button
-                                onClick={() =>
-                                    window.alert(
-                                        `Clicked "Edit" for row ${tableMeta.rowIndex}`
-                                    )
-                                }
-                            ></button>
-                        </EditIcon>
+                        <IconButton
+                            style={{ order: -1 }}
+                            onClick={() =>
+                                window.alert(
+                                    `Clicked "Edit" for row ${tableMeta.rowIndex}`
+                                )
+                            }
+                        >
+                            <EditIcon />
+                        </IconButton>
                     );
                 },
             },
-        },*/
+        },
     ];
 
     const getMuiTheme = () =>
@@ -130,15 +113,27 @@ function TeamsDataTable() {
                 "33",
             ];
             return (
-                <IconButton
-                    style={{ order: -1 }}
-                    onClick={() => setState((oldArray) => [...oldArray, tmp])}
-                >
-                    <AddIcon />
-                </IconButton>
+                <>
+                    <IconButton
+                        style={{ order: -1 }}
+                        onClick={
+                            () => setShowModal(true)
+                            /*() => setState((oldArray) => [...oldArray, tmp])*/
+                        }
+                    >
+                        <AddIcon />
+                    </IconButton>
+                    <AddDatatableRow
+                        show={showModal}
+                        hide={() => setShowModal(false)}
+                        columns={columns}
+                        btn="Add New Row"
+                    />
+                </>
             );
         },
     };
+
     return (
         <>
             <MuiThemeProvider theme={getMuiTheme()}>
