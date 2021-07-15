@@ -1,16 +1,19 @@
-import React from "react";
+import {React,useState} from "react";
 import {Badge, Card} from "react-bootstrap";
 import {Link} from  "react-router-dom";
 import * as r from "routes/routes";
-import {Technologies} from "components/cards"
+import {Technologies} from "components/cards";
+import AskToJoinMyTeam from "components/Modals/AskToJoinMyTeam";
+import {RiMailSendLine} from "react-icons/ri"
 
-const StudentCard = ({name, num,isStudent, department, tech = []}) => {
+const StudentCard = ({name, num,isStudent, department, tech = [], projects=[]}) => {
     const style = {
         border: "none",
         borderLeft: "1px solid hsla(200, 10%, 50%,100)",
         minHeight: "100px",
         width: "1px",
     };
+    const [showModal, setShowModal] = useState(false);
     
     return (
         <Card className="mb-3">
@@ -31,16 +34,19 @@ const StudentCard = ({name, num,isStudent, department, tech = []}) => {
                         </div>
                         <div className="d-none d-md-inline col-md-4 col-lg-3">
                             <button
-                                className="btn btn-primary py-1 px-2 mr-1 mb-1"
-                                style={{
-                                    fontSize:"small",
-                                    backgroundColor: "#00BFA6",
-                                    borderColor: "#00BFA6",
-                                    width:"100%"
-                                }}
-                            >
-                                Ask to join in my team
-                            </button>
+                                className="btn primary-btn py-1 px-2 mr-1 mb-1"
+                                
+                                onClick={() => setShowModal(true)}
+                                >
+                                    <RiMailSendLine className="mr-1"/> Ask to join my team
+                                </button>
+                                <AskToJoinMyTeam
+                                show={showModal}
+                                hide={() => setShowModal(false)}
+                                projects={projects}
+        
+                                />
+                            
                         </div>
                     </div>
                     
@@ -81,11 +87,20 @@ const StudentCard = ({name, num,isStudent, department, tech = []}) => {
                                 borderColor: "#00BFA6",
                                 width:"100%"
                             }}
+                            onClick={() => setShowModal(true)}
                         >
-                            Ask to join in my team
+                            Ask to join my team
                         </button>
+                        <AskToJoinMyTeam
+                        show={showModal}
+                        hide={() => setShowModal(false)}
+                        projects={projects}
+
+                        />
+                    
                     </div>
                 </div>
+               
 
             </Card.Body>
         </Card>

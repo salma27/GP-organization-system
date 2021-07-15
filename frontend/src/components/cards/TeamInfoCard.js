@@ -1,14 +1,21 @@
 import React from "react";
 import {Badge, Card} from "react-bootstrap";
 import {AiFillEdit, AiFillDelete} from "react-icons/ai";
+import { confirmAction } from "utils";
 
 const TeamInfoCard = ({}) => {
+    const leaveTeame = () => {
+        confirmAction({
+            message: "Are you sure you want to leave the team?",
+            onConfirm: () => {},
+        });
+    };
     return (
         <Card className="mb-3">
             <Card.Body>
                 <Card.Title className="d-flex">
                     <b>Team info</b>
-                    <button className="btn btn-lg btn-outline-danger py-1 px-2 ml-auto">
+                    <button className="btn btn-lg btn-outline-danger py-1 px-2 ml-auto" onClick={leaveTeame}>
                         leave team
                     </button>
                 </Card.Title>

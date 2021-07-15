@@ -1,5 +1,4 @@
-import { FilterCard, OldProjectCard } from "components/cards";
-import { Navbar } from "components/navbar";
+import { OldProjectCard } from "components/cards";
 import React from "react";
 import "styles/stickey.css";
 
@@ -57,32 +56,25 @@ const style = {
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
 };
-const AllProjects = () => {
+const Projects = () => {
+    const user = "doctor";
+
     return (
-        <div className="container-fluid" >
+        <div className="container-fluid" style={style}>
             <div className="row">
-                
                 <div className="col-12">
                     <div className="row">
-                        <div className="col-12 d-inline d-lg-none">
-                            <FilterCard year={false}/>
-                        </div>
-                        <div className="col-12 col-lg-8 ">
+                        
+                        <div className="col-12  m-auto">
                             {projects.map((p, i) => (
-                                <OldProjectCard {...p} key={i} btn={true}/>
+                                <OldProjectCard {...p} key={i} btn={user!=="student"}/>
                             ))}
                         </div>
-                        <div className="d-none d-lg-inline col-lg-4">
-                            <div className="sidebar-item">
-                                <div className="make-me-sticky">
-                                    <FilterCard year={false}/>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
         </div>
     );
 };
-export default AllProjects;
+export default Projects;

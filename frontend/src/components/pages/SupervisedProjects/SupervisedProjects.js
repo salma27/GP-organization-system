@@ -71,7 +71,7 @@ function SupervisedProjects() {
                         </div>
 
                     </div> */}
-                    <div className="col-sm-12 col-xs-12 col-md-10 col-lg-10">
+                    <div className="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                         <CardColumns>
                             {projects.map((p, i) => (
                                 <SupervisedProjectCard {...p} key={i} />
