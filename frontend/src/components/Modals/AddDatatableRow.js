@@ -11,11 +11,17 @@ import EditProjectValidations from "./EditProjectValidations";
 function AddDatatableRow(props) {
     const [newRow, setNewRow] = useState({});
     const departments = ["CS", "IS", "IT", "DS"];
+
     const { errors, validate } = useValidation(EditProjectValidations);
     const handleChange = ({ target: { name, value } }) => {
         validate({ ...newRow, [name]: value }, name).catch((e) => {});
         setNewRow({ ...newRow, [name]: value });
     };
+    const selectDepartment = ({ target: { name, value } }) => {
+        if (value !== "-1") setNewRow({ ...newRow, [name]: value });
+        console.log(newRow);
+    };
+
     return (
         <>
             <Modal centered show={props.show} onHide={props.hide}>
@@ -32,20 +38,26 @@ function AddDatatableRow(props) {
                                 <>
                                     <Form.Group>
                                         <label>{r.name}</label>
-                                        {departments.map((v, j) => {
-                                            <div className="w-100">
-                                                <p>{v}</p>
-                                                <Form.Control
-                                                    type="checkbox"
-                                                    autoFocus
-                                                    placeholder={v}
-                                                    id={v}
-                                                    onChange={handleChange}
-                                                    // isInvalid={errors}
-                                                />
-                                            </div>;
-                                        })}
+                                        <Form.Control
+                                            as="select"
+                                            name={r.name}
+                                            onChange={selectDepartment}
+                                        >
+                                            <option
+                                                value="-1"
+                                                id="list"
+                                            ></option>
 
+                                            {departments.map((department) => (
+                                                <option
+                                                    id="list"
+                                                    value={department}
+                                                    key={department}
+                                                >
+                                                    {department}
+                                                </option>
+                                            ))}
+                                        </Form.Control>
                                         {/*{errors && (
                                 <Form.Control.Feedback type="invalid">
                                     {errors}
