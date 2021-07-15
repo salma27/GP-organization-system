@@ -25,10 +25,10 @@ function AddDatatableRow(props) {
                 <Modal.Body>
                     <Form id="addRow">
                         {props.columns.map((r, i) =>
-                            r.name == "Major" ||
-                            r.name == "Department" ||
-                            r.name == "major" ||
-                            r.name == "department" ? (
+                            r.name === "Major" ||
+                            r.name === "Department" ||
+                            r.name === "major" ||
+                            r.name === "department" ? (
                                 <>
                                     <Form.Group>
                                         <label>{r.name}</label>
@@ -38,14 +38,11 @@ function AddDatatableRow(props) {
                                                 <Form.Control
                                                     type="checkbox"
                                                     autoFocus
-                                                    placeholder={r.name}
-                                                    value={newRow[r.name]}
-                                                    id={r.name}
-                                                    name={r.name}
+                                                    placeholder={v}
+                                                    id={v}
                                                     onChange={handleChange}
                                                     // isInvalid={errors}
                                                 />
-                                                ;
                                             </div>;
                                         })}
 
