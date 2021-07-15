@@ -1,5 +1,6 @@
 import { AdminNavbar } from "components/navbar";
 import React from "react";
+import { AdminRulesCard } from "components/cards";
 
 const AdminRules = () => {
     return (
