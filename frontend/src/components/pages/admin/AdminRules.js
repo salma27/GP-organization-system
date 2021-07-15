@@ -1,0 +1,16 @@
+import { AdminNavbar } from "components/navbar";
+import React from "react";
+
+const AdminRules = () => {
+    return (
+        <>
+            <div className="container-fluid">
+                <AdminNavbar />
+                <div className="p-1 border rounded">
+                    <AdminRulesCard />
+                </div>
+            </div>
+        </>
+    );
+};
+export default AdminRules;

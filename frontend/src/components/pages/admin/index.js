@@ -5,3 +5,4 @@ export { default as TeamTablePage } from "./TeamTablePage";
 export { default as TATablePage } from "./TATablePage";
 export { default as DoctorsTablePage } from "./DoctorsTablePage";
 export { default as StudentsTablePage } from "./StudentsTablePage";
+export { default as AdminRules } from "./AdminRules";
