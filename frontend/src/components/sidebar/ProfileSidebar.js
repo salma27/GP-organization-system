@@ -25,6 +25,7 @@ const ProfileSidebar = () => {
                 />
                 <h3>GP Organizer</h3>
 
+
                 <button
                     className="navbar-toggler"
                     type="button"

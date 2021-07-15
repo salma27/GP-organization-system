@@ -75,3 +75,28 @@
     display: flex;
     justify-content: flex-end;
 }
+.person-info-p{
+    background-color: #D3F0EF;
+    border-radius: 0.25rem;
+    padding-bottom: 3px;
+    padding-top: 3px;
+    display: flex;
+    align-items: center;
+}
+.center-row{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+    align-items: center;
+}
+
+@media screen and (max-width:992px) {
+    .photo{
+        width:40%;
+    }
+}
+@media screen and (max-width:370px) {
+    .photo{
+        width:70%;
+    }
+}

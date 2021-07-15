@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar } from "components/navbar";
-import * as pages from "./";
+import * as pages from "components/pages";
 import { Tab, Tabs, Nav } from "react-bootstrap";
 import { useAuthContext } from "hooks";
 
@@ -13,8 +13,9 @@ const style = {
     // height:"100vh",
 };
 
-const Info = () => {
-    const { isStaff } = useAuthContext();
+const TemaInfo = () => {
+    // const { isStaff } = useAuthContext();
+    const isStaff = true;
     return (
         <div className="container-fluid" style={style}>
             <div className="row">
@@ -25,21 +26,16 @@ const Info = () => {
             <div className="row">
                 <div className="col-12 col-lg-7 m-auto">
                     <Tabs
-                        defaultActiveKey="profile"
+                        defaultActiveKey="team"
                         variant="pills"
                         className="nav-justified"
                     >
-                        <Tab eventKey="profile" title="Profile">
-                            <pages.UserInfo />
-                        </Tab>
                         <Tab eventKey="team" title="Team">
                             <pages.ShowingTeam />
                         </Tab>
-                        {isStaff && (
-                            <Tab eventKey="projects" title="Projects">
-                                <pages.Projects />
-                            </Tab>
-                        )}
+                        <Tab eventKey="projects" title="Projects">
+                            <pages.Projects />
+                        </Tab>
                     </Tabs>
                 </div>
             </div>
@@ -47,4 +43,4 @@ const Info = () => {
     );
 };
 
-export default Info;
+export default TemaInfo;

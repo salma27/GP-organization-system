@@ -5,8 +5,11 @@ import * as r from "routes/routes";
 import {Technologies} from "components/cards";
 import AskToJoinMyTeam from "components/Modals/AskToJoinMyTeam";
 import {RiMailSendLine} from "react-icons/ri"
+import { useAuthContext } from "hooks";
+import { confirmAction } from "utils";
 
-const StudentCard = ({name, num,isStudent, department, tech = [], projects=[]}) => {
+const StudentCard = ({name, num,isStudent, department, tech = [], projects=[], id}) => {
+    const { isStaff } = useAuthContext();
     const style = {
         border: "none",
         borderLeft: "1px solid hsla(200, 10%, 50%,100)",
@@ -14,7 +17,14 @@ const StudentCard = ({name, num,isStudent, department, tech = [], projects=[]}) 
         width: "1px",
     };
     const [showModal, setShowModal] = useState(false);
-    
+
+    const confirm = () => {
+        confirmAction({
+            message: "Are you sure you want to send this request?",
+            onConfirm: () => {},
+        });
+    };
+
     return (
         <Card className="mb-3">
             <Card.Body>
@@ -24,7 +34,20 @@ const StudentCard = ({name, num,isStudent, department, tech = [], projects=[]}) 
                             <img src="\profile.svg" className="mw-100"/>
                         </div>
                         <div className="col-9 col-md-7 col-lg-8">
-                            <Link to={r.userInfo}><b className="h6 font-weight-bold" style={{color:"black"}}>{name}</b></Link>
+                            {/* {isStudent && */}
+                                <Link to={isStudent?r.userInfo:r.staffInfo}>
+                                    <b className="h6 font-weight-bold" style={{color:"black"}}>
+                                        {name}
+                                    </b>
+                                </Link> 
+                            {/*}
+                            {!isStudent && 
+                                <Link to={r.staffInfo}>
+                                    <b className="h6 font-weight-bold" style={{color:"black"}}>
+                                        {name}
+                                    </b>
+                                </Link>
+                            } */}
                             <p className="mb-0" style={{fontSize:"small",color:"black"}}>Department: <b style={{font:"caption"}}>{department}</b></p>
                             { !isStudent ? 
                                 num > 0 ? <p className="mb-0 text-success" style={{fontSize:"small"}}>Can take <b>{num}</b> teams</p>
@@ -32,22 +55,27 @@ const StudentCard = ({name, num,isStudent, department, tech = [], projects=[]}) 
                                     :<></>
                             }
                         </div>
-                        <div className="d-none d-md-inline col-md-4 col-lg-3">
-                            <button
-                                className="btn primary-btn py-1 px-2 mr-1 mb-1"
-                                
-                                onClick={() => setShowModal(true)}
-                                >
-                                    <RiMailSendLine className="mr-1"/> Ask to join my team
-                                </button>
-                                <AskToJoinMyTeam
-                                show={showModal}
-                                hide={() => setShowModal(false)}
-                                projects={projects}
-        
-                                />
-                            
-                        </div>
+                        
+                            <div className="d-none d-md-inline col-md-4 col-lg-3">
+                            {((!isStaff || (isStaff && isStudent)) && (!isStudent && num > 0)) && 
+                            <>
+                                <button
+                                    className="btn primary-btn py-1 px-2 mr-1 mb-1"
+                                    
+                                    onClick={() => isStaff?setShowModal(true):confirm()}
+                                    >
+                                        <RiMailSendLine className="mr-1"/> {isStaff?"Ask To Be Supervisor":"Ask to join my team"}
+                                    </button>
+                                    <AskToJoinMyTeam
+                                    show={showModal}
+                                    hide={() => setShowModal(false)}
+                                    projects={projects}
+            
+                                    />
+                            </>
+                            } 
+                            </div>
+                        
                     </div>
                     
                 </Card.Title>
@@ -77,29 +105,31 @@ const StudentCard = ({name, num,isStudent, department, tech = [], projects=[]}) 
                     </div>
                 </div>
                 {/* <hr className="d-inline d-md-none"/> */}
+                {(!isStaff || (isStaff && isStudent)) &&
                 <div className="row">
-                <div className="d-inline d-md-none col-12">
-                        <button
-                            className="btn btn-primary py-1 px-2 mr-1 mb-1"
-                            style={{
-                                fontSize:"small",
-                                backgroundColor: "#00BFA6",
-                                borderColor: "#00BFA6",
-                                width:"100%"
-                            }}
-                            onClick={() => setShowModal(true)}
-                        >
-                            Ask to join my team
-                        </button>
-                        <AskToJoinMyTeam
-                        show={showModal}
-                        hide={() => setShowModal(false)}
-                        projects={projects}
+                    <div className="d-inline d-md-none col-12">
+                            <button
+                                className="btn btn-primary py-1 px-2 mr-1 mb-1"
+                                style={{
+                                    fontSize:"small",
+                                    backgroundColor: "#00BFA6",
+                                    borderColor: "#00BFA6",
+                                    width:"100%"
+                                }}
+                                onClick={() => isStaff?setShowModal(true):confirm()}
+                            >
+                                <RiMailSendLine className="mr-1"/> {isStaff?"Ask To Be Supervisor":"Ask to join my team"}
+                            </button>
+                            <AskToJoinMyTeam
+                            show={showModal}
+                            hide={() => setShowModal(false)}
+                            projects={projects}
 
-                        />
-                    
-                    </div>
+                            />
+                        
+                        </div>
                 </div>
+                }
                
 
             </Card.Body>
