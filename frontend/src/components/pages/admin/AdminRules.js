@@ -1,6 +1,6 @@
 import { AdminNavbar } from "components/navbar";
 import React from "react";
-import { AdminRulesCard } from "components/cards";
+import { RulesDataTable } from "components/datatables";
 
 const AdminRules = () => {
     return (
@@ -8,7 +8,7 @@ const AdminRules = () => {
             <div className="container-fluid">
                 <AdminNavbar />
                 <div className="p-1 border rounded">
-                    <AdminRulesCard />
+                    <RulesDataTable />
                 </div>
             </div>
         </>
