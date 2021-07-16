@@ -53,6 +53,9 @@ const DashboardPage = () => {
                         <Route path={r.staffRequests}>
                             <pages.StaffRequests />
                         </Route>
+                        <Route path={r.staffSendedRequests}>
+                            <pages.StaffSendedRequests />
+                        </Route>
                     </Switch>
                 </div> 
             </div> 

@@ -62,7 +62,7 @@ const ProfileSidebar = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to={r.sendedRequests}>
+                        <NavLink to={r.studentSendedRequests}>
                             <RiMailSendFill />
                             Sended Requests
                         </NavLink>
