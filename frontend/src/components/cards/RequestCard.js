@@ -1,10 +1,13 @@
 import React from "react";
 import {Card} from "react-bootstrap";
 import {Link} from "react-router-dom";
-import {studentProfileRoute} from "routes/routes";
+import * as r from "routes/routes";
 import { confirmAction } from "utils";
+import { useAuthContext } from "hooks";
 
 const RequestCard = ({name, join,ShowAcceptBtn=true}) => {
+    const { isStaff } = useAuthContext();
+
     const accept = () => {
         confirmAction({
             message: "Are you sure you want to accept this request?",
@@ -23,9 +26,11 @@ const RequestCard = ({name, join,ShowAcceptBtn=true}) => {
         <Card className="mb-3">
             <Card.Body>
                 <Card.Title>
-                    <Link to={studentProfileRoute}>
-                        <b>{name}</b>
-                    </Link>
+                    {/* {isStaff &&  */}
+                        <Link to={r.teamInfo}>
+                            <b>{name}</b>
+                        </Link>
+                    {/* } */}
                 </Card.Title>
                 <Card.Text>
                     {join
