@@ -7,6 +7,7 @@ export const studentProfileRoute = `${studentDashboardRoute}/profile`;
 export const studentTeamRoute = `${studentDashboardRoute}/team`;
 export const studentProjectsRoute = `${studentDashboardRoute}/projects`;
 export const studentRequestsRoute = `${studentDashboardRoute}/requests`;
+export const sendedRequests = `${studentDashboardRoute}/sended-requests`;
 
 export const newsFeedRoute = "/news-feed";
 export const oldProjectsRoute = "/old-projects";

@@ -47,6 +47,9 @@ const DashboardPage = () => {
                         <Route path={r.studentProfileRoute}>
                             <pages.StudentProfilePage />
                         </Route>
+                        <Route path={r.sendedRequests}>
+                            <pages.SendedRequests />
+                        </Route>
                     </Switch>
                 </div>
             </div>
