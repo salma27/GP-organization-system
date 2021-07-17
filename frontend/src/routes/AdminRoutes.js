@@ -48,6 +48,7 @@ const AdminRoutes = () => {
                     component={pages.TeamTablePage}
                 />
                 <Route path={r.taDataTable} component={pages.TATablePage} />
+                <Route path={r.adminNewsFeed} component={pages.AdminNewsfeed} />
                 <Route
                     path="*"
                     render={({ staticContext }) => {

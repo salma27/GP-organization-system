@@ -2,7 +2,7 @@ import vest, { validate, test, enforce } from "vest";
 
 export default vest.create("formName", (data, field) => {
     vest.only(field);
-    ["ptitle", "description"].forEach((elem) => {
+    ["ptitle", "description", "body"].forEach((elem) => {
         test(elem, "This field is required", () => {
             enforce(data[elem].toString()).isNotEmpty();
         });
