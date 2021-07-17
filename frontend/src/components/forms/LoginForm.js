@@ -1,22 +1,28 @@
-import React, {useState} from "react";
-import {BsButton} from "utils";
-import {Form} from "react-bootstrap";
+import React, { useState } from "react";
+import { BsButton } from "utils";
+import { Form, Checkbox } from "react-bootstrap";
 import "./Login.css";
-import {useAuthContext, useRequest, useValidation} from "hooks";
+import { useAuthContext, useRequest, useValidation } from "hooks";
 import loginFormValidations from "./loginFormValidations";
-import {loginRequests} from "requests";
-import {useHistory} from "react-router";
-import {studentDashboardRoute,staffDashboradRoute, staffBase, staffProfileRoute} from "routes/routes";
+import { loginRequests } from "requests";
+import { useHistory } from "react-router";
+import {
+    studentDashboardRoute,
+    staffDashboradRoute,
+    staffBase,
+    staffProfileRoute,
+} from "routes/routes";
 
 function LoginForm() {
-    const [user, setUser] = useState({id: "", password: ""});
-    const {errors, validate, addErrors} = useValidation(loginFormValidations);
+    const [user, setUser] = useState({ id: "", password: "" });
+    const [isStudent, setIsStudent] = useState(false);
+    const { errors, validate, addErrors } = useValidation(loginFormValidations);
     const [request, requesting] = useRequest(loginRequests);
     const history = useHistory();
-    const {setAuth} = useAuthContext();
+    const { setAuth } = useAuthContext();
 
-    const onChangeHandler = ({target: {name, value}}) => {
-        const newUser = {...user, [name]: value};
+    const onChangeHandler = ({ target: { name, value } }) => {
+        const newUser = { ...user, [name]: value };
         validate(newUser, name).catch((e) => {});
         setUser(newUser);
     };
@@ -26,14 +32,13 @@ function LoginForm() {
             .then(() => {
                 request(user)
                     .then((r) => {
-                        setAuth({...r.data.student});
+                        setAuth({ ...r.data.student });
                         // if("".match("/.stud./g"))
-                             history.push(studentDashboardRoute);
+                        history.push(studentDashboardRoute);
                         // else
                         //     history.push(StaffDashboradRoute);
                         // history.push(staffProfileRoute);
 
-                        
                         // console.log(r.data);
                     })
                     .catch((e) => {
@@ -83,6 +88,21 @@ function LoginForm() {
                             {errors.password}
                         </Form.Control.Feedback>
                     )}
+                </Form.Group>
+                <Form.Group size="lg" controlId="isStudent">
+                    <div class="container w-100 text-center">
+                        <h4>
+                            <input
+                                type="checkbox"
+                                id="isStudent"
+                                className="mr-2"
+                                onClick={() => {
+                                    setIsStudent(!isStudent);
+                                }}
+                            ></input>
+                            Student?
+                        </h4>
+                    </div>
                 </Form.Group>
                 <BsButton size="lg" type="submit" id="loginBtn" label="Login" />
             </Form>
