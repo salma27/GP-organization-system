@@ -1,5 +1,9 @@
 import React, { useEffect, useState, Link } from "react";
 import { BsCheckCircle } from "react-icons/bs";
+// import { FormattedMessage } from "react-intl";
+import { useRequest } from "hooks";
+//import { clientSubInfo } from "requests";
+import moment from "moment";
 import { BsTrashFill } from "react-icons/bs";
 import "./NotificationDropdown.css";
 import { RequestCard, NotificationRequestCard } from "components/cards";
@@ -62,10 +66,10 @@ const NotificationDropdown = () => {
                 >
                     Notifications
                 </h6>
+
                 <hr />
                 <h6 className="dropdown-header">Join Requests:</h6>
                 <hr />
-
                 {requests.map((r, i) => (
                     <>
                         <a className="dropdown-item " href="#">
