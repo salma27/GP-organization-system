@@ -1,0 +1,24 @@
+#experienceList {
+    border-radius: 0.7em;
+    height: 30px;
+    width: 550px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-left: 10px;
+    border: 2px solid rgb(54, 53, 53);
+    outline: none;
+}
+
+.delete {
+    margin-left: 40px;
+}
+#addBtn {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 50%;
+}
+#list:active {
+    display: block;
+    background-color: #00bfa6;
+}
