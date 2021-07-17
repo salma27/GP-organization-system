@@ -9,6 +9,7 @@ import {RiProfileLine} from "react-icons/ri";
 import {useLogout, useRequest} from "hooks";
 import {LoginImg, SpinnerButton} from "utils";
 import * as r from "routes/routes";
+import {RiMailSendFill} from "react-icons/ri"
 
 const ProfileSidebar = () => {
     const {logout} = useLogout();
@@ -55,16 +56,22 @@ const ProfileSidebar = () => {
                             My Projects
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink to={r.staffAllProjects}>
+                    {/* <li>
+                        <NavLink to={r.showStudAllProjects}>
                             <IoPeopleCircle />
                             All Projects
                         </NavLink>
-                    </li>
+                    </li> */}
                     <li>
                         <NavLink to={r.staffRequests}>
                             <BsChatSquareQuote />
                             Requests
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to={r.staffSendedRequests}>
+                            <RiMailSendFill />
+                            Sended Requests
                         </NavLink>
                     </li>
                     <li>

@@ -7,12 +7,12 @@ const StaffRoutes = () => {
     return (
         <>
             <Switch>
-                {/* <Route exact path={r.staffBase} >
-                <div>staff route</div> 
-                </Route> */}
-            
+                <Route exact path={r.staffBase}>
+                    <Redirect to={r.staffDashboradRoute} />
+                </Route>
+
                 <Route
-                    path={r.staffDashboradRoute} 
+                    path={r.staffDashboradRoute}
                     component={pages.StaffDashboardPage}
                 />
                 <Route
@@ -23,9 +23,6 @@ const StaffRoutes = () => {
                     path={r.staffSupervisedProjectsRoute}
                     component={pages.SupervisedProjects}
                 />
-                
-
-               
             </Switch>
         </>
     );

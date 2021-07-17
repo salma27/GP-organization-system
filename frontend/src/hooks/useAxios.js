@@ -6,7 +6,7 @@ export default function useAxios() {
     const {auth} = useContext(AuthContext);
     const {access_token} = {...auth};
 
-    const baseURL = "/api";
+    const baseURL = "http://192.168.1.11:8000";
 
     const defaultAxios = Axios.create({
         baseURL,

@@ -7,7 +7,7 @@ const ProfileImg = () => {
             data-name="Layer 1" 
             xmlns="http://www.w3.org/2000/svg" 
             // xmlns:xlink="http://www.w3.org/1999/xlink" 
-            width="698" height="698" viewBox="0 0 698 698"
+            width="500" height="300" viewBox="0 0 698 698"
             >
             <defs>
                 <linearGradient 
@@ -15,9 +15,9 @@ const ProfileImg = () => {
                     x1="349" y1="698" x2="349" 
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop offset="0" stop-color="gray" stop-opacity="0.25"/>
-                    <stop offset="0.54" stop-color="gray" stop-opacity="0.12"/>
-                    <stop offset="1" stop-color="gray" stop-opacity="0.1"/>
+                    <stop offset="0" stopColor="gray" stopOpacity="0.25"/>
+                    <stop offset="0.54" stopColor="gray" stopOpacity="0.12"/>
+                    <stop offset="1" stopColor="gray" stopOpacity="0.1"/>
                 </linearGradient>
             </defs>
             <title>profile pic</title>

@@ -1,44 +1,48 @@
 import React, { useState } from "react";
-import { BsButton } from "utils";
+import { BsButton, TYPES } from "utils";
 import { Form } from "react-bootstrap";
 import "./Login.css";
 import { useAuthContext, useRequest, useValidation } from "hooks";
 import loginFormValidations from "./loginFormValidations";
-import { loginRequests } from "requests";
+import { adminLoginRequest } from "requests";
 import { useHistory } from "react-router";
 import { adminDashboard } from "routes/routes";
+import { toast } from "react-toastify";
 
 function AdminLoginForm() {
     const [user, setUser] = useState({ id: "", password: "" });
     const { errors, validate, addErrors } = useValidation(loginFormValidations);
-    const [request, requesting] = useRequest(loginRequests);
+    const [request, requesting] = useRequest(adminLoginRequest);
     const history = useHistory();
-    const [, setAuth] = useAuthContext();
+    const { setAuth } = useAuthContext();
 
     const onChangeHandler = ({ target: { name, value } }) => {
         const newUser = { ...user, [name]: value };
-        validate(newUser, name).catch((e) => {});
+        validate(newUser, name).catch((e) => { });
         setUser(newUser);
     };
     function submit(event) {
         event.preventDefault();
         validate(user)
             .then(() => {
-                request(user)
+                request({ username: user.id, password: user.password })
                     .then((r) => {
-                        setAuth({ ...r.data.admin }); ///sureeee??????
+                        console.log({...r});
+                        setAuth({ access_token: r.data.token, is_logged_in: true, account_type: TYPES.ADMIN }); ///sureeee??????
                         history.push(adminDashboard);
                         // console.log(r.data);
                     })
                     .catch((e) => {
+                        console.log(e);
                         const err = {
                             id: "Invalid id/password",
                             password: "Invalid id/password",
                         };
                         addErrors(err);
+                        toast.error("Invalid username/password")
                     });
             })
-            .catch((e) => {});
+            .catch((e) => { });
     }
 
     return (

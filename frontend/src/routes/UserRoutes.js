@@ -29,9 +29,17 @@ const UserRoutes = () => {
                     component={pages.StudentProfilePage}
                 /> */}
                 <Route path={r.newsFeedRoute} component={pages.NewsFeedPage} />
-                <Route path={r.search} component={pages.SearchResult} />
-                <Route path={r.userInfo} component={pages.UserInfo} />
+                <Route path={r.search} exact component={pages.SearchResult} />
+                <Route path={r.userInfo} exact component={pages.Info} />
+                <Route path={r.staffInfo} exact component={pages.InfoStaff} />
+                <Route path={r.showStaffProjects} component={pages.ShowStaffProjects} />
+                {/* <Route path={r.projects} component={pages.Projects} />
+                <Route path={r.teamInfo} component={pages.ShowingTeam} /> */}
                 <Route path={r.SearchResult} component={pages.SearchResult} />
+                <Route path={r.teamInfo} component={pages.TeamInfo} />
+                
+                <Route path={r.showStudAllProjects} component={pages.StaffAllProjectsPage} />
+
                 <Route
                     path={r.oldProjectsRoute}
                     component={pages.OldProjectsPage}

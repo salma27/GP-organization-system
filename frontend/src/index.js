@@ -4,9 +4,9 @@ import {App} from "./components/App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import {AuthContextProvider} from "context";
-import {server} from "api";
+// import {server} from "api";
 
-server();
+// server();
 
 ReactDOM.render(
     <React.StrictMode>

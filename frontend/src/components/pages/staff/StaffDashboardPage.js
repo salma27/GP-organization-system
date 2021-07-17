@@ -1,10 +1,11 @@
-import {StaffNavbar} from "components/navbar";
+import {Navbar} from "components/navbar";
 import React from "react";
 import "styles/stickey.css";
 import {Redirect, Route, Switch} from "react-router";
 import * as r from "routes/routes";
 import * as pages from "../";
 import {StaffSideBar} from "components/sidebar";
+
 
 
 const DashboardPage = () => {
@@ -19,7 +20,7 @@ const DashboardPage = () => {
         <div className="container-fluid h-100" style={style}>
              <div className="row">
                 <div className="col">
-                    <StaffNavbar />
+                    <Navbar />
                 </div>
             </div>
             <div className="row">
@@ -33,7 +34,7 @@ const DashboardPage = () => {
                  <div className="col-12 col-lg-9">
                     <Switch>
                         <Route exact path={r.staffDashboradRoute}>
-                            <Redirect to={r.studentRequestsRoute} />
+                            <Redirect to={r.staffRequests} />
                         </Route>
                         
                         <Route path={r.staffProfileRoute}>
@@ -42,9 +43,9 @@ const DashboardPage = () => {
                         <Route path={r.staffProjects}>
                             <pages.StaffProjectsPage />
                         </Route>
-                        <Route path={r.staffAllProjects}>
+                        {/* <Route path={r.showStudAllProjects}>
                             <pages.StaffAllProjectsPage />
-                        </Route>
+                        </Route> */}
                         <Route
                             path={r.staffSupervisedProjectsRoute}
                             component={pages.SupervisedProjects}
@@ -52,8 +53,8 @@ const DashboardPage = () => {
                         <Route path={r.staffRequests}>
                             <pages.StaffRequests />
                         </Route>
-                        <Route path={r.staffAllProjects}>
-                            <pages.StaffAllProjectsPage />
+                        <Route path={r.staffSendedRequests}>
+                            <pages.StaffSendedRequests />
                         </Route>
                     </Switch>
                 </div> 

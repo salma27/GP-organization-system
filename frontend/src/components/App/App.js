@@ -1,13 +1,19 @@
 import React from "react";
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 import { AdminRoutes, UserRoutes } from "routes";
+import { ToastContainer } from "react-toastify";
 import * as r from "routes/routes";
+import StaffRoutes from "routes/StaffRoutes";
+import "./App.css";
+
+import "react-toastify/dist/ReactToastify.css";
+// import "bootstrap/dist/js/bootstrap.bundle.min.js";
+// import "bootstrap/dist/css/bootstrap.css";
 import "jquery";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import "./App.css";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import StaffRoutes from "routes/StaffRoutes";
+
+import "bootstrap";
+import "@popperjs/core";
 
 const Links = () => (
     <div>

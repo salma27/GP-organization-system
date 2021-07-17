@@ -22,7 +22,7 @@ const cardStyle = {
     borderStyle: "solid",
     borderColor: "#00bfa6",
 };
-const FilterCard = ({}) => {
+const FilterCard = ({year=true}) => {
     const [filter, setFilter] = useState({regex: "", tech: [], year: ""});
 
     const onChangeHandler = ({target: {name, value}}) => {
@@ -60,14 +60,14 @@ const FilterCard = ({}) => {
                                 placeholder="Select technologies"
                             />
                         </div>
-                        <div className="col-sm-6 col-md-3 col-lg-12 mb-3">
+                        {year!== false && <div className="col-sm-6 col-md-3 col-lg-12 mb-3">
                             <Select
                                 name="year"
                                 options={years}
                                 onChange={onChangeHandler}
                                 placeholder="Select a year"
                             />
-                        </div>
+                        </div>}
                         <div className="col-sm-6 col-md-1 col-lg-12">
                             <SpinnerButton
                                 className="btn btn-outline-light w-100"
