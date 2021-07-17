@@ -15,11 +15,13 @@ import {
 } from "hooks";
 import EditProjectValidations from "./EditProjectValidations";
 import { toast } from "react-toastify";
-import { addTeamProjectRequests } from "requests";
+import { addTeamProjectRequests, editTeamProjectRequests } from "requests";
 
 function EditProject(props) {
     const [oneTech, setOne] = useState();
-    const [request, requesting] = useRequest(addTeamProjectRequests);
+    const [request, requesting] = useRequest(
+        props.type === "Add" ? addTeamProjectRequests : editTeamProjectRequests
+    );
 
     //const [formState, setFormState] = useState({});
     const [project, setProject] = useState({
@@ -79,33 +81,24 @@ function EditProject(props) {
     }
 
     function editProject(event) {
-        /*
+        console.log("in edit button click");
         event.preventDefault();
-        validate(user)
+        validate(project)
             .then(() => {
-                request({ username: user.id, password: user.password })
+                console.log("Validation success");
+                request({
+                    title: project.ptitle,
+                    description: project.description,
+                    technologyIds: tech,
+                })
                     .then((r) => {
-                        console.log({ ...r });
-                        setAuth({
-                            access_token: r.data.token,
-                            is_logged_in: true,
-                            account_type: TYPES.ADMIN,
-                        }); ///sureeee??????
-                        history.push(adminDashboard);
-                        // console.log(r.data);
+                        toast.success("Project Added Successfully");
                     })
                     .catch((e) => {
-                        console.log(e);
-                        const err = {
-                            id: "Invalid id/password",
-                            password: "Invalid id/password",
-                        };
-                        addErrors(err);
-                        toast.error("Invalid username/password");
+                        toast.error("Invalid Input");
                     });
             })
             .catch((e) => {});
-            */
     }
     const children = (
         <Form id="editProject">
