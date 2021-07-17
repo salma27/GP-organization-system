@@ -29,4 +29,10 @@ export default vest.create("formName", (data, field) => {
     test("team", "Team should be a number", () => {
         enforce(data.team.toString()).matches(/[0-9]*/);
     });
+    test("year", "invalid year", () => {
+        enforce(data.team.toString()).matches(/20[0-9]{2}/);
+    });
+    test("year", "invalid year", () => {
+        enforce(data.team.toNumber()).lessThanOrEquals(new Date().getFullYear());
+    });
 });

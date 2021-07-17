@@ -8,7 +8,7 @@ import suite from "./EditProjectValidations";
 import { useAuthContext, useRequest, useValidation } from "hooks";
 import EditProjectValidations from "./EditProjectValidations";
 
-function AddDatatableRow(props) {
+function AddProjectRow(props) {
     const [newRow, setNewRow] = useState({});
     const departments = ["CS", "IS", "IT", "DS"];
 
@@ -58,14 +58,14 @@ function AddDatatableRow(props) {
                                                 </option>
                                             ))}
                                         </Form.Control>
-                                        {/*{errors && (
+                                        {/* {errors && (
                                 <Form.Control.Feedback type="invalid">
                                     {errors}
                                 </Form.Control.Feedback>
-                            )}*/}
+                            )} */}
                                     </Form.Group>
                                 </>
-                            ) : r.name!=="Edit" && (
+                            ) :r.name!=="Edit" &&  (
                                 <>
                                     <Form.Group>
                                         <Form.Control
@@ -84,11 +84,11 @@ function AddDatatableRow(props) {
                                             // isInvalid={errors}
                                         />
 
-                                        {/*{errors && (
+                                        {/* {errors && (
                                         <Form.Control.Feedback type="invalid">
                                             {errors}
                                         </Form.Control.Feedback>
-                                    )}*/}
+                                    )} */}
                                     </Form.Group>
                                 </>
                             )
@@ -103,6 +103,7 @@ function AddDatatableRow(props) {
                         size="sm"
                         type="submit"
                         id="addBtn"
+                        // onClick={}
                     >
                         {props.btn}
                     </Button>
@@ -112,4 +113,4 @@ function AddDatatableRow(props) {
     );
 }
 
-export default AddDatatableRow;
+export default AddProjectRow;
