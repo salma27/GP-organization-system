@@ -46,11 +46,17 @@ function EditProject(props) {
         validate({ ...project, [name]: value }, name).catch((e) => {});
         setProject({ ...project, [name]: value });
     };
+
+    function addProject();
+    function editProject();
+
+
+
     return (
         <>
             <Modal centered show={props.show} onHide={props.hide}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Edit Project</Modal.Title>
+                    <Modal.Title>{props.btn}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form id="editProject">
@@ -209,6 +215,9 @@ function EditProject(props) {
                             backgroundColor: "#00BFA6",
                             color: "white",
                         }}
+                        onClick={
+                            props.type === "Add" ? addProject : editProject
+                        }
                     >
                         {props.btn}
                     </Button>

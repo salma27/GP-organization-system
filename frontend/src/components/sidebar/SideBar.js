@@ -1,24 +1,24 @@
-import {Navbar} from "components/navbar";
-import React, {useEffect, useState} from "react";
-import {NavLink, useHistory} from "react-router-dom";
+import { Navbar } from "components/navbar";
+import React, { useEffect, useState } from "react";
+import { NavLink, useHistory } from "react-router-dom";
 // import "./sidebar.css";
 import {
     AiOutlineArrowRight,
     AiOutlineArrowLeft,
     AiOutlinePoweroff,
 } from "react-icons/ai";
-import {IoPeopleCircle} from "react-icons/io5";
-import {FaNetworkWired} from "react-icons/fa";
-import {BsChatSquareQuote} from "react-icons/bs";
-import {RiProfileLine} from "react-icons/ri";
-import {useLogout, useRequest} from "hooks";
-import {LoginImg, SpinnerButton} from "utils";
+import { IoPeopleCircle } from "react-icons/io5";
+import { FaNetworkWired } from "react-icons/fa";
+import { BsChatSquareQuote } from "react-icons/bs";
+import { RiProfileLine } from "react-icons/ri";
+import { useLogout, useRequest } from "hooks";
+import { LoginImg, SpinnerButton } from "utils";
 import * as r from "routes/routes";
 
-const SideBar = ({children}) => {
+const SideBar = ({ children }) => {
     const [toggle, setToggle] = useState(false);
-    const {logout} = useLogout();
-    const [request, requesting] = useRequest(()=>{});
+    const { logout } = useLogout();
+    const [request, requesting] = useRequest(() => {});
 
     const toggleBarOnChange = () => {
         // Automatically close on phones
@@ -58,6 +58,7 @@ const SideBar = ({children}) => {
         e.preventDefault();
         setToggle(!toggle);
     };
+
     return (
         <div id="wrapper">
             <nav id="sidebar" className="active">
