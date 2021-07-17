@@ -78,8 +78,8 @@ const StudentProjectsPage = () => {
                     borderColor: "#00BFA6",
                     marginBottom: "10px",
                 }}
-                data-toggle="modal"
-                data-target="#edit-project-modal"
+                //data-toggle="modal"
+                //data-target="#edit-project-modal"
             >
                 Add New Project
             </button>

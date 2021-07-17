@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Badge } from "react-bootstrap";
-import { Modal } from "utils-2";
+import { Modal } from "react-bootstrap";
+//import { Modal } from "utils-2";
 import { Editable, BsButton } from "utils";
 import FieldsOfExperience from "../StudentProfile/FieldsOfExperience";
 import "../StudentProfile/FieldsOfExperience.css";
@@ -22,15 +23,15 @@ function EditProject(props) {
 
     //const [formState, setFormState] = useState({});
     const [project, setProject] = useState({
-        // ptitle: props.title ? props.title : "",
-        // description: props.brief_description ? props.brief_description : "",
+        ptitle: props.title ? props.title : "",
+        description: props.brief_description ? props.brief_description : "",
         // allTech: props.tech ? props.tech : [],
-        ptitle: "title",
-        description: "one two three",
-        allTech: ["REACT"],
+        //ptitle: "title",
+        //description: "one two three",
+        //allTech: ["REACT"],
     });
 
-    const result = suite.get();
+    //const result = suite.get();
     const setOneItem = (e) => setOne(e.target.value);
     const { errors, validate } = useValidation(EditProjectValidations);
     //const [title, setTitle] = useState(props.title);
@@ -261,12 +262,12 @@ function EditProject(props) {
 
     return (
         <>
-            <Modal
+            {/*<Modal
                 id="edit-project-modal"
                 header="editProject"
                 children={children}
             ></Modal>
-            {/*
+            */}
             <Modal centered show={props.show} onHide={props.hide}>
                 <Modal.Header closeButton>
                     <Modal.Title>{props.btn}</Modal.Title>
@@ -431,7 +432,6 @@ function EditProject(props) {
                     </Button>
                 </Modal.Footer>
             </Modal>
-                    */}{" "}
         </>
     );
 }
