@@ -36,6 +36,9 @@ const AdminNavbar = ({ filled }) => {
                     </Form.Label>
                 </div>
                 <Nav className="ml-auto">
+                <Nav.Item className="my-md-auto mx-2">
+                        <Link to={r.adminNewsFeed}>News Feed</Link>
+                    </Nav.Item>
                     <Nav.Item className="my-md-auto mx-2">
                         <Link to={r.studentsDataTable}>Students</Link>
                     </Nav.Item>
