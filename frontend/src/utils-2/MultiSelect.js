@@ -1,5 +1,5 @@
 import React from "react";
-import {Multiselect} from "multiselect-react-dropdown";
+//import {Multiselect} from "multiselect-react-dropdown";
 import "./MultiSelect.css";
 
 const MultiSelect = (props) => {
@@ -17,7 +17,7 @@ const MultiSelect = (props) => {
         error,
         selectionLimit,
         id,
-    } = {...props};
+    } = { ...props };
     const defaultStyle = {
         searchBox: {
             minHeight: "38px",
