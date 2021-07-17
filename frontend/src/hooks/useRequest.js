@@ -1,12 +1,15 @@
-import {useContext, useState} from "react";
+import { useContext, useState } from "react";
 import useAxios from "./useAxios";
-import {AuthContext} from "context";
+import { AuthContext } from "context";
 
 export default function useRequest(request, load = false) {
     const axios = useAxios();
     const [isProcessing, setIsProcessing] = useState(false);
-    const {setAuth} = useContext(AuthContext);
+    const { setAuth } = useContext(AuthContext);
+    // console.log("b4 userequest");
+
     const send = async (data) => {
+        // console.log("in userequest");
         setIsProcessing(true);
         if (load)
             document
@@ -14,10 +17,15 @@ export default function useRequest(request, load = false) {
                 .classList.add("loading-indicator");
         const response = request(axios, data)
             .catch((e) => {
+                // console.log({...e});
                 switch (e.response.status) {
                     case 401:
                         // Invalidate access tokens etc...
-                        setAuth({isLoggedIn: false, accessToken: null});
+                        setAuth({
+                            access_token: null,
+                            is_logged_in: false,
+                            account_type: 0
+                        });
                         break;
                     default:
                         break;

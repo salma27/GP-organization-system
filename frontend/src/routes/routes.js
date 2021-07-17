@@ -7,6 +7,7 @@ export const studentProfileRoute = `${studentDashboardRoute}/profile`;
 export const studentTeamRoute = `${studentDashboardRoute}/team`;
 export const studentProjectsRoute = `${studentDashboardRoute}/projects`;
 export const studentRequestsRoute = `${studentDashboardRoute}/requests`;
+export const studentSendedRequests = `${studentDashboardRoute}/sended-requests`;
 
 export const newsFeedRoute = "/news-feed";
 export const oldProjectsRoute = "/old-projects";
@@ -35,3 +36,4 @@ export const staffProfileRoute = `${staffDashboradRoute}/profile`;
 export const staffProjects = `${staffDashboradRoute}/projects`;
 export const staffSupervisedProjectsRoute = `${staffDashboradRoute}/supervised-projects`;
 export const staffRequests = `${staffDashboradRoute}/requests`;
+export const staffSendedRequests = `${staffDashboradRoute}/sended-requests`;
