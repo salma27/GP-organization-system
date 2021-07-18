@@ -1,11 +1,24 @@
 import React from "react";
-import {Badge, Card} from "react-bootstrap";
-import {RiMailSendLine} from "react-icons/ri";
-import {Link} from "react-router-dom";
+import { Badge, Card } from "react-bootstrap";
+import { RiMailSendLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
 import * as r from "routes/routes";
 import { confirmAction } from "utils";
 
-const OldProjectCard = ({title, brief_description, tech = [],btn=false,name,showDr=false,showTeam=false,team}) => {
+const OldProjectCard = ({
+    title,
+    description,
+    technologyIds,
+    id,
+    btn = false,
+    name,
+    showDr = false,
+    showTeam = false,
+    team,
+}) => {
+    //const title = title;
+    const brief_description = description;
+    const tech = technologyIds;
     const style = {
         border: "none",
         borderLeft: "1px solid hsla(200, 10%, 50%,100)",
@@ -27,13 +40,32 @@ const OldProjectCard = ({title, brief_description, tech = [],btn=false,name,show
                 <Card.Title className="row team-header mw-100">
                     <div className="col-12 col-lg-8">
                         <b>{title}</b>
-                        {showDr && <Link to={r.staffInfo}><p style={{fontSize:"small"}}>dr / <b>{name}</b></p></Link>}
-                        {showTeam && <Link to={r.teamInfo}><p style={{fontSize:"small"}}>team / <b>{team}</b></p></Link>}
+                        {showDr && (
+                            <Link to={r.staffInfo}>
+                                <p style={{ fontSize: "small" }}>
+                                    dr / <b>{name}</b>
+                                </p>
+                            </Link>
+                        )}
+                        {showTeam && (
+                            <Link to={r.teamInfo}>
+                                <p style={{ fontSize: "small" }}>
+                                    team / <b>{team}</b>
+                                </p>
+                            </Link>
+                        )}
                     </div>
-                    {btn===true &&
-                    <div className="col-12 col-lg-4 ">
-                        <button className="primary-btn py-1 px-2 mr-1 mb-1" onClick={confirm}><RiMailSendLine className="mr-1"/> Ask To Be Supervisor</button>
-                    </div>}                    
+                    {btn === true && (
+                        <div className="col-12 col-lg-4 ">
+                            <button
+                                className="primary-btn py-1 px-2 mr-1 mb-1"
+                                onClick={confirm}
+                            >
+                                <RiMailSendLine className="mr-1" /> Ask To Be
+                                Supervisor
+                            </button>
+                        </div>
+                    )}
                 </Card.Title>
                 <hr />
                 <div className="row">

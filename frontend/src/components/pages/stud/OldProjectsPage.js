@@ -1,9 +1,12 @@
 import { FilterCard, OldProjectCard } from "components/cards";
 import { Navbar } from "components/navbar";
-import React from "react";
+import { useRequest } from "hooks";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { getOldProjects } from "requests";
 import "styles/stickey.css";
 
-const projects = [
+/*const projects = [
     {
         title: "Tbdel",
         brief_description:
@@ -49,7 +52,7 @@ const projects = [
         brief_description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac nisl rhoncus, dapibus felis vel, aliquet mi. Praesent non turpis nec sapien faucibus ornare eu efficitur eros. In finibus ultrices porttitor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi vitae mattis nisl.",
     },
-];
+];*/
 const style = {
     // backgrounds from 1 to 5 i.e. feed_4
     backgroundImage: "url(/feed_7.svg)",
@@ -58,6 +61,19 @@ const style = {
     backgroundSize: "cover",
 };
 const OldProjectsPage = () => {
+    const [projects, setProjects] = useState([]);
+    const [request, requesting] = useRequest(getOldProjects);
+
+    useEffect(() => {
+        request({})
+            .then((r) => {
+                setProjects(r.data);
+            })
+            .catch((e) => {
+                toast.error("Error getting old projects");
+            });
+    }, []);
+
     return (
         <div className="container-fluid" style={style}>
             <div className="row">
