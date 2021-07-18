@@ -1,0 +1,2 @@
+valida all modles
+handle request link if student is logIn
