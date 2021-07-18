@@ -73,7 +73,7 @@ function OldProjectsTable() {
         {
             name: "Edit",
             options: {
-                filter: true,
+                filter: false,
                 sort: false,
                 empty: true,
                 customBodyRender: (value, tableMeta, updateValue,) => {
@@ -82,10 +82,10 @@ function OldProjectsTable() {
                             <IconButton
                                 style={{ order: -1 }}
                                 onClick={() =>{
-                                    setEditIndex(data1[tableMeta.rowIndex])
+                                    setEditIndex(data[tableMeta.rowIndex])
                                     setShowEditModal(true);
                                    
-                                    console.log(data1[tableMeta.rowIndex]);
+                                    console.log(data[tableMeta.rowIndex]);
                                     // window.alert(
                                     //     `Clicked "Edit" for row ${tableMeta.rowIndex}`
                                     // )
@@ -147,6 +147,18 @@ function OldProjectsTable() {
                     />}
                 </>
             );
+        },
+        onRowsDelete: (rowsDeleted) => {
+            for (var key in rowsDeleted.data) {
+            //     this.removeItem(this.state.item_id[rowsDeleted.data[key].dataIndex])
+            //         .then(res => {
+            //             if (res != true) {
+            //                 // ???
+            //             }
+            //     })
+                console.log(data1[rowsDeleted.data[key].dataIndex]);
+            }
+            console.log(rowsDeleted, "were deleted!");
         },
     };
 
@@ -229,7 +241,7 @@ function OldProjectsTable() {
                 options={options}
                 loading={requesting}
                 title="Old Projects List"
-                data={data1}
+                data={data}
                 columns={columns}
             /> 
         </>

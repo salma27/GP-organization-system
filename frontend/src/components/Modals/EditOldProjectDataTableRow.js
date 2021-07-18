@@ -32,7 +32,7 @@ function EditOldProjectDataTableRow(props) {
     const handelOnClick = (e)=>{
         e.preventDefault();
         console.log(newRow);
-        request({...newRow,title:newRow.title,description:newRow.description,departmentId:newRow.departmentId,year:newRow.year,technologyIds:[newRow.tech]})
+        request({projectId:newRow.id,title:newRow.title,description:newRow.description,departmentId:newRow.departmentId,year:newRow.year,technologyIds:[newRow.tech]})
             .then((res)=>{
                 console.log(newRow); 
                 toast.success(res.data);  
