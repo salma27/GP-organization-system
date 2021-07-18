@@ -7,3 +7,4 @@ export { default as useLogout } from "./useLogout";
 export { default as useAuthContext } from "./useAuthContext";
 export { default as useDepartments } from "./useDepartments";
 
+export { default as useTechnology } from "./useTechnology";

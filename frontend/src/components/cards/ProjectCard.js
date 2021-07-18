@@ -1,15 +1,30 @@
 import { EditProject } from "components/Modals";
+import { useRequest } from "hooks";
 import React, { useState } from "react";
 import { Badge, Card } from "react-bootstrap";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
+import { toast } from "react-toastify";
+import { deleteTeamProjectRequests } from "requests";
 import { confirmAction } from "utils";
 
-const ProjectCard = ({ title, brief_description, tech = [] }) => {
+const ProjectCard = ({ title, description, technologyIds, id }) => {
     const [showModal, setShowModal] = useState(false);
+    const [request, requesting] = useRequest(deleteTeamProjectRequests);
     const deleteProject = () => {
         confirmAction({
             message: "Are you sure you want to delete this project?",
-            onConfirm: () => {},
+            onConfirm: () => {
+                console.log("delete");
+                //event.preventDefault();
+                console.log(id.toString());
+                request({ projectId: id })
+                    .then((r) => {
+                        toast.success("Project deleted successfully");
+                    })
+                    .catch((e) => {
+                        toast.error("Coudln't delete the project");
+                    });
+            },
         });
     };
     return (
@@ -35,8 +50,10 @@ const ProjectCard = ({ title, brief_description, tech = [] }) => {
                                 show={showModal}
                                 hide={() => setShowModal(false)}
                                 title={title}
-                                brief_description={brief_description}
-                                tech={tech}
+                                brief_description={description}
+                                tech={technologyIds}
+                                projectId={id}
+                                type="Edit"
                             />
                             <button
                                 className="btn btn-lg btn-outline-danger py-1 px-2 mr-1"
@@ -47,10 +64,10 @@ const ProjectCard = ({ title, brief_description, tech = [] }) => {
                         </div>
                     </Card.Title>
                     <hr />
-                    <Card.Text>{brief_description}</Card.Text>
+                    <Card.Text>{description}</Card.Text>
                     <hr />
                     <Card.Text>
-                        {tech.map((t, i) => (
+                        {technologyIds.map((t, i) => (
                             <Badge
                                 pill
                                 style={{
@@ -66,7 +83,7 @@ const ProjectCard = ({ title, brief_description, tech = [] }) => {
                                 {t}
                             </Badge>
                         ))}
-                        {!tech.length && "No technologies provided"}
+                        {!technologyIds.length && "No technologies provided"}
                     </Card.Text>
                 </Card.Body>
             </Card>
