@@ -25,7 +25,7 @@ const cardStyle = {
     borderStyle: "solid",
     borderColor: "#00bfa6",
 };
-const FilterCard = ({ year = true, setProject }) => {
+const FilterCard = ({ year = true, setProjects }) => {
     const [filter, setFilter] = useState({ regex: "", tech: [], year: "" });
 
     const onChangeHandler = ({ target: { name, value } }) => {
@@ -33,7 +33,7 @@ const FilterCard = ({ year = true, setProject }) => {
     };
 
     const [request, requesting] = useRequest(getOldProjects);
-
+    
     function onSubmit(event) {
         event.preventDefault();
         // console.log(filter);
@@ -43,8 +43,8 @@ const FilterCard = ({ year = true, setProject }) => {
             technologyIds: filter.tech,
         })
             .then((r) => {
-                console.log(r.data);
-                setProject(r.data);
+                // console.log(r.data);
+                setProjects(r.data);
             })
             .catch((e) => {
                 toast.error("Error Filtering");
