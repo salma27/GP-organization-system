@@ -93,7 +93,11 @@ const OldProjectsPage = () => {
                         <div className="d-none d-lg-inline col-lg-4">
                             <div className="sidebar-item">
                                 <div className="make-me-sticky">
-                                    <FilterCard />
+                                    <FilterCard
+                                        setProjects={(filtered) => {
+                                            setProjects(filtered);
+                                        }}
+                                    />
                                 </div>
                             </div>
                         </div>
