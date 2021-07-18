@@ -39,7 +39,7 @@ const FilterCard = ({ year = true, setProject }) => {
 
         request({
             year: filter.year,
-            //regex: filter.regex,
+            description: filter.regex,
             technologyIds: filter.tech,
         })
             .then((r) => {
