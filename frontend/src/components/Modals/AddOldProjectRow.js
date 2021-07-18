@@ -1,16 +1,19 @@
-import React, { useRef, useState } from "react";
-import { Modal, Badge } from "react-bootstrap";
-import { Editable, BsButton } from "utils";
-import FieldsOfExperience from "../StudentProfile/FieldsOfExperience";
+import React, {  useState } from "react";
+import { Modal } from "react-bootstrap";
+import {Projects} from "components/forms";
 import "../StudentProfile/FieldsOfExperience.css";
-import { Button, Form, Table, Col, Row, Container } from "react-bootstrap";
-import suite from "./EditProjectValidations";
-import { useAuthContext, useRequest, useValidation } from "hooks";
+import { Button, Form} from "react-bootstrap";
+import { useAuthContext, useRequest, useValidation} from "hooks";
 import EditProjectValidations from "./EditProjectValidations";
+import {adminAddOldProjects} from "requests";
+import { toast } from "react-toastify";
 
 function AddProjectRow(props) {
-    const [newRow, setNewRow] = useState({});
-    const departments = ["CS", "IS", "IT", "DS"];
+    const [newRow, setNewRow] = useState({tech:[]});
+    const [request, requesting] = useRequest(adminAddOldProjects)
+    // const departments = ["CS", "IS", "IT", "DS"];
+    const departments = props.departments;
+    const tech =["REACT","TYPESCRIPT"];
 
     const { errors, validate } = useValidation(EditProjectValidations);
     const handleChange = ({ target: { name, value } }) => {
@@ -22,6 +25,25 @@ function AddProjectRow(props) {
         console.log(newRow);
     };
 
+    const handelOnClick = (e)=>{
+        e.preventDefault();
+        console.log(newRow);
+        request({title:newRow.title,description:newRow.description,departmentId:newRow.departmentId,year:newRow.year,technologyIds:[newRow.tech]})
+            .then((res)=>{
+                console.log(newRow); 
+                toast.success(res.data);  
+                // history.push(adminOldProjects); 
+                window.location.reload();
+            })
+            .catch((error)=>{
+                toast.error("couldn't add");
+            })
+    }
+
+    const setTech = (newTech)=>{
+        setNewRow({...newRow,tech: newTech});
+        console.log(newTech);
+    }
     return (
         <>
             <Modal centered show={props.show} onHide={props.hide}>
@@ -31,10 +53,7 @@ function AddProjectRow(props) {
                 <Modal.Body>
                     <Form id="addRow">
                         {props.columns.map((r, i) =>
-                            r.name === "Major" ||
-                            r.name === "Department" ||
-                            r.name === "major" ||
-                            r.name === "department" ? (
+                            r.name === "departmentId" ? (
                                 <>
                                     <Form.Group>
                                         <label>{r.name}</label>
@@ -51,10 +70,10 @@ function AddProjectRow(props) {
                                             {departments.map((department) => (
                                                 <option
                                                     id="list"
-                                                    value={department}
-                                                    key={department}
+                                                    value={department.id}
+                                                    key={department.id}
                                                 >
-                                                    {department}
+                                                    {department.name} ({department.id})
                                                 </option>
                                             ))}
                                         </Form.Control>
@@ -65,7 +84,7 @@ function AddProjectRow(props) {
                             )} */}
                                     </Form.Group>
                                 </>
-                            ) :r.name!=="Edit" &&  (
+                            ) :(r.name!=="Edit" && r.name!=="technologyIds") ? (
                                 <>
                                     <Form.Group>
                                         <Form.Control
@@ -91,6 +110,11 @@ function AddProjectRow(props) {
                                     )} */}
                                     </Form.Group>
                                 </>
+                            ):r.name==="technologyIds" && (
+                                <div>
+                                    <label>Technology </label>
+                                    <Projects tech={tech} setTech={setTech}/>
+                                </div>
                             )
                         )}
                     </Form>
@@ -103,7 +127,7 @@ function AddProjectRow(props) {
                         size="sm"
                         type="submit"
                         id="addBtn"
-                        // onClick={}
+                        onClick={handelOnClick}
                     >
                         {props.btn}
                     </Button>
