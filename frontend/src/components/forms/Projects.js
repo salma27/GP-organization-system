@@ -3,8 +3,8 @@ import "./../StudentProfile/FieldsOfExperience.css";
 import {Button, Form, Col, Row, Container} from "react-bootstrap";
 import {BsButton} from "utils";
 
-function Projects(props) {
-    const [value, setValue] = useState([]);
+function Projects({tech=[],setTech,technologyIds=[]}) {
+    const [value, setValue] = useState(technologyIds);
     const [oneTech, setOne] = useState();
     const selected = (e) => {
         e.preventDefault();
@@ -15,7 +15,7 @@ function Projects(props) {
         }
     };
     useEffect(() => {
-        props.setTech(value);
+        setTech(value);
     }, [value])
     const setOneItem = (e) => setOne(e.target.value);
     const removeItem = (index) => {
@@ -41,7 +41,7 @@ function Projects(props) {
                             >
                                 <option value="-1" id="list"></option>
 
-                                {props.tech.map((addField) => (
+                                {tech.map((addField) => (
                                     <option id="list" value={addField} key={addField}>
                                         {addField}
                                     </option>

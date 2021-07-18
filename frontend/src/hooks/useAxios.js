@@ -9,10 +9,6 @@ export default function useAxios() {
     // const baseURL = "http://192.168.1.11:8000";
     const baseURL = "http://3911599f9582.ngrok.io";
 
-
-
-    //const baseURL = "http://192.168.1.11:8000";
-    const baseURL = "http://3911599f9582.ngrok.io";
     const defaultAxios = Axios.create({
         baseURL,
         headers: {

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { adminOldProjectsRequest } from "requests";
-import { useAuthContext, useRequest, useValidation, useDepartments } from "hooks";
+import { useAuthContext, useRequest, useValidation, useDepartments, useTechnology } from "hooks";
 import { IconButton } from "@material-ui/core";
 import { createTheme } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import MUIDataTable from "mui-datatables";
-import { AddOldProjectRow} from "components/Modals";
+import { AddOldProjectRow ,EditOldProjectRow} from "components/Modals";
 import {DataTable} from "utils";
 import { toast } from "react-toastify";
 
@@ -15,10 +15,12 @@ function OldProjectsTable() {
     // const [state, setState] = useState(data);
     const [showAddModal, setShowAddModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
+    const [editIndex,setEditIndex] = useState(-1);
     const [data,setData] = useState([])
     const [request, requesting] = useRequest(adminOldProjectsRequest);
     const [departments] = useDepartments();
-    
+    const [Technologies] = useTechnology();
+
     useEffect(() => {
         request({})
             .then((r) => setData(r.data))
@@ -80,22 +82,18 @@ function OldProjectsTable() {
                             <IconButton
                                 style={{ order: -1 }}
                                 onClick={() =>{
-                                    setShowEditModal(true)
-                                    console.log(data[tableMeta.rowIndex]);
+                                    setEditIndex(data1[tableMeta.rowIndex])
+                                    setShowEditModal(true);
+                                   
+                                    console.log(data1[tableMeta.rowIndex]);
                                     // window.alert(
                                     //     `Clicked "Edit" for row ${tableMeta.rowIndex}`
                                     // )
-                                //     return <EditOldProjectRow
-                                //     show={showEditModal}
-                                //     hide={() => setShowEditModal(false)}
-                                //     columns={columns}
-                                //     row={data1[tableMeta.rowIndex]}
-                                //     btn="Edit Row"
-                                // />
                                 }}
                             >
                                 <EditIcon />
                             </IconButton>
+                            
                             
                         </>
                     );
@@ -128,89 +126,101 @@ function OldProjectsTable() {
                     >
                         <AddIcon />
                     </IconButton>
+                    {showAddModal && 
                     <AddOldProjectRow
                         show={showAddModal}
                         hide={() => setShowAddModal(false)}
                         columns={columns}
                         btn="Add New Row"
                         departments={departments}
-                    />
+                        tech={Technologies}
+                    />}
+                    {showEditModal && 
+                        <EditOldProjectRow
+                        show={showEditModal}
+                        hide={() => setShowEditModal(false)}
+                        columns={columns}
+                        row={editIndex}
+                        departments={departments}
+                        tech={Technologies}
+                        btn="Edit Row"
+                    />}
                 </>
             );
         },
     };
 
-    // const data1 = [
-    //     {
-    //         id:1,
-    //         title: "Tbdel",
-    //         department: "CS",
-    //         year: "2021",
-    //         description:
-    //             "an online platform that people can exchange their old items together on",
-    //         tech: ["ML", "Web development", "Mobile app development"],
-    //     },
-    //     {
-    //         id:2,
-    //         title: "GP organizer",
-    //         department: "IS",
-    //         year: "2021",
-    //         description:
-    //             "A faculty platformfor student to register their ideas and form teams on",
-    //         tech: ["ML", "Web development", "Mobile app development"],
-    //     },
-    //     {
-    //         id:3,
-    //         title: "Gold digger",
-    //         department: "CS",
-    //         year: "2021",
-    //         description: "a gold stock pridector using ML",
-    //         tech: ["ML", "Web development"],
-    //     },
-    //     {
-    //         id:4,
-    //         title: "Tbdel",
-    //         department: "DS",
-    //         year: "2021",
-    //         description:
-    //             "an online platform that people can exchange their old items together on",
-    //         tech: ["Mobile app development"],
-    //     },
-    //     {
-    //         id:5,
-    //         title: "Gold digger",
-    //         department: "IS",
-    //         year: "2021",
-    //         description:
-    //             "Nullam fermentum quam interdum tortor fermentum auctor. Morbi in venenatis lectus. In dignissim iaculis nisi ultricies dictum. Aliquam erat volutpat",
-    //     },
-    //     {
-    //         id:6,
-    //         title: "GP organizer",
-    //         department: "IT",
-    //         year: "2021",
-    //         description:
-    //             "A faculty platformfor student to register their ideas and form teams on",
-    //         tech: ["ML", "Web development"],
-    //     },
-    //     {
-    //         id:7,
-    //         title: "GP organizer",
-    //         department: "CS",
-    //         year: "2021",
-    //         description:
-    //             "A faculty platformfor student to register their ideas and form teams on",
-    //         tech: ["ML", "Web development", "Mobile app development"],
-    //     },
-    //     {
-    //         id:8,
-    //         title: "GP organizer",
-    //         department: "DS",
-    //         year: "2021",
-    //         description:
-    //             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac nisl rhoncus, dapibus felis vel, aliquet mi. Praesent non turpis nec sapien faucibus ornare eu efficitur eros. In finibus ultrices porttitor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi vitae mattis nisl.",
-    //     },
-    // ];
+    const data1 = [
+        {
+            id:1,
+            title: "Tbdel",
+            departmentId: "CS",
+            year: "2021",
+            description:
+                "an online platform that people can exchange their old items together on",
+            technologyIds: ["ML", "Web development", "Mobile app development"],
+        },
+        {
+            id:2,
+            title: "GP organizer",
+            departmentId: "IS",
+            year: "2021",
+            description:
+                "A faculty platformfor student to register their ideas and form teams on",
+            technologyIds: ["ML", "Web development", "Mobile app development"],
+        },
+        {
+            id:3,
+            title: "Gold digger",
+            departmentId: "CS",
+            year: "2021",
+            description: "a gold stock pridector using ML",
+            technologyIds: ["ML", "Web development"],
+        },
+        {
+            id:4,
+            title: "Tbdel",
+            departmentId: "DS",
+            year: "2021",
+            description:
+                "an online platform that people can exchange their old items together on",
+            technologyIds: ["Mobile app development"],
+        },
+        {
+            id:5,
+            title: "Gold digger",
+            departmentId: "IS",
+            year: "2021",
+            description:
+                "Nullam fermentum quam interdum tortor fermentum auctor. Morbi in venenatis lectus. In dignissim iaculis nisi ultricies dictum. Aliquam erat volutpat",
+        },
+        {
+            id:6,
+            title: "GP organizer",
+            departmentId: "IT",
+            year: "2021",
+            description:
+                "A faculty platformfor student to register their ideas and form teams on",
+            technologyIds: ["ML", "Web development"],
+        },
+        {
+            id:7,
+            title: "GP organizer",
+            departmentId: "CS",
+            year: "2021",
+            description:
+                "A faculty platformfor student to register their ideas and form teams on",
+            technologyIds: ["ML", "Web development", "Mobile app development"],
+        },
+        {
+            id:8,
+            title: "GP organizer",
+            departmentId: "DS",
+            year: "2021",
+            description:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac nisl rhoncus, dapibus felis vel, aliquet mi. Praesent non turpis nec sapien faucibus ornare eu efficitur eros. In finibus ultrices porttitor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi vitae mattis nisl.",
+        },
+    ];
     
 
     return (
@@ -219,7 +229,7 @@ function OldProjectsTable() {
                 options={options}
                 loading={requesting}
                 title="Old Projects List"
-                data={data}
+                data={data1}
                 columns={columns}
             /> 
         </>
