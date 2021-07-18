@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BsButton } from "utils";
+import { BsButton, TYPES } from "utils";
 import { Form, Checkbox } from "react-bootstrap";
 import "./Login.css";
 import { useAuthContext, useRequest, useValidation } from "hooks";
@@ -12,6 +12,7 @@ import {
     staffBase,
     staffProfileRoute,
 } from "routes/routes";
+import { toast } from "react-toastify";
 
 function LoginForm() {
     const [user, setUser] = useState({ id: "", password: "" });
@@ -30,23 +31,24 @@ function LoginForm() {
         event.preventDefault();
         validate(user)
             .then(() => {
-                request(user)
+                request({
+                    ecomId: user.id,
+                    password: user.password,
+                    type: isStudent ? TYPES.STUDENT : TYPES.STAFF,
+                })
                     .then((r) => {
-                        setAuth({ ...r.data.student });
-                        // if("".match("/.stud./g"))
-                        history.push(studentDashboardRoute);
-                        // else
-                        //     history.push(StaffDashboradRoute);
-                        // history.push(staffProfileRoute);
-
-                        // console.log(r.data);
+                        setAuth({
+                            access_token: r.data.token,
+                            is_logged_in: true,
+                            account_type: isStudent
+                                ? TYPES.STUDENT
+                                : TYPES.STAFF,
+                        });
+                        if (isStudent) history.push("/student/dashboard");
+                        else history.push("/staff/dashboard");
                     })
                     .catch((e) => {
-                        const err = {
-                            id: "Invalid id/password",
-                            password: "Invalid id/password",
-                        };
-                        addErrors(err);
+                        toast.error("Invalid ID/Password");
                     });
             })
             .catch((e) => {});

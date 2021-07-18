@@ -71,14 +71,14 @@ const NotificationDropdown = () => {
                 <h6 className="dropdown-header">Join Requests:</h6>
                 <hr />
                 {requests.map((r, i) => (
-                    <>
-                        <a className="dropdown-item " href="#">
-                            <div>
+                    <div key={i}>
+                        <a className="dropdown-item" key={i}>
+                            <div key={i}>
                                 <NotificationRequestCard {...r} key={i} />
                             </div>
                         </a>
                         <hr />
-                    </>
+                    </div>
                 ))}
             </div>
         </li>

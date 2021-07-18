@@ -1,7 +1,7 @@
 export const root = "/";
 export const loginRoute = "/login";
 
-export const studentBase = "/stud";
+export const studentBase = "/student";
 export const studentDashboardRoute = `${studentBase}/dashboard`;
 export const studentProfileRoute = `${studentDashboardRoute}/profile`;
 export const studentTeamRoute = `${studentDashboardRoute}/team`;
