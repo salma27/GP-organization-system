@@ -5,20 +5,9 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import { AiOutlineFilter } from "react-icons/ai";
 import { toast } from "react-toastify";
-import { useRequest } from "hooks";
+import { useRequest, useTechnology } from "hooks";
 import { getOldProjects } from "requests";
 
-const techs = [
-    { label: "Machine learning", value: "ML" },
-    { label: "Artifial intelligence", value: "AI" },
-    { label: "Mobile app development", value: "MD" },
-    { label: "Web development", value: "WD" },
-];
-const years = [
-    { label: "1999", value: 1999 },
-    { label: "2000", value: 2000 },
-    { label: "2020", value: 2020 },
-];
 const cardStyle = {
     backgroundColor: "#00bfa6",
     color: "white",
@@ -26,6 +15,18 @@ const cardStyle = {
     borderColor: "#00bfa6",
 };
 const FilterCard = ({ year = true, setProjects }) => {
+    const techs = useTechnology(); /*[
+        { label: "Machine learning", value: "ML" },
+        { label: "Artifial intelligence", value: "AI" },
+        { label: "Mobile app development", value: "MD" },
+        { label: "Web development", value: "WD" },
+    ];*/
+    const years = [
+        { label: "1999", value: 1999 },
+        { label: "2000", value: 2000 },
+        { label: "2020", value: 2020 },
+    ];
+
     const [filter, setFilter] = useState({ regex: "", tech: [], year: "" });
 
     const onChangeHandler = ({ target: { name, value } }) => {
@@ -33,7 +34,7 @@ const FilterCard = ({ year = true, setProjects }) => {
     };
 
     const [request, requesting] = useRequest(getOldProjects);
-    
+
     function onSubmit(event) {
         event.preventDefault();
         // console.log(filter);
