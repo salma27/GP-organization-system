@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { adminOldProjectsRequest } from "requests";
+import { adminOldProjectsRequest, adminDeleteOldProjects } from "requests";
 import { useAuthContext, useRequest, useValidation, useDepartments, useTechnology } from "hooks";
 import { IconButton } from "@material-ui/core";
 import { createTheme } from "@material-ui/core/styles";
@@ -18,6 +18,7 @@ function OldProjectsTable() {
     const [editIndex,setEditIndex] = useState(-1);
     const [data,setData] = useState([])
     const [request, requesting] = useRequest(adminOldProjectsRequest);
+    const [deleteRequest, DeleteRequesting] = useRequest(adminDeleteOldProjects);
     const [departments] = useDepartments();
     const [Technologies] = useTechnology();
 
@@ -156,7 +157,14 @@ function OldProjectsTable() {
             //                 // ???
             //             }
             //     })
-                console.log(data1[rowsDeleted.data[key].dataIndex]);
+                deleteRequest({projectId:data[rowsDeleted.data[key].dataIndex].id})
+                .then((res)=>{
+                    toast.success(res.data);
+                    window.location.reload();
+                })
+                .catch(err=>{
+                    toast.error("can't delete")
+                })
             }
             console.log(rowsDeleted, "were deleted!");
         },
