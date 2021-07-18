@@ -36,9 +36,9 @@ const FilterCard = ({ year = true, setProject }) => {
 
     function onSubmit(event) {
         event.preventDefault();
-
+        // console.log(filter);
         request({
-            year: filter.year,
+            year: filter.year.value,
             description: filter.regex,
             technologyIds: filter.tech,
         })

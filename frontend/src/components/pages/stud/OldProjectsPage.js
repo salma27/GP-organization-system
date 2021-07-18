@@ -74,6 +74,10 @@ const OldProjectsPage = () => {
             });
     }, []);
 
+    const setNewProjects=(newProjects)=>{
+        setProjects(newProjects);
+    }
+
     return (
         <div className="container-fluid" style={style}>
             <div className="row">
@@ -83,7 +87,7 @@ const OldProjectsPage = () => {
                 <div className="col-12">
                     <div className="row">
                         <div className="col-12 d-inline d-lg-none">
-                            <FilterCard />
+                            <FilterCard setProject={setNewProjects}/>
                         </div>
                         <div className="col-12 col-lg-7 offset-lg-1">
                             {projects.map((p, i) => (
@@ -94,9 +98,7 @@ const OldProjectsPage = () => {
                             <div className="sidebar-item">
                                 <div className="make-me-sticky">
                                     <FilterCard
-                                        setProjects={(filtered) => {
-                                            setProjects(filtered);
-                                        }}
+                                        setProjects={setNewProjects}
                                     />
                                 </div>
                             </div>
