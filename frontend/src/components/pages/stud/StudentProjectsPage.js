@@ -8,7 +8,8 @@ import { getTeamProjects } from "requests";
 
 const StudentProjectsPage = () => {
     const [showModal, setShowModal] = useState(false);
-    const [projects, setProjects] = useState([
+    const [projects, setProjects] = useState([]);
+    /*const data = [
         {
             title: "Tbdel",
             brief_description:
@@ -54,8 +55,7 @@ const StudentProjectsPage = () => {
             brief_description:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac nisl rhoncus, dapibus felis vel, aliquet mi. Praesent non turpis nec sapien faucibus ornare eu efficitur eros. In finibus ultrices porttitor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi vitae mattis nisl.",
         },
-    ]);
-
+    ];*/
     const [request, requesting] = useRequest(getTeamProjects);
 
     useEffect(() => {

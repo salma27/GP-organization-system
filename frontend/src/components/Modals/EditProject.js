@@ -24,20 +24,20 @@ function EditProject(props) {
     );
 
     //const [formState, setFormState] = useState({});
-    const [project, setProject] = useState({
-        ptitle: props.title ? props.title : "",
-        description: props.brief_description ? props.brief_description : "",
-        // allTech: props.tech ? props.tech : [],
-        //ptitle: "title",
-        //description: "one two three",
-        //allTech: ["REACT"],
-    });
 
     //const result = suite.get();
     const setOneItem = (e) => setOne(e.target.value);
     const { errors, validate } = useValidation(EditProjectValidations);
     //const [title, setTitle] = useState(props.title);
     const [tech, setTech] = useState(props.tech ? props.tech : []);
+    const [project, setProject] = useState({
+        ptitle: props.title ? props.title : "",
+        description: props.brief_description ? props.brief_description : "",
+        tech: tech ? tech : [],
+        //ptitle: "title",
+        //description: "one two three",
+        //allTech: ["REACT"],
+    });
     //const [description, setDescription] = useState(props.brief_description);
     const [technology] = useTechnology(); //id & name
     const removeItem = (index) => {
@@ -59,7 +59,7 @@ function EditProject(props) {
         setProject({ ...project, [name]: value });
     };
     function addProject(event) {
-        //setProject({...project, [allTech]: tech}); ///?????
+        setProject({ ...project, [tech]: tech });
         console.log("in add button click");
         event.preventDefault();
         validate(project)
@@ -81,26 +81,28 @@ function EditProject(props) {
     }
 
     function editProject(event) {
+        setProject({ ...project, [tech]: tech });
         console.log("in edit button click");
         event.preventDefault();
         validate(project)
             .then(() => {
                 console.log("Validation success");
                 request({
+                    projectId: props.projectId,
                     title: project.ptitle,
                     description: project.description,
                     technologyIds: tech,
                 })
                     .then((r) => {
-                        toast.success("Project Added Successfully");
+                        toast.success("Project Updated Successfully");
                     })
                     .catch((e) => {
-                        toast.error("Invalid Input");
+                        toast.error("Coudln't update your project");
                     });
             })
             .catch((e) => {});
     }
-    const children = (
+    /*const children = (
         <Form id="editProject">
             <Form.Group>
                 <Form.Label>Title:</Form.Label>
@@ -233,7 +235,7 @@ function EditProject(props) {
                     </a>
                 </Badge>
             ))}
-            {!props.tech.length && "No technologies provided"}
+            {!tech.length && "No technologies provided"}
             <hr />
 
             <Button
@@ -251,7 +253,7 @@ function EditProject(props) {
                 {props.btn}
             </Button>
         </Form>
-    );
+    );*/
 
     return (
         <>
@@ -403,7 +405,7 @@ function EditProject(props) {
                                 </a>
                             </Badge>
                         ))}
-                        {!props.tech.length && "No technologies provided"}
+                        {!tech.length && "No technologies provided"}
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
