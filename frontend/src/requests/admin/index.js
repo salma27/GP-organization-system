@@ -5,3 +5,4 @@ export { adminDeleteOldProjects} from "./adminOldProjectsRequest";
 export { adminGetFeeds } from "./adminFeeds";
 export { adminAddFeed } from "./adminFeeds";
 export { adminDeleteDepartment } from "./adminDepartments";
+export { adminAddDepartment } from "./adminDepartments";

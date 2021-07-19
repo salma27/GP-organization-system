@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { DataTable } from "utils";
 import { useDepartments, useRequest } from "hooks";
 import { adminDeleteDepartment } from "requests";
 import { toast } from "react-toastify";
+import { AddDepartmentRow ,EditOldProjectRow} from "components/Modals";
+import { IconButton } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 
 /*
 const columns = [
@@ -17,6 +20,8 @@ const columns = [
 function RulesDataTable() { 
     const [data,loading] = useDepartments();
     const [deleteRequest,deleteRequesting] = useRequest(adminDeleteDepartment);
+    const [showAddModal, setShowAddModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
 
     // const data1 = [
     //     ["CS", "3", "5", "1", "2", "1", "1"],
@@ -37,41 +42,40 @@ function RulesDataTable() {
         draggableColumns: { enabled: true },
         jumpToPage: true,
         hasIndex: true,
-        // customToolbar: () => {
+        customToolbar: () => {
 
-        //     return (
-        //         <>
-        //             <IconButton
-        //                 style={{ order: -1 }}
-        //                 onClick={
-        //                     () => setShowAddModal(true)
-        //                     /*() => setState((oldArray) => [...oldArray, tmp])*/
-        //                 }
-        //             >
-        //                 <AddIcon />
-        //             </IconButton>
-        //             {showAddModal && 
-        //             <AddOldProjectRow
-        //                 show={showAddModal}
-        //                 hide={() => setShowAddModal(false)}
-        //                 columns={columns}
-        //                 btn="Add New Row"
-        //                 departments={departments}
-        //                 tech={Technologies}
-        //             />}
-        //             {showEditModal && 
-        //                 <EditOldProjectRow
-        //                 show={showEditModal}
-        //                 hide={() => setShowEditModal(false)}
-        //                 columns={columns}
-        //                 row={editIndex}
-        //                 departments={departments}
-        //                 tech={Technologies}
-        //                 btn="Edit Row"
-        //             />}
-        //         </>
-        //     );
-        // },
+            return (
+                <>
+                    <IconButton
+                        style={{ order: -1 }}
+                        onClick={
+                            () => setShowAddModal(true)
+                            /*() => setState((oldArray) => [...oldArray, tmp])*/
+                        }
+                    >
+                        <AddIcon />
+                    </IconButton>
+                    {showAddModal && 
+                        <AddDepartmentRow
+                            show={showAddModal}
+                            hide={() => setShowAddModal(false)}
+                            columns={columns}
+                            btn="Add New Department"
+                        />
+                    }
+                    {/* {showEditModal && 
+                        <EditOldProjectRow
+                        show={showEditModal}
+                        hide={() => setShowEditModal(false)}
+                        columns={columns}
+                        row={editIndex}
+                        departments={departments}
+                        tech={Technologies}
+                        btn="Edit Row"
+                    />} */}
+                </>
+            );
+        },
         onRowsDelete: (rowsDeleted) => {
             for (var key in rowsDeleted.data) {
             //     this.removeItem(this.state.item_id[rowsDeleted.data[key].dataIndex])
