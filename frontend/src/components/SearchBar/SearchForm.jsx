@@ -12,7 +12,7 @@ const SearchForm = () => {
         setSearch({...search,[name]:value});
     };
     const onSubmit = (e) => {
-        e.preventDefault();
+        //e.preventDefault();
         if(search.search.length > 0)
             history.push(`${r.SearchResult}/${search.search}/${search.type}`)
         else 

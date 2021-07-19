@@ -3,9 +3,10 @@ import {Navbar} from "components/navbar";
 import { useRequest } from "hooks";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { getAllDoctors, getAllTAs } from "requests";
 import getAllStudents from "requests/getAllStudents";
 import "styles/stickey.css";
-
+/*
 const res = [
     {
         id:1,
@@ -66,7 +67,7 @@ const res = [
         projects:["pro1", "pro4", "pro5"],
         num : 3
     },
-];
+];*/
 const style = {
     // backgrounds from 1 to 5 i.e. feed_4
     backgroundImage: "url(/feed_7.svg)",
@@ -76,12 +77,17 @@ const style = {
 };
 
 const StudentsSearchResult = (props) => {
-    const [allStudents, setAllStudents] = useState([]);
-    const [request, requesting] = useRequest(getAllStudents);
+    const search = {search:props.match.params.id,type:props.match.params.type};
+    const [allResults, setAllResults] = useState([]);
+    const [request, requesting] = useRequest(search.type==="students"?getAllStudents
+    :search.type==="doctors"?getAllDoctors
+    :getAllTAs);
+   
     useEffect(() => {
         request({})
             .then((r) => {
-                setAllStudents(r.data.students);
+                setAllResults(search.type==="students"?r.data.students:r.data.supervisors);
+                console.log(r.data.supervisors);
             })
             .catch((e) => {
                 toast.error("Error viewing search results");
@@ -90,7 +96,6 @@ const StudentsSearchResult = (props) => {
 
 
 
-    const search = {search:props.match.params.id,type:props.match.params.type};
     return (
         <div className="container-fluid" style={style}>
             <div className="row">
@@ -103,13 +108,11 @@ const StudentsSearchResult = (props) => {
                             <FilterStudents />
                         </div>
                         <div className="col-12 col-lg-8">
-                            {search.type==="students"?
-                            allStudents.map((p, i) => (
+                            {
+                            allResults.map((p, i) => (
                                 <StudentCard {...p} isStudent={search.type==="students"} id={p.ecomId} key={i} />
                             ))
-                            :res.map((p, i) => (
-                                <StudentCard {...p} isStudent={search.type==="students"} key={i} id={p.id}/>
-                            ))}
+                            }
                         </div>
                         <div className="d-none d-lg-inline col-lg-4">
                             <div className="sidebar-item">

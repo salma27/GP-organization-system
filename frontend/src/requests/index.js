@@ -10,3 +10,5 @@ export { default as deleteTeamProjectRequests } from "./deleteTeamProjectRequest
 export { default as getOldProjects } from "./getOldProjects";
 export { default as getAllStudents } from "./getAllStudents";
 export { default as getOneStudent } from "./getOneStudent";
+export { default as getAllDoctors } from "./getAllDoctors";
+export { default as getAllTAs } from "./getAllTAs";
