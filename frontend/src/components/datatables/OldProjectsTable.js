@@ -45,14 +45,14 @@ function OldProjectsTable() {
         },
         {
             name: "description",
-            title: "Description",
+            label: "Description",
             options: {
                 filter: false,
             },
         },
         {
             name: "departmentId",
-            title: "Department",
+            label: "Department",
             options: {
                 filterType: "checkbox",
             },
