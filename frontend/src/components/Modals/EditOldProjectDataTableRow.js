@@ -13,7 +13,7 @@ function EditOldProjectDataTableRow(props) {
     const [request, requesting] = useRequest(adminEditOldProjects)
     // const departments = ["CS", "IS", "IT", "DS"];
     const departments = props.departments;
-    const tech =["REACT","TYPESCRIPT"];
+    // const tech =["REACT","TYPESCRIPT"];
 
     const { errors, validate } = useValidation(EditProjectValidations);
     const handleChange = ({ target: { name, value } }) => {
@@ -22,19 +22,15 @@ function EditOldProjectDataTableRow(props) {
     };
     const selectDepartment = ({ target: { name, value } }) => {
         if (value !== "-1") setNewRow({ ...newRow, [name]: value });
-        console.log(newRow);
+        // console.log(newRow);
     };
-    console.log(newRow);
-    // useEffect(() => {
-    //     console.log(props.row)
-    //     // setNewRow(props.row)
-    // }, [])
+
     const handelOnClick = (e)=>{
         e.preventDefault();
-        console.log(newRow);
-        request({projectId:newRow.id,title:newRow.title,description:newRow.description,departmentId:newRow.departmentId,year:newRow.year,technologyIds:[newRow.tech]})
+        // console.log(newRow);
+        request({projectId:newRow.id,title:newRow.title,description:newRow.description,departmentId:newRow.departmentId,year:newRow.year,technologyIds:newRow.tech})
             .then((res)=>{
-                console.log(newRow); 
+                // console.log(newRow); 
                 toast.success(res.data);  
                 // history.push(adminOldProjects); 
                 window.location.reload();
@@ -45,9 +41,18 @@ function EditOldProjectDataTableRow(props) {
     }
 
     const setTech = (newTech)=>{
-        setNewRow({...newRow,tech: newTech});
         // console.log(newTech);
+        setNewRow({...newRow,tech: newTech});
+        
     }
+
+    // const getTech = (array)=>{
+    //     let tem = [];
+    //     array.forEach((ele)=>tem.push(ele.name));
+    //     console.log(tem);
+    //     return tem;
+    // }
+
     return (
         <>
             <Modal centered show={props.show} onHide={props.hide}>
@@ -89,7 +94,7 @@ function EditOldProjectDataTableRow(props) {
                             )} */}
                                     </Form.Group>
                                 </>
-                            ) :(r.name!=="Edit" && r.name!=="technologyIds") ? (
+                            ) :(r.name!=="Edit" && r.name!=="technologies") ? (
                                 <>
                                     <Form.Group>
                                         <Form.Control
@@ -115,10 +120,10 @@ function EditOldProjectDataTableRow(props) {
                                     )} */}
                                     </Form.Group>
                                 </>
-                            ):r.name==="technologyIds" && (
+                            ):r.name==="technologies" && (
                                 <div>
                                     <label>Technology </label>
-                                    <Projects tech={tech} setTech={setTech} technologyIds={newRow["technologyIds"]}/>
+                                    <Projects setTech={setTech} technologyIds={newRow["technologyIds"]} technologies={newRow["technologies"]}/>
                                 </div>
                             )
                         )}

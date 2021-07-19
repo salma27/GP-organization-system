@@ -58,7 +58,7 @@ function OldProjectsTable() {
             },
         },
         {
-            name: "technologyIds",
+            name: "technologies",
             label: "Technologies",
             options: {
                 filter: true,
@@ -66,7 +66,7 @@ function OldProjectsTable() {
                 empty: true,
                 customBodyRender: (value, tableMeta, updateValue) => {
                     return (
-                        <div>{value && value.map((v) => v + ", ")}</div>
+                        <div>{value && value.map((v) => v.name + ", ")}</div>
                     );
                 },
             },
@@ -166,7 +166,7 @@ function OldProjectsTable() {
                     toast.error("can't delete")
                 })
             }
-            console.log(rowsDeleted, "were deleted!");
+            // console.log(rowsDeleted, "were deleted!");
         },
     };
 

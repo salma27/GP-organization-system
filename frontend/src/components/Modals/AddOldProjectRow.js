@@ -13,7 +13,7 @@ function AddProjectRow(props) {
     const [request, requesting] = useRequest(adminAddOldProjects)
     // const departments = ["CS", "IS", "IT", "DS"];
     const departments = props.departments;
-    const tech =["REACT","TYPESCRIPT"];
+    // const tech =["REACT","TYPESCRIPT"];
 
     const { errors, validate } = useValidation(EditProjectValidations);
     const handleChange = ({ target: { name, value } }) => {
@@ -22,15 +22,15 @@ function AddProjectRow(props) {
     };
     const selectDepartment = ({ target: { name, value } }) => {
         if (value !== "-1") setNewRow({ ...newRow, [name]: value });
-        console.log(newRow);
+        // console.log(newRow);
     };
 
     const handelOnClick = (e)=>{
         e.preventDefault();
-        console.log(newRow);
-        request({title:newRow.title,description:newRow.description,departmentId:newRow.departmentId,year:newRow.year,technologyIds:[newRow.tech]})
+        // console.log(newRow);
+        request({title:newRow.title,description:newRow.description,departmentId:newRow.departmentId,year:newRow.year,technologyIds:newRow.tech})
             .then((res)=>{
-                console.log(newRow); 
+                // console.log(newRow); 
                 toast.success(res.data);  
                 // history.push(adminOldProjects); 
                 window.location.reload();
@@ -42,7 +42,7 @@ function AddProjectRow(props) {
 
     const setTech = (newTech)=>{
         setNewRow({...newRow,tech: newTech});
-        console.log(newTech);
+        // console.log(newTech);
     }
     return (
         <>
@@ -84,7 +84,7 @@ function AddProjectRow(props) {
                             )} */}
                                     </Form.Group>
                                 </>
-                            ) :(r.name!=="Edit" && r.name!=="technologyIds") ? (
+                            ) :(r.name!=="Edit" && r.name!=="technologies") ? (
                                 <>
                                     <Form.Group>
                                         <Form.Control
@@ -110,10 +110,10 @@ function AddProjectRow(props) {
                                     )} */}
                                     </Form.Group>
                                 </>
-                            ):r.name==="technologyIds" && (
+                            ):r.name==="technologies" && (
                                 <div>
                                     <label>Technology </label>
-                                    <Projects tech={tech} setTech={setTech}/>
+                                    <Projects setTech={setTech} />
                                 </div>
                             )
                         )}

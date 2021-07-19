@@ -7,3 +7,4 @@ export { default as getAllTechnologies } from "./getAllTechnologies";
 export { default as addTeamProjectRequests } from "./addTeamProjectRequests";
 export { default as editTeamProjectRequests } from "./editTeamProjectRequests";
 export { default as deleteTeamProjectRequests } from "./deleteTeamProjectRequests";
+export {default as getSpecificTechnology} from "./getSpecificTechnology";
