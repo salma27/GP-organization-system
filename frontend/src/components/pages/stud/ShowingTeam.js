@@ -50,11 +50,11 @@ const ShowinTeam = () => {
                     </div>
                     
                     <hr />
-                    <ShowingNames title="Students" data={students}/>
+                    <ShowingNames title="Students" data={students} isStudent={true}/>
                     <hr />
-                    <ShowingNames title="Supervising doctors" data={students}/>
+                    <ShowingNames title="Supervising doctors" data={students} isStudent={false}/>
                     <hr />
-                    <ShowingNames title="Supervising Teaching Assistants" data={students}/>
+                    <ShowingNames title="Supervising Teaching Assistants" data={students} isStudent={false}/>
                     <hr />
                     <Technologies tech={students}/>
                     

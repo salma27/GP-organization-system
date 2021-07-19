@@ -6,3 +6,6 @@ export { default as TATablePage } from "./TATablePage";
 export { default as DoctorsTablePage } from "./DoctorsTablePage";
 export { default as StudentsTablePage } from "./StudentsTablePage";
 export { default as AdminRules } from "./AdminRules";
+export {default as AdminNewsfeed} from "./AdminNewsFeed";
+export { default as AdminOldProjects} from "./AdminOldProjects";
+export {default as AdminProjects} from "./AdminProjects";

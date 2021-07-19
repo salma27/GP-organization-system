@@ -11,3 +11,9 @@ export { default as Editable } from "./Editable";
 export { default as DoctorProfileImg } from "./DoctorProfileImg";
 export { default as DataTable } from "./DataTable";
 export { default as confirmAction } from "./confirmAction";
+const account_type = {
+    STUDENT: 1,
+    STAFF: 2,
+    ADMIN: 3,
+};
+export { account_type as TYPES };

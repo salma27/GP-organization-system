@@ -1,12 +1,13 @@
 export const root = "/";
 export const loginRoute = "/login";
 
-export const studentBase = "/stud";
+export const studentBase = "/student";
 export const studentDashboardRoute = `${studentBase}/dashboard`;
 export const studentProfileRoute = `${studentDashboardRoute}/profile`;
 export const studentTeamRoute = `${studentDashboardRoute}/team`;
 export const studentProjectsRoute = `${studentDashboardRoute}/projects`;
 export const studentRequestsRoute = `${studentDashboardRoute}/requests`;
+export const studentSendedRequests = `${studentDashboardRoute}/sended-requests`;
 
 export const newsFeedRoute = "/news-feed";
 export const oldProjectsRoute = "/old-projects";
@@ -28,6 +29,9 @@ export const studentsDataTable = `${adminDashboard}/students-data-table`;
 export const doctorsDataTable = `${adminDashboard}/doctors-data-table`;
 export const taDataTable = `${adminDashboard}/ta-data-table`;
 export const teamsDataTable = `${adminDashboard}/teams-data-table`;
+export const adminNewsFeed = `${adminDashboard}/news-feed`;
+export const adminOldProjects = `${adminDashboard}/old-projects`;
+export const adminProjects = `${adminDashboard}/projects`;
 
 export const staffBase = "/staff";
 export const staffDashboradRoute = `${staffBase}/dashboard`;
@@ -35,3 +39,4 @@ export const staffProfileRoute = `${staffDashboradRoute}/profile`;
 export const staffProjects = `${staffDashboradRoute}/projects`;
 export const staffSupervisedProjectsRoute = `${staffDashboradRoute}/supervised-projects`;
 export const staffRequests = `${staffDashboradRoute}/requests`;
+export const staffSendedRequests = `${staffDashboradRoute}/sended-requests`;

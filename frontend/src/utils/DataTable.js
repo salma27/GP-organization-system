@@ -1,5 +1,7 @@
 import React from "react";
 import MUIDataTable from "mui-datatables";
+import { createTheme } from "@material-ui/core/styles";
+import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 
 const Progress = () => {
     return (
@@ -18,12 +20,26 @@ const Progress = () => {
     );
 };
 
+const getMuiTheme = () =>
+    createTheme({
+        overrides: {
+            MUIDataTableToolbar: {
+                actions: {
+                    display: "flex",
+                    flexDirection: "row",
+                    flex: "initial",
+                },
+            },
+        },
+    });
+
 const DataTable = ({
     options = {},
     columns = [],
     data = [],
     loading = false,
     components = {},
+    title="",
 }) => {
     const _options = {
         filter: true,
@@ -35,12 +51,15 @@ const DataTable = ({
     };
     const _components = loading ? { TableBody: Progress } : {};
     return (
-        <MUIDataTable
-            data={data}
-            columns={columns}
-            options={_options}
-            components={{ ..._components, ...components }}
-        />
+        <MuiThemeProvider theme={getMuiTheme()}>
+            <MUIDataTable
+                data={data}
+                title={title}
+                columns={columns}
+                options={_options}
+                components={{ ..._components, ...components }}
+            />
+        </MuiThemeProvider>
     );
 };
 export default DataTable;

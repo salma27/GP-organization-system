@@ -5,3 +5,6 @@ export { default as useAuthentication } from "./useAuthentication";
 export { default as useInterval } from "./useInterval";
 export { default as useLogout } from "./useLogout";
 export { default as useAuthContext } from "./useAuthContext";
+export { default as useDepartments } from "./useDepartments";
+export { default as useTechnology } from "./useTechnology";
+export { default as useSpecificTechnology } from "./useSpecificTechnology";

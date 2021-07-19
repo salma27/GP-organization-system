@@ -65,7 +65,7 @@ function AddDatatableRow(props) {
                             )}*/}
                                     </Form.Group>
                                 </>
-                            ) : (
+                            ) : r.name!=="Edit" && (
                                 <>
                                     <Form.Group>
                                         <Form.Control

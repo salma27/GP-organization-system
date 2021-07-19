@@ -56,7 +56,13 @@ function TeamsDataTable() {
                 filterType: "multiselect",
             },
         },
-
+        {
+            name: "project",
+            label: "Project",
+            options: {
+                filterType: "textField",
+            },
+        },
         {
             name: "Edit",
             options: {

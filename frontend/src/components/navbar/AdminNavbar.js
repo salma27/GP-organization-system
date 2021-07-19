@@ -38,6 +38,13 @@ const AdminNavbar = ({ filled }) => {
                 <Nav className="ml-auto">
                     <Nav.Item className="my-md-auto mx-2">
                         <Link to={r.adminRules}>Rules</Link>
+                        <Link to={r.adminOldProjects}>Old Projects</Link>
+                    </Nav.Item>
+                    <Nav.Item className="my-md-auto mx-2">
+                        <Link to={r.adminProjects}>Current Projects</Link>
+                    </Nav.Item>
+                    <Nav.Item className="my-md-auto mx-2">
+                        <Link to={r.adminNewsFeed}>News Feed</Link>
                     </Nav.Item>
                     <Nav.Item className="my-md-auto mx-2">
                         <Link to={r.studentsDataTable}>Students</Link>
