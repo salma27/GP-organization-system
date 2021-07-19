@@ -1,9 +1,9 @@
-import { Button, Form, Col, Row } from "react-bootstrap";
-import React, { useState } from "react";
-import MUIDataTable from "mui-datatables";
-import { data } from "./../data/data";
+import React from "react";
 import { DataTable } from "utils";
-import { useDepartments } from "hooks";
+import { useDepartments, useRequest } from "hooks";
+import { adminDeleteDepartment } from "requests";
+import { toast } from "react-toastify";
+
 /*
 const columns = [
     { name: "ID", options: { filter: "textfield" } },
@@ -16,6 +16,7 @@ const columns = [
 */
 function RulesDataTable() { 
     const [data,loading] = useDepartments();
+    const [deleteRequest,deleteRequesting] = useRequest(adminDeleteDepartment);
 
     // const data1 = [
     //     ["CS", "3", "5", "1", "2", "1", "1"],
@@ -30,9 +31,71 @@ function RulesDataTable() {
         { name: "minNumberOfSupervisors", label:"Min supervisors to supervise" },
         { name: "maxNumberOfSupervisors", label:"Max supervisors to supervise" },
     ];
+
+    const options = {
+        selectableRows: "multiple",
+        draggableColumns: { enabled: true },
+        jumpToPage: true,
+        hasIndex: true,
+        // customToolbar: () => {
+
+        //     return (
+        //         <>
+        //             <IconButton
+        //                 style={{ order: -1 }}
+        //                 onClick={
+        //                     () => setShowAddModal(true)
+        //                     /*() => setState((oldArray) => [...oldArray, tmp])*/
+        //                 }
+        //             >
+        //                 <AddIcon />
+        //             </IconButton>
+        //             {showAddModal && 
+        //             <AddOldProjectRow
+        //                 show={showAddModal}
+        //                 hide={() => setShowAddModal(false)}
+        //                 columns={columns}
+        //                 btn="Add New Row"
+        //                 departments={departments}
+        //                 tech={Technologies}
+        //             />}
+        //             {showEditModal && 
+        //                 <EditOldProjectRow
+        //                 show={showEditModal}
+        //                 hide={() => setShowEditModal(false)}
+        //                 columns={columns}
+        //                 row={editIndex}
+        //                 departments={departments}
+        //                 tech={Technologies}
+        //                 btn="Edit Row"
+        //             />}
+        //         </>
+        //     );
+        // },
+        onRowsDelete: (rowsDeleted) => {
+            for (var key in rowsDeleted.data) {
+            //     this.removeItem(this.state.item_id[rowsDeleted.data[key].dataIndex])
+            //         .then(res => {
+            //             if (res != true) {
+            //                 // ???
+            //             }
+            //     })
+                deleteRequest({departmentId:data[rowsDeleted.data[key].dataIndex].id})
+                .then((res)=>{
+                    toast.success(res.data);
+                    window.location.reload();
+                })
+                .catch(err=>{
+                    toast.error("can't delete department")
+                })
+            }
+            // console.log(rowsDeleted, "were deleted!");
+        },
+    };
+
     return (
         <>
-            <DataTable title={"Students List"} loading={loading} data={data} columns={columns} />
+            <DataTable title={"Students List"} loading={loading} data={data} columns={columns} options={options}/>
         </>
     );
 }
