@@ -105,7 +105,7 @@ const StudentsSearchResult = (props) => {
                         <div className="col-12 col-lg-8">
                             {search.type==="students"?
                             allStudents.map((p, i) => (
-                                <StudentCard {...p} isStudent={search.type==="students"} key={i} id={p.ecomId}/>
+                                <StudentCard {...p} isStudent={search.type==="students"} id={p.ecomId} key={i} />
                             ))
                             :res.map((p, i) => (
                                 <StudentCard {...p} isStudent={search.type==="students"} key={i} id={p.id}/>

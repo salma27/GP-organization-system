@@ -4,7 +4,7 @@ import {RiMailSendLine} from "react-icons/ri"
 import { confirmAction } from "utils";
 import { useAuthContext } from "hooks";
 
-const PersonInfo = ({show=false,btn=false}) => {
+const PersonInfo = ({show=false,btn=false, info}) => {
     const { isStaff } = useAuthContext();
 
     const confirm = () => {
@@ -48,7 +48,7 @@ const PersonInfo = ({show=false,btn=false}) => {
                             <label className="personInfo-hidder">Name</label>
                         </div>
                         <div className="col-11 m-auto col-lg-9 person-info-p">
-                            <p className="personInfo-second-text">Sarah Saeed Ibrahim Rofail Sarah Saeed Ibrahim Rofail Sarah Saeed Ibrahim Rofail</p>
+                            <p className="personInfo-second-text">{info.name}</p>
                         </div>
                     </div>
                     <div className="personInfo row">
@@ -56,7 +56,7 @@ const PersonInfo = ({show=false,btn=false}) => {
                             <label className="personInfo-hidder">Email</label>
                         </div>
                         <div className="col-11 m-auto col-lg-9 person-info-p">
-                            <p className="personInfo-second-text"> sara.said1998@gmail.com</p>
+                            <p className="personInfo-second-text"> {info.bio}</p>
                         </div>
                     </div>
                     <div className="personInfo row mb-0">
@@ -65,19 +65,19 @@ const PersonInfo = ({show=false,btn=false}) => {
                         </div>
                        {!show &&
                             <div className="col-11 m-auto col-lg-9 person-info-p">
-                                <p className="personInfo-second-text">CS</p>
+                                <p className="personInfo-second-text">{info.departmentId}</p>
                             </div>
                         }
                         {show && (
                             <>
                             <div className="col-11 m-auto col-lg-2 person-info-p">
-                                <p className="personInfo-second-text">CS</p>
+                                <p className="personInfo-second-text">{info.departmentId}</p>
                             </div>
                                 <div className="col-12 col-lg-4 mb-1">
                                     <label className="personInfo-hidder">Number Of Teams</label>
                                 </div>
                                 <div className="col-11 m-auto col-lg-3 person-info-p">
-                                    <p className="personInfo-second-text">5</p>
+                                    <p className="personInfo-second-text">{info.teamId}</p>
                                 </div>
                             </>
                         )}

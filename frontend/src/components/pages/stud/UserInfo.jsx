@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Navbar} from "components/navbar";
 import {PersonInfo,Technologies,Note} from "components/cards";
 import "./../../../css/personInfoCard.css";
 import {FaHandPointRight} from "react-icons/fa";
-import {Link} from "react-router-dom";
+import {Link, useLocation, useParams} from "react-router-dom";
 import * as r from "routes/routes";
+import { SettingsInputSvideoRounded } from '@material-ui/icons';
+import { toast } from 'react-toastify';
+import { useRequest } from 'hooks';
+import getAllStudents from 'requests/getAllStudents';
+import getOneStudent from 'requests/getOneStudent';
 
 const style = {
     // backgrounds from 1 to 5 i.e. feed_4
@@ -17,7 +22,27 @@ const style = {
 
 const tech = ["ML", "Web development","AI"]
 
-const UserInfo = ({show=false,btn=false}) => {
+const UserInfo = (props) => {
+const location = useLocation();
+const { id } = location.state;
+const [show, setShow] = useState(props.show?props.show:false);
+const [btn, setBtn] = useState(props.btn?props.btn:false);
+
+
+    const [request, requesting] = useRequest(getOneStudent);
+    const [user, setUser] = useState([]);
+    
+useEffect(() => {
+    request({id:id})
+    .then((r)=>{
+        setUser(r.data);
+    })
+    .catch((e)=>{
+        toast.error("Error showing student information");
+    })
+}, []);
+
+
     return (
         <div className="container-fluid" style={style}>
             <div className="row" >
@@ -33,12 +58,12 @@ const UserInfo = ({show=false,btn=false}) => {
                         <button style={{width:"50%",backgroundColor:"green"}}>person information</button>
                         <button style={{width:"50%",backgroundColor:"green"}}>team information</button>
                     </div> */}
-                    <PersonInfo show={show} btn={btn}/>
+                    <PersonInfo show={show} btn={btn} info={user}/>
                     <hr />
                     
                     <div className="personinfo-block">
                         <h5 className="personInfo-hidder w-fit-mb">Technologies </h5>
-                        <Technologies tech={tech} />
+                        <Technologies tech={user.technologyIds} />
                     </div>
                     <hr />
                     <Note />

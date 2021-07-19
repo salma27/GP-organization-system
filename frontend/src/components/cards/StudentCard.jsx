@@ -24,6 +24,7 @@ const StudentCard = ({name, num,isStudent, department, tech = [], projects=[], i
             onConfirm: () => {},
         });
     };
+    //const data = [id];
 
     return (
         <Card className="mb-3">
@@ -35,7 +36,10 @@ const StudentCard = ({name, num,isStudent, department, tech = [], projects=[], i
                         </div>
                         <div className="col-9 col-md-7 col-lg-8">
                             {/* {isStudent && */}
-                                <Link to={isStudent?r.userInfo:r.staffInfo}>
+                                <Link to={{
+                                    pathname:isStudent?r.userInfo:r.staffInfo,
+                                    state:{id: id},
+                                    }}>
                                     <b className="h6 font-weight-bold" style={{color:"black"}}>
                                         {name}
                                     </b>
