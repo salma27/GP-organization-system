@@ -8,7 +8,10 @@ import {RiMailSendLine} from "react-icons/ri"
 import { useAuthContext } from "hooks";
 import { confirmAction } from "utils";
 
-const StudentCard = ({name, num,isStudent, department, tech = [], projects=[], id}) => {
+const StudentCard = ({name, teamId,isStudent, departmentId, technologyIds = [], projects=[], id}) => {
+    const department = departmentId;
+    const num = teamId;
+    const tech = technologyIds;
     const { isStaff } = useAuthContext();
     const style = {
         border: "none",
