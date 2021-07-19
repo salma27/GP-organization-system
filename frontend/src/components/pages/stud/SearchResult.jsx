@@ -81,7 +81,7 @@ const StudentsSearchResult = (props) => {
     useEffect(() => {
         request({})
             .then((r) => {
-                setAllStudents(r.data);
+                setAllStudents(r.data); ///r.data.students
             })
             .catch((e) => {
                 toast.error("Error viewing search results");
@@ -108,7 +108,7 @@ const StudentsSearchResult = (props) => {
                                 <StudentCard {...p} isStudent={search.type==="students"} key={i} id={p.ecomId}/>
                             ))
                             :res.map((p, i) => (
-                                <StudentCard {...p} isStudent={search.type==="students"} key={i} id={p.ecomId}/>
+                                <StudentCard {...p} isStudent={search.type==="students"} key={i} id={p.id}/>
                             ))}
                         </div>
                         <div className="d-none d-lg-inline col-lg-4">
