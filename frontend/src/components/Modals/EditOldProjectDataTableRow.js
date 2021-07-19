@@ -1,16 +1,16 @@
-import React, {  useState } from "react";
+import React, {  useState , useEffect} from "react";
 import { Modal } from "react-bootstrap";
 import {Projects} from "components/forms";
 import "../StudentProfile/FieldsOfExperience.css";
 import { Button, Form} from "react-bootstrap";
 import { useAuthContext, useRequest, useValidation} from "hooks";
 import EditProjectValidations from "./EditProjectValidations";
-import {adminAddOldProjects} from "requests";
+import {adminEditOldProjects} from "requests";
 import { toast } from "react-toastify";
 
-function AddProjectRow(props) {
-    const [newRow, setNewRow] = useState({tech:[]});
-    const [request, requesting] = useRequest(adminAddOldProjects)
+function EditOldProjectDataTableRow(props) {
+    const [newRow, setNewRow] = useState(props.row);
+    const [request, requesting] = useRequest(adminEditOldProjects)
     // const departments = ["CS", "IS", "IT", "DS"];
     const departments = props.departments;
     // const tech =["REACT","TYPESCRIPT"];
@@ -28,7 +28,7 @@ function AddProjectRow(props) {
     const handelOnClick = (e)=>{
         e.preventDefault();
         // console.log(newRow);
-        request({title:newRow.title,description:newRow.description,departmentId:newRow.departmentId,year:newRow.year,technologyIds:newRow.tech})
+        request({projectId:newRow.id,title:newRow.title,description:newRow.description,departmentId:newRow.departmentId,year:newRow.year,technologyIds:newRow.tech})
             .then((res)=>{
                 // console.log(newRow); 
                 toast.success(res.data);  
@@ -36,19 +36,28 @@ function AddProjectRow(props) {
                 window.location.reload();
             })
             .catch((error)=>{
-                toast.error("couldn't add");
+                toast.error("couldn't update");
             })
     }
 
     const setTech = (newTech)=>{
-        setNewRow({...newRow,tech: newTech});
         // console.log(newTech);
+        setNewRow({...newRow,tech: newTech});
+        
     }
+
+    // const getTech = (array)=>{
+    //     let tem = [];
+    //     array.forEach((ele)=>tem.push(ele.name));
+    //     console.log(tem);
+    //     return tem;
+    // }
+
     return (
         <>
             <Modal centered show={props.show} onHide={props.hide}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Add new Row</Modal.Title>
+                    <Modal.Title>Edit Row</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form id="addRow">
@@ -61,6 +70,7 @@ function AddProjectRow(props) {
                                             as="select"
                                             name={r.name}
                                             onChange={selectDepartment}
+                                            value={newRow.departmentId}
                                         >
                                             <option
                                                 value="-1"
@@ -113,7 +123,7 @@ function AddProjectRow(props) {
                             ):r.name==="technologies" && (
                                 <div>
                                     <label>Technology </label>
-                                    <Projects setTech={setTech} />
+                                    <Projects setTech={setTech} technologyIds={newRow["technologyIds"]} technologies={newRow["technologies"]}/>
                                 </div>
                             )
                         )}
@@ -137,4 +147,4 @@ function AddProjectRow(props) {
     );
 }
 
-export default AddProjectRow;
+export default EditOldProjectDataTableRow;

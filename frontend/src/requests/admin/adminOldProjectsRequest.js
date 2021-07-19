@@ -9,7 +9,7 @@ export function adminAddOldProjects(axios,data){
 }
 
 export function adminDeleteOldProjects(axios,data){
-    return axios.delete("/admin/project/delete",data)
+    return axios.post("/admin/project/delete",data)
 }
 
 export function adminEditOldProjects(axios,data){
