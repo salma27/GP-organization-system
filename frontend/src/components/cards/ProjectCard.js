@@ -16,7 +16,7 @@ const ProjectCard = ({ title, description, technologyIds, id }) => {
             onConfirm: () => {
                 console.log("delete");
                 //event.preventDefault();
-                console.log(id.toString());
+                console.log(id);
                 request({ projectId: id })
                     .then((r) => {
                         toast.success("Project deleted successfully");
