@@ -3,6 +3,7 @@ import Axios from "axios";
 import { AuthContext } from "context";
 
 export default function useAxios() {
+
     const {auth} = useContext(AuthContext);
     const {access_token} = {...auth};
 
