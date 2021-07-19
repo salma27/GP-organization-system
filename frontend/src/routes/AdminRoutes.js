@@ -35,6 +35,7 @@ const AdminRoutes = () => {
                     component={pages.AdminDashboard}
                 />*/}
 
+                <Route path={r.adminRules} component={pages.AdminRules} />
                 <Route
                     path={r.studentsDataTable}
                     component={pages.StudentsTablePage}
