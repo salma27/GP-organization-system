@@ -5,3 +5,7 @@ export function adminDeleteDepartment (axios,data){
 export function adminAddDepartment(axios,data){
     return axios.post("/admin/department/add",data);
 }
+
+export function adminEditDepartment(axios,data){
+    return axios.post("/admin/department/edit",data)
+}

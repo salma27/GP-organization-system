@@ -5,4 +5,5 @@ export { default as AskToJoinMyTeam } from "./AskToJoinMyTeam";
 export {default as AddNewsFeed} from "./AddNewsFeed";
 export { default as AddOldProjectRow} from "./AddOldProjectRow";
 export { default as EditOldProjectRow} from "./EditOldProjectDataTableRow";
-export { default as AddDepartmentRow } from "./AddDepartmentRow"
+export { default as AddDepartmentRow } from "./AddDepartmentRow";
+export { default as EditDepartmentRow } from "./EditDepartmentRow";

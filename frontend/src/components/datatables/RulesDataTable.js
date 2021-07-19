@@ -3,9 +3,10 @@ import { DataTable } from "utils";
 import { useDepartments, useRequest } from "hooks";
 import { adminDeleteDepartment } from "requests";
 import { toast } from "react-toastify";
-import { AddDepartmentRow ,EditOldProjectRow} from "components/Modals";
+import { AddDepartmentRow ,EditDepartmentRow} from "components/Modals";
 import { IconButton } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
+import EditIcon from "@material-ui/icons/Edit";
 
 /*
 const columns = [
@@ -22,6 +23,7 @@ function RulesDataTable() {
     const [deleteRequest,deleteRequesting] = useRequest(adminDeleteDepartment);
     const [showAddModal, setShowAddModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
+    const [editRow,setEditRow] = useState({});
 
     // const data1 = [
     //     ["CS", "3", "5", "1", "2", "1", "1"],
@@ -35,6 +37,28 @@ function RulesDataTable() {
         { name: "maxNumberOfStudents", label:"Max students per team" },
         { name: "minNumberOfSupervisors", label:"Min supervisors to supervise" },
         { name: "maxNumberOfSupervisors", label:"Max supervisors to supervise" },
+        { name: "Edit",options: {filter: false, sort: false, empty: true,
+            customBodyRender: (value, tableMeta, updateValue,) => {
+                return (
+                    <>
+                        <IconButton
+                            style={{ order: -1 }}
+                            onClick={() =>{
+                                setEditRow(data[tableMeta.rowIndex])
+                                setShowEditModal(true);
+                                console.log(data[tableMeta.rowIndex]);
+                                // window.alert(
+                                //     `Clicked "Edit" for row ${tableMeta.rowIndex}`
+                                // )
+                            }}
+                        >
+                            <EditIcon />
+                        </IconButton>
+                    </>
+                );
+            },
+            },
+        },
     ];
 
     const options = {
@@ -50,7 +74,6 @@ function RulesDataTable() {
                         style={{ order: -1 }}
                         onClick={
                             () => setShowAddModal(true)
-                            /*() => setState((oldArray) => [...oldArray, tmp])*/
                         }
                     >
                         <AddIcon />
@@ -63,16 +86,15 @@ function RulesDataTable() {
                             btn="Add New Department"
                         />
                     }
-                    {/* {showEditModal && 
-                        <EditOldProjectRow
-                        show={showEditModal}
-                        hide={() => setShowEditModal(false)}
-                        columns={columns}
-                        row={editIndex}
-                        departments={departments}
-                        tech={Technologies}
-                        btn="Edit Row"
-                    />} */}
+                    {showEditModal && 
+                        <EditDepartmentRow
+                            show={showEditModal}
+                            hide={() => setShowEditModal(false)}
+                            columns={columns}
+                            row={editRow}
+                            btn="Edit Department"
+                        />
+                    }
                 </>
             );
         },

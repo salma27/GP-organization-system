@@ -5,12 +5,12 @@ import "../StudentProfile/FieldsOfExperience.css";
 import { Button, Form} from "react-bootstrap";
 import { useAuthContext, useRequest, useValidation} from "hooks";
 import EditProjectValidations from "./EditProjectValidations";
-import {adminAddDepartment} from "requests";
+import {adminEditDepartment} from "requests";
 import { toast } from "react-toastify";
 
-function AddDepartmentRow(props) {
-    const [newRow, setNewRow] = useState({});
-    const [request, requesting] = useRequest(adminAddDepartment);
+function EditDepartmentRow(props) {
+    const [newRow, setNewRow] = useState(props.row);
+    const [request, requesting] = useRequest(adminEditDepartment);
 
     const { errors, validate } = useValidation(EditProjectValidations);
 
@@ -21,7 +21,7 @@ function AddDepartmentRow(props) {
 
     const handelOnClick = (e)=>{
         e.preventDefault();
-        // console.log(newRow)
+        // console.log({...newRow,departmentId:newRow.id})
         if(newRow.name.length === 0 || newRow.minNumberOfSupervisors.length === 0 
             || newRow.maxNumberOfSupervisors.length === 0 || newRow.minNumberOfStudents.length === 0 || newRow.maxNumberOfStudents.length === 0){
             toast.error("All fields must have vaule");
@@ -33,16 +33,16 @@ function AddDepartmentRow(props) {
         }else if(parseInt(newRow.minNumberOfSupervisors) > parseInt(newRow.maxNumberOfSupervisors)){
             toast.error("min number of supervisor must be less than or equal max number of supervisor");
         }else{
-            request(newRow)
-                .then((res)=>{
-                    // console.log(newRow); 
-                    toast.success(res.data.message);  
-                    // history.push(adminOldProjects); 
-                    window.location.reload();
-                })
-                .catch((error)=>{
-                    toast.error("couldn't add department");
-                })
+            request({...newRow,departmentId:newRow.id})
+            .then((res)=>{
+                // console.log(newRow); 
+                toast.success(res.data.message);  
+                // history.push(adminOldProjects); 
+                window.location.reload();
+            })
+            .catch((error)=>{
+                toast.error("couldn't add department");
+            })
         }
     }
 
@@ -50,7 +50,7 @@ function AddDepartmentRow(props) {
         <>
             <Modal centered show={props.show} onHide={props.hide}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Add new Department</Modal.Title>
+                    <Modal.Title>Edit Department</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form id="addDepartmentRow">
@@ -67,7 +67,7 @@ function AddDepartmentRow(props) {
                                                 borderStyle: "solid",
                                             }}
                                             placeholder={r.label}
-                                            value={newRow[r.label]}
+                                            value={newRow[r.name]}
                                             id={r.name}
                                             name={r.name}
                                             onChange={handleChange}
@@ -103,4 +103,4 @@ function AddDepartmentRow(props) {
     );
 }
 
-export default AddDepartmentRow;
+export default EditDepartmentRow;
