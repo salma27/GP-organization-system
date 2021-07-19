@@ -23,7 +23,7 @@ const Technologies = (props) => {
                     {t}
                 </Badge>
             ))}
-            {!props.tech.length && "No technologies provided"}
+            {tech&&!tech.length && "No technologies provided"}
         </Card.Text>
     );
 }

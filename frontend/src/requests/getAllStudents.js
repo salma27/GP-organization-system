@@ -1,3 +1,3 @@
 export default function getAllStudents(axios, data) {
-    return axios.get("/student", data);
+    return axios.post("/student/all", data);
 }
