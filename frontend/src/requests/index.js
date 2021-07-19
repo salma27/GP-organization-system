@@ -8,3 +8,4 @@ export { default as addTeamProjectRequests } from "./addTeamProjectRequests";
 export { default as editTeamProjectRequests } from "./editTeamProjectRequests";
 export { default as deleteTeamProjectRequests } from "./deleteTeamProjectRequests";
 export { default as getOldProjects } from "./getOldProjects";
+export { default as getAllStudents } from "./getOldProjects";

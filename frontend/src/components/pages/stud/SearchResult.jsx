@@ -1,6 +1,9 @@
 import {FilterStudents, StudentCard} from "components/cards";
 import {Navbar} from "components/navbar";
-import React from "react";
+import { useRequest } from "hooks";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import getAllStudents from "requests/getAllStudents";
 import "styles/stickey.css";
 
 const res = [
@@ -73,6 +76,20 @@ const style = {
 };
 
 const StudentsSearchResult = (props) => {
+    const [allStudents, setAllStudents] = useState([]);
+    const [request, requesting] = useRequest(getAllStudents);
+    useEffect(() => {
+        request({})
+            .then((r) => {
+                setAllStudents(r.data);
+            })
+            .catch((e) => {
+                toast.error("Error viewing search results");
+            });
+    }, []);
+
+
+
     const search = {search:props.match.params.id,type:props.match.params.type};
     return (
         <div className="container-fluid" style={style}>
@@ -86,8 +103,12 @@ const StudentsSearchResult = (props) => {
                             <FilterStudents />
                         </div>
                         <div className="col-12 col-lg-8">
-                            {res.map((p, i) => (
-                                <StudentCard {...p} isStudent={search.type==="students"} key={i} id={p.id}/>
+                            {search.type==="students"?
+                            allStudents.map((p, i) => (
+                                <StudentCard {...p} isStudent={search.type==="students"} key={i} id={p.ecomId}/>
+                            ))
+                            :res.map((p, i) => (
+                                <StudentCard {...p} isStudent={search.type==="students"} key={i} id={p.ecomId}/>
                             ))}
                         </div>
                         <div className="d-none d-lg-inline col-lg-4">
