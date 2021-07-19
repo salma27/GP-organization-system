@@ -81,7 +81,7 @@ const StudentsSearchResult = (props) => {
     useEffect(() => {
         request({})
             .then((r) => {
-                setAllStudents(r.data); ///r.data.students
+                setAllStudents(r.data.students);
             })
             .catch((e) => {
                 toast.error("Error viewing search results");
