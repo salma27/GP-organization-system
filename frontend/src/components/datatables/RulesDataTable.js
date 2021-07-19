@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import MUIDataTable from "mui-datatables";
 import { data } from "./../data/data";
 import { DataTable } from "utils";
+import { useDepartments } from "hooks";
 /*
 const columns = [
     { name: "ID", options: { filter: "textfield" } },
@@ -13,25 +14,25 @@ const columns = [
     { name: "Team", options: { filterType: "multiselect" } },
 ];
 */
-function RulesDataTable() {
-    const data = [
-        ["CS", "3", "5", "1", "2", "1", "1"],
-        ["IS", "2", "5", "1", "2", "1", "1"],
-        ["IT", "4", "5", "1", "2", "1", "1"],
-        ["DS", "1", "5", "2", "3", "1", "1"],
-    ];
+function RulesDataTable() { 
+    const [data,loading] = useDepartments();
+
+    // const data1 = [
+    //     ["CS", "3", "5", "1", "2", "1", "1"],
+    //     ["IS", "2", "5", "1", "2", "1", "1"],
+    //     ["IT", "4", "5", "1", "2", "1", "1"],
+    //     ["DS", "1", "5", "2", "3", "1", "1"],
+    // ];
     const columns = [
-        { name: "Department", options: { filterType: "checkbox" } },
-        { name: "Min students per team" },
-        { name: "Max students per team" },
-        { name: "Min doctors to supervise" },
-        { name: "Max doctors to supervise" },
-        { name: "Min TAs per team" },
-        { name: "Max TAs per team" },
+        { name: "name", label:"Department", options: { filterType: "checkbox" } },
+        { name: "minNumberOfStudents", label:"Min students per team" },
+        { name: "maxNumberOfStudents", label:"Max students per team" },
+        { name: "minNumberOfSupervisors", label:"Min supervisors to supervise" },
+        { name: "maxNumberOfSupervisors", label:"Max supervisors to supervise" },
     ];
     return (
         <>
-            <DataTable title={"Students List"} data={data} columns={columns} />
+            <DataTable title={"Students List"} loading={loading} data={data} columns={columns} />
         </>
     );
 }
