@@ -45,14 +45,14 @@ function OldProjectsTable() {
         },
         {
             name: "description",
-            title: "Description",
+            label: "Description",
             options: {
                 filter: false,
             },
         },
         {
             name: "departmentId",
-            title: "Department",
+            label: "Department",
             options: {
                 filterType: "checkbox",
             },
@@ -159,7 +159,7 @@ function OldProjectsTable() {
             //     })
                 deleteRequest({projectId:data[rowsDeleted.data[key].dataIndex].id})
                 .then((res)=>{
-                    toast.success(res.data);
+                    toast.success(res.data.message);
                     window.location.reload();
                 })
                 .catch(err=>{

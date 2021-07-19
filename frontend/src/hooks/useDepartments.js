@@ -16,7 +16,7 @@ const useDepartments = () => {
                 toast.error("Error getting departments");
             });
     }, []);
-    return [departments];
+    return [departments,requesting];
 };
 
 export default useDepartments;
