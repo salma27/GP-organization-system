@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 
 function AddDepartmentRow(props) {
     const [newRow, setNewRow] = useState({});
-    const [request, requesting] = useRequest(adminAddDepartment)
+    const [request, requesting] = useRequest(adminAddDepartment);
 
     const { errors, validate } = useValidation(EditProjectValidations);
 
@@ -59,9 +59,10 @@ function AddDepartmentRow(props) {
                                             id={r.name}
                                             name={r.name}
                                             onChange={handleChange}
+                                            type = {r.name==="name"?"text":"number"}
+                                            min="1"
                                             // isInvalid={errors}
                                         />
-
                                         {/* {errors && (
                                         <Form.Control.Feedback type="invalid">
                                             {errors}

@@ -159,7 +159,7 @@ function OldProjectsTable() {
             //     })
                 deleteRequest({projectId:data[rowsDeleted.data[key].dataIndex].id})
                 .then((res)=>{
-                    toast.success(res.data);
+                    toast.success(res.data.message);
                     window.location.reload();
                 })
                 .catch(err=>{

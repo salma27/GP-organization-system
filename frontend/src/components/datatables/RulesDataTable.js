@@ -78,22 +78,15 @@ function RulesDataTable() {
         },
         onRowsDelete: (rowsDeleted) => {
             for (var key in rowsDeleted.data) {
-            //     this.removeItem(this.state.item_id[rowsDeleted.data[key].dataIndex])
-            //         .then(res => {
-            //             if (res != true) {
-            //                 // ???
-            //             }
-            //     })
                 deleteRequest({departmentId:data[rowsDeleted.data[key].dataIndex].id})
                 .then((res)=>{
-                    toast.success(res.data);
+                    toast.success(res.data.message);
                     window.location.reload();
                 })
                 .catch(err=>{
                     toast.error("can't delete department")
                 })
             }
-            // console.log(rowsDeleted, "were deleted!");
         },
     };
 
