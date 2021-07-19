@@ -3,10 +3,11 @@ import {Badge, Card} from "react-bootstrap";
 import "./../../css/personInfoCard.css";
 
 const Technologies = (props) => {
+    const tech = props.tech;
     return ( 
         
         <Card.Text>
-            {props.tech.map((t, i) => (
+            {tech && tech.map((t, i) => (
                 <Badge
                     pill
                     style={{
