@@ -83,9 +83,17 @@ const Projects = (props) => {
                 <div className="col-12">
                     <div className="row">
                         <div className="col-12  m-auto">
-                            {projects.map((p, i) => (
-                                <OldProjectCard project={p} key={i} btn={btn} />
-                            ))}
+                            {projects.length ? (
+                                projects.map((p, i) => (
+                                    <OldProjectCard
+                                        project={p}
+                                        key={i}
+                                        btn={btn}
+                                    />
+                                ))
+                            ) : (
+                                <h6>No provided Projects</h6>
+                            )}
                         </div>
                     </div>
                 </div>
