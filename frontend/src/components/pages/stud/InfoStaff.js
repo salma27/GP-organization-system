@@ -21,9 +21,9 @@ const InfoStaff = (props) => {
     const state = location.state;
     /*const [request, requesting] = useRequest(getOneSupervisor);
     const [user, setUser] = useState([]);
-    
+
     useEffect(() => {
-        request({ id: id })
+        request({ id: state.id })
             .then((r) => {
                 setUser(r.data);
             })

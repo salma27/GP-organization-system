@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import * as r from "routes/routes";
 import { confirmAction } from "utils";
 
-const OldProjectCard = ({
+const OldProjectCard = (props) => {
+    /*{
     title,
     description,
     technologyIds,
@@ -15,10 +16,14 @@ const OldProjectCard = ({
     showDr = false,
     showTeam = false,
     team,
-}) => {
+}*/
     //const title = title;
-    const brief_description = description;
-    const tech = technologyIds;
+    const btn = props.btn;
+    const showDr = props.showDr ? props.showDr : false;
+    const showTeam = props.showTeam ? props.showTeam : false;
+
+    const brief_description = props.description;
+    const tech = props.technologyIds;
     const style = {
         border: "none",
         borderLeft: "1px solid hsla(200, 10%, 50%,100)",
@@ -39,18 +44,18 @@ const OldProjectCard = ({
             <Card.Body>
                 <Card.Title className="row team-header mw-100">
                     <div className="col-12 col-lg-8">
-                        <b>{title}</b>
+                        <b>{props.title}</b>
                         {showDr && (
                             <Link to={r.staffInfo}>
                                 <p style={{ fontSize: "small" }}>
-                                    dr / <b>{name}</b>
+                                    dr / <b>name</b>
                                 </p>
                             </Link>
                         )}
                         {showTeam && (
                             <Link to={r.teamInfo}>
                                 <p style={{ fontSize: "small" }}>
-                                    team / <b>{team}</b>
+                                    team / <b>team</b>
                                 </p>
                             </Link>
                         )}

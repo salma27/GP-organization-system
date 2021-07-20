@@ -64,10 +64,19 @@ const Projects = (props) => {
     const [btn, setBtn] = useState(props.btn);
     const [projects, setProjects] = useState([]);
     const [request, requesting] = useRequest(getProjectsProvidedbySupervisor);
+
     useEffect(() => {
         request({ id: props.state.id })
             .then((r) => {
                 setProjects(r.data);
+                console.log(
+                    "id: ",
+                    props.state.id,
+                    " projects: ",
+                    projects,
+                    " data : ",
+                    r.data
+                );
                 toast.success("Projects loaded successfully");
             })
             .catch((e) => {
