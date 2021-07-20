@@ -5,6 +5,7 @@ import { AdminNavbar } from "components/navbar";
 import { DataTable } from "utils";
 import { useRequest} from "hooks";
 import { adminGetTas } from 'requests';
+import { toast } from "react-toastify";
 
 const columns = [
     // { name: "ID", options: { display: "excluded", filter: false } },
@@ -35,7 +36,7 @@ function TADataTable() {
                 setData(res.data.supervisors);
             })
             .catch((err)=>{
-
+                toast.error("Couldn't get Teaching Assistants")
             })
     }, [])
 
