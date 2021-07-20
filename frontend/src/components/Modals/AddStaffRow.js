@@ -7,9 +7,8 @@ import { useAuthContext, useRequest, useValidation, useDepartments} from "hooks"
 import EditProjectValidations from "./EditProjectValidations";
 import { toast } from "react-toastify";
 
-
 function AddStaffRow(props) {
-    const [newRow, setNewRow] = useState({});
+    const [newRow, setNewRow] = useState({technologies:[]});
     const [request, requesting] = useRequest(props.request)
     const [departments] = useDepartments();
 
@@ -23,6 +22,10 @@ function AddStaffRow(props) {
         // console.log(newRow);
     };
 
+    const setTech = (newTech)=>{
+        setNewRow({...newRow,technologies: newTech});
+        // console.log(newTech);
+    }
     const handelOnClick = (e)=>{
         e.preventDefault();
         request(newRow)
@@ -76,7 +79,7 @@ function AddStaffRow(props) {
                             )} */}
                                     </Form.Group>
                                 </>
-                            ) :(r.name!=="Edit" && r.name!=="teams") &&  (
+                            ) :(r.name!=="Edit" && r.name!=="teams" && r.name !== "technologies") ?  (
                                 <>
                                     <Form.Group>
                                         <Form.Control
@@ -102,6 +105,11 @@ function AddStaffRow(props) {
                                     )} */}
                                     </Form.Group>
                                 </>
+                            ):r.name==="technologies" && (
+                                <div>
+                                    <label>Technology </label>
+                                    <Projects setTech={setTech} />
+                                </div>
                             )
                         )}
                     </Form>

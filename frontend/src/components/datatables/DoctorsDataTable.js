@@ -12,10 +12,10 @@ const columns = [
     // { name: "id", options: { display: "excluded", filter: false } },
     { name: "name", label:"Name", options: { filterType: "textField" } },
     { name: "ecomId", label:"ECom ID", options: { filterType: "textField" } },
+    { name: "password", label:"password", options: { display: "excluded", filter: false } },
     { name: "department", label:"Department", options: { filterType: "checkbox" } },
     // { name: "GPA", options: { display: "excluded", filter: false } },
     { name: "teamsSlots", label:"Team Of Slots", options: { filter: true } },
-    { name: "password", label:"password", options: { display: "excluded", filter: false } },
     { name: "teams", label:"Teams Taken",
         options: { 
             filter: false,
@@ -26,6 +26,8 @@ const columns = [
             },
         } ,
     },
+    { name: "bio", options: { display: "excluded", filter: false } },
+    { name: "technologies", options: { display: "excluded", filter: false } },
 ];
 
 function DoctorsDataTable() {

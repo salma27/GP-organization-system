@@ -15,8 +15,8 @@ const columns = [
     // { name: "ID", options: { display: "excluded", filter: false } },
     { name: "name", label: "Name", options: { filterType: "textField" } },
     { name: "ecomId", label: "Ecom ID", options: { filterType: "textField" } },
-    { name: "department", label: "Department", options: { filterType: "checkbox" } },
     { name: "password", label:"password", options: { display: "excluded", filter: false } },
+    { name: "department", label: "Department", options: { filterType: "checkbox" } },
     { name: "teamsSlots", label:"Team Of Slots", options: { filter: false } },
     { name: "teams", label:"Teams Taken",
         options: { 
@@ -28,6 +28,8 @@ const columns = [
             },
         } ,
     },
+    { name: "bio", options: { display: "excluded", filter: false } },
+    { name: "technologies", options: { display: "excluded", filter: false } },
 ];
 
 function TADataTable() {
