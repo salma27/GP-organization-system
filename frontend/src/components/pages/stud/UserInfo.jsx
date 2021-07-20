@@ -38,6 +38,7 @@ useEffect(() => {
     request({id:id})
     .then((r)=>{
         setUser(r.data);
+        toast.success("data loaded successfully");
     })
     .catch((e)=>{
         toast.error(isStudent?"Error showing student information":"Error showing supervisor information");

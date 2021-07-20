@@ -1,7 +1,10 @@
 import { OldProjectCard } from "components/cards";
-import React from "react";
+import { useRequest } from "hooks";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import getProjectsProvidedbySupervisor from "requests/getProjectsProvidedbySupervisor";
 import "styles/stickey.css";
-
+/*
 const projects = [
     {
         title: "Tbdel",
@@ -49,6 +52,7 @@ const projects = [
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac nisl rhoncus, dapibus felis vel, aliquet mi. Praesent non turpis nec sapien faucibus ornare eu efficitur eros. In finibus ultrices porttitor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi vitae mattis nisl.",
     },
 ];
+*/
 const style = {
     // backgrounds from 1 to 5 i.e. feed_4
     backgroundImage: "url(/feed_7.svg)",
@@ -56,20 +60,32 @@ const style = {
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
 };
-const Projects = ({btn=true}) => {
+const Projects = (props) => {
+    const [btn, setBtn] = useState(props.btn);
+    const [projects, setProjects] = useState([]);
+    const [request, requesting] = useRequest(getProjectsProvidedbySupervisor);
+    useEffect(() => {
+        request({ id: props.state.id })
+            .then((r) => {
+                setProjects(r.data);
+                toast.success("Projects loaded successfully");
+            })
+            .catch((e) => {
+                toast.error("Error viewing projects");
+            });
+    }, []);
 
     return (
         <div className="container-fluid" style={style}>
             <div className="row">
                 <div className="col-12">
                     <div className="row">
-                        
                         <div className="col-12  m-auto">
-                            {projects.map((p, i) => (
-                                <OldProjectCard {...p} key={i} btn={btn}/>
-                            ))}
+                            {projects &&
+                                projects.map((p, i) => (
+                                    <OldProjectCard {...p} key={i} btn={btn} />
+                                ))}
                         </div>
-                        
                     </div>
                 </div>
             </div>

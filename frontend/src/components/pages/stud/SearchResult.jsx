@@ -87,7 +87,7 @@ const StudentsSearchResult = (props) => {
         request({})
             .then((r) => {
                 setAllResults(search.type==="students"?r.data.students:r.data.supervisors);
-                console.log(r.data.supervisors);
+                toast.success("Data loaded successfully");
             })
             .catch((e) => {
                 toast.error("Error viewing search results");

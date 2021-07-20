@@ -56,7 +56,10 @@ const InfoStaff = (props) => {
                             />
                         </Tab>
                         <Tab eventKey="projects" title="Projects">
-                            <pages.Projects btn={isStaff ? false : true} />
+                            <pages.Projects
+                                btn={isStaff ? false : true}
+                                state={state}
+                            />
                         </Tab>
                     </Tabs>
                 </div>
