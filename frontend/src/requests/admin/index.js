@@ -9,3 +9,4 @@ export { adminAddDepartment } from "./adminDepartments";
 export { adminEditDepartment } from "./adminDepartments";
 export { adminGetCurrentProjects } from "./adminCurrentProject";
 export { adminGetDoctors } from "./adminDrs";
+export { adminAddDoctor } from "./adminDrs";

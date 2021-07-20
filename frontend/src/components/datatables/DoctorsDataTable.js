@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from "react";
-import MUIDataTable from "mui-datatables";
-// import { data } from "./../data/data";
-import { AdminNavbar } from "components/navbar";
 import { DataTable } from "utils";
 import { useRequest } from "hooks";
 import { adminGetDoctors } from "requests";
 import { toast } from "react-toastify";
+import { AddDoctorsRow } from "components/Modals";
+import { IconButton } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 
 const columns = [
-    { name: "id", options: { display: "excluded", filter: false } },
+    // { name: "id", options: { display: "excluded", filter: false } },
     { name: "name", label:"Name", options: { filterType: "textField" } },
     { name: "ecomId", label:"ECom ID", options: { filterType: "textField" } },
     { name: "department", label:"Department", options: { filterType: "checkbox" } },
@@ -29,6 +29,67 @@ const columns = [
 function DoctorsDataTable() {
     const [request,requesting] = useRequest(adminGetDoctors);
     const [data,setData] = useState([]);
+    const [showAddModal, setShowAddModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
+
+
+    const options = {
+        selectableRows: "multiple",
+        draggableColumns: { enabled: true },
+        jumpToPage: true,
+        //indexColumn: "index",
+        hasIndex: true,
+        //customAction: action,
+        //responsive: "stacked",
+        //page: 2,
+        customToolbar: () => {
+    
+            return (
+                <>
+                    <IconButton
+                        style={{ order: -1 }}
+                        onClick={
+                            () => setShowAddModal(true)
+                            /*() => setState((oldArray) => [...oldArray, tmp])*/
+                        }
+                    >
+                        <AddIcon />
+                    </IconButton>
+                    {showAddModal && 
+                        <AddDoctorsRow
+                            show={showAddModal}
+                            hide={() => setShowAddModal(false)}
+                            columns={columns}
+                            btn="Add New Row"
+                        />
+                    }
+                    {/* {showEditModal && 
+                        <EditOldProjectRow
+                        show={showEditModal}
+                        hide={() => setShowEditModal(false)}
+                        columns={columns}
+                        row={editIndex}
+                        departments={departments}
+                        tech={Technologies}
+                        btn="Edit Row"
+                    />} */}
+                </>
+            );
+        },
+        // onRowsDelete: (rowsDeleted) => {
+        //     for (var key in rowsDeleted.data) {
+        //         deleteRequest({projectId:data[rowsDeleted.data[key].dataIndex].id})
+        //         .then((res)=>{
+        //             toast.success(res.data.message);
+        //             window.location.reload();
+        //         })
+        //         .catch(err=>{
+        //             toast.error("can't delete")
+        //         })
+        //     }
+        //     // console.log(rowsDeleted, "were deleted!");
+        // },
+    };
 
     useEffect(() => {
         request()
@@ -43,7 +104,7 @@ function DoctorsDataTable() {
 
     return (
         <>
-            <DataTable loading={requesting} title={"Doctors List"} data={data} columns={columns} />
+            <DataTable loading={requesting} options={options} title={"Doctors List"} data={data} columns={columns} />
         </>
     );
 }
