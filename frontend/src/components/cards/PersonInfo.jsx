@@ -51,14 +51,7 @@ const PersonInfo = ({show=false,btn=false, info}) => {
                             <p className="personInfo-second-text">{info.name}</p>
                         </div>
                     </div>
-                    <div className="personInfo row">
-                        <div className="col-12 col-lg-3 mb-1">
-                            <label className="personInfo-hidder">Email</label>
-                        </div>
-                        <div className="col-11 m-auto col-lg-9 person-info-p">
-                            <p className="personInfo-second-text"> {info.bio}</p>
-                        </div>
-                    </div>
+                    
                     <div className="personInfo row mb-0">
                         <div className="col-12 col-lg-3 mb-1">
                             <label className="personInfo-hidder">Department</label>

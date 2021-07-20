@@ -66,7 +66,7 @@ useEffect(() => {
                         <Technologies tech={user.technologyIds} />
                     </div>
                     <hr />
-                    <Note />
+                    <Note note={user.bio}/>
                     {/* <hr />
                     <div className="left-link">
                         <Link to={r.teamInfo} className="personInfo-hidder link-btn w-auto">Go To Team <FaHandPointRight />
