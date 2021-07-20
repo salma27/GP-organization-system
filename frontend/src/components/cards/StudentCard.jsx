@@ -8,11 +8,9 @@ import {RiMailSendLine} from "react-icons/ri"
 import { useAuthContext } from "hooks";
 import { confirmAction } from "utils";
 
-const StudentCard = ({name, teamId,isStudent, departmentId, technologyIds = [], projects=[], id}) => {
-    const department = departmentId;
-    const num = teamId;
-    const tech = technologyIds;   
+const StudentCard = (props) => {  
     const { isStaff } = useAuthContext();
+    const [projects, setProjects] = useState([]);
     const style = {
         border: "none",
         borderLeft: "1px solid hsla(200, 10%, 50%,100)",
@@ -40,11 +38,11 @@ const StudentCard = ({name, teamId,isStudent, departmentId, technologyIds = [], 
                         <div className="col-9 col-md-7 col-lg-8">
                             {/* {isStudent && */}
                                 <Link to={{
-                                    pathname:isStudent?r.userInfo:r.staffInfo,
-                                    state:{id: id},
+                                    pathname:props.isStudent?r.userInfo:r.staffInfo,
+                                    state:{id: props.result.ecomId},
                                     }}>
                                     <b className="h6 font-weight-bold" style={{color:"black"}}>
-                                        {name}
+                                        {props.result.name}
                                     </b>
                                 </Link> 
                             {/*}
@@ -55,16 +53,16 @@ const StudentCard = ({name, teamId,isStudent, departmentId, technologyIds = [], 
                                     </b>
                                 </Link>
                             } */}
-                            <p className="mb-0" style={{fontSize:"small",color:"black"}}>Department: <b style={{font:"caption"}}>{department}</b></p>
-                            { !isStudent ? 
-                                num > 0 ? <p className="mb-0 text-success" style={{fontSize:"small"}}>Can take <b>{num}</b> teams</p>
+                            <p className="mb-0" style={{fontSize:"small",color:"black"}}>Department: <b style={{font:"caption"}}>{props.isStudent?props.result.departmentId:props.result.department}</b></p>
+                            { !props.isStudent ? 
+                                props.result.teamsSlots > 0 ? <p className="mb-0 text-success" style={{fontSize:"small"}}>Can take <b>{props.result.teamsSlots - props.result.teams.length}</b> teams</p>
                                     :<p className="mb-0 text-danger" style={{fontSize:"small"}}>Completed</p>
                                     :<></>
                             }
                         </div>
                         
                             <div className="d-none d-md-inline col-md-4 col-lg-3">
-                            {((!isStaff || (isStaff && isStudent)) && ((!isStudent && num > 0)||isStudent)) && 
+                            {((!isStaff || (isStaff && props.isStudent)) && ((!props.isStudent && props.result.teamsSlots > 0)||props.isStudent)) && 
                             <>
                                 <button
                                     className="btn primary-btn py-1 px-2 mr-1 mb-1"
@@ -76,7 +74,7 @@ const StudentCard = ({name, teamId,isStudent, departmentId, technologyIds = [], 
                                     <AskToJoinMyTeam
                                     show={showModal}
                                     hide={() => setShowModal(false)}
-                                    projects={projects}
+                                    projects={projects}     
             
                                     />
                             </>
@@ -108,11 +106,11 @@ const StudentCard = ({name, teamId,isStudent, departmentId, technologyIds = [], 
                             ))}
                             {!tech.length && "No technologies provided"}
                         </Card.Text> */}
-                        <Technologies tech={tech} />
+                        <Technologies tech={props.isStudent? props.result.technologyIds:props.result.technologies} />
                     </div>
                 </div>
                 {/* <hr className="d-inline d-md-none"/> */}
-                {(!isStaff || (isStaff && isStudent)) &&
+                {(!isStaff || (isStaff && props.isStudent)) &&
                 <div className="row">
                     <div className="d-inline d-md-none col-12">
                             <button

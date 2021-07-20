@@ -110,7 +110,7 @@ const StudentsSearchResult = (props) => {
                         <div className="col-12 col-lg-8">
                             {
                             allResults.map((p, i) => (
-                                <StudentCard {...p} isStudent={search.type==="students"} id={p.ecomId} key={i} />
+                                <StudentCard result = {p} isStudent={search.type==="students"} id={p.ecomId} key={i} />
                             ))
                             }
                         </div>
