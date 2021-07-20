@@ -7,3 +7,4 @@ export { adminAddFeed } from "./adminFeeds";
 export { adminDeleteDepartment } from "./adminDepartments";
 export { adminAddDepartment } from "./adminDepartments";
 export { adminEditDepartment } from "./adminDepartments";
+export { adminGetCurrentProjects } from "./adminCurrentProject";

@@ -21,12 +21,29 @@ function OldProjectsTable() {
     const [deleteRequest, DeleteRequesting] = useRequest(adminDeleteOldProjects);
     const [departments] = useDepartments();
     const [Technologies] = useTechnology();
+    const [filterList,setFilterList] = useState([]);
+    const [filterObject,setFilterObj] = useState([]);
 
     useEffect(() => {
         request({})
             .then((r) => setData(r.data))
             .catch(e => toast.error("Couldn't get old projects"))
     }, [])
+
+    useEffect(() => {
+        let temp = [];
+        let temObj = [];
+        data.map((item)=>{
+            item.technologies.map((tech)=>{
+                if(!temp.includes(tech.name)){
+                    temp.push(tech.name);
+                    temObj.push(tech);
+                }
+            })
+        })
+        setFilterList(temp);
+        setFilterObj(temObj);
+    }, [data])
 
     const columns = [
         {
@@ -58,7 +75,7 @@ function OldProjectsTable() {
             },
         },
         {
-            name: "technologies",
+            name: "technologyIds",
             label: "Technologies",
             options: {
                 filter: true,
@@ -66,8 +83,16 @@ function OldProjectsTable() {
                 empty: true,
                 customBodyRender: (value, tableMeta, updateValue) => {
                     return (
-                        <div>{value && value.map((v) => v.name + ", ")}</div>
+                        <div>{value && value.map((v,i)=> data[tableMeta.rowIndex].technologies[i].name + ", ")}</div>
                     );
+                },
+                filterOptions: {
+                    renderValue: val => {
+                        return filterObject.map(tech=>{
+                            if(tech.id===val)
+                                return tech.name
+                        })
+                    }
                 },
             },
         },

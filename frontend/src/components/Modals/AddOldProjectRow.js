@@ -84,7 +84,7 @@ function AddProjectRow(props) {
                             )} */}
                                     </Form.Group>
                                 </>
-                            ) :(r.name!=="Edit" && r.name!=="technologies") ? (
+                            ) :(r.name!=="Edit" && r.name!=="technologyIds") ? (
                                 <>
                                     <Form.Group>
                                         <Form.Control
@@ -110,7 +110,7 @@ function AddProjectRow(props) {
                                     )} */}
                                     </Form.Group>
                                 </>
-                            ):r.name==="technologies" && (
+                            ):r.name==="technologyIds" && (
                                 <div>
                                     <label>Technology </label>
                                     <Projects setTech={setTech} />
