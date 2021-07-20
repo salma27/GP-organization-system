@@ -5,13 +5,12 @@ import "../StudentProfile/FieldsOfExperience.css";
 import { Button, Form} from "react-bootstrap";
 import { useAuthContext, useRequest, useValidation, useDepartments} from "hooks";
 import EditProjectValidations from "./EditProjectValidations";
-import { adminAddDoctor } from "requests";
 import { toast } from "react-toastify";
 
 
-function AddDoctorsRow(props) {
+function AddStaffRow(props) {
     const [newRow, setNewRow] = useState({});
-    const [request, requesting] = useRequest(adminAddDoctor)
+    const [request, requesting] = useRequest(props.request)
     const [departments] = useDepartments();
 
     const { errors, validate } = useValidation(EditProjectValidations);
@@ -33,7 +32,7 @@ function AddDoctorsRow(props) {
                 window.location.reload();
             })
             .catch((error)=>{
-                toast.error("couldn't add Doctor");
+                toast.error("couldn't add");
             })
     }
 
@@ -41,7 +40,7 @@ function AddDoctorsRow(props) {
         <>
             <Modal centered show={props.show} onHide={props.hide}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Add new Doctor</Modal.Title>
+                    <Modal.Title>{props.isDr?"Add new Doctor":"Add new teaching assistant"}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form id="addDoctor">
@@ -125,4 +124,4 @@ function AddDoctorsRow(props) {
     );
 }
 
-export default AddDoctorsRow;
+export default AddStaffRow;
