@@ -1,8 +1,37 @@
-import { React} from "react";
-import { createTheme } from "@material-ui/core/styles";
-import MUIDataTable from "mui-datatables";
+import { React, useState, useEffect} from "react";
+import {useRequest, useDepartments, useTechnology} from "hooks";
+import { adminGetCurrentProjects } from "requests";
+import { DataTable } from "utils";
+import { toast } from "react-toastify";
 
 function CurrentProjectsTable() {
+    const [data,setData] = useState([]);
+    const [request,requesting] = useRequest(adminGetCurrentProjects);
+    const [filterList,setFilterList] = useState([])
+    const [filterObject,setFilterObj] = useState([]);
+
+    useEffect(() => {
+        request({})
+            .then((res) =>{ 
+                setData(res.data)})
+            .catch((err) => toast.error("Could not get current projects"))
+    }, [])
+
+    useEffect(() => {
+        let temp = [];
+        let temObj = [];
+        data.map((item)=>{
+            item.technologies.map((tech)=>{
+                if(!temp.includes(tech.name)){
+                    temp.push(tech.name);
+                    temObj.push(tech);
+                }
+            })
+        })
+        setFilterList(temp);
+        setFilterObj(temObj);
+    }, [data])
+
     const columns = [
         {
             name: "title",
@@ -12,131 +41,78 @@ function CurrentProjectsTable() {
             },
         },
         {
-            name:"brief_description",
-            title: "Description",
+            name:"description",
+            label: "Description",
             options: {
                 filter: false,
             },
         },
         {
-            name:"department",
-            title: "Department",
+            name:"departmentId",
+            label: "Department",
             options: {
                 filterType: "checkbox",
             },
+            
         },
         {
-            name: "tech",
+            name: "technologyIds",
             label:"Technologies",
             options: {
                 filter: true,
                 sort: false,
                 empty: true,
-                customBodyRender: (value, tableMeta, updateValue) => {
+                // filterType: 'custom',
+                customBodyRender: 
+                (value, tableMeta, updateValue) => {
+                    // console.log(tableMeta.rowIndex);
                     return (
-                        <div>{value && value.map((v)=> v + ", ")}</div>
+                        <div>{value && value.map((v,i)=> data[tableMeta.rowIndex].technologies[i].name + ", ")}</div>
                     );
                 },
+                
+                filterOptions: {
+                    renderValue: val => {
+                        return filterObject.map(tech=>{
+                            if(tech.id===val)
+                                return tech.name
+                        })
+                    }
+                },
+                // filterList: ['Business Analyst',"sara"],
+
+                
             },
         },
         
     ];
 
-    const getMuiTheme = () =>
-        createTheme({
-            overrides: {
-                MUIDataTableToolbar: {
-                    actions: {
-                        display: "flex",
-                        flexDirection: "row",
-                        flex: "initial",
-                    },
-                },
-            },
-        });
-
     const options = {
         selectableRows: "none",
         draggableColumns: { enabled: true },
         jumpToPage: true,
+        // responsive: 'stacked',
         //indexColumn: "index",
+        
         hasIndex: true,
+        // onFilterChange: (columnChanged, filterList) => {
+        //     console.log(filterList);
+        //     console.log(`onFilterChange columnChanged: ${columnChanged}`);
+        //     console.log(`filterList[0]: ${JSON.stringify(filterList[0])}`);
+        //     // const data = [];
+        //     // this.setState({ data });
+        //   }
     };
-
-    const data = [
-        {
-            title: "Tbdel",
-            department:"CS",
-            year:"2021",
-            brief_description:
-                "an online platform that people can exchange their old items together on",
-            tech: ["ML", "Web development", "Mobile app development"],
-        },
-        {
-            title: "GP organizer",
-            department:"IS",
-            year:"2021",
-            brief_description:
-                "A faculty platformfor student to register their ideas and form teams on",
-            tech: ["ML", "Web development", "Mobile app development"],
-        },
-        {
-            title: "Gold digger",
-            department:"CS",
-            year:"2021",
-            brief_description: "a gold stock pridector using ML",
-            tech: ["ML", "Web development"],
-        },
-        {
-            title: "Tbdel",
-            department:"DS",
-            year:"2021",
-            brief_description:
-                "an online platform that people can exchange their old items together on",
-            tech: ["Mobile app development"],
-        },
-        {
-            title: "Gold digger",
-            department:"IS",
-            year:"2021",
-            brief_description:
-                "Nullam fermentum quam interdum tortor fermentum auctor. Morbi in venenatis lectus. In dignissim iaculis nisi ultricies dictum. Aliquam erat volutpat",
-        },
-        {
-            title: "GP organizer",
-            department:"IT",
-            year:"2021",
-            brief_description:
-                "A faculty platformfor student to register their ideas and form teams on",
-            tech: ["ML", "Web development"],
-        },
-        {
-            title: "GP organizer",
-            department:"CS",
-            year:"2021",
-            brief_description:
-                "A faculty platformfor student to register their ideas and form teams on",
-            tech: ["ML", "Web development", "Mobile app development"],
-        },
-        {
-            title: "GP organizer",
-            department:"DS",
-            year:"2021",
-            brief_description:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac nisl rhoncus, dapibus felis vel, aliquet mi. Praesent non turpis nec sapien faucibus ornare eu efficitur eros. In finibus ultrices porttitor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi vitae mattis nisl.",
-        },
-    ];
 
     return (
         <>
-            {/* <MuiThemeProvider theme={getMuiTheme()}> */}
-                <MUIDataTable
-                    options={options}
-                    title="Current Projects List"
-                    data={data}
-                    columns={columns}
-                />
-            {/* </MuiThemeProvider> */}
+            <DataTable
+                options={options}
+                loading={requesting}
+                title="Current Projects List"
+                data={data}
+                columns={columns}
+            />
         </>
     );
 }
