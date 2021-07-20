@@ -83,7 +83,11 @@ const Projects = (props) => {
                         <div className="col-12  m-auto">
                             {projects &&
                                 projects.map((p, i) => (
-                                    <OldProjectCard {...p} key={i} btn={btn} />
+                                    <OldProjectCard
+                                        project={p}
+                                        key={i}
+                                        btn={btn}
+                                    />
                                 ))}
                         </div>
                     </div>
