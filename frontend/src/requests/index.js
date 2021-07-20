@@ -12,3 +12,4 @@ export { default as getAllStudents } from "./getAllStudents";
 export { default as getOneStudent } from "./getOneStudent";
 export { default as getAllDoctors } from "./getAllDoctors";
 export { default as getAllTAs } from "./getAllTAs";
+export { default as getOneSupervisor } from "./getOneSupervisor";

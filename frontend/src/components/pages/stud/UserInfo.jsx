@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import { useRequest } from 'hooks';
 import getAllStudents from 'requests/getAllStudents';
 import getOneStudent from 'requests/getOneStudent';
+import { getOneSupervisor } from 'requests';
 
 const style = {
     // backgrounds from 1 to 5 i.e. feed_4
@@ -24,12 +25,13 @@ const tech = ["ML", "Web development","AI"]
 
 const UserInfo = (props) => {
 const location = useLocation();
-const { id } = location.state;
+const { id, student } = location.state;
+const isStudent = student;
 const [show, setShow] = useState(props.show?props.show:false);
 const [btn, setBtn] = useState(props.btn?props.btn:false);
 
 
-    const [request, requesting] = useRequest(getOneStudent);
+    const [request, requesting] = useRequest(isStudent?getOneStudent:getOneSupervisor);
     const [user, setUser] = useState([]);
     
 useEffect(() => {
@@ -38,7 +40,7 @@ useEffect(() => {
         setUser(r.data);
     })
     .catch((e)=>{
-        toast.error("Error showing student information");
+        toast.error(isStudent?"Error showing student information":"Error showing supervisor information");
     })
 }, []);
 
@@ -58,12 +60,12 @@ useEffect(() => {
                         <button style={{width:"50%",backgroundColor:"green"}}>person information</button>
                         <button style={{width:"50%",backgroundColor:"green"}}>team information</button>
                     </div> */}
-                    <PersonInfo show={show} btn={btn} info={user}/>
+                    <PersonInfo show={show} btn={btn} info={user} isStudent={isStudent}/>
                     <hr />
                     
                     <div className="personinfo-block">
                         <h5 className="personInfo-hidder w-fit-mb">Technologies </h5>
-                        <Technologies tech={user.technologyIds} />
+                        <Technologies tech={isStudent?user.technologyIds: user.technologies} />
                     </div>
                     <hr />
                     <Note note={user.bio}/>

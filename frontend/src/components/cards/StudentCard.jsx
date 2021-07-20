@@ -26,7 +26,7 @@ const StudentCard = (props) => {
         });
     };
     //const data = [id];
-
+    
     return (
         <Card className="mb-3">
             <Card.Body>
@@ -39,7 +39,7 @@ const StudentCard = (props) => {
                             {/* {isStudent && */}
                                 <Link to={{
                                     pathname:props.isStudent?r.userInfo:r.staffInfo,
-                                    state:{id: props.result.ecomId},
+                                    state:{id: props.result.ecomId, student: props.isStudent},
                                     }}>
                                     <b className="h6 font-weight-bold" style={{color:"black"}}>
                                         {props.result.name}

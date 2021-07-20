@@ -64,13 +64,13 @@ const PersonInfo = ({show=false,btn=false, info}) => {
                         {show && (
                             <>
                             <div className="col-11 m-auto col-lg-2 person-info-p">
-                                <p className="personInfo-second-text">{info.departmentId}</p>
+                                <p className="personInfo-second-text">{info.department}</p>
                             </div>
                                 <div className="col-12 col-lg-4 mb-1">
                                     <label className="personInfo-hidder">Number Of Teams</label>
                                 </div>
                                 <div className="col-11 m-auto col-lg-3 person-info-p">
-                                    <p className="personInfo-second-text">{info.teamId}</p>
+                                    <p className="personInfo-second-text">{info.teams.length}</p>
                                 </div>
                             </>
                         )}
