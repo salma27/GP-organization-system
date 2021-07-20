@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { DataTable } from "utils";
 import { useRequest } from "hooks";
-import { adminGetDoctors } from "requests";
+import { adminGetDoctors, adminDeleteDoctor } from "requests";
 import { toast } from "react-toastify";
 import { AddDoctorsRow } from "components/Modals";
 import { IconButton } from "@material-ui/core";
@@ -29,6 +29,7 @@ const columns = [
 
 function DoctorsDataTable() {
     const [request,requesting] = useRequest(adminGetDoctors);
+    const [deleteRequest, DeleteRequesting] = useRequest(adminDeleteDoctor);
     const [data,setData] = useState([]);
     const [showAddModal, setShowAddModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
@@ -77,19 +78,19 @@ function DoctorsDataTable() {
                 </>
             );
         },
-        // onRowsDelete: (rowsDeleted) => {
-        //     for (var key in rowsDeleted.data) {
-        //         deleteRequest({projectId:data[rowsDeleted.data[key].dataIndex].id})
-        //         .then((res)=>{
-        //             toast.success(res.data.message);
-        //             window.location.reload();
-        //         })
-        //         .catch(err=>{
-        //             toast.error("can't delete")
-        //         })
-        //     }
-        //     // console.log(rowsDeleted, "were deleted!");
-        // },
+        onRowsDelete: (rowsDeleted) => {
+            for (var key in rowsDeleted.data) {
+                deleteRequest({ecomId:data[rowsDeleted.data[key].dataIndex].ecomId})
+                .then((res)=>{
+                    toast.success(res.data.message);
+                    window.location.reload();
+                })
+                .catch(err=>{
+                    toast.error("can't delete")
+                })
+            }
+            // console.log(rowsDeleted, "were deleted!");
+        },
     };
 
     useEffect(() => {

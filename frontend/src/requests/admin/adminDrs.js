@@ -5,3 +5,7 @@ export function adminGetDoctors(axios){
 export function adminAddDoctor(axios,data){
     return axios.post("/admin/supervisor/dr/add",data);
 }
+
+export function adminDeleteDoctor(axios,data){
+    return axios.post("/admin/supervisor/delete",data);
+}
