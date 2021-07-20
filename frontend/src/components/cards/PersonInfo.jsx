@@ -70,8 +70,10 @@ const PersonInfo = ({show=false,btn=false, info}) => {
                                     <label className="personInfo-hidder">Number Of Teams</label>
                                 </div>
                                 <div className="col-11 m-auto col-lg-3 person-info-p">
-                                    <p className="personInfo-second-text">{info.teams.length}</p>
+                                    <p className="personInfo-second-text">{info.teams && info.teams.length}</p>
+                                    
                                 </div>
+                                <div className="align-center">The supervisor can take {info.teamsSlots - info.teams.length} teams more</div>
                             </>
                         )}
                     </div>
