@@ -74,23 +74,24 @@ const OldProjectCard = ({
                     </div>
                     <div className="col-12 col-lg-4">
                         <Card.Text>
-                            {tech.map((t, i) => (
-                                <Badge
-                                    pill
-                                    style={{
-                                        // backgroundColor: "white",
-                                        color: "#00BFA6",
-                                        borderColor: "#00BFA6",
-                                        borderWidth: "1px",
-                                        borderStyle: "solid",
-                                    }}
-                                    className="mr-1 mb-1"
-                                    key={i}
-                                >
-                                    {t}
-                                </Badge>
-                            ))}
-                            {!tech.length && "No technologies provided"}
+                            {tech &&
+                                tech.map((t, i) => (
+                                    <Badge
+                                        pill
+                                        style={{
+                                            // backgroundColor: "white",
+                                            color: "#00BFA6",
+                                            borderColor: "#00BFA6",
+                                            borderWidth: "1px",
+                                            borderStyle: "solid",
+                                        }}
+                                        className="mr-1 mb-1"
+                                        key={i}
+                                    >
+                                        {t}
+                                    </Badge>
+                                ))}
+                            {tech && !tech.length && "No technologies provided"}
                         </Card.Text>
                     </div>
                 </div>
