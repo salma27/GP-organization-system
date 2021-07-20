@@ -26,13 +26,11 @@ function AddDoctorsRow(props) {
 
     const handelOnClick = (e)=>{
         e.preventDefault();
-        console.log(newRow);
         request(newRow)
             .then((res)=>{
                 // console.log(newRow); 
-                toast.success(res.data);  
-                // history.push(adminOldProjects); 
-                // window.location.reload();
+                toast.success(res.data.message);  
+                window.location.reload();
             })
             .catch((error)=>{
                 toast.error("couldn't add Doctor");

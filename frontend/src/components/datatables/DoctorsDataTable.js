@@ -14,6 +14,7 @@ const columns = [
     { name: "department", label:"Department", options: { filterType: "checkbox" } },
     // { name: "GPA", options: { display: "excluded", filter: false } },
     { name: "teamsSlots", label:"Team Of Slots", options: { filter: true } },
+    { name: "password", label:"password", options: { display: "excluded", filter: true } },
     { name: "teams", label:"Teams Taken",
         options: { 
             filter: false,
