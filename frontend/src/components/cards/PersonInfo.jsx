@@ -26,7 +26,7 @@ const PersonInfo = ({show=false,btn=false, info}) => {
                 <>
                 <div className="left-link">
                     <button className="btn primary-btn py-1 px-2 mr-1 mb-1 w-auto" onClick={confirm}>
-                        <RiMailSendLine className="mr-1"/>Ask To Be Supervisor
+                        <RiMailSendLine className="mr-1"/>Ask To Be a Supervisor
                     </button>
                 </div>
                 <hr className="mt-1"/> 
