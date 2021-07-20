@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 function CurrentProjectsTable() {
     const [data,setData] = useState([]);
     const [request,requesting] = useRequest(adminGetCurrentProjects);
-    const [filterList,setFilterList] = useState([])
+    const [filterList,setFilterList] = useState([]);
     const [filterObject,setFilterObj] = useState([]);
 
     useEffect(() => {

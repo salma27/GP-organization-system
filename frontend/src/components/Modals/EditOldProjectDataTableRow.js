@@ -94,7 +94,7 @@ function EditOldProjectDataTableRow(props) {
                             )} */}
                                     </Form.Group>
                                 </>
-                            ) :(r.name!=="Edit" && r.name!=="technologies") ? (
+                            ) :(r.name!=="Edit" && r.name!=="technologyIds") ? (
                                 <>
                                     <Form.Group>
                                         <Form.Control
@@ -120,7 +120,7 @@ function EditOldProjectDataTableRow(props) {
                                     )} */}
                                     </Form.Group>
                                 </>
-                            ):r.name==="technologies" && (
+                            ):r.name==="technologyIds" && (
                                 <div>
                                     <label>Technology </label>
                                     <Projects setTech={setTech} technologyIds={newRow["technologyIds"]} technologies={newRow["technologies"]}/>
