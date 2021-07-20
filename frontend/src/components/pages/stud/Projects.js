@@ -69,35 +69,23 @@ const Projects = (props) => {
         request({ id: props.state.id })
             .then((r) => {
                 setProjects(r.data);
-                console.log(
-                    "id: ",
-                    props.state.id,
-                    " projects: ",
-                    projects,
-                    " data : ",
-                    r.data
-                );
+
                 toast.success("Projects loaded successfully");
             })
             .catch((e) => {
                 toast.error("Error viewing projects");
             });
     }, []);
-
+    // console.log("id: ", props.state.id, " projects: ", projects);
     return (
         <div className="container-fluid" style={style}>
             <div className="row">
                 <div className="col-12">
                     <div className="row">
                         <div className="col-12  m-auto">
-                            {projects &&
-                                projects.map((p, i) => (
-                                    <OldProjectCard
-                                        project={p}
-                                        key={i}
-                                        btn={btn}
-                                    />
-                                ))}
+                            {projects.map((p, i) => (
+                                <OldProjectCard project={p} key={i} btn={btn} />
+                            ))}
                         </div>
                     </div>
                 </div>
