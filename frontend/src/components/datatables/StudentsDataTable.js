@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { DataTable } from "utils";
-import { adminGetStudents } from "requests";
+import { adminGetStudents, adminDeleteStudent } from "requests";
 import { useRequest } from 'hooks';
 import { toast } from "react-toastify";
 import { AddStaffRow } from "components/Modals";
@@ -14,8 +14,8 @@ const columns = [
     { name: "password", label:"password", options: { display: "excluded", filter: false } },
     { name: "departmentId", label:"Department", options: { filterType: "checkbox" } },
     // { name: "GPA", options: { filter: false } },
-    { name: "teamId", label: "Team ID", options: { filterType: "multiselect" } },
-    { name: "bio", label:"bio", options: { display: "excluded", filter: false } },
+    // { name: "teamId", label: "Team ID", options: { filterType: "multiselect" } },
+    // { name: "bio", label:"bio", options: { display: "excluded", filter: false } },
     // { name: "technologyIds", options: { display: "excluded", filter: false } },
 
     
@@ -23,7 +23,7 @@ const columns = [
 
 function StudentsDataTable() {
     const [request,requesting] = useRequest(adminGetStudents);
-    // const [deleteRequest, DeleteRequesting] = useRequest();
+    const [deleteRequest, DeleteRequesting] = useRequest(adminDeleteStudent);
     const [data,setData] = useState([]);
     const [showAddModal, setShowAddModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
@@ -84,19 +84,19 @@ function StudentsDataTable() {
                 </>
             );
         },
-        // onRowsDelete: (rowsDeleted) => {
-        //     for (var key in rowsDeleted.data) {
-        //         deleteRequest({ecomId:data[rowsDeleted.data[key].dataIndex].ecomId})
-        //         .then((res)=>{
-        //             toast.success(res.data.message);
-        //             window.location.reload();
-        //         })
-        //         .catch(err=>{
-        //             toast.error("can't delete")
-        //         })
-        //     }
-        //     // console.log(rowsDeleted, "were deleted!");
-        // },
+        onRowsDelete: (rowsDeleted) => {
+            for (var key in rowsDeleted.data) {
+                deleteRequest({studentId:data[rowsDeleted.data[key].dataIndex].ecomId})
+                .then((res)=>{
+                    toast.success(res.data.message);
+                    window.location.reload();
+                })
+                .catch(err=>{
+                    toast.error("can't delete")
+                })
+            }
+            // console.log(rowsDeleted, "were deleted!");
+        },
     };
 
     return (

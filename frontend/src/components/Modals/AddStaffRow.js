@@ -32,7 +32,7 @@ function AddStaffRow(props) {
             .then((res)=>{
                 // console.log(newRow); 
                 toast.success(res.data.message);  
-                // window.location.reload();
+                window.location.reload();
             })
             .catch((error)=>{
                 toast.error("couldn't add");
@@ -79,7 +79,7 @@ function AddStaffRow(props) {
                             )} */}
                                     </Form.Group>
                                 </>
-                            ) :(r.name!=="Edit" && r.name!=="teams" && r.name !== "technologies") ?  (
+                            ) :(r.name!=="Edit" && r.name!=="teams" && r.name!=="teamId" && r.name !== "technologies") ?  (
                                 <>
                                     <Form.Group>
                                         <Form.Control
