@@ -9,3 +9,7 @@ export function adminAddStudent(axios,data){
 export function adminDeleteStudent(axios,data){
     return axios.post("/admin/student/delete",data);
 }
+
+export function adminEditStudent(axios,data){
+    return axios.post("/admin/student/edit",data);
+}

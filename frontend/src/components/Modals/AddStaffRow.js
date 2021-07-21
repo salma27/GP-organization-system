@@ -8,7 +8,7 @@ import EditProjectValidations from "./EditProjectValidations";
 import { toast } from "react-toastify";
 
 function AddStaffRow(props) {
-    const [newRow, setNewRow] = useState({technologies:[]});
+    const [newRow, setNewRow] = useState(props.row);
     const [request, requesting] = useRequest(props.request)
     const [departments] = useDepartments();
 
@@ -56,6 +56,7 @@ function AddStaffRow(props) {
                                             as="select"
                                             name={r.name}
                                             onChange={selectDepartment}
+                                            value={r.name==="departmentId"?newRow.departmentId:newRow.department}
                                         >
                                             <option
                                                 value="-1"

@@ -16,3 +16,4 @@ export { adminAddTa } from "./adminTas";
 export { adminGetStudents } from "./adminStudent";
 export { adminAddStudent } from "./adminStudent";
 export { adminDeleteStudent } from "./adminStudent";
+export { adminEditStudent } from "./adminStudent";

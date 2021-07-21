@@ -69,6 +69,7 @@ function TADataTable() {
                             btn="Add New Teaching Assistant"
                             title="Add New Teaching Assistant"
                             request={adminAddTa}
+                            row={{technologies:[]}}
                         />
                     }
                     {/* {showEditModal && 

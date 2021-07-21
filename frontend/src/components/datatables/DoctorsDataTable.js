@@ -68,6 +68,7 @@ function DoctorsDataTable() {
                             btn="Add New Doctor"
                             title="Add New Doctor"
                             request={adminAddDoctor}
+                            row={{technologies:[]}}
                         />
                     }
                     {/* {showEditModal && 
