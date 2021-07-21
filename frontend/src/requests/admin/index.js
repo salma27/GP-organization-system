@@ -13,3 +13,4 @@ export { adminAddDoctor } from "./adminDrs";
 export { adminGetTas } from "./adminTas";
 export { adminDeleteStaff } from "./adminDrs";
 export { adminAddTa } from "./adminTas";
+export { adminGetStudents } from "./adminStudent";
