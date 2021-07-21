@@ -110,6 +110,8 @@ const ShowinTeam = (props) => {
                         data={TAs}
                         isStudent={false}
                     />
+                    <hr />
+                    <Technologies tech={students} />
                 </div>
             </div>
         </div>
