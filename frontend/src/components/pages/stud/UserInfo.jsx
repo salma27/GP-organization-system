@@ -25,7 +25,8 @@ const tech = ["ML", "Web development","AI"]
 
 const UserInfo = (props) => {
 const location = useLocation();
-const { id, student } = location.state;
+const { res, student } = location.state;
+const id = res.ecomId;
 const isStudent = student;
 const [show, setShow] = useState(props.show?props.show:false);
 const [btn, setBtn] = useState(props.btn?props.btn:false);

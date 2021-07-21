@@ -39,7 +39,7 @@ const StudentCard = (props) => {
                             {/* {isStudent && */}
                                 <Link to={{
                                     pathname:props.isStudent?r.userInfo:r.staffInfo,
-                                    state:{id: props.result.ecomId, student: props.isStudent},
+                                    state:{res: props.result, student: props.isStudent},
                                     }}>
                                     <b className="h6 font-weight-bold" style={{color:"black"}}>
                                         {props.result.name}

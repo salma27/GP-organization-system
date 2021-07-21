@@ -14,3 +14,4 @@ export { default as getAllDoctors } from "./getAllDoctors";
 export { default as getAllTAs } from "./getAllTAs";
 export { default as getOneSupervisor } from "./getOneSupervisor";
 export { default as getProjectsProvidedbySupervisor } from "./getProjectsProvidedbySupervisor";
+export { default as getSearchStudentTeamInfo } from "./getSearchStudentTeamInfo";

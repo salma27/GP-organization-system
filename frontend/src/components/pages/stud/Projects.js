@@ -66,7 +66,7 @@ const Projects = (props) => {
     const [request, requesting] = useRequest(getProjectsProvidedbySupervisor);
 
     useEffect(() => {
-        request({ id: props.state.id })
+        request({ id: props.state.res.ecomId })
             .then((r) => {
                 setProjects(r.data);
 

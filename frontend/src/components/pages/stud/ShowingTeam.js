@@ -5,6 +5,7 @@ import { useAuthContext, useRequest } from "hooks";
 import { confirmAction } from "utils";
 import AskToJoinMyTeam from "components/Modals/AskToJoinMyTeam";
 import { toast } from "react-toastify";
+import { getSearchStudentTeamInfo } from "requests";
 
 const projects = ["pro1", "pro4", "pro5"];
 
@@ -16,25 +17,46 @@ const style = {
     backgroundSize: "cover",
     // height:"100vh",
 };
-const students = ["sara", "salma"];
-const ShowinTeam = () => {
+//const students = ["sara", "salma"];
+const ShowinTeam = (props) => {
     const { isStaff } = useAuthContext();
     const [showModal, setShowModal] = useState(false);
 
-    const [request, requesting] = useRequest();
-    const [user, setUser] = useState([]);
+    const [request, requesting] = useRequest(getSearchStudentTeamInfo);
+    const [info, setInfo] = useState([]);
+    const [students, setStudents] = useState([]);
+    const [doctors, setDoctors] = useState([]);
+    const [TAs, setTAs] = useState([]);
 
     useEffect(() => {
-        request({})
+        request({ id: props.res.teamId })
             .then((r) => {
-                setUser(r.data);
+                const arr1 = [];
+                const arr2 = [];
+                const arr3 = [];
+                r.data.supervisors.forEach((element) => {
+                    if (element.type === 0) {
+                        arr1.push(element);
+                    }
+                    if (element.type === 1) {
+                        arr2.push(element);
+                    }
+                });
+                r.data.students.forEach((element) => {
+                    arr3.push(element);
+                });
+
+                setDoctors(arr1);
+                setTAs(arr2);
+                setStudents(arr3);
+                setInfo(r.data);
                 toast.success("data loaded successfully");
             })
             .catch((e) => {
                 toast.error("Error showing team information");
             });
     }, []);
-
+    //console.log("ta: ", TAs, "doc:", doctors);
     const confirm = () => {
         confirmAction({
             message: "Are you sure you want to send this request?",
@@ -79,17 +101,15 @@ const ShowinTeam = () => {
                     <hr />
                     <ShowingNames
                         title="Supervising doctors"
-                        data={students}
+                        data={doctors}
                         isStudent={false}
                     />
                     <hr />
                     <ShowingNames
                         title="Supervising Teaching Assistants"
-                        data={students}
+                        data={TAs}
                         isStudent={false}
                     />
-                    <hr />
-                    <Technologies tech={students} />
                 </div>
             </div>
         </div>
