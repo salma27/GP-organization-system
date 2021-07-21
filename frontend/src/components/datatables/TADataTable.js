@@ -67,7 +67,7 @@ function TADataTable() {
                             hide={() => setShowAddModal(false)}
                             columns={columns}
                             btn="Add New Teaching Assistant"
-                            isDr={false}
+                            title="Add New Teaching Assistant"
                             request={adminAddTa}
                         />
                     }

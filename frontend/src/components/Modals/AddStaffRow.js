@@ -32,7 +32,7 @@ function AddStaffRow(props) {
             .then((res)=>{
                 // console.log(newRow); 
                 toast.success(res.data.message);  
-                window.location.reload();
+                // window.location.reload();
             })
             .catch((error)=>{
                 toast.error("couldn't add");
@@ -43,12 +43,12 @@ function AddStaffRow(props) {
         <>
             <Modal centered show={props.show} onHide={props.hide}>
                 <Modal.Header closeButton>
-                    <Modal.Title>{props.isDr?"Add new Doctor":"Add new teaching assistant"}</Modal.Title>
+                    <Modal.Title>{props.title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form id="addDoctor">
                         {props.columns.map((r, i) =>
-                            r.name === "department" ? (
+                            r.name === "department" || r.name==="departmentId" ? (
                                 <>
                                     <Form.Group>
                                         <label>{r.name}</label>

@@ -65,8 +65,8 @@ function DoctorsDataTable() {
                             show={showAddModal}
                             hide={() => setShowAddModal(false)}
                             columns={columns}
-                            btn="Add New Row"
-                            isDr={true}
+                            btn="Add New Doctor"
+                            title="Add New Doctor"
                             request={adminAddDoctor}
                         />
                     }
