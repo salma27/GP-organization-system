@@ -1,7 +1,6 @@
 import { Button, Form, Col, Row } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import MUIDataTable from "mui-datatables";
-import { data } from "./../data/data";
 import { AdminNavbar } from "components/navbar";
 import { DataTable } from "utils";
 import { adminGetStudents } from "requests";
@@ -28,7 +27,7 @@ function StudentsDataTable() {
     const [showEditModal, setShowEditModal] = useState(false);
 
     useEffect(() => {
-        request()
+        request({})
             .then(response=>{
                 // console.log(response.data);
                 setData(response.data.students)
@@ -40,7 +39,7 @@ function StudentsDataTable() {
 
     return (
         <>
-            <DataTable title={"Students List"} data={data} columns={columns} />
+            <DataTable title={"Students List"} loading={requesting} data={data} columns={columns} />
         </>
     );
 }
