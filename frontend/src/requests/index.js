@@ -15,3 +15,4 @@ export { default as getAllTAs } from "./getAllTAs";
 export { default as getOneSupervisor } from "./getOneSupervisor";
 export { default as getProjectsProvidedbySupervisor } from "./getProjectsProvidedbySupervisor";
 export { default as getSearchStudentTeamInfo } from "./getSearchStudentTeamInfo";
+export { default as getSpecificTechnology } from "./getSpecificTechnology";

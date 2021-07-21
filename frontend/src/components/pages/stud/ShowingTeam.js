@@ -27,6 +27,7 @@ const ShowinTeam = (props) => {
     const [students, setStudents] = useState([]);
     const [doctors, setDoctors] = useState([]);
     const [TAs, setTAs] = useState([]);
+    const [technologies,setTechnologies] = useState([]);
 
     useEffect(() => {
         request({ id: props.res.teamId })
@@ -34,6 +35,7 @@ const ShowinTeam = (props) => {
                 const arr1 = [];
                 const arr2 = [];
                 const arr3 = [];
+                const arr4 = [];
                 r.data.supervisors.forEach((element) => {
                     if (element.type === 0) {
                         arr1.push(element);
@@ -44,12 +46,18 @@ const ShowinTeam = (props) => {
                 });
                 r.data.students.forEach((element) => {
                     arr3.push(element);
+                    element.technologyIds.forEach(tech=>{
+                        if(!arr4.includes(tech))
+                            arr4.push(tech);
+                    })
+                    
                 });
 
                 setDoctors(arr1);
                 setTAs(arr2);
                 setStudents(arr3);
                 setInfo(r.data);
+                setTechnologies(arr4);
                 toast.success("data loaded successfully");
             })
             .catch((e) => {
@@ -111,7 +119,7 @@ const ShowinTeam = (props) => {
                         isStudent={false}
                     />
                     <hr />
-                    <Technologies tech={students} />
+                    <Technologies tech={technologies} />
                 </div>
             </div>
         </div>
