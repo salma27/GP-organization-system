@@ -22,3 +22,4 @@ export { default as getAllDrsIdeas } from "./getAllDrsIdeas";
 export { default as getNewsFeeds } from "./getNewsFeeds";
 export { default as StudentAskToTakeSupervisorIdea } from "./StudentAskToTakeSupervisorIdea";
 export { default as AskToBeMySupervisor } from "./AskToBeMySupervisor";
+export { default as getAllMyProjects_Student } from "./getAllMyProjects_Student";
