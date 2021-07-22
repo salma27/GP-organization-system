@@ -18,3 +18,4 @@ export { default as getSearchStudentTeamInfo } from "./getSearchStudentTeamInfo"
 export { default as getSpecificTechnology } from "./getSpecificTechnology";
 export { default as getMyTeam } from "./getMyTeam";
 export { default as studentLeaveTeam } from "./studentLeaveTeam";
+export { default as getAllDrsIdeas } from "./getAllDrsIdeas";

@@ -1,7 +1,9 @@
-import React from "react";
-import { Badge, Card } from "react-bootstrap";
+import { useRequest } from "hooks";
+import React, { useEffect, useState } from "react";
+import { Badge, Card, Toast } from "react-bootstrap";
 import { RiMailSendLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { getOneSupervisor } from "requests";
 import * as r from "routes/routes";
 import { confirmAction } from "utils";
 
@@ -26,7 +28,19 @@ const OldProjectCard = ({
             onConfirm: () => {},
         });
     };
-
+    const [reuestDrName, reuestingDrName] = useRequest(getOneSupervisor);
+    const [dr, setDr] = useState([]);
+    useEffect(() => {
+        if (showDr) {
+            reuestDrName({ id: project.ownerId })
+                .then((r) => {
+                    setDr(r.data);
+                })
+                .catch((e) => {
+                    Toast.error("couldn't get idea's owner");
+                });
+        }
+    }, []);
     const Hr = () => <hr style={style} />;
     return (
         <Card className="mb-3">
@@ -35,9 +49,17 @@ const OldProjectCard = ({
                     <div className="col-12 col-lg-8">
                         <b>{project.title}</b>
                         {showDr && (
-                            <Link to={r.staffInfo}>
+                            <Link
+                                to={{
+                                    pathname: r.staffInfo,
+                                    state: {
+                                        res: dr,
+                                        student: false,
+                                    },
+                                }}
+                            >
                                 <p style={{ fontSize: "small" }}>
-                                    dr / <b>name</b>
+                                    Dr / <a>{dr.name}</a>
                                 </p>
                             </Link>
                         )}
