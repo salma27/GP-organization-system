@@ -9,7 +9,8 @@ import { useAuthContext } from "hooks";
 import { confirmAction } from "utils";
 
 const StudentCard = (props) => {  
-    const { isStaff } = useAuthContext();
+    //const { isStaff } = useAuthContext();
+    //const isStaff = !props.isStudent;
     const [projects, setProjects] = useState([]);
     const style = {
         border: "none",
@@ -54,14 +55,15 @@ const StudentCard = (props) => {
                         </div>
                         
                             <div className="d-none d-md-inline col-md-4 col-lg-3">
-                            {((!isStaff || (isStaff && props.isStudent)) && ((!props.isStudent && props.result.teamsSlots > 0)||props.isStudent)) && 
-                            <>
+                            {/*{
+                            ((!isStaff || (isStaff && props.isStudent)) && ((!props.isStudent && props.result.teamsSlots > 0)||props.isStudent)) && 
+                            <>*/}
                                 <button
                                     className="btn primary-btn py-1 px-2 mr-1 mb-1"
                                     
-                                    onClick={() => isStaff?setShowModal(true):confirm()}
+                                    onClick={() => props.isStudent?confirm():setShowModal(true)}
                                     >
-                                        <RiMailSendLine className="mr-1"/> {isStaff?"Ask To Be Supervisor":"Ask to join my team"}
+                                        <RiMailSendLine className="mr-1"/> {!props.isStudent?"Ask To Be Supervisor":"Ask to join team"}
                                     </button>
                                     <AskToJoinMyTeam
                                     show={showModal}
@@ -69,8 +71,8 @@ const StudentCard = (props) => {
                                     projects={projects}     
             
                                     />
-                            </>
-                            } 
+                            {/*</>
+                            }*/} 
                             </div>
                         
                     </div>
@@ -83,7 +85,7 @@ const StudentCard = (props) => {
                         <Technologies tech={props.isStudent? props.result.technologyIds:props.result.technologies} />
                     </div>
                 </div>
-                {(!isStaff || (isStaff && props.isStudent)) &&
+               {/* {(!isStaff || (isStaff && props.isStudent)) &&*/}
                 <div className="row">
                     <div className="d-inline d-md-none col-12">
                             <button
@@ -94,9 +96,9 @@ const StudentCard = (props) => {
                                     borderColor: "#00BFA6",
                                     width:"100%"
                                 }}
-                                onClick={() => isStaff?setShowModal(true):confirm()}
+                                onClick={() => props.isStudent?confirm():setShowModal(true)}
                             >
-                                <RiMailSendLine className="mr-1"/> {isStaff?"Ask To Be Supervisor":"Ask to join my team"}
+                                <RiMailSendLine className="mr-1"/> {!props.isStudent?"Ask To Bennn Supervisor":"Ask to join team"}
                             </button>
                             <AskToJoinMyTeam
                             show={showModal}
@@ -107,7 +109,7 @@ const StudentCard = (props) => {
                         
                         </div>
                 </div>
-                }
+                {/*}*/}
                
 
             </Card.Body>

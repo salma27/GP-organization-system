@@ -77,8 +77,8 @@ const OldProjectCard = ({
                                 className="primary-btn py-1 px-2 mr-1 mb-1"
                                 onClick={confirm}
                             >
-                                <RiMailSendLine className="mr-1" /> Ask To Be
-                                Supervisor
+                                <RiMailSendLine className="mr-1" /> Ask To take
+                                this idea
                             </button>
                         </div>
                     )}
