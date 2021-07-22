@@ -4,15 +4,24 @@ import { Badge, Card } from "react-bootstrap";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { getMyTeam } from "requests";
+import { getMyTeam, studentLeaveTeam } from "requests";
 import { confirmAction } from "utils";
 import * as r from "routes/routes";
 
 const TeamInfoCard = ({}) => {
-    const leaveTeame = () => {
+    const [requestLeave, requestingLeave] = useRequest(studentLeaveTeam);
+    const leaveTeam = () => {
         confirmAction({
             message: "Are you sure you want to leave the team?",
-            onConfirm: () => {},
+            onConfirm: () => {
+                requestLeave({})
+                    .then((r) => {
+                        toast.success("You left the team");
+                    })
+                    .catch((e) => {
+                        toast.error("Coudln't leave the team");
+                    });
+            },
         });
     };
     const [doctors, setDoctors] = useState([]);
@@ -51,7 +60,7 @@ const TeamInfoCard = ({}) => {
                     <b>Team info</b>
                     <button
                         className="btn btn-lg btn-outline-danger py-1 px-2 ml-auto"
-                        onClick={leaveTeame}
+                        onClick={leaveTeam}
                     >
                         leave team
                     </button>

@@ -17,3 +17,4 @@ export { default as getProjectsProvidedbySupervisor } from "./getProjectsProvide
 export { default as getSearchStudentTeamInfo } from "./getSearchStudentTeamInfo";
 export { default as getSpecificTechnology } from "./getSpecificTechnology";
 export { default as getMyTeam } from "./getMyTeam";
+export { default as studentLeaveTeam } from "./studentLeaveTeam";
