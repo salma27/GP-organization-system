@@ -22,3 +22,4 @@ export { adminEditSupervise } from "./adminTas";
 export { adminAddTechnology } from "./AdminTecnologies";
 export { adminDeleteTechnology } from "./AdminTecnologies";
 export { adminEditTechnology } from "./AdminTecnologies";
+export { AdminGetStat } from "./adminState"

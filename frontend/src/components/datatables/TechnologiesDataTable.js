@@ -86,7 +86,7 @@ function TechnologiesDataTable() {
                             show={showEditModal}
                             hide={() => setShowEditModal(false)}
                             columns={columns}
-                            row={{TechnologyId:editRow.id,...editRow}}
+                            row={{technologyId:editRow.id,...editRow}}
                             btn="Edit Technology"
                             title="Edit Technology"
                             request={adminEditTechnology}
@@ -97,7 +97,7 @@ function TechnologiesDataTable() {
         },
         onRowsDelete: (rowsDeleted) => {
             for (var key in rowsDeleted.data) {
-                deleteRequest({TechnologyId:data[rowsDeleted.data[key].dataIndex].id})
+                deleteRequest({technologyId:data[rowsDeleted.data[key].dataIndex].id})
                 .then((res)=>{
                     toast.success(res.data.message);
                     window.location.reload();
