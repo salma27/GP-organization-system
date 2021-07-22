@@ -29,10 +29,10 @@ const OldProjectCard = ({
             onConfirm: () => {
                 request({ id: project.id })
                     .then((r) => {
-                        toast.success("Project deleted successfully");
+                        toast.success("Request sent successfully");
                     })
                     .catch((e) => {
-                        toast.error("Coudln't delete the project");
+                        toast.error("Error sending the request");
                     });
             },
         });
