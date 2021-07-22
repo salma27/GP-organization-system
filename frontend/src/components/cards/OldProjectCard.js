@@ -4,7 +4,7 @@ import { Badge, Card, Toast } from "react-bootstrap";
 import { RiMailSendLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { getOneSupervisor } from "requests";
+import { getOneSupervisor, StudentAskToTakeSupervisorIdea } from "requests";
 import * as r from "routes/routes";
 import { confirmAction } from "utils";
 
