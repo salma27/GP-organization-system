@@ -6,6 +6,7 @@ import { useAuthContext } from "hooks";
 import { AskToJoinMyTeam } from 'components/Modals';
 
 const PersonInfo = ({show=false,btn=false, info}) => {
+    const { isStaff } = useAuthContext();
     const [showModal, setShowModal] = useState(false);
     const [projects, setProjects] = useState([]);
     
@@ -24,8 +25,8 @@ const PersonInfo = ({show=false,btn=false, info}) => {
     const takenTeams = info.teams?info.teams.length:0;
     return ( 
         <div className="personinfo-block" >
-            
-                
+            {!isStaff && btn &&
+             <>   
                 <div className="left-link">
                     <button className="btn primary-btn py-1 px-2 mr-1 mb-1 w-auto" onClick={show?requestModal:confirm}>
                         <RiMailSendLine className="mr-1"/>{show?"Ask To Be a Supervisor":"Ask to join team"}
@@ -37,16 +38,10 @@ const PersonInfo = ({show=false,btn=false, info}) => {
                     hide={() => setShowModal(false)}
                     projects={projects}  
                 />
-                
-                  
+               </> 
+            }
             <div className="row container center-row m-0">
-                {/* <div className="col-2"> */}
-                    {/* <figure className="figure col-12 ">
-                       <img src="\profile.svg" className="figure-img img-fluid rounded mx-auto " alt="..."/>
-                       {/* <figcaption className="figure-caption text-center">Sarah Saeed Ibrahim Rofail</figcaption> 
-                   </figure> */}
-                   
-                {/* </div> */}
+                
                 <div className="col-12 col-lg-3 center-row" style={{}}>
                     <img src="\profile.svg" className=" mw-100 mh-100 photo"/>
                 </div>
@@ -87,7 +82,6 @@ const PersonInfo = ({show=false,btn=false, info}) => {
                     </div>
                 </div>
             </div>
-            {/* <hr /> */}
             
         </div>
     );
