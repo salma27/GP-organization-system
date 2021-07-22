@@ -28,7 +28,7 @@ import { toast } from "react-toastify";
 
 // ]
 const cat=["Doctors","Teacher Assistants","Students"];
-const departments=["Computer Science","Decision Support","information system"]
+// const departments=["Computer Science","Decision Support","information system"]
 function NumIfnfo(props) {
     return (
         <div className="personInfo row">
@@ -67,7 +67,7 @@ const AdminStat = () => {
                     temp1.push(ele.name);
                     temp2.push(ele.count);
                 })
-                // console.log(temp1,temp2);
+                console.log(temp1,temp2);
                 setDepartment(temp1);
                 setChartValue(temp2);
                 setData(res.data);
@@ -106,7 +106,7 @@ const AdminStat = () => {
                 </div>
             </div>    */}
             <hr className="mt-5 mb-4"/> 
-            {(department && chartValue) && <MyChart departments={departments} data={chartValue}/>}
+            {(department && chartValue) && <MyChart departments={department} data={chartValue}/>}
                 
 
         </div>
