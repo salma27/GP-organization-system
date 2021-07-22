@@ -60,7 +60,7 @@ function TeamsDataTable() {
                     
                 })
                 setData(temp);
-                console.log("llll",temp);
+                // console.log("llll",temp);
             })
             .catch(error => toast.error("couldn't get teams"))
     }, [])
@@ -121,48 +121,29 @@ function TeamsDataTable() {
             },
         },
         // {
-        //     name: "project",
-        //     label: "Project",
+        //     name: "Edit",
         //     options: {
-        //         filterType: "textField",
+        //         filter: false,
+        //         sort: false,
+        //         empty: true,
+        //         customBodyRender: (value, tableMeta, updateValue) => {
+        //             return (
+        //                 <IconButton
+        //                     style={{ order: -1 }}
+        //                     onClick={() =>
+        //                         window.alert(
+        //                             `Clicked "Edit" for row ${tableMeta.rowIndex}`
+        //                         )
+        //                     }
+        //                 >
+        //                     <EditIcon />
+        //                 </IconButton>
+        //             );
+        //         },
         //     },
         // },
-        {
-            name: "Edit",
-            options: {
-                filter: false,
-                sort: false,
-                empty: true,
-                customBodyRender: (value, tableMeta, updateValue) => {
-                    return (
-                        <IconButton
-                            style={{ order: -1 }}
-                            onClick={() =>
-                                window.alert(
-                                    `Clicked "Edit" for row ${tableMeta.rowIndex}`
-                                )
-                            }
-                        >
-                            <EditIcon />
-                        </IconButton>
-                    );
-                },
-            },
-        },
     ];
 
-    const getMuiTheme = () =>
-        createTheme({
-            overrides: {
-                MUIDataTableToolbar: {
-                    actions: {
-                        display: "flex",
-                        flexDirection: "row",
-                        flex: "initial",
-                    },
-                },
-            },
-        });
 
     const options = {
         selectableRows: "multiple",
@@ -174,14 +155,14 @@ function TeamsDataTable() {
         //responsive: "stacked",
         //page: 2,
         customToolbar: () => {
-            const tmp = [
-                "20170115",
-                "Salma Essam",
-                "s@gmail.com",
-                "CS",
-                "3.2",
-                "33",
-            ];
+            // const tmp = [
+            //     "20170115",
+            //     "Salma Essam",
+            //     "s@gmail.com",
+            //     "CS",
+            //     "3.2",
+            //     "33",
+            // ];
             return (
                 <>
                     <IconButton
@@ -208,7 +189,7 @@ function TeamsDataTable() {
         <>
             {/* <MuiThemeProvider theme={getMuiTheme()}> */}
                 <DataTable
-                    options={options}
+                    // options={options}
                     title="Teams List"
                     loading={requesting}
                     data={data}

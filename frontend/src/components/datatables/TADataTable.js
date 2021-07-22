@@ -108,7 +108,9 @@ function TADataTable() {
                             show={{showEditModal}}
                             hide={() => setShowEditModal(false)}
                             columns={columns}
-                            row={{supervisorId:editIndex.ecomId,ecomId:editIndex.ecomId,name:editIndex.name,department:editIndex.department}}
+                            row={{supervisorId:editIndex.ecomId,ecomId:editIndex.ecomId,
+                                name:editIndex.name,department:editIndex.department,
+                                password:editIndex.password,teamsSlots:editIndex.teamsSlots}}
                             btn="Edit Teacher Assistant"
                             btn="Edit"
                             request={adminEditSupervise}

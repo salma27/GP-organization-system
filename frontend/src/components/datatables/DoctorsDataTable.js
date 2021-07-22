@@ -106,7 +106,10 @@ const columns = [
                             show={{showEditModal}}
                             hide={() => setShowEditModal(false)}
                             columns={columns}
-                            row={{supervisorId:editIndex.ecomId,ecomId:editIndex.ecomId,name:editIndex.name,departmentId:editIndex.departmentId}}
+                            row={{supervisorId:editIndex.ecomId,ecomId:editIndex.ecomId,
+                                name:editIndex.name,department:editIndex.department,
+                                password:editIndex.password,teamsSlots:editIndex.teamsSlots
+                            }}
                             btn="Edit Doctor"
                             btn="Edit"
                             request={adminEditSupervise}

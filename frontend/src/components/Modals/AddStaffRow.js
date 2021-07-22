@@ -34,6 +34,7 @@ function AddStaffRow(props) {
             .then((res)=>{
                 toast.success(res.data.message);  
                 window.location.reload();
+
             })
             .catch((error)=>{
                 // console.log(error);

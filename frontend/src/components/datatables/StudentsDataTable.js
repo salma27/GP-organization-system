@@ -107,7 +107,9 @@ function StudentsDataTable() {
                             show={showEditModal}
                             hide={() => setShowEditModal(false)}
                             columns={columns}
-                            row={{studentId:editIndex.ecomId,ecomId:editIndex.ecomId,name:editIndex.name,departmentId:editIndex.departmentId}}
+                            row={{studentId:editIndex.ecomId,ecomId:editIndex.ecomId,
+                                name:editIndex.name,departmentId:editIndex.departmentId,
+                                password:editIndex.password}}
                             btn="Edit Student"
                             btn="Edit"
                             request={adminEditStudent}
