@@ -9,6 +9,8 @@ import { useAuthContext } from "hooks";
 import { confirmAction } from "utils";
 
 const StudentCard = (props) => {  
+    //const { isStaff } = useAuthContext();
+    //const isStaff = !props.isStudent;
     const [projects, setProjects] = useState([]);
     const style = {
         border: "none",
@@ -24,6 +26,7 @@ const StudentCard = (props) => {
             onConfirm: () => {},
         });
     };
+    //const data = [id];
     
     return (
         <Card className="mb-3">
@@ -52,7 +55,9 @@ const StudentCard = (props) => {
                         </div>
                         
                             <div className="d-none d-md-inline col-md-4 col-lg-3">
-                            
+                            {/*{
+                            ((!isStaff || (isStaff && props.isStudent)) && ((!props.isStudent && props.result.teamsSlots > 0)||props.isStudent)) && 
+                            <>*/}
                                 <button
                                     className="btn primary-btn py-1 px-2 mr-1 mb-1"
                                     
@@ -66,7 +71,8 @@ const StudentCard = (props) => {
                                     projects={projects}     
             
                                     />
-                            
+                            {/*</>
+                            }*/} 
                             </div>
                         
                     </div>
@@ -79,7 +85,33 @@ const StudentCard = (props) => {
                         <Technologies tech={props.isStudent? props.result.technologyIds:props.result.technologies} />
                     </div>
                 </div>
-              
+               {/* {(!isStaff || (isStaff && props.isStudent)) &&*/}
+                <div className="row">
+                    <div className="d-inline d-md-none col-12">
+                            <button
+                                className="btn btn-primary py-1 px-2 mr-1 mb-1"
+                                style={{
+                                    fontSize:"small",
+                                    backgroundColor: "#00BFA6",
+                                    borderColor: "#00BFA6",
+                                    width:"100%"
+                                }}
+                                onClick={() => props.isStudent?confirm():setShowModal(true)}
+                            >
+                                <RiMailSendLine className="mr-1"/> {!props.isStudent?"Ask To Bennn Supervisor":"Ask to join team"}
+                            </button>
+                            <AskToJoinMyTeam
+                            show={showModal}
+                            hide={() => setShowModal(false)}
+                            projects={projects}
+
+                            />
+                        
+                        </div>
+                </div>
+                {/*}*/}
+               
+
             </Card.Body>
         </Card>
     );
