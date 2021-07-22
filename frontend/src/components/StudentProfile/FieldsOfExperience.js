@@ -7,13 +7,13 @@ import { toast } from "react-toastify";
 import editStudentProfile from "requests/editStudentProfile";
 
 function FieldsOfExperience(props) {
-    const [allTech] = useTechnology();
-    const [myTech, setMyTech] = useState(props.tech);
+    const [myTech, setMyTech] = useState(props.profile.technologyIds);
+
     const [oneTech, setOne] = useState();
     const [request, requesting] = useRequest(editStudentProfile);
     function editProfile(event) {
         event.preventDefault();
-        request({})
+        request({ technologyIds: myTech })
             .then((r) => {
                 toast.success("Updated successully");
             })
@@ -26,7 +26,10 @@ function FieldsOfExperience(props) {
             setMyTech([...myTech, oneTech]);
         editProfile();
     };
-    const setOneItem = (e) => setOne(e.target.value);
+    const setOneItem = (e) => {
+        setOne(e.target.value);
+        console.log("mine: ", myTech);
+    };
     const removeItem = (one) => {
         const temp = [];
         myTech.forEach((v) => {
@@ -35,7 +38,9 @@ function FieldsOfExperience(props) {
             }
         });
         setMyTech(temp);
+        editProfile();
     };
+    const [allTech] = useTechnology();
     return (
         <>
             <Form
