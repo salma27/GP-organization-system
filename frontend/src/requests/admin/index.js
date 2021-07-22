@@ -19,3 +19,6 @@ export { adminDeleteStudent } from "./adminStudent";
 export { adminEditStudent } from "./adminStudent";
 export { adminGetTeams } from "./adminTeams";
 export { adminEditSupervise } from "./adminTas";
+export { adminAddTechnology } from "./AdminTecnologies";
+export { adminDeleteTechnology } from "./AdminTecnologies";
+export { adminEditTechnology } from "./AdminTecnologies";

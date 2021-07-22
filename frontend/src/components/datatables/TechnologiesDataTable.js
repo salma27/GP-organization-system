@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { DataTable } from "utils";
 import { useDepartments, useRequest, useTechnology } from "hooks";
-import { adminDeleteDepartment, getAllTechnologies } from "requests";
+import { adminDeleteTechnology, getAllTechnologies, adminAddTechnology, adminEditTechnology} from "requests";
 import { toast } from "react-toastify";
-import { AddDepartmentRow ,EditDepartmentRow} from "components/Modals";
+import { Technology } from "components/Modals";
 import { IconButton } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
 
 function TechnologiesDataTable() { 
-    const [deleteRequest,deleteRequesting] = useRequest(adminDeleteDepartment);
+    const [deleteRequest,deleteRequesting] = useRequest(adminDeleteTechnology);
     const [showAddModal, setShowAddModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [editRow,setEditRow] = useState({});
@@ -71,20 +71,25 @@ function TechnologiesDataTable() {
                         <AddIcon />
                     </IconButton>
                     {showAddModal && 
-                        <AddDepartmentRow
+                        <Technology
                             show={showAddModal}
                             hide={() => setShowAddModal(false)}
                             columns={columns}
-                            btn="Add New Department"
+                            btn="Add New Technology"
+                            title="Add New Technology"
+                            request={adminAddTechnology}
+                            row={{}}
                         />
                     }
                     {showEditModal && 
-                        <EditDepartmentRow
+                        <Technology
                             show={showEditModal}
                             hide={() => setShowEditModal(false)}
                             columns={columns}
-                            row={editRow}
-                            btn="Edit Department"
+                            row={{TechnologyId:editRow.id,...editRow}}
+                            btn="Edit Technology"
+                            title="Edit Technology"
+                            request={adminEditTechnology}
                         />
                     }
                 </>
@@ -92,13 +97,13 @@ function TechnologiesDataTable() {
         },
         onRowsDelete: (rowsDeleted) => {
             for (var key in rowsDeleted.data) {
-                deleteRequest({departmentId:data[rowsDeleted.data[key].dataIndex].id})
+                deleteRequest({TechnologyId:data[rowsDeleted.data[key].dataIndex].id})
                 .then((res)=>{
                     toast.success(res.data.message);
                     window.location.reload();
                 })
                 .catch(err=>{
-                    toast.error("can't delete department")
+                    toast.error("can't delete technology")
                 })
             }
         },

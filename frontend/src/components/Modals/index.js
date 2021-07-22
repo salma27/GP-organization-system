@@ -8,3 +8,4 @@ export { default as EditOldProjectRow} from "./EditOldProjectDataTableRow";
 export { default as AddDepartmentRow } from "./AddDepartmentRow";
 export { default as EditDepartmentRow } from "./EditDepartmentRow";
 export { default as AddStaffRow } from "./AddStaffRow";
+export { default as Technology } from "./Technology";
