@@ -11,6 +11,7 @@ function FieldsOfExperience(props) {
 
     const [oneTech, setOne] = useState();
     const [request, requesting] = useRequest(editStudentProfile);
+
     function editProfile(event) {
         event.preventDefault();
         request({ technologyIds: myTech })

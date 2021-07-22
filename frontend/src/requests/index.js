@@ -20,3 +20,4 @@ export { default as getMyTeam } from "./getMyTeam";
 export { default as studentLeaveTeam } from "./studentLeaveTeam";
 export { default as getAllDrsIdeas } from "./getAllDrsIdeas";
 export { default as getNewsFeeds } from "./getNewsFeeds";
+export { default as StudentAskToTakeSupervisorIdea } from "./StudentAskToTakeSupervisorIdea";

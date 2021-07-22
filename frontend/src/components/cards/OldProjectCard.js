@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Badge, Card, Toast } from "react-bootstrap";
 import { RiMailSendLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { getOneSupervisor } from "requests";
 import * as r from "routes/routes";
 import { confirmAction } from "utils";
@@ -21,11 +22,19 @@ const OldProjectCard = ({
         minHeight: "100px",
         width: "1px",
     };
-
+    const [request, requesting] = useRequest(StudentAskToTakeSupervisorIdea);
     const confirm = () => {
         confirmAction({
             message: "Are you sure you want to send this request?",
-            onConfirm: () => {},
+            onConfirm: () => {
+                request({ id: project.id })
+                    .then((r) => {
+                        toast.success("Project deleted successfully");
+                    })
+                    .catch((e) => {
+                        toast.error("Coudln't delete the project");
+                    });
+            },
         });
     };
     const [reuestDrName, reuestingDrName] = useRequest(getOneSupervisor);
