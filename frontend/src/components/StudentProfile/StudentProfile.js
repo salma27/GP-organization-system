@@ -11,15 +11,12 @@ import getMyProfile from "requests/getMyProfile";
 
 function StudentProfile() {
     const { auth } = useAuthContext();
-    const technology = [];
     const [request, requesting] = useRequest(getMyProfile);
     const [profile, setProfile] = useState([]);
-    const [bio, setBio] = useState("");
     useEffect(() => {
         request({})
             .then((r) => {
                 setProfile(r.data);
-                setBio(r.data.bio);
             })
             .catch((e) => {
                 toast.error("Error loading profile info");
@@ -39,12 +36,12 @@ function StudentProfile() {
                 </div>
                 <div className="col-12 col-md-6 mb-5">
                     <div className="studentInfo">
-                        <FieldsOfExperience tech={technology} />
+                        <FieldsOfExperience tech={profile.technologyIds} />
                     </div>
                 </div>
                 <div className="col-12 col-md-6 mb-5">
                     <div className="studentInfo">
-                        <Notes bio={bio} />
+                        <Notes info={profile} />
                     </div>
                 </div>
             </div>

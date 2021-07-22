@@ -4,7 +4,7 @@ import { BsButton } from "utils";
 import "./Notes.css";
 
 function Notes(props) {
-    const [note, setNote] = useState(props.bio);
+    const [note, setNote] = useState(props.info.bio);
     return (
         <>
             <Form onSubmit={(e) => e.preventDefault()} className="w-100">
