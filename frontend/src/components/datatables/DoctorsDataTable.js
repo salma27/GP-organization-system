@@ -6,8 +6,17 @@ import { toast } from "react-toastify";
 import { AddStaffRow } from "components/Modals";
 import { IconButton } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
-import { adminAddDoctor } from "requests";
+import { adminAddDoctor, adminEditSupervise } from "requests";
+import EditIcon from "@material-ui/icons/Edit";
 
+function DoctorsDataTable() {
+    const [request,requesting] = useRequest(adminGetDoctors);
+    const [deleteRequest, DeleteRequesting] = useRequest(adminDeleteStaff);
+    const [data,setData] = useState([]);
+    const [showAddModal, setShowAddModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [editIndex,setEditIndex] = useState({});
+  
 const columns = [
     // { name: "id", options: { display: "excluded", filter: false } },
     { name: "name", label:"Name", options: { filterType: "textField" } },
@@ -26,17 +35,37 @@ const columns = [
             },
         } ,
     },
-    { name: "bio", options: { display: "excluded", filter: false } },
-    { name: "technologies", options: { display: "excluded", filter: false } },
+    // { name: "bio", options: { display: "excluded", filter: false } },
+    // { name: "technologies", options: { display: "excluded", filter: false } },
+    {
+        name: "Edit",
+        options: {
+            filter: false,
+            sort: false,
+            empty: true,
+            customBodyRender: (value, tableMeta, updateValue,) => {
+                return (
+                    <>
+                        <IconButton
+                            style={{ order: -1 }}
+                            onClick={() =>{
+                                setEditIndex(data[tableMeta.rowIndex])
+                                setShowEditModal(true);
+                               
+                                // console.log(data[tableMeta.rowIndex]);
+                                // window.alert(
+                                //     `Clicked "Edit" for row ${tableMeta.rowIndex}`
+                                // )
+                            }}
+                        >
+                            <EditIcon />
+                        </IconButton>
+                    </>
+                );
+            },
+        },
+    },
 ];
-
-function DoctorsDataTable() {
-    const [request,requesting] = useRequest(adminGetDoctors);
-    const [deleteRequest, DeleteRequesting] = useRequest(adminDeleteStaff);
-    const [data,setData] = useState([]);
-    const [showAddModal, setShowAddModal] = useState(false);
-    const [showEditModal, setShowEditModal] = useState(false);
-
 
     const options = {
         selectableRows: "multiple",
@@ -71,16 +100,18 @@ function DoctorsDataTable() {
                             row={{technologies:[]}}
                         />
                     }
-                    {/* {showEditModal && 
-                        <EditOldProjectRow
-                        show={showEditModal}
-                        hide={() => setShowEditModal(false)}
-                        columns={columns}
-                        row={editIndex}
-                        departments={departments}
-                        tech={Technologies}
-                        btn="Edit Row"
-                    />} */}
+                    {showEditModal && 
+                        <AddStaffRow
+                            title="Edit Doctor"
+                            show={{showEditModal}}
+                            hide={() => setShowEditModal(false)}
+                            columns={columns}
+                            row={{supervisorId:editIndex.ecomId,ecomId:editIndex.ecomId,name:editIndex.name,departmentId:editIndex.departmentId}}
+                            btn="Edit Doctor"
+                            btn="Edit"
+                            request={adminEditSupervise}
+                        />
+                    }
                 </>
             );
         },

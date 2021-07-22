@@ -103,13 +103,14 @@ function StudentsDataTable() {
                     }
                     {showEditModal && 
                         <AddStaffRow
-                        show={showEditModal}
-                        hide={() => setShowEditModal(false)}
-                        columns={columns}
-                        row={{studentId:editIndex.ecomId,ecomId:editIndex.ecomId,name:editIndex.name,departmentId:editIndex.departmentId}}
-                        btn="Edit Student"
-                        btn="Edit"
-                        request={adminEditStudent}
+                            title="Edit Student"
+                            show={showEditModal}
+                            hide={() => setShowEditModal(false)}
+                            columns={columns}
+                            row={{studentId:editIndex.ecomId,ecomId:editIndex.ecomId,name:editIndex.name,departmentId:editIndex.departmentId}}
+                            btn="Edit Student"
+                            btn="Edit"
+                            request={adminEditStudent}
                     />}
                 </>
             );

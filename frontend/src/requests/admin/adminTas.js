@@ -5,3 +5,7 @@ export function adminGetTas(axios){
 export function adminAddTa(axios,data){
     return axios.post("/admin/supervisor/ta/add",data);
 }
+
+export function adminEditSupervise(axios,data){
+    return axios.post("/admin/supervisor/edit",data);
+}

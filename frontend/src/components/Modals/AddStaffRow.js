@@ -28,14 +28,16 @@ function AddStaffRow(props) {
     }
     const handelOnClick = (e)=>{
         e.preventDefault();
+        console.log(newRow); 
+
         request(newRow)
             .then((res)=>{
-                // console.log(newRow); 
                 toast.success(res.data.message);  
                 window.location.reload();
             })
             .catch((error)=>{
-                toast.error("couldn't add");
+                // console.log(error);
+                toast.error("Failed");
             })
     }
 

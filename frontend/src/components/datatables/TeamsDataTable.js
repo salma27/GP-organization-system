@@ -128,9 +128,9 @@ function TeamsDataTable() {
         //     },
         // },
         {
-            name: "false",
+            name: "Edit",
             options: {
-                filter: true,
+                filter: false,
                 sort: false,
                 empty: true,
                 customBodyRender: (value, tableMeta, updateValue) => {

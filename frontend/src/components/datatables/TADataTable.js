@@ -9,28 +9,8 @@ import { toast } from "react-toastify";
 import { AddStaffRow } from "components/Modals";
 import { IconButton } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
-import { adminAddTa } from "requests";
-
-const columns = [
-    // { name: "ID", options: { display: "excluded", filter: false } },
-    { name: "name", label: "Name", options: { filterType: "textField" } },
-    { name: "ecomId", label: "Ecom ID", options: { filterType: "textField" } },
-    { name: "password", label:"password", options: { display: "excluded", filter: false } },
-    { name: "department", label: "Department", options: { filterType: "checkbox" } },
-    { name: "teamsSlots", label:"Team Of Slots", options: { filter: false } },
-    { name: "teams", label:"Teams Taken",
-        options: { 
-            filter: false,
-            customBodyRender: (value, tableMeta, updateValue) => {
-                return (
-                    <div>{value && value.map((v,i)=> v + ", ")}</div>
-                );
-            },
-        } ,
-    },
-    { name: "bio", options: { display: "excluded", filter: false } },
-    { name: "technologies", options: { display: "excluded", filter: false } },
-];
+import { adminAddTa, adminEditSupervise } from "requests";
+import EditIcon from "@material-ui/icons/Edit";
 
 function TADataTable() {
     const [request,requesting] = useRequest(adminGetTas);
@@ -38,6 +18,56 @@ function TADataTable() {
     const [deleteRequest, DeleteRequesting] = useRequest(adminDeleteStaff);
     const [showAddModal, setShowAddModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
+    const [editIndex,setEditIndex] = useState({});
+
+    const columns = [
+        // { name: "ID", options: { display: "excluded", filter: false } },
+        { name: "name", label: "Name", options: { filterType: "textField" } },
+        { name: "ecomId", label: "Ecom ID", options: { filterType: "textField" } },
+        { name: "password", label:"password", options: { display: "excluded", filter: false } },
+        { name: "department", label: "Department", options: { filterType: "checkbox" } },
+        { name: "teamsSlots", label:"Team Of Slots", options: { filter: false } },
+        { name: "teams", label:"Teams Taken",
+            options: { 
+                filter: false,
+                customBodyRender: (value, tableMeta, updateValue) => {
+                    return (
+                        <div>{value && value.map((v,i)=> v + ", ")}</div>
+                    );
+                },
+            } ,
+        },
+        // { name: "bio", options: { display: "excluded", filter: false } },
+        // { name: "technologies", options: { display: "excluded", filter: false } },
+        {
+            name: "Edit",
+            options: {
+                filter: false,
+                sort: false,
+                empty: true,
+                customBodyRender: (value, tableMeta, updateValue,) => {
+                    return (
+                        <>
+                            <IconButton
+                                style={{ order: -1 }}
+                                onClick={() =>{
+                                    setEditIndex(data[tableMeta.rowIndex])
+                                    setShowEditModal(true);
+                                   
+                                    // console.log(data[tableMeta.rowIndex]);
+                                    // window.alert(
+                                    //     `Clicked "Edit" for row ${tableMeta.rowIndex}`
+                                    // )
+                                }}
+                            >
+                                <EditIcon />
+                            </IconButton>
+                        </>
+                    );
+                },
+            },
+        },
+    ];
 
     const options = {
         selectableRows: "multiple",
@@ -72,16 +102,18 @@ function TADataTable() {
                             row={{technologies:[]}}
                         />
                     }
-                    {/* {showEditModal && 
-                        <EditOldProjectRow
-                        show={showEditModal}
-                        hide={() => setShowEditModal(false)}
-                        columns={columns}
-                        row={editIndex}
-                        departments={departments}
-                        tech={Technologies}
-                        btn="Edit Row"
-                    />} */}
+                    {showEditModal && 
+                        <AddStaffRow
+                            title="Edit Teacher Assistant"
+                            show={{showEditModal}}
+                            hide={() => setShowEditModal(false)}
+                            columns={columns}
+                            row={{supervisorId:editIndex.ecomId,ecomId:editIndex.ecomId,name:editIndex.name,department:editIndex.department}}
+                            btn="Edit Teacher Assistant"
+                            btn="Edit"
+                            request={adminEditSupervise}
+                        />
+                    }
                 </>
             );
         },
