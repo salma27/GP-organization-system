@@ -2,27 +2,48 @@ import React, { useState } from "react";
 import "./FieldsOfExperience.css";
 import { Button, Form, Col, Row, Container } from "react-bootstrap";
 import { BsButton } from "utils";
+import { useRequest, useTechnology } from "hooks";
+import { toast } from "react-toastify";
+import editStudentProfile from "requests/editStudentProfile";
 
 function FieldsOfExperience(props) {
-    const [value, setValue] = useState([]);
+    const [allTech] = useTechnology();
+    const [myTech, setMyTech] = useState(props.tech);
     const [oneTech, setOne] = useState();
-    const selected = () => {
-        if (oneTech && !value.includes(oneTech) && oneTech !== "-1")
-            setValue([...value, oneTech]);
+    const [request, requesting] = useRequest(editStudentProfile);
+    function editProfile(event) {
+        event.preventDefault();
+        request({})
+            .then((r) => {
+                toast.success("Updated successully");
+            })
+            .catch((e) => {
+                toast.error("Error updating profile");
+            });
+    }
+    const selected = (e) => {
+        if (oneTech && !myTech.includes(oneTech) && oneTech !== "-1")
+            setMyTech([...myTech, oneTech]);
+        editProfile();
     };
     const setOneItem = (e) => setOne(e.target.value);
-    const removeItem = (index) => {
+    const removeItem = (one) => {
         const temp = [];
-        value.forEach((v, i) => {
-            if (index !== i) {
+        myTech.forEach((v) => {
+            if (one !== v) {
                 temp.push(v);
             }
         });
-        setValue(temp);
+        setMyTech(temp);
     };
     return (
         <>
-            <Form onSubmit={(e) => e.preventDefault()} className="w-100">
+            <Form
+                onSubmit={(e) => {
+                    //e.preventDefault();
+                }}
+                className="w-100"
+            >
                 <Form.Group as={Col} controlId="formGridState">
                     <Form.Label>Fields Of Experience:</Form.Label>
                     <Form.Control
@@ -33,16 +54,21 @@ function FieldsOfExperience(props) {
                     >
                         <option value="-1" id="list"></option>
 
-                        {props.tech.map((addField, i) => (
-                            <option id="list" value={addField.name} key={i}>
-                                {addField.name}
-                            </option>
-                        ))}
+                        {allTech.length &&
+                            allTech.map((addField) => (
+                                <option
+                                    id="list"
+                                    value={addField.name}
+                                    key={addField.id}
+                                >
+                                    {addField.name}
+                                </option>
+                            ))}
                     </Form.Control>
                 </Form.Group>
                 <BsButton size="sm" id="addBtn" onClick={selected} label="+" />
             </Form>
-            {value.length ? (
+            {myTech && myTech.length && (
                 <>
                     <hr
                         style={{
@@ -52,14 +78,17 @@ function FieldsOfExperience(props) {
                         }}
                     />
                     <Container id="field">
-                        {value.map((v, i) => (
+                        {myTech.map((v) => (
                             <Row
-                                key={i}
+                                key={v}
                                 style={{ marginTop: "10px" }}
                                 width="100%"
                             >
                                 <Col
-                                    style={{ marginLeft: "5px", float: "left" }}
+                                    style={{
+                                        marginLeft: "5px",
+                                        float: "left",
+                                    }}
                                     className="choosen"
                                 >
                                     {v}
@@ -72,7 +101,7 @@ function FieldsOfExperience(props) {
                                         }}
                                         size="sm"
                                         type="submit"
-                                        onClick={() => removeItem(i)}
+                                        onClick={() => removeItem(v)}
                                         variant="secondary"
                                     >
                                         X
@@ -82,7 +111,7 @@ function FieldsOfExperience(props) {
                         ))}
                     </Container>
                 </>
-            ) : null}
+            )}
         </>
     );
 }

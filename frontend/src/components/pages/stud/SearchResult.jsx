@@ -17,7 +17,7 @@ const style = {
 
 const StudentsSearchResult = (props) => {
     const search = {search:props.match.params.id,type:props.match.params.type};
-    console.log(search);
+    //console.log(search);
     const [allResults, setAllResults] = useState([]);
     const [requestAll, requestingAll] = useRequest(search.type==="students"?getAllStudents
     :search.type==="doctors"?getAllDoctors
