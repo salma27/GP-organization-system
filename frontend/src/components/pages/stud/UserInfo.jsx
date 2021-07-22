@@ -28,8 +28,8 @@ const location = useLocation();
 const { res, student } = location.state;
 const id = res.ecomId;
 const isStudent = student;
-const [show, setShow] = useState(props.show?props.show:false);
-const [btn, setBtn] = useState(props.btn?props.btn:false);
+const show = props.show?props.show:false;
+const btn = props.btn?props.btn:false;
 
 
     const [request, requesting] = useRequest(isStudent?getOneStudent:getOneSupervisor);
@@ -50,18 +50,10 @@ useEffect(() => {
     return (
         <div className="container-fluid" style={style}>
             <div className="row" >
-                {/* <figure className="figure col-2 mx-auto personImg">
-                    <img src="\profile.svg" className="figure-img img-fluid rounded mx-auto " alt="..."/>
-                    <figcaption className="figure-caption text-center">سهيل هاني محمد صلاح الدين محمد فوزي </figcaption>
-                </figure> */}
-                {/* ,paddingTop:"15%" */}
                 
                 
                 <div className="col-12 col-lg-12 m-auto" >
-                    {/* <div>
-                        <button style={{width:"50%",backgroundColor:"green"}}>person information</button>
-                        <button style={{width:"50%",backgroundColor:"green"}}>team information</button>
-                    </div> */}
+                    
                     <PersonInfo show={show} btn={btn} info={user} isStudent={isStudent}/>
                     <hr />
                     
@@ -71,27 +63,9 @@ useEffect(() => {
                     </div>
                     <hr />
                     <Note note={user.bio}/>
-                    {/* <hr />
-                    <div className="left-link">
-                        <Link to={r.teamInfo} className="personInfo-hidder link-btn w-auto">Go To Team <FaHandPointRight />
-                        </Link>
-                    </div> */}
+                    
                     
                 </div>
-                {/* <div className="col-3 " className="back" >
-                    <img src="/imgs/profileInfo.svg" /> */}
-                    {/* <div className="card links-list">
-                        <button className="btn link-btn">
-                            <RiProfileLine />
-                            <label className="link-btn-title">Profile</label>
-                        </button>
-                        <button className="btn link-btn">
-                            <IoPeopleCircle />
-                            <label className="link-btn-title">Team Info</label>
-                        </button>
-                    </div> */}
-                    
-                {/* </div> */}
                 
             </div>
         </div>

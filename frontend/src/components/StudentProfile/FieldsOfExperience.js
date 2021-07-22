@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./FieldsOfExperience.css";
-import {Button, Form, Col, Row, Container} from "react-bootstrap";
-import {BsButton} from "utils";
+import { Button, Form, Col, Row, Container } from "react-bootstrap";
+import { BsButton } from "utils";
 
 function FieldsOfExperience(props) {
     const [value, setValue] = useState([]);
@@ -27,15 +27,15 @@ function FieldsOfExperience(props) {
                     <Form.Label>Fields Of Experience:</Form.Label>
                     <Form.Control
                         as="select"
-                        style={{backgroundColor: "#e9ecef", opacity: 1}}
+                        style={{ backgroundColor: "#e9ecef", opacity: 1 }}
                         onChange={setOneItem}
                         //id="experienceList"
                     >
                         <option value="-1" id="list"></option>
 
-                        {props.tech.map((addField) => (
-                            <option id="list" value={addField} key={addField}>
-                                {addField}
+                        {props.tech.map((addField, i) => (
+                            <option id="list" value={addField.name} key={i}>
+                                {addField.name}
                             </option>
                         ))}
                     </Form.Control>
@@ -55,11 +55,11 @@ function FieldsOfExperience(props) {
                         {value.map((v, i) => (
                             <Row
                                 key={i}
-                                style={{marginTop: "10px"}}
+                                style={{ marginTop: "10px" }}
                                 width="100%"
                             >
                                 <Col
-                                    style={{marginLeft: "5px", float: "left"}}
+                                    style={{ marginLeft: "5px", float: "left" }}
                                     className="choosen"
                                 >
                                     {v}

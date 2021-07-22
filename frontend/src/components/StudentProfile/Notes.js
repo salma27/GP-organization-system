@@ -1,10 +1,10 @@
-import React, {useState} from "react";
-import {Form} from "react-bootstrap";
-import {BsButton} from "utils";
+import React, { useState } from "react";
+import { Form } from "react-bootstrap";
+import { BsButton } from "utils";
 import "./Notes.css";
 
-function Notes() {
-    const [note, setNote] = useState("Any notes?");
+function Notes(props) {
+    const [note, setNote] = useState(props.bio);
     return (
         <>
             <Form onSubmit={(e) => e.preventDefault()} className="w-100">
@@ -18,10 +18,7 @@ function Notes() {
                             backgroundColor: "#e9ecef",
                             opacity: 1,
                         }}
-                        value="Any notes?"
-                        onClick={() => {
-                            if (note === "Any notes?") setNote("");
-                        }}
+                        value={note}
                         onChange={(e) => {
                             setNote(e.target.value);
                         }}

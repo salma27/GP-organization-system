@@ -36,7 +36,6 @@ const StudentCard = (props) => {
                             <img src="\profile.svg" className="mw-100"/>
                         </div>
                         <div className="col-9 col-md-7 col-lg-8">
-                            {/* {isStudent && */}
                                 <Link to={{
                                     pathname:props.isStudent?r.userInfo:r.staffInfo,
                                     state:{res: props.result, student: props.isStudent},
@@ -45,14 +44,7 @@ const StudentCard = (props) => {
                                         {props.result.name}
                                     </b>
                                 </Link> 
-                            {/*}
-                            {!isStudent && 
-                                <Link to={r.staffInfo}>
-                                    <b className="h6 font-weight-bold" style={{color:"black"}}>
-                                        {name}
-                                    </b>
-                                </Link>
-                            } */}
+                            
                             <p className="mb-0" style={{fontSize:"small",color:"black"}}>Department: <b style={{font:"caption"}}>{props.isStudent?props.result.departmentId:props.result.department}</b></p>
                             { !props.isStudent ? 
                                 props.result.teamsSlots > 0 ? <p className="mb-0 text-success" style={{fontSize:"small"}}>Can take <b>{props.result.teamsSlots - props.result.teams.length}</b> teams</p>
@@ -87,29 +79,10 @@ const StudentCard = (props) => {
                 <hr />
                 <div className="row">
                     <div className="col-12 mb-1">
-                        {/* <Card.Text>
-                            {tech.map((t, i) => (
-                                <Badge
-                                    pill
-                                    style={{
-                                        // backgroundColor: "white",
-                                        color: "#00BFA6",
-                                        borderColor: "#00BFA6",
-                                        borderWidth: "1px",
-                                        borderStyle: "solid",
-                                    }}
-                                    className="mr-1 mb-1"
-                                    key={i}
-                                >
-                                    {t}
-                                </Badge>
-                            ))}
-                            {!tech.length && "No technologies provided"}
-                        </Card.Text> */}
+                        
                         <Technologies tech={props.isStudent? props.result.technologyIds:props.result.technologies} />
                     </div>
                 </div>
-                {/* <hr className="d-inline d-md-none"/> */}
                 {(!isStaff || (isStaff && props.isStudent)) &&
                 <div className="row">
                     <div className="d-inline d-md-none col-12">

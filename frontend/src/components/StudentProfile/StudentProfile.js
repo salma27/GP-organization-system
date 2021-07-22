@@ -1,19 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BasicInfo from "./BasicInfo";
 import FieldsOfExperience from "./FieldsOfExperience";
 import Notes from "./Notes";
 import "./StudentProfile.css";
 import { StudentProfileImg, ProfileImg } from "utils";
-import { useAuthContext } from "hooks";
+import { useAuthContext, useRequest } from "hooks";
+import { getAllTechnologies } from "requests";
+import { toast } from "react-toastify";
+import getMyProfile from "requests/getMyProfile";
 
 function StudentProfile() {
-    const {auth} = useAuthContext();
-    const technology = [
-        "Machine Learning",
-        "Artifical Intelligence",
-        "Web Application",
-        "Others",
-    ];
+    const { auth } = useAuthContext();
+    const technology = [];
+    const [request, requesting] = useRequest(getMyProfile);
+    const [profile, setProfile] = useState([]);
+    const [bio, setBio] = useState("");
+    useEffect(() => {
+        request({})
+            .then((r) => {
+                setProfile(r.data);
+                setBio(r.data.bio);
+            })
+            .catch((e) => {
+                toast.error("Error loading profile info");
+            });
+    }, []);
     return (
         <>
             {/* <SearchBar /> */}
@@ -23,7 +34,7 @@ function StudentProfile() {
                 </div>
                 <div className="col-12 col-md-6 mb-5">
                     <div className="studentInfo">
-                        <BasicInfo />
+                        <BasicInfo info={profile} />
                     </div>
                 </div>
                 <div className="col-12 col-md-6 mb-5">
@@ -33,7 +44,7 @@ function StudentProfile() {
                 </div>
                 <div className="col-12 col-md-6 mb-5">
                     <div className="studentInfo">
-                        <Notes />
+                        <Notes bio={bio} />
                     </div>
                 </div>
             </div>
