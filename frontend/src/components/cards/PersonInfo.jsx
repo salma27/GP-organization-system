@@ -36,7 +36,8 @@ const PersonInfo = ({show=false,btn=false, info}) => {
                 <AskToJoinMyTeam
                     show={showModal}
                     hide={() => setShowModal(false)}
-                    projects={projects}  
+                    projects={projects} 
+                    supervisorID = {info.ecomId} 
                 />
                </> 
             }

@@ -1,12 +1,25 @@
 import { React, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
+import { toast } from "react-toastify";
+import { AskToBeMySupervisor } from "requests";
+import { useRequest } from "hooks";
 
 function AskToJoinMyTeam(props) {
     const [selectedProject, setSelectedProject] = useState();
     const changeHandler = (e) => {
         setSelectedProject(e.target.value);
         console.log(e.target.value); ///return the index of the project not the project name itself
+    };
+    const [request, requesting] = useRequest(AskToBeMySupervisor);
+    const sendRequest = () => {
+        request({ ecomId: props.supervisorID })
+            .then((r) => {
+                toast.success("Request sent successfully");
+            })
+            .catch((e) => {
+                toast.error("Error sending request");
+            });
     };
     return (
         <>
@@ -53,6 +66,7 @@ function AskToJoinMyTeam(props) {
                             color: "white",
                         }}
                         disabled={!props.projects.length ? true : false}
+                        onClick={sendRequest}
                     >
                         Send Request
                     </Button>

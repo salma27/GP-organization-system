@@ -89,6 +89,7 @@ const Projects = (props) => {
                                         project={p}
                                         key={i}
                                         btn={btn}
+                                        supervisorID={props.state.res.ecomId}
                                     />
                                 ))
                             ) : (
