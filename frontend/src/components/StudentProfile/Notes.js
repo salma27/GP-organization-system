@@ -1,5 +1,5 @@
 import { useRequest } from "hooks";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 import editStudentProfile from "requests/editStudentProfile";
@@ -9,9 +9,12 @@ import "./Notes.css";
 function Notes(props) {
     const [note, setNote] = useState({ value: props.info.bio });
     const [request, requesting] = useRequest(editStudentProfile);
+    useEffect(() => {
+        setNote({ value: props.info.bio });
+    }, [props.info.bio]);
     const editProfile = (event) => {
         event.preventDefault();
-        request({ bio: note })
+        request({ bio: note.value })
             .then((r) => {
                 toast.success("Updated successully");
             })
@@ -22,7 +25,6 @@ function Notes(props) {
     const handleChange = ({ target: { name, value } }) => {
         setNote({ ...note, [name]: value });
     };
-    console.log(note.value);
     return (
         <>
             <Form className="w-100">
@@ -37,15 +39,10 @@ function Notes(props) {
                             backgroundColor: "#e9ecef",
                             opacity: 1,
                         }}
-                        value={props.info.bio}
+                        value={note.value}
                         name="value"
                         id="value"
                         onChange={handleChange}
-                        /*(e) => {
-                            setNote(props.info.bio);
-                            setNote(e.target.value);
-                            console.log(note);
-                        }}*/
                     />
                 </Form.Group>
                 <BsButton

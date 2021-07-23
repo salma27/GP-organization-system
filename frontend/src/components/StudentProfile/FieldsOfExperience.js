@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./FieldsOfExperience.css";
 import { Button, Form, Col, Row, Container } from "react-bootstrap";
 import { BsButton } from "utils";
@@ -12,8 +12,12 @@ function FieldsOfExperience(props) {
     const [oneTech, setOne] = useState();
     const [request, requesting] = useRequest(editStudentProfile);
 
-    function editProfile(event) {
-        event.preventDefault();
+    useEffect(() => {
+        setMyTech(props.profile.technologyIds);
+    }, [props.profile.technologyIds]);
+
+    function editProfile() {
+        //event.preventDefault();
         request({ technologyIds: myTech })
             .then((r) => {
                 toast.success("Updated successully");
@@ -23,13 +27,15 @@ function FieldsOfExperience(props) {
             });
     }
     const selected = (e) => {
-        if (oneTech && !myTech.includes(oneTech) && oneTech !== "-1")
+        e.preventDefault();
+        if (oneTech && !myTech.includes(oneTech) && oneTech !== "-1") {
             setMyTech([...myTech, oneTech]);
-        editProfile();
+            editProfile();
+        }
     };
     const setOneItem = (e) => {
         setOne(e.target.value);
-        console.log("mine: ", myTech);
+        // console.log("mine: ", myTech);
     };
     const removeItem = (one) => {
         const temp = [];
@@ -64,7 +70,7 @@ function FieldsOfExperience(props) {
                             allTech.map((addField) => (
                                 <option
                                     id="list"
-                                    value={addField.name}
+                                    value={addField.id}
                                     key={addField.id}
                                 >
                                     {addField.name}

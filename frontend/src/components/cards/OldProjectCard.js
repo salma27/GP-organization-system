@@ -46,7 +46,7 @@ const OldProjectCard = ({
                     setDr(r.data);
                 })
                 .catch((e) => {
-                    Toast.error("couldn't get idea's owner");
+                    toast.error("couldn't get idea's owner");
                 });
         }
     }, []);
