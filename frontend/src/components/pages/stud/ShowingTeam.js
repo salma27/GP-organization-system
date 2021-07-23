@@ -5,7 +5,7 @@ import { useAuthContext, useRequest } from "hooks";
 import { confirmAction } from "utils";
 import AskToJoinMyTeam from "components/Modals/AskToJoinMyTeam";
 import { toast } from "react-toastify";
-import { getSearchStudentTeamInfo } from "requests";
+import { getSearchStudentTeamInfo, StudentRequestToJoinTeam } from "requests";
 
 const projects = ["pro1", "pro4", "pro5"];
 
@@ -27,8 +27,10 @@ const ShowinTeam = (props) => {
     const [students, setStudents] = useState([]);
     const [doctors, setDoctors] = useState([]);
     const [TAs, setTAs] = useState([]);
-    const [technologies,setTechnologies] = useState([]);
-
+    const [technologies, setTechnologies] = useState([]);
+    const [requestJoinTeam, requestingJoionTeam] = useRequest(
+        StudentRequestToJoinTeam
+    );
     useEffect(() => {
         request({ id: props.res.teamId })
             .then((r) => {
@@ -46,11 +48,9 @@ const ShowinTeam = (props) => {
                 });
                 r.data.students.forEach((element) => {
                     arr3.push(element);
-                    element.technologyIds.forEach(tech=>{
-                        if(!arr4.includes(tech))
-                            arr4.push(tech);
-                    })
-                    
+                    element.technologyIds.forEach((tech) => {
+                        if (!arr4.includes(tech)) arr4.push(tech);
+                    });
                 });
 
                 setDoctors(arr1);
@@ -64,11 +64,19 @@ const ShowinTeam = (props) => {
                 toast.error("Error showing team information");
             });
     }, []);
-    //console.log("ta: ", TAs, "doc:", doctors);
     const confirm = () => {
         confirmAction({
             message: "Are you sure you want to send this request?",
-            onConfirm: () => {},
+            onConfirm: () => {
+                requestJoinTeam({ teamId: props.result.teamId })
+                    .then((r) => {
+                        toast.success("Request sent successfully");
+                    })
+                    .catch(({ response }) => {
+                        toast.error(response.data.message);
+                        toast.error("Error sending request");
+                    });
+            },
         });
     };
 
