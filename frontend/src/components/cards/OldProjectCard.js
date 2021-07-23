@@ -31,7 +31,8 @@ const OldProjectCard = ({
                     .then((r) => {
                         toast.success("Request sent successfully");
                     })
-                    .catch((e) => {
+                    .catch(({ response }) => {
+                        toast.error(response.data.message);
                         toast.error("Error sending the request");
                     });
             },
@@ -45,7 +46,8 @@ const OldProjectCard = ({
                 .then((r) => {
                     setDr(r.data);
                 })
-                .catch((e) => {
+                .catch(({ response }) => {
+                    toast.error(response.data.message);
                     toast.error("couldn't get idea's owner");
                 });
         }

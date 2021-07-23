@@ -11,7 +11,8 @@ const useTechnology = () => {
             .then((r) => {
                 setTech(r.data);
             })
-            .catch((e) => {
+            .catch(({ response }) => {
+                toast.error(response.data.message);
                 toast.error("Error getting technologies");
             });
     }, []);

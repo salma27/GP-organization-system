@@ -21,7 +21,8 @@ const ShowStaffProjects = () => {
             .then((r) => {
                 setProjects(r.data);
             })
-            .catch((e) => {
+            .catch(({ response }) => {
+                toast.error(response.data.message);
                 toast.error("Error Loading Doctors' Projects");
             });
     }, []);

@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Badge } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
-//import { Modal } from "utils-2";
 import { Editable, BsButton } from "utils";
 import FieldsOfExperience from "../StudentProfile/FieldsOfExperience";
 import "../StudentProfile/FieldsOfExperience.css";
@@ -71,11 +70,14 @@ function EditProject(props) {
                     .then((r) => {
                         toast.success("Project Added Successfully");
                     })
-                    .catch((e) => {
+                    .catch(({ response }) => {
+                        toast.error(response.data.message);
                         toast.error("Invalid Input");
                     });
             })
-            .catch((e) => {});
+            .catch(({ response }) => {
+                toast.error(response.data.message);
+            });
     }
 
     function editProject(event) {
@@ -96,11 +98,14 @@ function EditProject(props) {
                     .then((r) => {
                         toast.success("Project Updated Successfully");
                     })
-                    .catch((e) => {
+                    .catch(({ response }) => {
+                        toast.error(response.data.message);
                         toast.error("Coudln't update your project");
                     });
             })
-            .catch((e) => {});
+            .catch(({ response }) => {
+                toast.error(response.data.message);
+            });
     }
 
     return (
@@ -246,7 +251,7 @@ function EditProject(props) {
                                     </a>
                                 </Badge>
                             ))}
-                        {!tech.length && "No technologies provided"}
+                        {!tech.length ? "No technologies provided" : ""}
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>

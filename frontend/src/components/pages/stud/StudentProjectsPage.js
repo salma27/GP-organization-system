@@ -16,7 +16,8 @@ const StudentProjectsPage = () => {
             .then((r) => {
                 setProjects(r.data);
             })
-            .catch((e) => {
+            .catch(({ response }) => {
+                toast.error(response.data.message);
                 toast.error("Error getting all projects");
             });
     }, []);

@@ -89,7 +89,8 @@ const NewsFeedPage = () => {
             .then((r) => {
                 setFeeds(r.data);
             })
-            .catch((e) => {
+            .catch(({ response }) => {
+                toast.error(response.data.message);
                 toast.error("Error loading news feeds");
             });
     }, []);

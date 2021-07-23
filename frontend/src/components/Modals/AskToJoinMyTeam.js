@@ -18,7 +18,8 @@ function AskToJoinMyTeam(props) {
             .then((r) => {
                 toast.success("Request sent successfully");
             })
-            .catch((e) => {
+            .catch(({ response }) => {
+                toast.error(response.data.message);
                 toast.error("Error sending request");
             });
     };
@@ -31,8 +32,9 @@ function AskToJoinMyTeam(props) {
             .then((r) => {
                 setAllMyProjects(r.data);
             })
-            .catch((e) => {
+            .catch(({ response }) => {
                 setAllMyProjects([]);
+                toast.error(response.data.message);
                 toast.error("Couldn't load projects");
             });
     }, []);

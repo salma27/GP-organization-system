@@ -22,7 +22,8 @@ const ProjectCard = (props) => {
                     .then((r) => {
                         toast.success("Project deleted successfully");
                     })
-                    .catch((e) => {
+                    .catch(({ response }) => {
+                        toast.error(response.data.message);
                         toast.error("Coudln't delete the project");
                     });
             },

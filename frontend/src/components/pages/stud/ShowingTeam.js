@@ -60,7 +60,8 @@ const ShowinTeam = (props) => {
                 setTechnologies(arr4);
                 toast.success("data loaded successfully");
             })
-            .catch((e) => {
+            .catch(({ response }) => {
+                toast.error(response.data.message);
                 toast.error("Error showing team information");
             });
     }, []);
@@ -68,7 +69,7 @@ const ShowinTeam = (props) => {
         confirmAction({
             message: "Are you sure you want to send this request?",
             onConfirm: () => {
-                requestJoinTeam({ teamId: props.result.teamId })
+                requestJoinTeam({ teamId: props.res.teamId })
                     .then((r) => {
                         toast.success("Request sent successfully");
                     })
