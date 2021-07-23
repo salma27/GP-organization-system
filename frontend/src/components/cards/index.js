@@ -14,5 +14,9 @@ export { default as SupervisedProjectCard } from "./SupervisedProjectCard";
 export { default as StatNum } from "./StatNum";
 export { default as MyChart } from "./Chart";
 export { default as ShowingNames } from "./ShowingNames";
+
 export { default as NewsFeedCard } from "./NewsFeedCard";
 export { default as NotificationCard } from "./NotificationCard";
+
+export { default as AdminRulesCard } from "./AdminRulesCard";
+export {default as Loading} from "./Loading";

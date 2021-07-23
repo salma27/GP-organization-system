@@ -5,7 +5,7 @@ import { Badge, Card } from "react-bootstrap";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { confirmAction } from "utils";
 
-const NewsFeedCard = ({title, time, description}) => {
+const NewsFeedCard = ({title, date, content}) => {
     const [showModal, setShowModal] = useState(false);
     const deleteProject = () => {
         confirmAction({
@@ -20,7 +20,7 @@ const NewsFeedCard = ({title, time, description}) => {
                     <div style={{display:"flex",flexDirection:"column"}}>    
                         <b>{title}</b>
                         <span style={{fontSize:"small"}}>
-                            {moment(time).format("DD/MM/YYYY  hh:mm a")}
+                            {moment(date).format("DD/MM/YYYY  hh:mm a")}
                         </span>
                     </div>
                     <div className="ml-auto">
@@ -44,7 +44,7 @@ const NewsFeedCard = ({title, time, description}) => {
                     </div>
                 </Card.Title>
                 <hr />
-                <Card.Text className="d-flex">{description}</Card.Text>
+                <Card.Text className="d-flex">{content}</Card.Text>
             </Card.Body>
         </Card>
     );
