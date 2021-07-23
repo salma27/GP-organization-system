@@ -1,8 +1,11 @@
 import React from "react";
-import {Card} from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import moment from "moment";
 
-const FeedCard = ({title, time, description}) => {
+const FeedCard = (props) => {
+    const title = props.feed.title;
+    const time = props.feed.date;
+    const description = props.feed.content;
     return (
         <Card className="mb-3">
             <Card.Body>

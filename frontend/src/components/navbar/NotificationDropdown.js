@@ -1,37 +1,43 @@
 import React, { useEffect, useState, Link } from "react";
 import { BsCheckCircle } from "react-icons/bs";
+// import { FormattedMessage } from "react-intl";
+import { useRequest } from "hooks";
+//import { clientSubInfo } from "requests";
+import moment from "moment";
 import { BsTrashFill } from "react-icons/bs";
 import "./NotificationDropdown.css";
-import { RequestCard, NotificationRequestCard } from "components/cards";
+import {
+    RequestCard,
+    NotificationRequestCard,
+    NotificationCard,
+} from "components/cards";
+import getMyProfile from "requests/getMyProfile";
+import { toast } from "react-toastify";
+import { getStudentNotificationList } from "requests";
 
 const NotificationDropdown = () => {
-    const requests = [
-        {
-            name: "Alen douglas",
-            join: true,
-        },
-        {
-            name: "Mike mikey",
-            join: true,
-        },
-        {
-            name: "Ali kory",
-            join: false,
-        },
-        {
-            name: "My name",
-            join: false,
-        },
-        {
-            name: "Tarzan",
-            join: true,
-        },
-        {
-            name: "Elsa",
-            join: false,
-        },
-    ];
-
+    const [requestStudentID, requestingStudentID] = useRequest(getMyProfile);
+    const [requestNotiList, requestingNotiList] = useRequest(
+        getStudentNotificationList
+    );
+    const [notiList, setNotiList] = useState([]);
+    const [myID, setMyID] = useState();
+    useEffect(() => {
+        requestStudentID({})
+            .then((r) => {
+                setMyID(r.data.ecomId);
+                requestNotiList({ ownerId: r.data.ecomId })
+                    .then((res) => {
+                        setNotiList(res.data);
+                    })
+                    .catch((err) => {
+                        toast.error("Error loading notifications");
+                    });
+            })
+            .catch((e) => {
+                toast.error("Error loading notifications");
+            });
+    }, []);
     return (
         <li className="nav-item dropdown no-arrow mx-1">
             <a
@@ -62,20 +68,34 @@ const NotificationDropdown = () => {
                 >
                     Notifications
                 </h6>
-                <hr />
-                <h6 className="dropdown-header">Join Requests:</h6>
-                <hr />
 
+                <hr />
+                {notiList &&
+                    notiList.map((noti) => (
+                        <div key={noti.id}>
+                            <a className="dropdown-item" key={noti.id}>
+                                <div key={noti.id}>
+                                    <NotificationCard
+                                        noti={noti}
+                                        key={noti.id}
+                                    />
+                                </div>
+                            </a>
+                            <hr />
+                        </div>
+                    ))}
+                {/*<h6 className="dropdown-header">Join Requests:</h6>
+                <hr />
                 {requests.map((r, i) => (
-                    <>
-                        <a className="dropdown-item " href="#">
-                            <div>
+                    <div key={i}>
+                        <a className="dropdown-item" key={i}>
+                            <div key={i}>
                                 <NotificationRequestCard {...r} key={i} />
                             </div>
                         </a>
                         <hr />
-                    </>
-                ))}
+                    </div>
+                ))}*/}
             </div>
         </li>
     );

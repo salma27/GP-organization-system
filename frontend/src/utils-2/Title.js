@@ -1,7 +1,7 @@
 import React from "react";
-import {Helmet} from "react-helmet";
+//import {Helmet} from "react-helmet";
 
-const Title = ({title}) => (
+const Title = ({ title }) => (
     <Helmet>
         <meta charSet="utf-8" />
         <title>{title}</title>

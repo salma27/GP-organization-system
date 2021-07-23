@@ -35,6 +35,7 @@ const AdminRoutes = () => {
                     component={pages.AdminDashboard}
                 />*/}
 
+                <Route path={r.adminRules} component={pages.AdminRules} />
                 <Route
                     path={r.studentsDataTable}
                     component={pages.StudentsTablePage}
@@ -48,6 +49,10 @@ const AdminRoutes = () => {
                     component={pages.TeamTablePage}
                 />
                 <Route path={r.taDataTable} component={pages.TATablePage} />
+                <Route path={r.adminNewsFeed} component={pages.AdminNewsfeed} />
+                <Route path={r.adminOldProjects} component={pages.AdminOldProjects} />
+                <Route path={r.adminProjects} component={pages.AdminProjects} />
+
                 <Route
                     path="*"
                     render={({ staticContext }) => {

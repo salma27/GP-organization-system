@@ -1,14 +1,14 @@
 import React from "react";
-import DatePicker from "react-datepicker";
+//import DatePicker from "react-datepicker";
 import ValidatedInput from "./ValidatedInput";
-import "react-datepicker/dist/react-datepicker.css";
+//import "react-datepicker/dist/react-datepicker.css";
 import "./DateInput.css";
 
-const DateInput = ({value, name, onChange, ...props}) => {
+const DateInput = ({ value, name, onChange, ...props }) => {
     const onChangeHandler = (date) => {
-        onChange({target: {name: name, value: date}});
+        onChange({ target: { name: name, value: date } });
     };
-    const CustomInput = ({value: v, onClick}) => (
+    const CustomInput = ({ value: v, onClick }) => (
         <ValidatedInput
             onChange={onChange}
             {...props}

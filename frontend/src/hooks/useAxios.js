@@ -1,12 +1,14 @@
-import {useContext, useState, useEffect} from "react";
+import { useContext, useState, useEffect } from "react";
 import Axios from "axios";
-import {AuthContext} from "context";
+import { AuthContext } from "context";
 
 export default function useAxios() {
+
+
+    //const baseURL = "http://192.168.1.11:8000";
+    const baseURL = "http://76a9235300cf.ngrok.io";
     const {auth} = useContext(AuthContext);
     const {access_token} = {...auth};
-
-    const baseURL = "http://192.168.1.11:8000";
 
     const defaultAxios = Axios.create({
         baseURL,
@@ -17,7 +19,7 @@ export default function useAxios() {
         },
     });
 
-    const [axios, setAxios] = useState({instance: defaultAxios});
+    const [axios, setAxios] = useState({ instance: defaultAxios });
     useEffect(() => {
         setAxios({
             instance: Axios.create({
