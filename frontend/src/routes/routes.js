@@ -32,6 +32,7 @@ export const teamsDataTable = `${adminDashboard}/teams-data-table`;
 export const adminNewsFeed = `${adminDashboard}/news-feed`;
 export const adminOldProjects = `${adminDashboard}/old-projects`;
 export const adminProjects = `${adminDashboard}/projects`;
+export const AdminTechnologies = `${adminDashboard}/technologies`;
 
 export const staffBase = "/staff";
 export const staffDashboradRoute = `${staffBase}/dashboard`;
