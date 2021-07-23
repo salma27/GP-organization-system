@@ -47,7 +47,8 @@ const FilterCard = ({ year = true, setProjects }) => {
                 // console.log(r.data);
                 setProjects(r.data);
             })
-            .catch((e) => {
+            .catch(({ response }) => {
+                toast.error(response.data.message);
                 toast.error("Error Filtering");
             });
     }
