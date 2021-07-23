@@ -5,11 +5,14 @@ import * as r from "routes/routes";
 import {Technologies} from "components/cards";
 import AskToJoinMyTeam from "components/Modals/AskToJoinMyTeam";
 import {RiMailSendLine} from "react-icons/ri"
-import { useAuthContext } from "hooks";
+import { useAuthContext, useRequest } from "hooks";
 import { confirmAction } from "utils";
+import { toast } from "react-toastify";
+import { StudentRequestToJoinTeam } from "requests";
 
-const StudentCard = ({name, num,isStudent, department, tech = [], projects=[], id}) => {
+const StudentCard = (props) => {  
     const { isStaff } = useAuthContext();
+    const [projects, setProjects] = useState([]);
     const style = {
         border: "none",
         borderLeft: "1px solid hsla(200, 10%, 50%,100)",
@@ -17,14 +20,22 @@ const StudentCard = ({name, num,isStudent, department, tech = [], projects=[], i
         width: "1px",
     };
     const [showModal, setShowModal] = useState(false);
-
+    const [requestJoinTeam, requestingJoionTeam] = useRequest(StudentRequestToJoinTeam);
     const confirm = () => {
         confirmAction({
             message: "Are you sure you want to send this request?",
-            onConfirm: () => {},
+            onConfirm: () => {
+                requestJoinTeam({ecomId : props.result.ecomId})
+                .then((r)=>{
+                    toast.success("Request sent successfully");
+                })
+                .catch((e)=>{
+                    toast.error("Error sending request");
+                });
+            },
         });
     };
-
+    
     return (
         <Card className="mb-3">
             <Card.Body>
@@ -34,46 +45,44 @@ const StudentCard = ({name, num,isStudent, department, tech = [], projects=[], i
                             <img src="\profile.svg" className="mw-100"/>
                         </div>
                         <div className="col-9 col-md-7 col-lg-8">
-                            {/* {isStudent && */}
-                                <Link to={isStudent?r.userInfo:r.staffInfo}>
+                                <Link to={{
+                                    pathname:props.isStudent?r.userInfo:r.staffInfo,
+                                    state:{res: props.result, student: props.isStudent},
+                                    }}>
                                     <b className="h6 font-weight-bold" style={{color:"black"}}>
-                                        {name}
+                                        {props.result.name}
                                     </b>
                                 </Link> 
-                            {/*}
-                            {!isStudent && 
-                                <Link to={r.staffInfo}>
-                                    <b className="h6 font-weight-bold" style={{color:"black"}}>
-                                        {name}
-                                    </b>
-                                </Link>
-                            } */}
-                            <p className="mb-0" style={{fontSize:"small",color:"black"}}>Department: <b style={{font:"caption"}}>{department}</b></p>
-                            { !isStudent ? 
-                                num > 0 ? <p className="mb-0 text-success" style={{fontSize:"small"}}>Can take <b>{num}</b> teams</p>
+                            
+                            <p className="mb-0" style={{fontSize:"small",color:"black"}}>Department: <b style={{font:"caption"}}>{props.isStudent?props.result.departmentId:props.result.department}</b></p>
+                            { !props.isStudent ? 
+                                props.result.teamsSlots > 0 ? <p className="mb-0 text-success" style={{fontSize:"small"}}>Can take <b>{props.result.teamsSlots - props.result.teams.length}</b> teams</p>
                                     :<p className="mb-0 text-danger" style={{fontSize:"small"}}>Completed</p>
                                     :<></>
                             }
                         </div>
                         
                             <div className="d-none d-md-inline col-md-4 col-lg-3">
-                            {((!isStaff || (isStaff && isStudent)) && ((!isStudent && num > 0)||isStudent)) && 
+                            {
+                            ((!isStaff || (isStaff && props.isStudent)) && ((!props.isStudent && props.result.teamsSlots > 0)||props.isStudent)) && 
                             <>
                                 <button
                                     className="btn primary-btn py-1 px-2 mr-1 mb-1"
                                     
-                                    onClick={() => isStaff?setShowModal(true):confirm()}
+                                    onClick={() => (!isStaff && !props.isStudent)?setShowModal(true): confirm()}
                                     >
-                                        <RiMailSendLine className="mr-1"/> {isStaff?"Ask To Be Supervisor":"Ask to join my team"}
+                                        <RiMailSendLine className="mr-1"/> {((!isStaff && !props.isStudent)  || (isStaff && props.isStudent))&& "Ask To Be Supervisor"}
+                                        {!isStaff && props.isStudent && "Ask to join team"}
+                                        
                                     </button>
                                     <AskToJoinMyTeam
                                     show={showModal}
                                     hide={() => setShowModal(false)}
-                                    projects={projects}
+                                    projects={projects}     
             
                                     />
                             </>
-                            } 
+                        }
                             </div>
                         
                     </div>
@@ -82,30 +91,12 @@ const StudentCard = ({name, num,isStudent, department, tech = [], projects=[], i
                 <hr />
                 <div className="row">
                     <div className="col-12 mb-1">
-                        {/* <Card.Text>
-                            {tech.map((t, i) => (
-                                <Badge
-                                    pill
-                                    style={{
-                                        // backgroundColor: "white",
-                                        color: "#00BFA6",
-                                        borderColor: "#00BFA6",
-                                        borderWidth: "1px",
-                                        borderStyle: "solid",
-                                    }}
-                                    className="mr-1 mb-1"
-                                    key={i}
-                                >
-                                    {t}
-                                </Badge>
-                            ))}
-                            {!tech.length && "No technologies provided"}
-                        </Card.Text> */}
-                        <Technologies tech={tech} />
+                        
+                        <Technologies tech={props.isStudent? props.result.technologyIds:props.result.technologies} />
                     </div>
                 </div>
-                {/* <hr className="d-inline d-md-none"/> */}
-                {(!isStaff || (isStaff && isStudent)) &&
+                {/*
+                {(!isStaff || (isStaff && props.isStudent)) &&
                 <div className="row">
                     <div className="d-inline d-md-none col-12">
                             <button
@@ -128,10 +119,8 @@ const StudentCard = ({name, num,isStudent, department, tech = [], projects=[], i
                             />
                         
                         </div>
-                </div>
-                }
-               
-
+                            */}
+              
             </Card.Body>
         </Card>
     );

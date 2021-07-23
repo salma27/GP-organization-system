@@ -1,48 +1,86 @@
-import React, {useState} from "react";
+import React, { useEffect, useState } from "react";
 import "./FieldsOfExperience.css";
-import {Button, Form, Col, Row, Container} from "react-bootstrap";
-import {BsButton} from "utils";
+import { Button, Form, Col, Row, Container } from "react-bootstrap";
+import { BsButton } from "utils";
+import { useRequest, useTechnology } from "hooks";
+import { toast } from "react-toastify";
+import editStudentProfile from "requests/editStudentProfile";
 
 function FieldsOfExperience(props) {
-    const [value, setValue] = useState([]);
+    const [myTech, setMyTech] = useState(props.profile.technologyIds);
+
     const [oneTech, setOne] = useState();
-    const selected = () => {
-        if (oneTech && !value.includes(oneTech) && oneTech !== "-1")
-            setValue([...value, oneTech]);
+    const [request, requesting] = useRequest(editStudentProfile);
+
+    useEffect(() => {
+        setMyTech(props.profile.technologyIds);
+    }, [props.profile.technologyIds]);
+
+    function editProfile() {
+        //event.preventDefault();
+        request({ technologyIds: myTech })
+            .then((r) => {
+                toast.success("Updated successully");
+            })
+            .catch((e) => {
+                toast.error("Error updating profile");
+            });
+    }
+    const selected = (e) => {
+        e.preventDefault();
+        if (oneTech && !myTech.includes(oneTech) && oneTech !== "-1") {
+            setMyTech([...myTech, oneTech]);
+            editProfile();
+        }
     };
-    const setOneItem = (e) => setOne(e.target.value);
-    const removeItem = (index) => {
+    const setOneItem = (e) => {
+        setOne(e.target.value);
+        // console.log("mine: ", myTech);
+    };
+    const removeItem = (one) => {
         const temp = [];
-        value.forEach((v, i) => {
-            if (index !== i) {
+        myTech.forEach((v) => {
+            if (one !== v) {
                 temp.push(v);
             }
         });
-        setValue(temp);
+        setMyTech(temp);
+        editProfile();
     };
+    const [allTech] = useTechnology();
     return (
         <>
-            <Form onSubmit={(e) => e.preventDefault()} className="w-100">
+            <Form
+                onSubmit={(e) => {
+                    //e.preventDefault();
+                }}
+                className="w-100"
+            >
                 <Form.Group as={Col} controlId="formGridState">
                     <Form.Label>Fields Of Experience:</Form.Label>
                     <Form.Control
                         as="select"
-                        style={{backgroundColor: "#e9ecef", opacity: 1}}
+                        style={{ backgroundColor: "#e9ecef", opacity: 1 }}
                         onChange={setOneItem}
                         //id="experienceList"
                     >
                         <option value="-1" id="list"></option>
 
-                        {props.tech.map((addField) => (
-                            <option id="list" value={addField} key={addField}>
-                                {addField}
-                            </option>
-                        ))}
+                        {allTech.length &&
+                            allTech.map((addField) => (
+                                <option
+                                    id="list"
+                                    value={addField.id}
+                                    key={addField.id}
+                                >
+                                    {addField.name}
+                                </option>
+                            ))}
                     </Form.Control>
                 </Form.Group>
                 <BsButton size="sm" id="addBtn" onClick={selected} label="+" />
             </Form>
-            {value.length ? (
+            {myTech && myTech.length && (
                 <>
                     <hr
                         style={{
@@ -52,14 +90,17 @@ function FieldsOfExperience(props) {
                         }}
                     />
                     <Container id="field">
-                        {value.map((v, i) => (
+                        {myTech.map((v) => (
                             <Row
-                                key={i}
-                                style={{marginTop: "10px"}}
+                                key={v}
+                                style={{ marginTop: "10px" }}
                                 width="100%"
                             >
                                 <Col
-                                    style={{marginLeft: "5px", float: "left"}}
+                                    style={{
+                                        marginLeft: "5px",
+                                        float: "left",
+                                    }}
                                     className="choosen"
                                 >
                                     {v}
@@ -72,7 +113,7 @@ function FieldsOfExperience(props) {
                                         }}
                                         size="sm"
                                         type="submit"
-                                        onClick={() => removeItem(i)}
+                                        onClick={() => removeItem(v)}
                                         variant="secondary"
                                     >
                                         X
@@ -82,7 +123,7 @@ function FieldsOfExperience(props) {
                         ))}
                     </Container>
                 </>
-            ) : null}
+            )}
         </>
     );
 }

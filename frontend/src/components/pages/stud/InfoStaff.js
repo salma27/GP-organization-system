@@ -1,19 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar } from "components/navbar";
 import * as pages from "./";
 import { Tab, Tabs } from "react-bootstrap";
-import { useAuthContext } from "hooks";
+import { useAuthContext, useRequest } from "hooks";
+import { useLocation } from "react-router";
+import { toast } from "react-toastify";
+import { getOneSupervisor } from "requests";
 
 const style = {
     // backgrounds from 1 to 5 i.e. feed_4
     backgroundImage: "url(/feed_7.svg)",
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
-    backgroundSize: "cover"
+    backgroundSize: "cover",
     // height:"100vh",
 };
 
-const InfoStaff = () => {
+const InfoStaff = (props) => {
+    const location = useLocation();
+    const state = location.state;
+    /*const [request, requesting] = useRequest(getOneSupervisor);
+    const [user, setUser] = useState([]);
+
+    useEffect(() => {
+        request({ id: state.id })
+            .then((r) => {
+                setUser(r.data);
+            })
+            .catch((e) => {
+                toast.error("Error showing supervisor information");
+            });
+    }, []);
+*/
     const { isStaff } = useAuthContext();
     return (
         <div className="container-fluid" style={style}>
@@ -30,15 +48,24 @@ const InfoStaff = () => {
                         className="nav-justified"
                     >
                         <Tab eventKey="profile" title="Profile">
-                            <pages.UserInfo show={true} btn={true}/>
+                            <pages.UserInfo
+                                //info={user}
+                                state={state}
+                                show={true}
+                                btn={true}
+                            />
                         </Tab>
                         <Tab eventKey="projects" title="Projects">
-                            <pages.Projects btn={isStaff?false:true}/>
+                            <pages.Projects
+                                btn={isStaff ? false : true}
+                                state={state}
+                            />
                         </Tab>
                     </Tabs>
                 </div>
             </div>
         </div>
-    );};
+    );
+};
 
 export default InfoStaff;
