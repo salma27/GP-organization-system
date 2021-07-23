@@ -7,7 +7,11 @@ import { toast } from "react-toastify";
 import { deleteTeamProjectRequests } from "requests";
 import { confirmAction } from "utils";
 
-const ProjectCard = ({ title, description, technologyIds, id }) => {
+const ProjectCard = (props) => {
+    const title = props.project.title;
+    const description = props.project.description;
+    const technologyIds = props.project.technologies;
+    const id = props.project.id;
     const [showModal, setShowModal] = useState(false);
     const [request, requesting] = useRequest(deleteTeamProjectRequests);
     const deleteProject = () => {
@@ -64,23 +68,27 @@ const ProjectCard = ({ title, description, technologyIds, id }) => {
                     <Card.Text>{description}</Card.Text>
                     <hr />
                     <Card.Text>
-                        {technologyIds.map((t, i) => (
-                            <Badge
-                                pill
-                                style={{
-                                    // backgroundColor: "white",
-                                    color: "#00BFA6",
-                                    borderColor: "#00BFA6",
-                                    borderWidth: "1px",
-                                    borderStyle: "solid",
-                                }}
-                                className="mr-1 mb-1"
-                                key={i}
-                            >
-                                {t}
-                            </Badge>
-                        ))}
-                        {!technologyIds.length && "No technologies provided"}
+                        {technologyIds &&
+                            technologyIds.length &&
+                            technologyIds.map((t, i) => (
+                                <Badge
+                                    pill
+                                    style={{
+                                        // backgroundColor: "white",
+                                        color: "#00BFA6",
+                                        borderColor: "#00BFA6",
+                                        borderWidth: "1px",
+                                        borderStyle: "solid",
+                                    }}
+                                    className="mr-1 mb-1"
+                                    key={i}
+                                >
+                                    {t.name}
+                                </Badge>
+                            ))}
+                        {technologyIds &&
+                            !technologyIds.length &&
+                            "No technologies provided"}
                     </Card.Text>
                 </Card.Body>
             </Card>
