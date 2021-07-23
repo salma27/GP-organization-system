@@ -1,7 +1,9 @@
 export const root = "/";
 export const loginRoute = "/login";
+export const loginRouteWithEcom = "/login/:ecomId";
 export const ecomMockRoute = "/ecom-mock";
-export const registerRoute = "/register";
+export const studentRegisterRoute = "/register/student/:token";
+export const supervisorRegisterRoute = "/register/supervisor/:token";
 
 export const studentBase = "/student";
 export const studentDashboardRoute = `${studentBase}/dashboard`;

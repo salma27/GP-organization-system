@@ -1,21 +1,13 @@
 import React from "react";
-import { LoginImg } from "utils";
+import { Select } from "utils";
 import { Container, Row, Col } from "react-bootstrap";
 import "./register.css";
 import { useState } from "react";
-import { BsButton, TYPES } from "utils";
-import { Form, Checkbox } from "react-bootstrap";
-import { useAuthContext, useRequest, useValidation } from "hooks";
-import { loginRequests } from "requests";
+import { BsButton } from "utils";
+import { Form } from "react-bootstrap";
+import { useDepartments, useRequest } from "hooks";
 import { useHistory } from "react-router";
-import {
-    studentDashboardRoute,
-    staffDashboradRoute,
-    staffBase,
-    staffProfileRoute,
-} from "routes/routes";
-import { toast } from "react-toastify";
-import loginFormValidations from "components/forms/loginFormValidations";
+import { studentRegisterRoute, supervisorRegisterRoute } from "routes/routes";
 
 const style = {
     // backgrounds from 1 to 5 i.e. feed_4
@@ -23,110 +15,116 @@ const style = {
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
+    height: "100%",
 };
-const EcomMock = () => {
-    const [user, setUser] = useState({ id: "", password: "" });
-    const [isStudent, setIsStudent] = useState(false);
-    const { errors, validate, addErrors } = useValidation(loginFormValidations);
-    const [request, requesting] = useRequest(loginRequests);
-    const history = useHistory();
-    const { setAuth } = useAuthContext();
 
+const EcomMock = () => {
+    const [user, setUser] = useState({
+        ecomId: "",
+        name: "",
+        departmentId: "",
+        type: "",
+    });
+    const [studentRequest, requestingStudent] = useRequest((axios, data) =>
+        axios.post("/student/ecom/encode-token", data)
+    );
+    const [supervisorRequest, requestingSupervisor] = useRequest(
+        (axios, data) => axios.post("/supervisor/ecom/encode-token", data)
+    );
+    const history = useHistory();
+    const [, , departments] = useDepartments();
+    // console.log(departments);
+    const userTypes = [
+        { label: "Student", value: "st" },
+        { label: "Teaching Assistant", value: "ta" },
+        { label: "Doctor", value: "dr" },
+    ];
     const onChangeHandler = ({ target: { name, value } }) => {
         const newUser = { ...user, [name]: value };
-        validate(newUser, name).catch((e) => {});
+        setUser(newUser);
+    };
+    const onSelectHandler = ({ target: { name, value } }) => {
+        const newUser = { ...user, [name]: value.value };
         setUser(newUser);
     };
     function submit(event) {
         event.preventDefault();
-        validate(user)
-            .then(() => {
-                request({
-                    ecomId: user.id,
-                    password: user.password,
-                    type: isStudent ? TYPES.STUDENT : TYPES.STAFF,
+        if (user.type === "st")
+            studentRequest(user)
+                .then((r) => {
+                    const token = r.data;
+                    const route = studentRegisterRoute.replace(":token", token);
+                    history.push(route);
                 })
-                    .then((r) => {
-                        setAuth({
-                            access_token: r.data.token,
-                            is_logged_in: true,
-                            account_type: isStudent
-                                ? TYPES.STUDENT
-                                : TYPES.STAFF,
-                        });
-                        if (isStudent) history.push("/student/dashboard");
-                        else history.push("/staff/dashboard");
-                    })
-                    .catch((e) => {
-                        toast.error("Invalid ID/Password");
-                    });
-            })
-            .catch((e) => {});
+                .catch(() => {});
+        else
+            supervisorRequest(user)
+                .then((r) => {
+                    const token = r.data;
+                    const route = supervisorRegisterRoute.replace(":token", token);
+                    history.push(route);
+                })
+                .catch(() => {});
     }
 
     return (
-        <Container fluid id="login-container" style={style}>
-            <Row id="form">
-                <Col sm={12} className="centerImg">
-                    <LoginImg id="img" />
-                </Col>
+        <Container fluid id="mock-container" style={style}>
+            <Row id="mock-form">
                 <Col sm={12}>
-                    <Container fluid id="loginForm">
+                    <Container fluid id="mockForm">
                         <Form onSubmit={submit}>
                             <Form.Group size="lg" controlId="id">
-                                <Form.Label>ID</Form.Label>
+                                <Form.Label>Ecom ID</Form.Label>
                                 <Form.Control
-                                    placeholder="ID"
-                                    name="id"
+                                    placeholder="Ecom ID"
+                                    name="ecomId"
                                     autoFocus
                                     type="text"
-                                    value={user.id}
+                                    value={user.ecomId}
                                     onChange={onChangeHandler}
-                                    isInvalid={errors.id}
                                 />
-                                {errors.id && (
-                                    <Form.Control.Feedback type="invalid">
-                                        {errors.id}
-                                    </Form.Control.Feedback>
-                                )}
                             </Form.Group>
                             <Form.Group size="lg" controlId="password">
-                                <Form.Label>Password</Form.Label>
+                                <Form.Label>Name</Form.Label>
                                 <Form.Control
                                     autoFocus
-                                    type="password"
-                                    name="password"
-                                    placeholder="*****"
-                                    value={user.password}
+                                    type="text"
+                                    name="name"
+                                    placeholder="User name"
+                                    value={user.name}
                                     onChange={onChangeHandler}
-                                    isInvalid={errors.password}
                                 />
-                                {errors.password && (
-                                    <Form.Control.Feedback type="invalid">
-                                        {errors.password}
-                                    </Form.Control.Feedback>
-                                )}
                             </Form.Group>
-                            <Form.Group size="lg" controlId="isStudent">
-                                <div class="container w-100 text-center">
-                                    <h4>
-                                        <input
-                                            type="checkbox"
-                                            id="isStudent"
-                                            className="mr-2"
-                                            onClick={() => {
-                                                setIsStudent(!isStudent);
-                                            }}
-                                        ></input>
-                                        Student?
-                                    </h4>
-                                </div>
+                            <Form.Group size="lg">
+                                <Form.Label>Department</Form.Label>
+                                <Select
+                                    name="departmentId"
+                                    options={departments}
+                                    onChange={onSelectHandler}
+                                    placeholder="Select a department"
+                                />
+                            </Form.Group>
+                            <Form.Group size="lg">
+                                <Form.Label>User type</Form.Label>
+                                <Select
+                                    name="type"
+                                    options={userTypes}
+                                    onChange={onSelectHandler}
+                                    placeholder="Select user type"
+                                />
                             </Form.Group>
                             <BsButton
                                 size="lg"
                                 type="submit"
-                                id="loginBtn"
-                                label="Login"
+                                id="mockBtn"
+                                label={
+                                    requestingStudent ||
+                                    requestingSupervisor ? (
+                                        <i className="fas fa-spinner fa-spin"></i>
+                                    ) : (
+                                        "Take me to register"
+                                    )
+                                }
                             />
                         </Form>
                     </Container>

@@ -1,63 +1,98 @@
 import React from "react";
-import { LoginImg } from "utils";
+import { LoginImg, Select } from "utils";
 import { Container, Row, Col } from "react-bootstrap";
 import "./register.css";
 import { useState } from "react";
-import { BsButton, TYPES } from "utils";
-import { Form, Checkbox } from "react-bootstrap";
-import { useAuthContext, useRequest, useValidation } from "hooks";
-import loginFormValidations from "components/forms/loginFormValidations";
-import { loginRequests } from "requests";
-import { useHistory } from "react-router";
-import {
-    studentDashboardRoute,
-    staffDashboradRoute,
-    staffBase,
-    staffProfileRoute,
-} from "routes/routes";
+import { BsButton } from "utils";
+import { Form } from "react-bootstrap";
+import { useRequest, useTechnology, useValidation } from "hooks";
+import { useHistory, useParams } from "react-router";
+
+import vest, { test, enforce } from "vest";
 import { toast } from "react-toastify";
+import { loginRouteWithEcom } from "routes/routes";
 
+const registerValidations = vest.create("Register", (data, field) => {
+    vest.only(field);
+    ["password"].forEach((elem) => {
+        test(elem, "This field is required", () => {
+            enforce(data[elem].toString()).isNotEmpty();
+        });
+    });
+    test("password", "Password should be at least 8 characters long", () => {
+        enforce(data.password.toString()).longerThanOrEquals(8);
+    });
+});
 
-const EcomMock = () => {
-    const [user, setUser] = useState({ id: "", password: "" });
-    const [isStudent, setIsStudent] = useState(false);
-    const { errors, validate, addErrors } = useValidation(loginFormValidations);
-    const [request, requesting] = useRequest(loginRequests);
+const style = {
+    // backgrounds from 1 to 5 i.e. feed_4
+    backgroundImage: "url(/login.svg)",
+    backgroundRepeat: "no-repeat",
+    backgroundAttachment: "fixed",
+    backgroundSize: "cover",
+};
+
+const Register = ({ student, supervisor }) => {
+    const [user, setUser] = useState({
+        bio: "",
+        password: "",
+        teamsSlots: 0,
+        technologies: [],
+    });
+    const { errors, validate, addErrors } = useValidation(registerValidations);
+    const [studentRequest, requestingStudent] = useRequest((axios, data) =>
+        axios.post("/student", data)
+    );
+    const [supervisorRequest, requestingSupervisor] = useRequest(
+        (axios, data) => axios.post("/supervisor", data)
+    );
     const history = useHistory();
-    const { setAuth } = useAuthContext();
-
+    const [, , tech] = useTechnology();
+    let { token: ecomToken } = useParams();
     const onChangeHandler = ({ target: { name, value } }) => {
         const newUser = { ...user, [name]: value };
         validate(newUser, name).catch((e) => {});
+        setUser(newUser);
+    };
+    const onSelectHandler = ({ target: { name, value } }) => {
+        const newUser = { ...user, [name]: value.map((v) => v.value) };
         setUser(newUser);
     };
     function submit(event) {
         event.preventDefault();
         validate(user)
             .then(() => {
-                request({
-                    ecomId: user.id,
-                    password: user.password,
-                    type: isStudent ? TYPES.STUDENT : TYPES.STAFF,
-                })
-                    .then((r) => {
-                        setAuth({
-                            access_token: r.data.token,
-                            is_logged_in: true,
-                            account_type: isStudent
-                                ? TYPES.STUDENT
-                                : TYPES.STAFF,
+                if (student)
+                    studentRequest({ ...user, ecomToken })
+                        .then((r) => {
+                            const route = loginRouteWithEcom.replace(
+                                ":ecomId",
+                                r.data.ecomId
+                            );
+                            history.push(route);
+                        })
+                        .catch((e) => {
+                            toast.error(e.response.data.message);
                         });
-                        if (isStudent) history.push("/student/dashboard");
-                        else history.push("/staff/dashboard");
-                    })
-                    .catch((e) => {
-                        toast.error("Invalid ID/Password");
-                    });
+                else if (supervisor)
+                    supervisorRequest({ ...user, ecomToken })
+                        .then((r) => {
+                            const route = loginRouteWithEcom.replace(
+                                ":ecomId",
+                                r.data.ecomId
+                            );
+                            history.push(route);
+                        })
+                        .catch((e) => {
+                            toast.error(e.response.data.message);
+                        });
             })
             .catch((e) => {});
     }
-
+    //password
+    //techs
+    //bio
+    //slots for supervisor
     return (
         <Container fluid id="login-container" style={style}>
             <Row id="form">
@@ -67,25 +102,10 @@ const EcomMock = () => {
                 <Col sm={12}>
                     <Container fluid id="loginForm">
                         <Form onSubmit={submit}>
-                            <Form.Group size="lg" controlId="id">
-                                <Form.Label>ID</Form.Label>
-                                <Form.Control
-                                    placeholder="ID"
-                                    name="id"
-                                    autoFocus
-                                    type="text"
-                                    value={user.id}
-                                    onChange={onChangeHandler}
-                                    isInvalid={errors.id}
-                                />
-                                {errors.id && (
-                                    <Form.Control.Feedback type="invalid">
-                                        {errors.id}
-                                    </Form.Control.Feedback>
-                                )}
-                            </Form.Group>
                             <Form.Group size="lg" controlId="password">
-                                <Form.Label>Password</Form.Label>
+                                <Form.Label bsPrefix="text-lg mt-1">
+                                    Password
+                                </Form.Label>
                                 <Form.Control
                                     autoFocus
                                     type="password"
@@ -100,27 +120,58 @@ const EcomMock = () => {
                                         {errors.password}
                                     </Form.Control.Feedback>
                                 )}
-                            </Form.Group>
-                            <Form.Group size="lg" controlId="isStudent">
-                                <div class="container w-100 text-center">
-                                    <h4>
-                                        <input
-                                            type="checkbox"
-                                            id="isStudent"
-                                            className="mr-2"
-                                            onClick={() => {
-                                                setIsStudent(!isStudent);
-                                            }}
-                                        ></input>
-                                        Student?
-                                    </h4>
-                                </div>
+                                <Form.Label bsPrefix="text-lg mt-1">
+                                    Bio
+                                </Form.Label>
+                                <Form.Control
+                                    placeholder="Bio"
+                                    name="bio"
+                                    autoFocus
+                                    type="text"
+                                    value={user.bio}
+                                    onChange={onChangeHandler}
+                                    isInvalid={errors.bio}
+                                />
+                                <Form.Label bsPrefix="text-lg mt-1">
+                                    Technologies
+                                </Form.Label>
+                                <Select
+                                    name="technologies"
+                                    options={tech}
+                                    isMulti
+                                    onChange={onSelectHandler}
+                                    placeholder="Select Technologies you know"
+                                />
+
+                                {supervisor && (
+                                    <>
+                                        <Form.Label bsPrefix="text-lg mt-1">
+                                            Available team slots
+                                        </Form.Label>
+                                        <Form.Control
+                                            placeholder="Available team slots"
+                                            name="teamsSlots"
+                                            autoFocus
+                                            type="text"
+                                            value={user.teamsSlots}
+                                            onChange={onChangeHandler}
+                                            isInvalid={errors.teamsSlots}
+                                        />
+                                    </>
+                                )}
                             </Form.Group>
                             <BsButton
                                 size="lg"
                                 type="submit"
                                 id="loginBtn"
-                                label="Login"
+                                label={
+                                    requestingStudent ||
+                                    requestingSupervisor ? (
+                                        <i className="fas fa-spinner fa-spin"></i>
+                                    ) : (
+                                        "Register"
+                                    )
+                                }
                             />
                         </Form>
                     </Container>
@@ -129,4 +180,4 @@ const EcomMock = () => {
         </Container>
     );
 };
-export default EcomMock;
+export default Register;
