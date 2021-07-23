@@ -56,11 +56,9 @@ function EditProject(props) {
     };
     function addProject(event) {
         setProject({ ...project, [tech]: tech });
-        // console.log("in add button click");
         event.preventDefault();
         validate(project)
             .then(() => {
-                // console.log("Validation success");
                 const tmp = [];
                 tech.forEach((t) => {
                     tmp.push(t.id);
@@ -82,7 +80,6 @@ function EditProject(props) {
 
     function editProject(event) {
         setProject({ ...project, [tech]: tech });
-        //console.log("in edit button click");
         event.preventDefault();
         validate(project)
             .then(() => {
@@ -90,7 +87,6 @@ function EditProject(props) {
                 tech.forEach((t) => {
                     tmp.push(t.id);
                 });
-                //console.log("Validation success");
                 request({
                     projectId: props.projectId,
                     title: project.ptitle,
