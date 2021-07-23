@@ -4,11 +4,11 @@ import { AuthContext } from "context";
 
 export default function useAxios() {
 
+
+    //const baseURL = "http://192.168.1.11:8000";
+    const baseURL = "http://76a9235300cf.ngrok.io";
     const {auth} = useContext(AuthContext);
     const {access_token} = {...auth};
-
-    // const baseURL = "http://192.168.1.11:8000";
-    const baseURL = "http://4c8ea333e858.ngrok.io";
 
     const defaultAxios = Axios.create({
         baseURL,

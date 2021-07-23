@@ -12,7 +12,7 @@ const SearchForm = () => {
         setSearch({...search,[name]:value});
     };
     const onSubmit = (e) => {
-        e.preventDefault();
+        //e.preventDefault();
         if(search.search.length > 0)
             history.push(`${r.SearchResult}/${search.search}/${search.type}`)
         else 
@@ -22,7 +22,15 @@ const SearchForm = () => {
         <div>
             <form className="d-flex" onSubmit={onSubmit} >
                 <div className="d-flex border mr-1">
-                    <input className="form-control me-2 no-border" type="search" placeholder="Search" aria-label="Search" name="search" value={search.search} onChange={onChangeHandler}/>
+                    <input 
+                    className="form-control me-2 no-border" 
+                    type="search" 
+                    placeholder="Search" 
+                    aria-label="Search" 
+                    name="search" 
+                    value={search.search} 
+                    onChange={onChangeHandler}
+                    />
                     <span className="border-right"></span>
                     <select className="form-select text-center no-border" aria-label="Default select example" name="type" value={search.type} onChange={onChangeHandler} required>
                         <option value="" >select</option>

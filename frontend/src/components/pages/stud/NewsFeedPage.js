@@ -1,7 +1,10 @@
-import {FeedCard} from "components/cards";
-import {Navbar} from "components/navbar";
-import React from "react";
-
+import { FeedCard } from "components/cards";
+import { Navbar } from "components/navbar";
+import { useRequest } from "hooks";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { getNewsFeeds } from "requests";
+/*
 const feeds = [
     {
         title: "News Feed Title",
@@ -69,7 +72,7 @@ const feeds = [
         suscipit ligula. Cras tristique mi quis quam cursus
         bibendum. Quisque semper mauris ac nisi elementum lacinia.`,
     },
-];
+];*/
 const style = {
     // backgrounds from 1 to 5 i.e. feed_4
     backgroundImage: "url(/feed_7.svg)",
@@ -78,6 +81,19 @@ const style = {
     backgroundSize: "cover",
 };
 const NewsFeedPage = () => {
+    const [request, requesting] = useRequest(getNewsFeeds);
+    const [feeds, setFeeds] = useState([]);
+
+    useEffect(() => {
+        request({})
+            .then((r) => {
+                setFeeds(r.data);
+            })
+            .catch((e) => {
+                toast.error("Error loading news feeds");
+            });
+    }, []);
+
     return (
         <div className="container-fluid" style={style}>
             <div className="row">
@@ -87,9 +103,13 @@ const NewsFeedPage = () => {
                 <div className="col-12">
                     <div className="row">
                         <div className="col-12 col-lg-8 offset-lg-2">
-                            {feeds.map((f, i) => (
-                                <FeedCard {...f} key={i} />
-                            ))}
+                            {feeds &&
+                                feeds.map((f, i) => (
+                                    <FeedCard feed={f} key={i} />
+                                ))}
+                            {feeds && feeds.length === 0 && (
+                                <h5>No newsfeeds at the moment</h5>
+                            )}
                         </div>
                     </div>
                 </div>

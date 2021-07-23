@@ -3,17 +3,20 @@ import { Navbar } from "components/navbar";
 import * as pages from "./";
 import { Tab, Tabs, Nav } from "react-bootstrap";
 import { useAuthContext } from "hooks";
+import { useLocation } from "react-router";
 
 const style = {
     // backgrounds from 1 to 5 i.e. feed_4
     backgroundImage: "url(/feed_7.svg)",
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
-    backgroundSize: "cover"
+    backgroundSize: "cover",
     // height:"100vh",
 };
 
-const Info = () => {
+const Info = (props) => {
+    const location = useLocation();
+    const { res, student } = location.state;
     const { isStaff } = useAuthContext();
     return (
         <div className="container-fluid" style={style}>
@@ -33,7 +36,7 @@ const Info = () => {
                             <pages.UserInfo />
                         </Tab>
                         <Tab eventKey="team" title="Team">
-                            <pages.ShowingTeam />
+                            <pages.ShowingTeam res={res} />
                         </Tab>
                         {isStaff && (
                             <Tab eventKey="projects" title="Projects">

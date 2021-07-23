@@ -64,7 +64,7 @@ const StudentProjectsPage = () => {
                 setProjects(r.data);
             })
             .catch((e) => {
-                toast.error("Invalid Projects");
+                toast.error("Error getting all projects");
             });
     }, []);
 
