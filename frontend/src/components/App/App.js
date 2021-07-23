@@ -14,6 +14,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 import "bootstrap";
 import "@popperjs/core";
+// import { EcomMock, Register } from "components/ecom";
 
 const Links = () => (
     <div>
@@ -33,6 +34,8 @@ function App() {
             <BrowserRouter>
                 {/* <Links /> */}
                 <Switch>
+                    {/* <Route exact path={r.ecomMockRoute} component={EcomMock} />
+                    <Route exact path={r.registerRoute} component={Register} /> */}
                     <Route path={r.adminRoute} component={AdminRoutes} />
                     <Route path={r.staffBase} component={StaffRoutes} />
                     <Route path="/" component={UserRoutes} />
