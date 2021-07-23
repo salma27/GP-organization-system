@@ -5,8 +5,9 @@ import * as r from "routes/routes";
 import {Technologies} from "components/cards";
 import AskToJoinMyTeam from "components/Modals/AskToJoinMyTeam";
 import {RiMailSendLine} from "react-icons/ri"
-import { useAuthContext } from "hooks";
+import { useAuthContext, useRequest } from "hooks";
 import { confirmAction } from "utils";
+import { toast } from "react-toastify";
 
 const StudentCard = (props) => {  
     const { isStaff } = useAuthContext();
@@ -18,11 +19,19 @@ const StudentCard = (props) => {
         width: "1px",
     };
     const [showModal, setShowModal] = useState(false);
-
+    const [requestJoinTeam, requestingJoionTeam] = useRequest(StudentRequestToJoinTeam);
     const confirm = () => {
         confirmAction({
             message: "Are you sure you want to send this request?",
-            onConfirm: () => {},
+            onConfirm: () => {
+                requestJoinTeam({ecomId : props.result.ecomId})
+                .then((r)=>{
+                    toast.success("Request sent successfully");
+                })
+                .catch((e)=>{
+                    toast.error("Error sending request");
+                });
+            },
         });
     };
     
