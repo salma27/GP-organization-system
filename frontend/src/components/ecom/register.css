@@ -1,0 +1,71 @@
+#mockBtn {
+    /* margin-top: 5%; */
+    background-color: #70806D;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width:100%;
+    margin-bottom: 2rem;
+}
+#mockBtn:hover {
+    background-color: #686a6b;
+
+}
+/* rgb(214, 250, 250) 
+rgb(225, 250, 250)
+*/
+#mock-form{
+    /* width:30%; */
+    margin: auto;
+    border: 2px solid #70806D;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    /* background-image: url("./../../../img/img1.jpg"); */
+    box-shadow: 0 4px 8px 0 #625080, 0 6px 20px 0 #625080;
+}
+.form-control:focus{
+    color: #495057;
+    background-color: #fff;
+    border-color: #70806D;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(0 191 166 / 25%);
+}
+.form-group{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    margin-bottom: 2rem;
+}
+.form-label{
+    font-size:x-large;
+}
+.centerImg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+@media screen and (max-width:600px){
+    #mock-form{
+        width:100%;
+        height:100%;
+    }
+}
+
+#mock-container{
+    position: relative;
+    height: 100vh;
+    /* background-image: url(https://image.freepik.com/free-vector/abstract-molecules-soft-grey-background-molecular-structures-dna-strand-neural-network-genetic-engineering-scientific-technological-concept_120542-594.jpg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* width: 100%;
+    height: 700px;
+    background-repeat: no-repeat;
+    background-image: url(https://image.freepik.com/free-vector/abstract-molecules-soft-grey-background-molecular-structures-dna-strand-neural-network-genetic-engineering-scientific-technological-concept_120542-594.jpg);
+    margin: 0;
+    background-size: cover; */

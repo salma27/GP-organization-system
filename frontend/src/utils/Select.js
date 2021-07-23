@@ -17,7 +17,7 @@ const SingleSelect = ({
 }) => {
     return (
         <Select
-            className="basic-single"
+            className="basic-single w-100"
             // components={animatedComponents}
             classNamePrefix="select"
             isDisabled={isDisabled}

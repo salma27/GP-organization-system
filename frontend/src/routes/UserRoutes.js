@@ -14,6 +14,9 @@ const UserRoutes = () => {
                 <Route exact path={r.root}>
                     <pages.LoginPage />
                 </Route>
+                <Route path={r.loginRouteWithEcom}>
+                    <pages.LoginPage />
+                </Route>
                 <Route path={r.loginRoute}>
                     <pages.LoginPage />
                 </Route>
