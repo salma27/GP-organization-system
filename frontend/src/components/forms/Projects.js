@@ -2,22 +2,44 @@ import React, {useState, useEffect} from "react";
 import "./../StudentProfile/FieldsOfExperience.css";
 import {Button, Form, Col, Row, Container} from "react-bootstrap";
 import {BsButton} from "utils";
+import {useSpecificTechnology, useTechnology} from "hooks"
 
-function Projects(props) {
-    const [value, setValue] = useState([]);
+function Projects({setTech,technologyIds=[],technologies=[]}) {
+    const [value, setValue] = useState(technologies);
+    const [techIds, setTechIds] = useState(technologyIds);
     const [oneTech, setOne] = useState();
+    const [tech] = useTechnology();
+
+    const checkIn= (item)=>{
+        return value.find(ele=>ele.id===item.id && ele.name===item.name)
+    }
+
     const selected = (e) => {
         e.preventDefault();
-        if (oneTech && !value.includes(oneTech) && oneTech !== "-1")
+        // console.log();
+        if (oneTech && checkIn(tech[oneTech])===undefined && oneTech !== "-1")
         {
-            setValue([...value, oneTech]);
-            // props.setTech(value);
+            // console.log(tech[oneTech]);
+            let temp =value.slice();
+            temp.push(tech[oneTech]);
+            // console.log(temp)
+            setValue(temp);
+            // setTechIds([...techIds,tech[oneTech].id]);
         }
     };
     useEffect(() => {
-        props.setTech(value);
+        // console.log(value);
+        const temp = [];
+        value.forEach((v) => temp.push(v.id));
+        setTech(temp);
+        // console.log(value);
     }, [value])
-    const setOneItem = (e) => setOne(e.target.value);
+
+    const setOneItem = (e) => {
+        setOne(e.target.value);
+        console.log(e.target);
+    };
+
     const removeItem = (index) => {
         const temp = [];
         value.forEach((v, i) => {
@@ -41,9 +63,9 @@ function Projects(props) {
                             >
                                 <option value="-1" id="list"></option>
 
-                                {props.tech.map((addField) => (
-                                    <option id="list" value={addField} key={addField}>
-                                        {addField}
+                                {tech.map((addField,index) => (
+                                    <option id="list" value={index} name={addField.name} key={addField.id}>
+                                        {addField.name}
                                     </option>
                                 ))}
                             </Form.Control>
@@ -74,7 +96,7 @@ function Projects(props) {
                                     style={{marginLeft: "5px", float: "left"}}
                                     className="choosen"
                                 >
-                                    {v}
+                                    {v.name}
                                 </Col>
                                 <Col>
                                     <Button
@@ -84,7 +106,7 @@ function Projects(props) {
                                         }}
                                         size="sm"
                                         type="submit"
-                                        onClick={() => removeItem(i)}
+                                        onClick={(e) => {e.preventDefault(); removeItem(i);}}
                                         variant="secondary"
                                     >
                                         X

@@ -5,25 +5,38 @@ import { Button, Form} from "react-bootstrap";
 import suite from "./EditProjectValidations";
 import {useValidation } from "hooks";
 import EditProjectValidations from "./EditProjectValidations";
+import { useRequest } from "hooks";
+import { adminAddFeed } from "requests";
+import { toast } from "react-toastify";
 
 function AddNewdFeed(props) {
-    const [oneTech, setOne] = useState();
-    //const [formState, setFormState] = useState({});
+    const [request,requesting] = useRequest(adminAddFeed);
+
     const [project, setProject] = useState({
         ptitle: props.title ? props.title : "",
         body: props.brief_description ? props.brief_description : "",
     });
 
-    const result = suite.get();
-    const setOneItem = (e) => setOne(e.target.value);
     const { errors, validate } = useValidation(EditProjectValidations);
-    //const [title, setTitle] = useState(props.title);
-    //const [description, setDescription] = useState(props.brief_description);
 
     const handleChange = ({ target: { name, value } }) => {
         validate({ ...project, [name]: value }, name).catch((e) => {});
         setProject({ ...project, [name]: value });
     };
+
+    const handleOnClick = (e)=>{
+        e.preventDefault();
+        if(project.ptitle.length > 0 && project.body.length > 0){
+            request({title:project.ptitle,content:project.body})
+                .then(response=>{
+                    toast.success(response.data.message);
+                    window.location.reload();
+                })
+                .catch((e) => toast.error("Could't add news feed"))
+        }else{
+            toast.error("All fields shouldn't be empty")
+        }
+    }
 
     return (
         <>
@@ -104,6 +117,7 @@ function AddNewdFeed(props) {
                             // backgroundColor: "#00BFA6",
                             // color: "white",
                         }}
+                        onClick={handleOnClick}
                     >
                         Add News Feed
                     </Button>
