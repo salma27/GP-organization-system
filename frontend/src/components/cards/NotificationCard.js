@@ -21,14 +21,23 @@ const NotificationCard = (props) => {
           };
 
     return (
-        <Card.Body className="m-0 p-0 w-100">
-            <Card.Title className="m-0 p-0">
-                <b>{props.noti.title}</b>
-                <span className="text-small">
+        <Card.Body className="container w-25 m-0 p-0 w-100">
+            <div>
+                <b className="m-0 p-0">{props.noti.title}</b>
+                <br />
+                <pre className="text-small">
                     {moment(props.noti.date).format("DD/MM/YYYY  hh:mm a")}
-                </span>
-            </Card.Title>
-            <Card.Text>{props.noti.content}</Card.Text>
+                </pre>
+                <pre
+                    style={{
+                        textAlign: "justify",
+                        display: "inline-block",
+                        wordWrap: "break-word",
+                    }}
+                >
+                    {props.noti.content}
+                </pre>
+            </div>
         </Card.Body>
     );
 };
