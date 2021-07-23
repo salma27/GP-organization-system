@@ -1,8 +1,10 @@
 import { OldProjectCard } from "components/cards";
-import { useRequest } from "hooks";
+import { useRequest, useAuthContext } from "hooks";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import getProjectsProvidedbySupervisor from "requests/getProjectsProvidedbySupervisor";
+import {staffGetTeamProjects} from "requests";
+
 import "styles/stickey.css";
 /*
 const projects = [
@@ -61,20 +63,30 @@ const style = {
     backgroundSize: "cover",
 };
 const Projects = (props) => {
+    const {isStaff} = useAuthContext();
     const [btn, setBtn] = useState(props.btn);
     const [projects, setProjects] = useState([]);
     const [request, requesting] = useRequest(getProjectsProvidedbySupervisor);
+    const [teamProjectsRequest,loading] = useRequest(staffGetTeamProjects);
 
+    console.log("jjjjjjj",props.teamId);
     useEffect(() => {
-        request({ id: props.state.res.ecomId })
+        if(isStaff){
+            // teamProjectsRequest({teamId:props.teamId})
+            //     .then(r=>{
+            //         console.log(r);
+            //     })
+            //     .catch((e) => console.log("errrrrrrrrrrrrrrrrror"))
+        }else{
+            request({id: props.state.res.ecomId})
             .then((r) => {
                 setProjects(r.data);
-
                 toast.success("Projects loaded successfully");
             })
             .catch((e) => {
                 toast.error("Error viewing projects");
             });
+        }
     }, []);
     // console.log("id: ", props.state.id, " projects: ", projects);
     return (
@@ -89,7 +101,7 @@ const Projects = (props) => {
                                         project={p}
                                         key={i}
                                         btn={btn}
-                                        supervisorID={props.state.res.ecomId}
+                                        
                                     />
                                 ))
                             ) : (
