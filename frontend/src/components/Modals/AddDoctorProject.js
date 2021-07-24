@@ -67,12 +67,13 @@ function AddDoctorProject(props) {
                     technologyIds: tech,
                 })
                     .then((r) => {
+                        // console.log("llllllllllllllllll");
                         toast.success(r.data.message);
                         window.location.reload();
                     })
                     .catch((e) => {
                         console.log({e});
-                        toast.error(e.response.data.message);
+                        toast.error("failed");
                     });
             })
             .catch((e) => {});
@@ -93,6 +94,7 @@ function AddDoctorProject(props) {
                 })
                     .then((r) => {
                         toast.success("Project Updated Successfully");
+                        window.location.reload();
                     })
                     .catch((e) => {
                         toast.error("Coudln't update your project");

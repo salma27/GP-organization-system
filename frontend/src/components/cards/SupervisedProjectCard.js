@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import { Badge, Card, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { ImExit } from "react-icons/im";
 import { confirmAction } from "utils";
+import { useRequest } from 'hooks';
+import { staffLeaveTeam } from "requests";
+import { toast } from "react-toastify";
 
 const SupervisedProjectCard = ({
     title="",
@@ -11,13 +14,23 @@ const SupervisedProjectCard = ({
     students = [],
     TA = [],
     Dr = [],
+    id=""
 }) => {
     const [showModal, setShowModal] = useState(false);
+    const [request,requesting] = useRequest(staffLeaveTeam);
 
     const leaveTeam = () => {
         confirmAction({
             message: "Are you sure you want to leave this team?",
-            onConfirm: () => {},
+            onConfirm: () => {//leave team request
+                request({projectId:id})
+                .then((res) => {
+                    toast.success("you left team")
+                })
+                .catch(error => {
+                    toast.error("Failed")
+                })
+            },
         });
     };
 

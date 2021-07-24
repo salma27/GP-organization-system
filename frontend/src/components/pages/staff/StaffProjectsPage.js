@@ -63,10 +63,9 @@ const StudentProjectsPage = () => {
         request({})
             .then(res=>{
                 setData(res.data);
-                console.log("lllllllllllllll",res.data);
             })
             .catch(e=>{
-                toast.error(e.response.message)
+                toast.error("Can't load")
             })
     }, [])
 
@@ -87,7 +86,7 @@ const StudentProjectsPage = () => {
                 show={showModal}
                 hide={() => setShowModal(false)}
                 title=""
-                brief=""
+                description=""//
                 tech={[]}
                 btn="Add Project"
                 request={staffAddDoctorProject}
@@ -98,7 +97,7 @@ const StudentProjectsPage = () => {
                 {/* <CardColumns> */}
                 <div className="container" >
                     {data.map((p, i) => (
-                        <ProjectCard {...p} key={i} />
+                        <ProjectCard {...p} key={i} docotorDeleteProject={true} />
                     ))}
                 </div>
                 {/* </CardColumns> */}
