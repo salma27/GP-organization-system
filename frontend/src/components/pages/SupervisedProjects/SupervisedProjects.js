@@ -1,5 +1,5 @@
 import { Button, Form, Col, Row } from "react-bootstrap";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BsButton } from "utils";
 import { SupervisedProjectCard } from "components/cards";
 import { CardColumns } from "react-bootstrap";
@@ -7,8 +7,31 @@ import { Navbar } from "components/navbar";
 import "styles/dashboard.css";
 import { ProfileSidebar } from "components/sidebar";
 import "styles/stickey.css";
+import {useRequest} from "hooks";
+import {staffGetItsTeams} from "requests"
+import { toast } from "react-toastify";
 
 function SupervisedProjects() {
+    const [request,requesting] = useRequest(staffGetItsTeams);
+    const [data,setData] = useState([]);
+    const [students,setStudents] = useState([]);
+
+    useEffect(() => {
+        request()
+            .then(res=>{
+                setData(res.data);
+                const temp = [];
+                res.data.map(item=>{
+                    item.students.map(student=>{
+                        temp.push(student.name);
+                    })
+                })
+                setStudents(temp);
+            })
+            .catch(error=>{
+                toast.error(error.response.data)
+            })
+    }, [])
     const projects = [
         {
             title: "Tbdel",
@@ -73,8 +96,8 @@ function SupervisedProjects() {
                     </div> */}
                     <div className="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                         <CardColumns>
-                            {projects.map((p, i) => (
-                                <SupervisedProjectCard {...p} key={i} />
+                            {data.map(({studentsData,mainProject}, i) => (
+                                <SupervisedProjectCard {...mainProject} students={students} key={i} />
                             ))}
                         </CardColumns>
                     </div>

@@ -5,8 +5,8 @@ import { ImExit } from "react-icons/im";
 import { confirmAction } from "utils";
 
 const SupervisedProjectCard = ({
-    title,
-    brief_description,
+    title="",
+    brief_description="",
     tech = [],
     students = [],
     TA = [],
@@ -30,7 +30,7 @@ const SupervisedProjectCard = ({
         <Card className="mb-3">
             <Card.Body>
                 <Card.Title className="d-flex">
-                    <b>{title}</b>
+                    {title.length?<b>{title}</b>:<b>Not Choose Yet</b>}
                     <div className="ml-auto">
                         <OverlayTrigger
                             placement="right"
@@ -44,7 +44,7 @@ const SupervisedProjectCard = ({
                     </div>
                 </Card.Title>
                 <hr />
-                <Card.Text>{brief_description}</Card.Text>
+                <Card.Text>{brief_description.length?brief_description:"There isn't description yet"}</Card.Text>
                 <hr />
                 <Card.Text>
                     {tech.map((t, i) => (

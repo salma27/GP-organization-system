@@ -1,3 +1,5 @@
 valida all modles
 handle request link if student is logIn
 in departments for admin we want to ckeck that min num of person <=  max num of person
+
+add check before modles in bages 

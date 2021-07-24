@@ -2,23 +2,23 @@ import React from "react";
 import { Modal, Badge } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 
-function SupervisedProjectSeeMore(props) {
+function SupervisedProjectSeeMore({show=false,hide=true,title="",students=[],Dr=[],TA=[],brief_description="",tech=[]}) {
     return (
         <>
-            <Modal centered show={props.show} onHide={props.hide}>
+            <Modal centered show={show} onHide={hide}>
                 <Modal.Header closeButton>
                     <Modal.Title>Project Details:</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form id="editProject">
                         <Form.Group>
-                            <Form.Label>Title: {props.title}</Form.Label>
+                            <Form.Label>Title: {title}</Form.Label>
                         </Form.Group>
                         <hr />
                         <Form.Group>
                             <Form.Label>
                                 Students: <br></br>
-                                {props.students.map((st, i) => (
+                                {students.map((st, i) => (
                                     <Badge
                                         style={{
                                             color: "#00BFA6",
@@ -29,7 +29,7 @@ function SupervisedProjectSeeMore(props) {
                                         {st}
                                     </Badge>
                                 ))}
-                                {!props.students.length &&
+                                {!students.length &&
                                     "No students working on this project"}
                             </Form.Label>
                         </Form.Group>
@@ -37,7 +37,7 @@ function SupervisedProjectSeeMore(props) {
                         <Form.Group>
                             <Form.Label>
                                 Doctor Supervisor: <br></br>
-                                {props.Dr.map((dr, i) => (
+                                {Dr.map((dr, i) => (
                                     <Badge
                                         style={{
                                             color: "#00BFA6",
@@ -48,7 +48,7 @@ function SupervisedProjectSeeMore(props) {
                                         {dr}
                                     </Badge>
                                 ))}
-                                {!props.Dr.length &&
+                                {!Dr.length &&
                                     "No Dr. supervising this project"}
                             </Form.Label>
                         </Form.Group>
@@ -56,7 +56,7 @@ function SupervisedProjectSeeMore(props) {
                         <Form.Group>
                             <Form.Label>
                                 TA Supervisor: <br></br>
-                                {props.TA.map((ta, i) => (
+                                {TA.map((ta, i) => (
                                     <Badge
                                         style={{
                                             color: "#00BFA6",
@@ -67,7 +67,7 @@ function SupervisedProjectSeeMore(props) {
                                         {ta}
                                     </Badge>
                                 ))}
-                                {!props.TA.length &&
+                                {!TA.length &&
                                     "No TA supervising this project"}
                             </Form.Label>
                         </Form.Group>
@@ -75,14 +75,14 @@ function SupervisedProjectSeeMore(props) {
                         <Form.Group>
                             <Form.Label>
                                 Brief Description: <br></br>
-                                {props.brief_description}
+                                {brief_description}
                             </Form.Label>
                         </Form.Group>
                         <hr />
                         <Form.Group>
                             <Form.Label>
                                 Used Technologies: <br></br>
-                                {props.tech.map((t, i) => (
+                                {tech.map((t, i) => (
                                     <Badge
                                         pill
                                         style={{
@@ -97,7 +97,7 @@ function SupervisedProjectSeeMore(props) {
                                         {t}
                                     </Badge>
                                 ))}
-                                {!props.tech.length &&
+                                {!tech.length &&
                                     "No technologies provided"}
                             </Form.Label>
                         </Form.Group>

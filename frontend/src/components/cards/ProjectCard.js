@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { deleteTeamProjectRequests } from "requests";
 import { confirmAction } from "utils";
 
-const ProjectCard = ({ title, description, technologyIds, id }) => {
+const ProjectCard = ({ title, description, technologyIds=[], id }) => {
     const [showModal, setShowModal] = useState(false);
     const [request, requesting] = useRequest(deleteTeamProjectRequests);
     const deleteProject = () => {
