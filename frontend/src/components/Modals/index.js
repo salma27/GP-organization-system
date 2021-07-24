@@ -7,3 +7,4 @@ export { default as AddOldProjectRow} from "./AddOldProjectRow";
 export { default as EditOldProjectRow} from "./EditOldProjectDataTableRow";
 export { default as AddDepartmentRow } from "./AddDepartmentRow";
 export { default as EditDepartmentRow } from "./EditDepartmentRow";
+export { default as AddDoctorProject } from "./AddDoctorProject";

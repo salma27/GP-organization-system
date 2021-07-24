@@ -5,3 +5,5 @@ export {staffGetTeamProjects} from "./staffGetTeamProjects";
 export {doctorRequestToBeSuberVisorProject} from "./doctorRequestToBeSuberVisorProject";
 export {TARequestToBeSuberVisor} from "./TARequestToBeSuberVisor";
 export {staffGetItsTeams} from "./staffGetItsTeams";
+export {staffGetDoctorProjects} from "./staffDoctorProjects";
+export {staffAddDoctorProject} from "./staffDoctorProjects"

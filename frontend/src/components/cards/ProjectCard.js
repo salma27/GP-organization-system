@@ -26,7 +26,7 @@ const ProjectCard = ({ title, description, technologyIds=[], id }) => {
     };
     return (
         <>
-            <Card className="mb-3">
+            <Card className="mb-3 w-100">
                 <Card.Body>
                     <Card.Title className="d-flex">
                         <b>{title}</b>
@@ -42,16 +42,18 @@ const ProjectCard = ({ title, description, technologyIds=[], id }) => {
                             >
                                 <AiFillEdit />
                             </button>
-                            <EditProject
-                                btn="Update"
-                                show={showModal}
-                                hide={() => setShowModal(false)}
-                                title={title}
-                                brief_description={description}
-                                tech={technologyIds}
-                                projectId={id}
-                                type="Edit"
-                            />
+                            {showModal &&
+                                <EditProject
+                                    btn="Update"
+                                    show={showModal}
+                                    hide={() => setShowModal(false)}
+                                    title={title}
+                                    brief_description={description}
+                                    tech={technologyIds}
+                                    projectId={id}
+                                    type="Edit"
+                                />
+                            }
                             <button
                                 className="btn btn-lg btn-outline-danger py-1 px-2 mr-1"
                                 onClick={deleteProject}
