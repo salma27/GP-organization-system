@@ -67,6 +67,7 @@ const style = {
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
+height: "100%"
 };
 const AllProjects = () => {
     const [request,requesting] = useRequest(staffGetStudentProjects);

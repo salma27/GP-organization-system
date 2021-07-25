@@ -15,6 +15,7 @@ const DashboardPage = () => {
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
         backgroundSize: "cover",
+height: "100%"
     };
     return (
         <div className="container-fluid h-100" style={style}>

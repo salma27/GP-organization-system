@@ -135,11 +135,11 @@ const TeamInfoCard = ({}) => {
                         </dd>
 
                         <dt>Team's selected project</dt>
-                        <dd>{team.mainProject}</dd>
+                        <dd>{team.mainProject && team.mainProject.title}</dd>
 
                         <dt>Team's technologies</dt>
                         <dd>
-                            {/*
+                            
                             {team.technologies &&
                                 team.technologies.map((tech, i) => (
                                     <>
@@ -150,7 +150,7 @@ const TeamInfoCard = ({}) => {
                             {team.technologies &&
                                 !team.technologies &&
                             "No Provided Technologies"}
-                            */}
+                           
                         </dd>
                     </dl>
                 </Card.Text>

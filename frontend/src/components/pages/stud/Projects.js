@@ -61,6 +61,7 @@ const style = {
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
+height: "100%"
 };
 const Projects = (props) => {
     const {isStaff} = useAuthContext();
