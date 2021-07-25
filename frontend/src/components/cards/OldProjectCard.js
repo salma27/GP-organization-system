@@ -57,6 +57,9 @@ const OldProjectCard = ({
                 <Card.Title className="row team-header mw-100">
                     <div className="col-12 col-lg-8">
                         <b>{project.title}</b>
+                        <p style={{ fontSize: "small" }}>
+                            Department: <b>{project.departmentId}</b>
+                        </p>
                         {showDr && (
                             <Link
                                 to={{
