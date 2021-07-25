@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { getOldProjects } from "requests";
 import "styles/stickey.css";
+import { Paginate } from "utils";
 
 /*const projects = [
     {
@@ -92,13 +93,15 @@ const OldProjectsPage = () => {
                             />
                         </div>
                         <div className="col-12 col-lg-7 offset-lg-1">
-                            {projects.map((p, i) => (
-                                <OldProjectCard
-                                    project={p}
-                                    btn={false}
-                                    key={i}
-                                />
-                            ))}
+                            <Paginate>
+                                {projects.map((p, i) => (
+                                    <OldProjectCard
+                                        project={p}
+                                        btn={false}
+                                        key={i}
+                                    />
+                                ))}
+                            </Paginate>
                         </div>
                         <div className="d-none d-lg-inline col-lg-4">
                             <div className="sidebar-item">

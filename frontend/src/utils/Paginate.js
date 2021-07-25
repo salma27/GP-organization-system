@@ -1,23 +1,29 @@
-function Pagination({ data, RenderComponent, title, pageLimit, dataLimit }) {
-    const [pages] = useState(Math.round(data.length / dataLimit));
+import { useState } from "react";
+import "./Paginate.css";
+
+const Paginate = ({ children, pageLimit = 3, dataLimit = 5 }) => {
+    const [pages] = useState(Math.round(children.length / dataLimit));
     const [currentPage, setCurrentPage] = useState(1);
     function goToNextPage() {
         setCurrentPage((page) => page + 1);
+        window.scrollTo(0, 0);
     }
 
     function goToPreviousPage() {
         setCurrentPage((page) => page - 1);
+        window.scrollTo(0, 0);
     }
 
     function changePage(event) {
         const pageNumber = Number(event.target.textContent);
         setCurrentPage(pageNumber);
+        window.scrollTo(0, 0);
     }
 
     const getPaginatedData = () => {
         const startIndex = currentPage * dataLimit - dataLimit;
         const endIndex = startIndex + dataLimit;
-        return data.slice(startIndex, endIndex);
+        return children.slice(startIndex, endIndex);
     };
 
     const getPaginationGroup = () => {
@@ -25,32 +31,25 @@ function Pagination({ data, RenderComponent, title, pageLimit, dataLimit }) {
         return new Array(pageLimit).fill().map((_, idx) => start + idx + 1);
     };
 
+    if (!children.length)
+        return (
+            <div className="d-flex justify-content-center">
+                <i className="fas fa-spinner fa-spin fa-lg"></i>
+            </div>
+        );
+
     return (
         <div>
-            <h1>{title}</h1>
-
-            {/* show the posts, 10 posts at a time */}
             <div className="dataContainer">
-                {getPaginatedData().map((d, idx) => (
-                    <RenderComponent key={idx} data={d} />
-                ))}
+                {getPaginatedData().map((d, idx) => d)}
             </div>
-
-            {/* show the pagiantion
-              it consists of next and previous buttons
-              along with page numbers, in our case, 5 page
-              numbers at a time
-          */}
             <div className="pagination">
-                {/* previous button */}
                 <button
                     onClick={goToPreviousPage}
                     className={`prev ${currentPage === 1 ? "disabled" : ""}`}
                 >
-                    prev
+                    {"<"}
                 </button>
-
-                {/* show page numbers */}
                 {getPaginationGroup().map((item, index) => (
                     <button
                         key={index}
@@ -62,17 +61,17 @@ function Pagination({ data, RenderComponent, title, pageLimit, dataLimit }) {
                         <span>{item}</span>
                     </button>
                 ))}
-
-                {/* next button */}
                 <button
                     onClick={goToNextPage}
                     className={`next ${
                         currentPage === pages ? "disabled" : ""
                     }`}
                 >
-                    next
+                    {">"}
                 </button>
             </div>
         </div>
     );
-}
+};
+
+export default Paginate;
