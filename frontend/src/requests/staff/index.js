@@ -12,3 +12,4 @@ export {staffDeleteDoctorProject} from "./staffDoctorProjects";
 export {staffEditDoctorProject} from "./staffDoctorProjects";
 export {staffGetPolls} from "./staffPoll";
 export {staffEditProfile} from "./staffProfile";
+export {staffVote as stafftVote} from "./staffPoll";

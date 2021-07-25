@@ -26,3 +26,5 @@ export { default as AskToBeMySupervisor } from "./AskToBeMySupervisor";
 export { default as getAllMyProjects_Student } from "./getAllMyProjects_Student";
 export { default as getStudentNotificationList } from "./getStudentNotificationList";
 export { default as StudentRequestToJoinTeam } from "./StudentRequestToJoinTeam";
+export {getStudentRequest} from "./studentRequests";
+export {studentVote} from "./studentRequests";

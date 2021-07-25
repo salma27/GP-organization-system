@@ -19,6 +19,7 @@ const StudentCard = (props) => {
         minHeight: "100px",
         width: "1px",
     };
+    console.log("kkkkkkkk",props);
     const [showModal, setShowModal] = useState(false);
     const [requestJoinTeam, requestingJoionTeam] = useRequest(StudentRequestToJoinTeam);
     const confirm = () => {
@@ -75,12 +76,13 @@ const StudentCard = (props) => {
                                         {!isStaff && props.isStudent && "Ask to join team"}
                                         
                                     </button>
+                                    {showModal&&
                                     <AskToJoinMyTeam
                                     show={showModal}
                                     hide={() => setShowModal(false)}
                                     projects={projects}     
-            
-                                    />
+                                    supervisorID={props.id}
+                                    />}
                             </>
                         }
                             </div>

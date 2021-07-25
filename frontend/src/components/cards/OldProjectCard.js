@@ -33,7 +33,7 @@ const OldProjectCard = ({
             confirmAction({
             message: "Are you sure you want to send this request?",
             onConfirm: () => {
-                request({ id: project.id })
+                request({ projectId: project.id })
                     .then((r) => {
                         toast.success("Request sent successfully");
                     })

@@ -7,14 +7,20 @@ import { useRequest } from "hooks";
 
 function AskToJoinMyTeam(props) {
     const [selectedProject, setSelectedProject] = useState();
+    const [allMyProjects, setAllMyProjects] = useState([]);
+    const [requestMyProjects, requestingMyProjects] = useRequest(
+        getAllMyProjects_Student
+    );
     const changeHandler = (e) => {
+        
         setSelectedProject(e.target.value);
         console.log(e.target.value); ///return the index of the project not the project name itself
     };
     const [request, requesting] = useRequest(AskToBeMySupervisor);
     const sendRequest = (e) => {
         e.preventDefault();
-        request({ ecomId: props.supervisorID })
+        console.log({ supervisorId: props, projectId: selectedProject});
+        request({ supervisorId: props.supervisorID, projectId: selectedProject})
             .then((r) => {
                 toast.success("Request sent successfully");
             })
@@ -22,10 +28,6 @@ function AskToJoinMyTeam(props) {
                 toast.error("Error sending request");
             });
     };
-    const [allMyProjects, setAllMyProjects] = useState([]);
-    const [requestMyProjects, requestingMyProjects] = useRequest(
-        getAllMyProjects_Student
-    );
     useEffect(() => {
         requestMyProjects({})
             .then((r) => {
