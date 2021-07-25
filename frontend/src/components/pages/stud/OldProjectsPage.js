@@ -60,6 +60,7 @@ const style = {
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
+height: "100%"
 };
 const OldProjectsPage = () => {
     const [projects, setProjects] = useState([]);
@@ -89,7 +90,9 @@ const OldProjectsPage = () => {
                     <div className="row">
                         <div className="col-12 d-inline d-lg-none">
                             <FilterCard
-                            //setProject={setNewProjects}
+                                //setProject={setNewProjects}
+                                setProjects={setProjects}
+                                request={request}
                             />
                         </div>
                         <div className="col-12 col-lg-7 offset-lg-1">
@@ -107,8 +110,9 @@ const OldProjectsPage = () => {
                             <div className="sidebar-item">
                                 <div className="make-me-sticky">
                                     <FilterCard
-
-                                    //setProjects={setNewProjects}
+                                        setProjects={setProjects}
+                                        request={request}
+                                        //setProjects={setNewProjects}
                                     />
                                 </div>
                             </div>
