@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {NavLink} from "react-router-dom";
 import "./profile.css";
 import {AiOutlinePoweroff} from "react-icons/ai";
@@ -9,11 +9,22 @@ import {RiProfileLine} from "react-icons/ri";
 import {useLogout, useRequest} from "hooks";
 import {LoginImg, SpinnerButton} from "utils";
 import * as r from "routes/routes";
-import {RiMailSendFill} from "react-icons/ri"
+import {RiMailSendFill} from "react-icons/ri";
+import { staffgetProfile } from "requests";
+import { toast } from "react-toastify";
 
 const ProfileSidebar = () => {
     const {logout} = useLogout();
     const [request, requesting] = useRequest(() => {});
+    const [requestStaffProfile,profileLoding] = useRequest(staffgetProfile);
+    const [isDr,setIsDr] = useState(true)
+
+    useEffect(() => {
+        requestStaffProfile({})
+            .then(res=>{
+                if(res.data.type===1) setIsDr(false)
+            }).catch(e=>toast.error("Failed To konw type"))
+    }, [])
 
     return (
         <nav id="sidebar" className="navbar-expand-lg">
@@ -50,12 +61,13 @@ const ProfileSidebar = () => {
                             My Teams
                         </NavLink>
                     </li>
+                    {isDr&&
                     <li>
                         <NavLink to={r.staffProjects}>
                             <FaNetworkWired />
                             My Projects
                         </NavLink>
-                    </li>
+                    </li>}
                     {/* <li>
                         <NavLink to={r.showStudAllProjects}>
                             <IoPeopleCircle />

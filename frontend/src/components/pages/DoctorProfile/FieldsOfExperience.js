@@ -7,8 +7,8 @@ import {staffEditProfile} from "requests";
 import { toast } from "react-toastify";
 
 function FieldsOfExperience(props) {
-    const [value, setValue] = useState([]);
-    const [techIds, setTechIds] = useState(props.technologyIds);
+    const [value, setValue] = useState(props.technologies);
+    const [techIds, setTechIds] = useState(props.technologies);
     const [oneTech, setOne] = useState();
     const [tech] = useTechnology();
     const [request,requesting]=useRequest(staffEditProfile)
@@ -19,10 +19,11 @@ function FieldsOfExperience(props) {
 
     const updateProfile=()=>{
         const temp = [];
-        value.forEach((v) => temp.push(v.id));
-        request({ technologyIds: temp })
+        // value.forEach((v) => temp.push(v.id));
+        console.log(value);
+        request({ technologyIds: value })
             .then(res=>{
-                toast.success("Added technology successfully")
+                toast.success("Update technology successfully")
                 // window.location.reload();
             })
             .catch(e=>{
@@ -33,26 +34,19 @@ function FieldsOfExperience(props) {
     const selected = (e) => {
         e.preventDefault();
         // console.log();
-        if (oneTech && checkIn(tech[oneTech])===undefined && oneTech !== "-1")
+        
+        if (oneTech && !value.includes(tech[oneTech].id) && oneTech !== "-1")
         {
-            // console.log(tech[oneTech]);
             let temp =value.slice();
-            temp.push(tech[oneTech]);
-            // console.log(temp)
+            temp.push(tech[oneTech].id);
             setValue(temp);
-            // setTechIds([...techIds,tech[oneTech].id]);
-            updateProfile();
+            // updateProfile();
         }
     };
-    // useEffect(() => {
-    //     const temp = [];
-    //     techIds.map(ele=>{
-    //         temp.push(tech.find(tech=>{
-    //             return ele.id===tech.id
-    //         }))
-    //     })
-    //     setValue(temp)
-    // }, [props.technologyIds])
+
+    useEffect(() => {
+        updateProfile();
+    }, [value])
 
     const setOneItem = (e) => {
         setOne(e.target.value);
@@ -67,6 +61,7 @@ function FieldsOfExperience(props) {
             }
         });
         setValue(temp);
+        // updateProfile();
     };
     return (
         <>
@@ -110,7 +105,7 @@ function FieldsOfExperience(props) {
                                     style={{ marginLeft: "5px", float: "left" }}
                                     className="choosen"
                                 >
-                                    {v.name}
+                                    {v}
                                 </Col>
                                 <Col>
                                     <Button

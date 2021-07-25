@@ -91,7 +91,11 @@ const AllProjects = () => {
                 <div className="col-12 col-lg-10 m-auto">
                     <div className="row">
                         <div className="col-12 d-inline d-lg-none">
-                            <FilterCard year={false}/>
+                            <FilterCard 
+                            setProjects={setProjects}
+                            request={request}
+                            year={false}
+                            />
                         </div>
                         <div className="col-12 col-lg-8 ">
                             {projects.map((p, i) => (
@@ -101,7 +105,10 @@ const AllProjects = () => {
                         <div className="d-none d-lg-inline col-lg-4">
                             <div className="sidebar-item">
                                 <div className="make-me-sticky">
-                                    <FilterCard year={false}/>
+                                    <FilterCard
+                                    setProjects={setProjects}
+                                    request={request}
+                                     year={false}/>
                                 </div>
                             </div>
                         </div>

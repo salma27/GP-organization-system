@@ -2,41 +2,93 @@ import { React, useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { toast } from "react-toastify";
-import { AskToBeMySupervisor, getAllMyProjects_Student } from "requests";
-import { useRequest } from "hooks";
+import { AskToBeMySupervisor, getAllMyProjects_Student, 
+        doctorRequestToBeSuberVisorProject, TARequestToBeSuberVisor, 
+        staffGetTeamProjects, staffgetProfile } from "requests";
+import { useRequest, useAuthContext } from "hooks";
 
 function AskToJoinMyTeam(props) {
+    const {isStaff} = useAuthContext();
     const [selectedProject, setSelectedProject] = useState();
     const [allMyProjects, setAllMyProjects] = useState([]);
-    const [requestMyProjects, requestingMyProjects] = useRequest(
-        getAllMyProjects_Student
-    );
+    const [doctorRequest,doctorRequesting] = useRequest(doctorRequestToBeSuberVisorProject);
+    const [taRequest,taRequestin] = useRequest(TARequestToBeSuberVisor);
+    const [requestMyProjects, requestingMyProjects] = useRequest(getAllMyProjects_Student);
+    const [teamProjectsRequest,loading] = useRequest(staffGetTeamProjects);
+    const [requestStaffProfile,profileLoding] = useRequest(staffgetProfile);
+
     const changeHandler = (e) => {
-        
         setSelectedProject(e.target.value);
-        console.log(e.target.value); ///return the index of the project not the project name itself
+        // console.log(e.target.value); ///return the index of the project not the project name itself
     };
     const [request, requesting] = useRequest(AskToBeMySupervisor);
     const sendRequest = (e) => {
         e.preventDefault();
-        console.log({ supervisorId: props, projectId: selectedProject});
-        request({ supervisorId: props.supervisorID, projectId: selectedProject})
+        if(isStaff){
+            requestStaffProfile({})
+                .then(res=>{
+                    if(res.data.type===0){
+                        doctorRequest({ projectId: selectedProject })
+                            .then((r) => {
+                                toast.success("Request sent successfully");
+                            })
+                            .catch((e) => {
+                                toast.error(e.response.data.message);
+                            });
+                    }else{
+                        taRequest({ projectId: selectedProject })
+                            .then((r) => {
+                                toast.success("Request sent successfully");
+                            })
+                            .catch((e) => {
+                                toast.error(e.response.data.message);
+                            });
+                    }
+                })
+                .catch((e) => {
+
+                })
+        }else{
+            console.log({ supervisorId: props, projectId: selectedProject});
+            request({ supervisorId: props.supervisorID, projectId: selectedProject})
             .then((r) => {
                 toast.success("Request sent successfully");
             })
             .catch((e) => {
                 toast.error("Error sending request");
             });
+        }
+        
     };
     useEffect(() => {
-        requestMyProjects({})
+        if(isStaff){
+            console.log(props.teamId);
+            teamProjectsRequest({teamId:props.teamId})
+                .then(r=>{
+                    if(r.data.projects.length){
+                        console.log(r.data.projects[0].id);
+                        setSelectedProject(r.data.projects[0].id)
+                    }
+                    setAllMyProjects(r.data.projects);
+                })
+                .catch((e) => {
+                    setAllMyProjects([]);
+                    toast.error("Failed To Get Team's Projects")
+                })
+        }else{
+            requestMyProjects({})
             .then((r) => {
+                if(r.data.length){
+                    console.log(r.data[0].id);
+                    setSelectedProject(r.data[0].id)
+                }
                 setAllMyProjects(r.data);
             })
             .catch((e) => {
                 setAllMyProjects([]);
                 toast.error("Couldn't load projects");
             });
+        }
     }, []);
 
     return (

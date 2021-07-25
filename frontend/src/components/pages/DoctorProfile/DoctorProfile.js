@@ -13,7 +13,7 @@ import { staffgetProfile } from "requests";
 import { toast } from "react-toastify";
 
 function DoctorProfile() {
-    const [data,setData] = useState();
+    const [data,setData] = useState({});
     const [request,requesting] = useRequest(staffgetProfile);
 
     useEffect(() => {
@@ -36,7 +36,8 @@ function DoctorProfile() {
 
     return (
         <>
-            <div className="container-fluid">
+            {Object.entries(data).length &&
+                <div className="container-fluid">
                 <div className="row">
                     <div className="col-sm-12 col-xs-12 col-md-6 col-lg-6">
                         <div className="row ml-1 mr-1 mt-4">
@@ -57,7 +58,7 @@ function DoctorProfile() {
                         </div>
                         <div className="row ml-1 mr-1 mt-1">
                             <div className="col-12 studentInfo">
-                                <FieldsOfExperience tech={technology} />
+                                <FieldsOfExperience technologies={data.technologies} />
                             </div>
                         </div>
                         <div className="row ml-1 mr-1 mt-1">
@@ -67,7 +68,7 @@ function DoctorProfile() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>}
         </>
     );
 }
