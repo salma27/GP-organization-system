@@ -2,7 +2,7 @@ import React from "react";
 import { Modal, Badge } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 
-function SupervisedProjectSeeMore({show=false,hide=true,title="",students=[],Dr=[],TA=[],brief_description="",tech=[]}) {
+function SupervisedProjectSeeMore({show=false,hide=true,title="",students=[],Dr=[],TA=[],brief_description="",tech=[],showingStaff=true}) {
     return (
         <>
             <Modal centered show={show} onHide={hide}>
@@ -34,6 +34,8 @@ function SupervisedProjectSeeMore({show=false,hide=true,title="",students=[],Dr=
                             </Form.Label>
                         </Form.Group>
                         <hr />
+                        {showingStaff&&
+                        <>
                         <Form.Group>
                             <Form.Label>
                                 Doctor Supervisor: <br></br>
@@ -72,6 +74,8 @@ function SupervisedProjectSeeMore({show=false,hide=true,title="",students=[],Dr=
                             </Form.Label>
                         </Form.Group>
                         <hr />
+                        </>
+}
                         <Form.Group>
                             <Form.Label>
                                 Brief Description: <br></br>

@@ -92,11 +92,11 @@ const ShowinTeam = (props) => {
                                     ? "Ask To Be Supervisor"
                                     : "Ask to join my team"}
                             </button>
-                            <AskToJoinMyTeam
+                            {/* <AskToJoinMyTeam
                                 show={showModal}
                                 hide={() => setShowModal(false)}
                                 projects={projects}
-                            />
+                            /> */}
                         </div>
                     </div>
 

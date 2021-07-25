@@ -68,12 +68,12 @@ const ProfileSidebar = () => {
                             Requests
                         </NavLink>
                     </li>
-                    <li>
+                    {/* <li>
                         <NavLink to={r.staffSendedRequests}>
                             <RiMailSendFill />
                             Sended Requests
                         </NavLink>
-                    </li>
+                    </li> */}
                     <li>
                         <NavLink to={r.staffProfileRoute}>
                             <RiProfileLine />

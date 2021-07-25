@@ -83,7 +83,7 @@ const OldProjectCard = ({
     const [dr, setDr] = useState([]);
     useEffect(() => {
         if (showDr) {
-            reuestDrName({ id: project.ownerId })
+            reuestDrName({ projectId: project.ownerId })
                 .then((r) => {
                     setDr(r.data);
                 })

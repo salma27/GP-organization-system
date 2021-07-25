@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Col } from "react-bootstrap";
 
-function BasicInfo() {
+function BasicInfo(props) {
     return (
         <>
             <Form className="w-100">
@@ -10,7 +10,7 @@ function BasicInfo() {
                         <Form.Label>Name </Form.Label>
                     </Col>
                     <Col md={7} lg={8} sm={8}>
-                        <Form.Control disabled />
+                        <Form.Control value={props.name} disabled />
                     </Col>
                 </Form.Row>
 
@@ -19,7 +19,7 @@ function BasicInfo() {
                         <Form.Label>FCAI Mail </Form.Label>
                     </Col>
                     <Col md={7} lg={8} sm={8}>
-                        <Form.Control disabled />
+                        <Form.Control value={props.ecomId} disabled />
                     </Col>
                 </Form.Row>
                 <Form.Row className="mb-2">
@@ -27,7 +27,7 @@ function BasicInfo() {
                         <Form.Label>Department </Form.Label>
                     </Col>
                     <Col md={7} lg={8} sm={8}>
-                        <Form.Control disabled />
+                        <Form.Control value={props.department} disabled />
                     </Col>
                 </Form.Row>
             </Form>

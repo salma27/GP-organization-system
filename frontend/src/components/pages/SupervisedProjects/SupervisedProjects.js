@@ -97,7 +97,16 @@ function SupervisedProjects() {
                     <div className="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                         <CardColumns>
                             {data.map(({studentsData,mainProject}, i) => (
-                                <SupervisedProjectCard {...mainProject} students={students} key={i} />
+                                <SupervisedProjectCard 
+                                    // {...mainProject} 
+                                    title={mainProject.title}
+                                    id={mainProject.id}
+                                    students={students} 
+                                    key={i} 
+                                    brief_description={mainProject.description} 
+                                    tech={mainProject.technologyIds}
+                                    showingStaff={false}
+                                />
                             ))}
                         </CardColumns>
                     </div>

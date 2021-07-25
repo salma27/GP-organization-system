@@ -72,11 +72,11 @@ const Projects = (props) => {
     console.log("jjjjjjj",props.teamId);
     useEffect(() => {
         if(isStaff){
-            // teamProjectsRequest({teamId:props.teamId})
-            //     .then(r=>{
-            //         console.log(r);
-            //     })
-            //     .catch((e) => console.log("errrrrrrrrrrrrrrrrror"))
+            teamProjectsRequest({teamId:props.teamId})
+                .then(r=>{
+                    console.log(r);
+                })
+                .catch((e) => console.log("errrrrrrrrrrrrrrrrror"))
         }else{
             request({id: props.state.res.ecomId})
             .then((r) => {

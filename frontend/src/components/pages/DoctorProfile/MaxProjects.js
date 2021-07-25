@@ -3,16 +3,20 @@ import React, { useState, useCallback } from "react";
 import { BsButton } from "utils";
 import { useHistory, Link, BrowserRouter } from "react-router-dom";
 import * as r from "routes/routes";
+import {useRequest} from "hooks";
+import {staffEditProfile} from "requests";
 
-function MaxProjects() {
-    const [max, setMax] = useState(0);
+function MaxProjects({teamsSlots=0}) {
+    const [max, setMax] = useState(teamsSlots);
     const history = useHistory();
+    const [request,requesting] = useRequest(staffEditProfile);
 
     const seeProjects = () => {
         let path = r.staffSupervisedProjectsRoute;
 
         history.push(path);
     };
+    
     const inc = useCallback(() => {
         if (max < 5) setMax(max + 1);
         else setMax(5);

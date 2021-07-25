@@ -14,7 +14,8 @@ const SupervisedProjectCard = ({
     students = [],
     TA = [],
     Dr = [],
-    id=""
+    id="",
+    showingStaff=true
 }) => {
     const [showModal, setShowModal] = useState(false);
     const [request,requesting] = useRequest(staffLeaveTeam);
@@ -25,7 +26,8 @@ const SupervisedProjectCard = ({
             onConfirm: () => {//leave team request
                 request({projectId:id})
                 .then((res) => {
-                    toast.success("you left team")
+                    toast.success("you left team");
+                    window.location.reload();
                 })
                 .catch(error => {
                     toast.error("Failed")
@@ -101,6 +103,7 @@ const SupervisedProjectCard = ({
                         students={students}
                         TA={TA}
                         Dr={Dr}
+                        showingStaff={showingStaff}
                     />
                 </div>
             </Card.Body>
