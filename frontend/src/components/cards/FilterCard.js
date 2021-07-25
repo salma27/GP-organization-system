@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { Card } from "react-bootstrap";
 import { Select, SpinnerButton } from "utils";
-import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import { AiOutlineFilter } from "react-icons/ai";
 import { toast } from "react-toastify";
-import { useRequest, useTechnology } from "hooks";
-import { getOldProjects } from "requests";
+import { useDepartments, useTechnology, useYears } from "hooks";
 
 const cardStyle = {
     backgroundColor: "#00bfa6",
@@ -14,41 +12,55 @@ const cardStyle = {
     borderStyle: "solid",
     borderColor: "#00bfa6",
 };
-const FilterCard = ({ year = true, setProjects }) => {
-    const techs = useTechnology(); /*[
-        { label: "Machine learning", value: "ML" },
-        { label: "Artifial intelligence", value: "AI" },
-        { label: "Mobile app development", value: "MD" },
-        { label: "Web development", value: "WD" },
-    ];*/
-    const years = [
-        { label: "1999", value: 1999 },
-        { label: "2000", value: 2000 },
-        { label: "2020", value: 2020 },
-    ];
+const FilterCard = ({ year = true, setProjects, request }) => {
+    const [, , techs] = useTechnology();
+    const [, , dep] = useDepartments();
+    const [, , years] = useYears();
 
-    const [filter, setFilter] = useState({ regex: "", tech: [], year: "" });
+    const initialFilter = {
+        description: "",
+        technologyIds: [],
+        year: 0,
+        departmentId: "",
+    };
+    const [filter, setFilter] = useState(initialFilter);
+    const [requesting, setRequesting] = useState(false);
 
     const onChangeHandler = ({ target: { name, value } }) => {
         setFilter({ ...filter, [name]: value });
     };
-
-    const [request, requesting] = useRequest(getOldProjects);
+    const onSelectHandler = ({ target: { name, value } }) => {
+        if (name === "technologyIds")
+            setFilter({ ...filter, [name]: value.map((v) => v.value) });
+        else {
+            if (value) setFilter({ ...filter, [name]: value.value });
+            else setFilter({ ...filter, [name]: initialFilter[name] });
+        }
+    };
 
     function onSubmit(event) {
         event.preventDefault();
-        // console.log(filter);
+        setRequesting(true);
         request({
-            year: filter.year.value,
-            description: filter.regex,
-            technologyIds: filter.tech,
+            description: filter.description.length
+                ? filter.description
+                : undefined,
+            technologyIds: filter.technologyIds.length
+                ? filter.technologyIds
+                : undefined,
+            departmentId: filter.departmentId.length
+                ? filter.departmentId
+                : undefined,
+            year: filter.year ? filter.year : undefined,
         })
             .then((r) => {
-                // console.log(r.data);
                 setProjects(r.data);
             })
             .catch((e) => {
                 toast.error("Error Filtering");
+            })
+            .finally(() => {
+                setRequesting(false);
             });
     }
 
@@ -66,18 +78,27 @@ const FilterCard = ({ year = true, setProjects }) => {
                             <FormControl
                                 type="text"
                                 placeholder="Enter keywords to search with"
-                                value={filter.regex}
-                                name="regex"
+                                value={filter.description}
+                                name="description"
                                 onChange={onChangeHandler}
                             />
                         </div>
                         <div className="col-sm-6 col-md-4 col-lg-12 mb-3">
                             <Select
-                                name="tech"
+                                name="technologyIds"
                                 options={techs}
                                 isMulti
-                                onChange={onChangeHandler}
+                                onChange={onSelectHandler}
                                 placeholder="Select technologies"
+                            />
+                        </div>
+                        <div className="col-sm-6 col-md-4 col-lg-12 mb-3">
+                            <Select
+                                name="departmentId"
+                                options={dep}
+                                // isMulti
+                                onChange={onSelectHandler}
+                                placeholder="Select Departments"
                             />
                         </div>
                         {year !== false && (
@@ -85,7 +106,7 @@ const FilterCard = ({ year = true, setProjects }) => {
                                 <Select
                                     name="year"
                                     options={years}
-                                    onChange={onChangeHandler}
+                                    onChange={onSelectHandler}
                                     placeholder="Select a year"
                                 />
                             </div>
@@ -94,7 +115,7 @@ const FilterCard = ({ year = true, setProjects }) => {
                             <SpinnerButton
                                 className="btn btn-outline-light w-100"
                                 onClick={onSubmit}
-                                loading={false}
+                                loading={requesting}
                             >
                                 <div className="d-none d-md-inline">
                                     <AiOutlineFilter className="mr-lg-1" />

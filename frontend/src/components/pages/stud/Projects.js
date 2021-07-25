@@ -59,6 +59,7 @@ const style = {
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
+height: "100%"
 };
 const Projects = (props) => {
     const [btn, setBtn] = useState(props.btn);

@@ -12,6 +12,7 @@ const style = {
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
+height: "100%"
 };
 const ShowStaffProjects = () => {
     const [projects, setProjects] = useState([]);
@@ -35,7 +36,11 @@ const ShowStaffProjects = () => {
                 <div className="col-12 col-lg-10 m-auto">
                     <div className="row">
                         <div className="col-12 d-inline d-lg-none">
-                            <FilterCard year={false} />
+                            <FilterCard
+                                year={false}
+                                setProjects={setProjects}
+                                request={request}
+                            />
                         </div>
                         <div className="col-12 col-lg-8 ">
                             {projects.map((p, i) => (
@@ -50,7 +55,11 @@ const ShowStaffProjects = () => {
                         <div className="d-none d-lg-inline col-lg-4">
                             <div className="sidebar-item">
                                 <div className="make-me-sticky">
-                                    <FilterCard year={false} />
+                                    <FilterCard
+                                        year={false}
+                                        setProjects={setProjects}
+                                        request={request}
+                                    />
                                 </div>
                             </div>
                         </div>
