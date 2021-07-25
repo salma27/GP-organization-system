@@ -70,10 +70,10 @@ const Projects = (props) => {
     const [request, requesting] = useRequest(getProjectsProvidedbySupervisor);
     const [teamProjectsRequest,loading] = useRequest(staffGetTeamProjects);
 
-    console.log("jjjjjjj",props.teamId);
+    console.log("jjjjjjj",props);
     useEffect(() => {
         if(isStaff){
-            teamProjectsRequest({teamId:props.teamId})
+            teamProjectsRequest({teamId:props.teamId,studentId:"2020"})
                 .then(r=>{
                     console.log(r);
                 })
