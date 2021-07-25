@@ -72,7 +72,7 @@ const FilterCard = ({ year = true, setProjects, request }) => {
                 <hr />
                 <div className="text-secondary">
                     <div className="row">
-                        <div className="col-sm-6 col-md-4 col-lg-12 mb-3">
+                        <div className="col-sm-6 col-lg-12 mb-3">
                             {/* <Form inline onSubmit={onSubmit}>
                             </Form> */}
                             <FormControl
@@ -83,7 +83,7 @@ const FilterCard = ({ year = true, setProjects, request }) => {
                                 onChange={onChangeHandler}
                             />
                         </div>
-                        <div className="col-sm-6 col-md-4 col-lg-12 mb-3">
+                        <div className="col-sm-6 col-lg-12 mb-3">
                             <Select
                                 name="technologyIds"
                                 options={techs}
@@ -92,7 +92,7 @@ const FilterCard = ({ year = true, setProjects, request }) => {
                                 placeholder="Select technologies"
                             />
                         </div>
-                        <div className="col-sm-6 col-md-4 col-lg-12 mb-3">
+                        <div className="col-sm-6 col-lg-12 mb-3">
                             <Select
                                 name="departmentId"
                                 options={dep}
@@ -102,7 +102,7 @@ const FilterCard = ({ year = true, setProjects, request }) => {
                             />
                         </div>
                         {year !== false && (
-                            <div className="col-sm-6 col-md-3 col-lg-12 mb-3">
+                            <div className="col-sm-6 col-lg-12 mb-3">
                                 <Select
                                     name="year"
                                     options={years}
@@ -111,13 +111,13 @@ const FilterCard = ({ year = true, setProjects, request }) => {
                                 />
                             </div>
                         )}
-                        <div className="col-sm-6 col-md-1 col-lg-12">
+                        <div className={`col-sm-6 col-md-${year? "12":"6"} col-lg-12`}>
                             <SpinnerButton
                                 className="btn btn-outline-light w-100"
                                 onClick={onSubmit}
                                 loading={requesting}
                             >
-                                <div className="d-none d-md-inline">
+                                <div className="d-md-inline">
                                     <AiOutlineFilter className="mr-lg-1" />
                                 </div>
                                 <div className="d-inline d-md-none d-lg-inline">

@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Paginate.css";
 
 const Paginate = ({ children, pageLimit = 3, dataLimit = 5 }) => {
-    const [pages] = useState(Math.round(children.length / dataLimit));
+    const [pages, setPages] = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
+    
+    useEffect(() => {
+        let pgs = Math.ceil(children.length / dataLimit);
+        if (pgs > 1) setPages(pgs);
+        console.log("use effect trigger");
+    }, [children]);
+
     function goToNextPage() {
         setCurrentPage((page) => page + 1);
         window.scrollTo(0, 0);
@@ -27,8 +34,10 @@ const Paginate = ({ children, pageLimit = 3, dataLimit = 5 }) => {
     };
 
     const getPaginationGroup = () => {
-        let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
-        return new Array(pageLimit).fill().map((_, idx) => start + idx + 1);
+        let pg = pageLimit;
+        if (pg >= children.length) pg = children.length;
+        let start = Math.floor((currentPage - 1) / pg) * pg;
+        return new Array(pg).fill().map((_, idx) => start + idx + 1);
     };
 
     if (!children.length)

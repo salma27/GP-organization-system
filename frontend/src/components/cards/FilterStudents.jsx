@@ -1,16 +1,11 @@
-import React, {useState} from "react";
-import {Card} from "react-bootstrap";
-import {Select, SpinnerButton} from "utils";
+import React, { useState } from "react";
+import { Card } from "react-bootstrap";
+import { Select, SpinnerButton } from "utils";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
-import {AiOutlineFilter} from "react-icons/ai";
-
-const techs = [
-    {label: "Machine learning", value: "ML"},
-    {label: "Artifial intelligence", value: "AI"},
-    {label: "Mobile app development", value: "MD"},
-    {label: "Web development", value: "WD"},
-];
+import { AiOutlineFilter } from "react-icons/ai";
+import { useDepartments, useTechnology } from "hooks";
+import { toast } from "react-toastify";
 
 const cardStyle = {
     backgroundColor: "#00bfa6",
@@ -19,15 +14,47 @@ const cardStyle = {
     borderColor: "#00bfa6",
 };
 
-const FilterStudents = ({}) => {
-    const [filter, setFilter] = useState({regex: "", tech: []});
+const FilterStudents = ({ setResults, request, requesting, name }) => {
+    const [filter, setFilter] = useState({
+        name: "",
+        ecomId: "",
+        technologyIds: [],
+        departmentId: "",
+    });
+    const [, , techs] = useTechnology();
+    const [, , dep] = useDepartments();
 
-    const onChangeHandler = ({target: {name, value}}) => {
-        setFilter({...filter, [name]: value});
+    const onChangeHandler = ({ target: { name, value } }) => {
+        setFilter({ ...filter, [name]: value });
+    };
+    const onMultiSelectHandler = ({ target: { name, value } }) => {
+        setFilter({ ...filter, [name]: value.map((v) => v.value) });
+    };
+    const onSelectHandler = ({ target: { name, value } }) => {
+        setFilter({ ...filter, [name]: value ? value.value : "" });
     };
 
     const onSubmit = (e) => {
         e.preventDefault();
+        request({
+            name: filter.name.length ? filter.name : undefined,
+            ecomId: filter.ecomId.length ? filter.ecomId : undefined,
+            technologyIds: filter.technologyIds.length
+                ? filter.technologyIds
+                : undefined,
+            departmentId: filter.departmentId.length
+                ? filter.departmentId
+                : undefined,
+        })
+            .then((r) => {
+                setResults(
+                    name === "students" ? r.data.students : r.data.supervisors
+                );
+                toast.success("Data loaded successfully");
+            })
+            .catch((e) => {
+                toast.error("Error viewing search results");
+            });
     };
 
     return (
@@ -38,37 +65,53 @@ const FilterStudents = ({}) => {
                 <hr />
                 <div className="text-secondary">
                     <div className="row">
-                        <div className="col-sm-6 col-md-4 col-lg-12 mb-3">
-                            {/* <Form inline onSubmit={onSubmit}>
-                            </Form> */}
+                        <div className="col-sm-6 col-lg-12 mb-3">
                             <FormControl
                                 type="text"
-                                placeholder="Enter keywords to search with"
-                                value={filter.regex}
-                                name="regex"
+                                placeholder="Enter student name"
+                                value={filter.name}
+                                name="name"
                                 onChange={onChangeHandler}
                             />
                         </div>
-                        <div className="col-sm-6 col-md-4 col-lg-12 mb-3">
+                        <div className="col-sm-6 col-lg-12 mb-3">
+                            <FormControl
+                                type="text"
+                                placeholder="Enter Ecom ID"
+                                value={filter.ecomId}
+                                name="ecomId"
+                                onChange={onChangeHandler}
+                            />
+                        </div>
+                        <div className="col-sm-6 col-lg-12 mb-3">
                             <Select
-                                name="tech"
+                                name="technologyIds"
                                 options={techs}
                                 isMulti
-                                onChange={onChangeHandler}
+                                onChange={onMultiSelectHandler}
                                 placeholder="Select technologies"
                             />
                         </div>
-                        
-                        <div className="col-sm-6 col-md-1 col-lg-12">
+                        <div className="col-sm-6 col-lg-12 mb-3">
+                            <Select
+                                name="departmentId"
+                                options={dep}
+                                onChange={onSelectHandler}
+                                placeholder="Select Department"
+                            />
+                        </div>
+                        <div className="col-sm-6 col-md-12 col-lg-12">
                             <SpinnerButton
                                 className="btn btn-outline-light w-100"
-                                onClick={() => console.log(filter)}
-                                loading={false}
+                                onClick={onSubmit}
+                                loading={requesting}
                             >
-                                <div className="d-none d-md-inline">
-                                    <AiOutlineFilter className="mr-lg-1"/>
+                                <div className="d-md-inline">
+                                    <AiOutlineFilter className="mr-lg-1" />
                                 </div>
-                                <div className="d-inline d-md-none d-lg-inline">Filter</div>
+                                <div className="d-inline d-md-none d-lg-inline">
+                                    Filter
+                                </div>
                             </SpinnerButton>
                         </div>
                     </div>
