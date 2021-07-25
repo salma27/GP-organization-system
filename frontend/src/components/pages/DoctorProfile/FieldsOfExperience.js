@@ -1,16 +1,64 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 //import "./FieldsOfExperience.css";
 import { Button, Form, Col, Row, Container } from "react-bootstrap";
 import { BsButton } from "utils";
+import {useRequest, useTechnology} from "hooks";
+import {staffEditProfile} from "requests";
+import { toast } from "react-toastify";
 
 function FieldsOfExperience(props) {
     const [value, setValue] = useState([]);
+    const [techIds, setTechIds] = useState(props.technologyIds);
     const [oneTech, setOne] = useState();
-    const selected = () => {
-        if (oneTech && !value.includes(oneTech) && oneTech !== "-1")
-            setValue([...value, oneTech]);
+    const [tech] = useTechnology();
+    const [request,requesting]=useRequest(staffEditProfile)
+
+    const checkIn= (item)=>{
+        return value.find(ele=>ele.id===item.id && ele.name===item.name)
+    }
+
+    const updateProfile=()=>{
+        const temp = [];
+        value.forEach((v) => temp.push(v.id));
+        request({ technologyIds: temp })
+            .then(res=>{
+                toast.success("Added technology successfully")
+                // window.location.reload();
+            })
+            .catch(e=>{
+                toast.error("Couldn't Add");
+            })
+    }
+
+    const selected = (e) => {
+        e.preventDefault();
+        // console.log();
+        if (oneTech && checkIn(tech[oneTech])===undefined && oneTech !== "-1")
+        {
+            // console.log(tech[oneTech]);
+            let temp =value.slice();
+            temp.push(tech[oneTech]);
+            // console.log(temp)
+            setValue(temp);
+            // setTechIds([...techIds,tech[oneTech].id]);
+            updateProfile();
+        }
     };
-    const setOneItem = (e) => setOne(e.target.value);
+    // useEffect(() => {
+    //     const temp = [];
+    //     techIds.map(ele=>{
+    //         temp.push(tech.find(tech=>{
+    //             return ele.id===tech.id
+    //         }))
+    //     })
+    //     setValue(temp)
+    // }, [props.technologyIds])
+
+    const setOneItem = (e) => {
+        setOne(e.target.value);
+        console.log(e.target);
+    };
+
     const removeItem = (index) => {
         const temp = [];
         value.forEach((v, i) => {
@@ -33,9 +81,9 @@ function FieldsOfExperience(props) {
                     >
                         <option value="-1" id="list"></option>
 
-                        {props.tech.map((addField) => (
-                            <option id="list" value={addField} key={addField}>
-                                {addField}
+                        {tech.map((addField,index) => (
+                            <option id="list" value={index} key={addField}>
+                                {addField.name}
                             </option>
                         ))}
                     </Form.Control>
@@ -62,7 +110,7 @@ function FieldsOfExperience(props) {
                                     style={{ marginLeft: "5px", float: "left" }}
                                     className="choosen"
                                 >
-                                    {v}
+                                    {v.name}
                                 </Col>
                                 <Col>
                                     <Button
