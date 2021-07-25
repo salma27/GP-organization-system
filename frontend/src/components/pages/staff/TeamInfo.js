@@ -37,7 +37,7 @@ const TemaInfo = () => {
                             <pages.ShowingTeam res={state}/>
                         </Tab>
                         <Tab eventKey="projects" title="Projects">
-                            <pages.Projects teamId={state.teamId}/>
+                            <pages.Projects teamId={state.teamId} btn={true}/>
                         </Tab>
                     </Tabs>
                 </div>

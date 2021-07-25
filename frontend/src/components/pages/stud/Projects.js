@@ -70,14 +70,13 @@ const Projects = (props) => {
     const [request, requesting] = useRequest(getProjectsProvidedbySupervisor);
     const [teamProjectsRequest,loading] = useRequest(staffGetTeamProjects);
 
-    console.log("jjjjjjj",props);
     useEffect(() => {
         if(isStaff){
-            teamProjectsRequest({teamId:props.teamId,studentId:"2020"})
+            teamProjectsRequest({teamId:props.teamId})
                 .then(r=>{
-                    console.log(r);
+                    setProjects(r.data.projects);
                 })
-                .catch((e) => console.log("errrrrrrrrrrrrrrrrror"))
+                .catch((e) => toast.error("Failed To Get Team's Projects"))
         }else{
             request({id: props.state.res.ecomId})
             .then((r) => {
