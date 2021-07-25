@@ -18,7 +18,8 @@ function Notes(props) {
             .then((r) => {
                 toast.success("Updated successully");
             })
-            .catch((e) => {
+            .catch(({ response }) => {
+                toast.error(response.data.message);
                 toast.error("Error updating profile");
             });
     };

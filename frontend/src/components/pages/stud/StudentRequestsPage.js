@@ -5,32 +5,6 @@ import {useRequest} from 'hooks';
 import {getStudentRequest, studentVote} from "requests";
 import { toast } from "react-toastify";
 
-const requests = [
-    {
-        name: "Alen douglas",
-        join: true,
-    },
-    {
-        name: "Mike mikey",
-        join: true,
-    },
-    {
-        name: "Ali kory",
-        join: false,
-    },
-    {
-        name: "My name",
-        join: false,
-    },
-    {
-        name: "Tarzan",
-        join: true,
-    },
-    {
-        name: "Elsa",
-        join: false,
-    },
-];
 const StudentRequestsPage = () => {
     const [data,setData] = useState([]);
     const [request,requestin] = useRequest(getStudentRequest);
@@ -43,7 +17,8 @@ const StudentRequestsPage = () => {
                 setData(res.data.polls)
             })
             .catch(error=>{
-                toast.error("Couldn't get requests");
+                toast.error(response.data.message);
+                toast.error("Error viewing requests");
             })
     }, [])
 
@@ -65,6 +40,7 @@ const StudentRequestsPage = () => {
                     {data&& data.map((r, i) => (
                         <RequestCard {...r} key={i} vote={vote} />
                     ))}
+                    {!data && "No available Requests"}
                 </CardColumns>
             </div>
         </div>

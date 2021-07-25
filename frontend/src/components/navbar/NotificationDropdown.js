@@ -31,11 +31,13 @@ const NotificationDropdown = () => {
                     .then((res) => {
                         setNotiList(res.data);
                     })
-                    .catch((err) => {
+                    .catch(({ response }) => {
+                        toast.error(response.data.message);
                         toast.error("Error loading notifications");
                     });
             })
-            .catch((e) => {
+            .catch(({ response }) => {
+                toast.error(response.data.message);
                 toast.error("Error loading notifications");
             });
     }, []);

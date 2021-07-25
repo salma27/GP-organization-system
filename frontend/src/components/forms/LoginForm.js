@@ -51,11 +51,14 @@ function LoginForm(props) {
                         if (isStudent) history.push("/student/dashboard");
                         else history.push("/staff/dashboard");
                     })
-                    .catch((e) => {
+                    .catch(({ response }) => {
+                        toast.error(response.data.message);
                         toast.error("Invalid ID/Password");
                     });
             })
-            .catch((e) => {});
+            .catch(({ response }) => {
+                toast.error(response.data.message);
+            });
     }
 
     return (

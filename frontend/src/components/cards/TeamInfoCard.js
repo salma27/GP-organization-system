@@ -18,7 +18,8 @@ const TeamInfoCard = ({}) => {
                     .then((r) => {
                         toast.success("You left the team");
                     })
-                    .catch((e) => {
+                    .catch(({ response }) => {
+                        toast.error(response.data.message);
                         toast.error("Coudln't leave the team");
                     });
             },
@@ -49,7 +50,8 @@ const TeamInfoCard = ({}) => {
 
                 toast.success("data loaded successfully");
             })
-            .catch((e) => {
+            .catch(({ response }) => {
+                toast.error(response.data.message);
                 toast.error("Error showing team information");
             });
     }, []);

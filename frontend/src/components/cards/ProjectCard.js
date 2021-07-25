@@ -30,7 +30,8 @@ const ProjectCard = ({ title, description, technologyIds=[], id,docotorDeletePro
                     .then((r) => {
                         toast.success("Project deleted successfully");
                     })
-                    .catch((e) => {
+                    .catch(({ response }) => {
+                        toast.error(response.data.message);
                         toast.error("Coudln't delete the project");
                     });
                 }
@@ -93,23 +94,27 @@ const ProjectCard = ({ title, description, technologyIds=[], id,docotorDeletePro
                     <Card.Text>{description}</Card.Text>
                     <hr />
                     <Card.Text>
-                        {technologyIds.map((t, i) => (
-                            <Badge
-                                pill
-                                style={{
-                                    // backgroundColor: "white",
-                                    color: "#00BFA6",
-                                    borderColor: "#00BFA6",
-                                    borderWidth: "1px",
-                                    borderStyle: "solid",
-                                }}
-                                className="mr-1 mb-1"
-                                key={i}
-                            >
-                                {t}
-                            </Badge>
-                        ))}
-                        {!technologyIds.length && "No technologies provided"}
+                        {technologyIds &&
+                            technologyIds.length &&
+                            technologyIds.map((t, i) => (
+                                <Badge
+                                    pill
+                                    style={{
+                                        // backgroundColor: "white",
+                                        color: "#00BFA6",
+                                        borderColor: "#00BFA6",
+                                        borderWidth: "1px",
+                                        borderStyle: "solid",
+                                    }}
+                                    className="mr-1 mb-1"
+                                    key={i}
+                                >
+                                    {t.name}
+                                </Badge>
+                            ))}
+                        {technologyIds &&
+                            !technologyIds.length &&
+                            "No technologies provided"}
                     </Card.Text>
                 </Card.Body>
             </Card>

@@ -26,11 +26,14 @@ const StudentCard = (props) => {
         confirmAction({
             message: "Are you sure you want to send this request?",
             onConfirm: () => {
-                requestJoinTeam({ecomId : props.result.ecomId})
+                requestJoinTeam({teamId : props.result.teamId})
                 .then((r)=>{
                     toast.success("Request sent successfully");
                 })
-                .catch((e)=>{
+                .catch(({response})=>{
+
+
+                    toast.error(response.data.message);
                     toast.error("Error sending request");
                 });
             },

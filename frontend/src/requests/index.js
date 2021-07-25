@@ -28,3 +28,4 @@ export { default as getStudentNotificationList } from "./getStudentNotificationL
 export { default as StudentRequestToJoinTeam } from "./StudentRequestToJoinTeam";
 export {getStudentRequest} from "./studentRequests";
 export {studentVote} from "./studentRequests";
+export { default as getStudentRequests } from "./getStudentRequests";

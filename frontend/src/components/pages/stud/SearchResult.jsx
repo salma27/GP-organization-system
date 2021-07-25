@@ -18,20 +18,13 @@ const style = {
 };
 
 const StudentsSearchResult = (props) => {
-    const search = {
-        search: props.match.params.id,
-        type: props.match.params.type,
-    };
-
-    const [results, setResults] = useState([]);
-    const [request, requesting] = useRequest(
-        search.type === "students"
-            ? getAllStudents
-            : search.type === "doctors"
-            ? getAllDoctors
-            : getAllTAs
-    );
-
+    const search = {search:props.match.params.id,type:props.match.params.type};
+    const [allResults, setAllResults] = useState([]);
+    const [requestAll, requestingAll] = useRequest(search.type==="students"?getAllStudents
+    :search.type==="doctors"?getAllDoctors
+    :getAllTAs);
+   
+   
     useEffect(() => {
         if (search.search === "all") {
             request({})
@@ -43,9 +36,20 @@ const StudentsSearchResult = (props) => {
                     );
                     toast.success("Data loaded successfully");
                 })
-                .catch((e) => {
+                .catch(({response}) => {
+                    toast.error(response.data.message);
                     toast.error("Error viewing search results");
                 });
+        }
+         else{
+            requestAll({name:search.search})
+            .then((r)=>{
+                setAllResults(search.type==="students"?r.data.students:r.data.supervisors);
+             })
+            .catch(({response})=>{
+                toast.error(response.data.message);
+                toast.error("Error viewing search results");
+            })
         }
     }, []);
 

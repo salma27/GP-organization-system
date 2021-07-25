@@ -16,7 +16,8 @@ const useTechnology = () => {
                 });
                 setTechnologiesLabelValue(valueObj);
             })
-            .catch((e) => {
+            .catch(({ response }) => {
+                toast.error(response.data.message);
                 toast.error("Error getting technologies");
             });
     }, []);

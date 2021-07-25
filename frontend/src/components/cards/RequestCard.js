@@ -1,14 +1,14 @@
 import React from "react";
-import {Card} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import * as r from "routes/routes";
 import { confirmAction } from "utils";
 import { useAuthContext } from "hooks";
 import moment from "moment";
 
 const RequestCard = ({title, join,ShowAcceptBtn=true,id,options,vote}) => {
-    const { isStaff } = useAuthContext();
-
+    // const { isStaff } = useAuthContext();
+    // const [request, requesting] = useRequest(getStudentRequests);
     const accept = () => {
         confirmAction({
             message: "Are you sure you want to accept this request?",
@@ -45,7 +45,7 @@ const RequestCard = ({title, join,ShowAcceptBtn=true,id,options,vote}) => {
                 <hr/>
                 <Card.Text className="d-flex">
                     <div className="ml-auto">
-                        {ShowAcceptBtn && 
+                        {ShowAcceptBtn && (
                             <button
                                 className="btn btn-primary py-1 px-2 mr-1"
                                 style={{
@@ -56,8 +56,11 @@ const RequestCard = ({title, join,ShowAcceptBtn=true,id,options,vote}) => {
                             >
                                 Accept
                             </button>
-                        }
-                        <button className="btn btn-outline-danger py-1 px-2 mr-1" onClick={decline}>
+                        )}
+                        <button
+                            className="btn btn-outline-danger py-1 px-2 mr-1"
+                            onClick={decline}
+                        >
                             Decline
                         </button>
                     </div>
