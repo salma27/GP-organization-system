@@ -13,28 +13,25 @@ import {
 } from "components/cards";
 import getMyProfile from "requests/getMyProfile";
 import { toast } from "react-toastify";
-import { getStudentNotificationList, staffGetNotification, staffgetProfile } from "requests";
+import {
+    getStudentNotificationList,
+    staffGetNotification,
+    staffgetProfile,
+} from "requests";
 
 const NotificationDropdown = () => {
     const { isStaff } = useAuthContext();
-    const [requestStudentID, requestingStudentID] = useRequest(isStaff?staffgetProfile:getMyProfile);
+    const [requestStudentID, requestingStudentID] = useRequest(
+        isStaff ? staffgetProfile : getMyProfile
+    );
     const [requestNotiList, requestingNotiList] = useRequest(
-        isStaff?staffGetNotification:getStudentNotificationList
+        isStaff ? staffGetNotification : getStudentNotificationList
     );
     const [notiList, setNotiList] = useState([]);
-    const [myID, setMyID] = useState();
     useEffect(() => {
-        requestStudentID({})
-            .then((r) => {
-                setMyID(r.data.ecomId);
-                requestNotiList({ ownerId: r.data.ecomId })
-                    .then((res) => {
-                        setNotiList(res.data);
-                    })
-                    .catch(({ response }) => {
-                        toast.error(response.data.message);
-                        toast.error("Error loading notifications");
-                    });
+        requestNotiList({ ownerId: r.data.ecomId })
+            .then((res) => {
+                setNotiList(res.data.reverse());
             })
             .catch(({ response }) => {
                 toast.error(response.data.message);
