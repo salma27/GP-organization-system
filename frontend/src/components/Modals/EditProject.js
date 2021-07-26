@@ -280,7 +280,11 @@ function EditProject(props) {
                             props.type === "Add" ? addProject : editProject
                         }
                     >
-                        {props.btn}
+                        {requesting ? (
+                            <i className="fas fa-spinner fa-spin"></i>
+                        ) : (
+                            props.btn
+                        )}
                     </Button>
                 </Modal.Footer>
             </Modal>

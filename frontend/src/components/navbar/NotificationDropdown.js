@@ -29,7 +29,7 @@ const NotificationDropdown = () => {
     );
     const [notiList, setNotiList] = useState([]);
     useEffect(() => {
-        requestNotiList({ ownerId: r.data.ecomId })
+        requestNotiList()
             .then((res) => {
                 setNotiList(res.data.reverse());
             })
