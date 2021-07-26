@@ -55,6 +55,7 @@ function EditProject(props) {
     };
     function addProject(event) {
         setProject({ ...project, [tech]: tech });
+        console.log({ ...project, [tech]: tech });
         event.preventDefault();
         validate(project)
             .then(() => {
@@ -82,12 +83,19 @@ function EditProject(props) {
 
     function editProject(event) {
         setProject({ ...project, [tech]: tech });
+        console.log({ ...project, [tech]: tech });
         event.preventDefault();
         validate(project)
             .then(() => {
                 const tmp = [];
                 tech.forEach((t) => {
                     tmp.push(t.id);
+                });
+                console.log({
+                    projectId: props.projectId,
+                    title: project.ptitle,
+                    description: project.description,
+                    technologyIds: tmp,
                 });
                 request({
                     projectId: props.projectId,

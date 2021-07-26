@@ -21,7 +21,8 @@ function FieldsOfExperience(props) {
         myTech.forEach((t) => {
             techID.push(t.id);
         });
-        request({ technologies: techID })
+        console.log(techID);
+        request({ technologyIds: techID })
             .then((r) => {
                 toast.success("Updated successully");
             })

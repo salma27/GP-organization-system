@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { deleteTeamProjectRequests, staffEditDoctorProject, staffDeleteDoctorProject } from "requests";
 import { confirmAction } from "utils";
 
-const ProjectCard = ({ title, description, technologyIds=[], id,docotorDeleteProject=false }) => {
+const ProjectCard = ({ title, description, technologyIds=[], id,docotorDeleteProject=false, technologies=[] }) => {
     const [showModal, setShowModal] = useState(false);
     const [request, requesting] = useRequest(deleteTeamProjectRequests);
     const [deleteRequest,deleteRequesting] = useRequest(staffDeleteDoctorProject);
@@ -64,9 +64,10 @@ const ProjectCard = ({ title, description, technologyIds=[], id,docotorDeletePro
                                     hide={() => setShowModal(false)}
                                     title={title}
                                     brief_description={description}
-                                    tech={technologyIds}
+                                    tech={technologies}
                                     projectId={id}
                                     type="Edit"
+                                    technologies={technologies}
                                 />
                             }
                             {(docotorDeleteProject && showModal) &&///
@@ -109,7 +110,7 @@ const ProjectCard = ({ title, description, technologyIds=[], id,docotorDeletePro
                                     className="mr-1 mb-1"
                                     key={i}
                                 >
-                                    {t.name}
+                                    {t}
                                 </Badge>
                             ))}
                         {technologyIds &&

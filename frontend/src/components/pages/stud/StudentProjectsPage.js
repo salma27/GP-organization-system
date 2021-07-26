@@ -51,7 +51,7 @@ const StudentProjectsPage = () => {
                 <CardColumns>
                     {projects &&
                         projects.map((p, i) => (
-                            <ProjectCard project={p} key={i} />
+                            <ProjectCard project={p} {...p} key={i} />
                         ))}
                 </CardColumns>
             </div>

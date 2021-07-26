@@ -17,7 +17,7 @@ const StudentRequestsPage = () => {
                 setData(res.data.polls)
             })
             .catch(error=>{
-                toast.error(response.data.message);
+                if(error.response !== undefined) toast.error(error.response.data.message);
                 toast.error("Error viewing requests");
             })
     }, [])

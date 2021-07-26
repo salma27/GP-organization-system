@@ -27,9 +27,9 @@ const StudentsSearchResult = (props) => {
    
     useEffect(() => {
         if (search.search === "all") {
-            request({})
+            requestAll({})
                 .then((r) => {
-                    setResults(
+                    setAllResults(
                         search.type === "students"
                             ? r.data.students
                             : r.data.supervisors
@@ -63,15 +63,15 @@ const StudentsSearchResult = (props) => {
                     <div className="row">
                         <div className="col-12 d-inline d-lg-none">
                             <FilterStudents
-                                setResults={setResults}
-                                request={request}
-                                requesting={requesting}
+                                setResults={setAllResults}
+                                request={requestAll}
+                                requesting={requestingAll}
                                 name={search.type}
                             />
                         </div>
                         <div className="col-12 col-lg-8">
                             <Paginate>
-                                {results.map((p, i) => (
+                                {allResults.map((p, i) => (
                                     <StudentCard
                                         result={p}
                                         isStudent={search.type === "students"}
@@ -86,9 +86,9 @@ const StudentsSearchResult = (props) => {
                             <div className="sidebar-item">
                                 <div className="make-me-sticky">
                                     <FilterStudents
-                                        setResults={setResults}
-                                        request={request}
-                                        requesting={requesting}
+                                        setResults={setAllResults}
+                                        request={requestAll}
+                                        requesting={requestingAll}
                                         name={search.type}
                                     />
                                 </div>

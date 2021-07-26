@@ -52,7 +52,7 @@ function LoginForm(props) {
                         else history.push("/staff/dashboard");
                     })
                     .catch(({ response }) => {
-                        toast.error(response.data.message);
+                        if(response !== undefined) toast.error(response.data.message);
                         toast.error("Invalid ID/Password");
                     });
             })

@@ -41,6 +41,7 @@ function Notes(props) {
                             opacity: 1,
                         }}
                         value={note.value}
+                        placeholder={"Any Notes?"}
                         name="value"
                         id="value"
                         onChange={handleChange}

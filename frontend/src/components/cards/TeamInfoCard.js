@@ -10,7 +10,8 @@ import * as r from "routes/routes";
 
 const TeamInfoCard = ({}) => {
     const [requestLeave, requestingLeave] = useRequest(studentLeaveTeam);
-    const leaveTeam = () => {
+    const leaveTeam = (e) => {
+        e.preventDefault();
         confirmAction({
             message: "Are you sure you want to leave the team?",
             onConfirm: () => {
