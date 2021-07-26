@@ -55,18 +55,18 @@ function TeamsDataTable() {
                         let studIds = ele.ecomId;
                         let studName = ele.name;
                         let departmet = ele.departmentId;
-                        temp.push({id:i+1,mainProject:mainProject,studentsIds:studIds,students:studName,doctors:dr,tas:ta,departmet:departmet})
+                        temp.push({id:i+1,mainProject:mainProject.title,studentsIds:studIds,students:studName,doctors:dr,tas:ta,departmet:departmet})
                     })
                     
                 })
-                setData(temp);
                 // console.log("llll",temp);
+                setData(temp);
             })
             .catch(error => toast.error("couldn't get teams"))
     }, [])
 
     const columns = [
-        { name: "id", label: "Team Number", options: { filter: false, }, },
+        { name: "id", label: "Team Number", options: { filter: true, }, },
         { name: "mainProject", label: "Main Project", options: { filterType: "textField", }, },
         { name: "studentsIds", label: "Students ID",
             options: {

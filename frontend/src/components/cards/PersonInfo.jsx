@@ -5,7 +5,7 @@ import { confirmAction } from "utils";
 import { useAuthContext } from "hooks";
 import { AskToJoinMyTeam } from 'components/Modals';
 
-const PersonInfo = ({show=false,btn=false, info}) => {
+const PersonInfo = ({show=false,btn=false, info,isDr}) => {
     const { isStaff } = useAuthContext();
     const [showModal, setShowModal] = useState(false);
     const [projects, setProjects] = useState([]);
@@ -38,6 +38,7 @@ const PersonInfo = ({show=false,btn=false, info}) => {
                     hide={() => setShowModal(false)}
                     projects={projects} 
                     supervisorID = {info.ecomId} 
+                    isDr={isDr}
                 />
                </> 
             }

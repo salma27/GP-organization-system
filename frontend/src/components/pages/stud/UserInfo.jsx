@@ -32,7 +32,7 @@ const isStudent = student;
 const show = props.show?props.show:false;
 const btn = props.btn?props.btn:false;
 
-
+console.log(res);
     const [request, requesting] = useRequest(isStudent?getOneStudent:getOneSupervisor);
     const [user, setUser] = useState([]);
     
@@ -56,7 +56,7 @@ useEffect(() => {
                 
                 <div className="col-12 col-lg-12 m-auto" >
                     
-                    <PersonInfo show={show} btn={btn} info={user} isStudent={isStudent}/>
+                    <PersonInfo show={show} btn={btn} info={user} isStudent={isStudent} isDr={res.type==0}/>
                     <hr />
                     
                     <div className="personinfo-block">

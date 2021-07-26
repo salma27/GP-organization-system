@@ -29,3 +29,4 @@ export { default as StudentRequestToJoinTeam } from "./StudentRequestToJoinTeam"
 export {getStudentRequest} from "./studentRequests";
 export {studentVote} from "./studentRequests";
 export { default as getStudentRequests } from "./getStudentRequests";
+export {default as askTeamToAskTaToSupervise} from "./askTeamToAskTaToSupervise";

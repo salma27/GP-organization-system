@@ -100,7 +100,7 @@ const ShowinTeam = (props) => {
                                 <RiMailSendLine className="mr-1" />
                                 {isStaff
                                     ? "Ask To Be Supervisor"
-                                    : "Ask to join my team"}
+                                    : "Ask to join"}
                             </button>
                             {showModal&&
                             <AskToJoinMyTeam

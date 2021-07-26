@@ -86,6 +86,7 @@ const StudentCard = (props) => {
                                     projects={projects}     
                                     supervisorID={props.id}
                                     teamId={props.teamId}
+                                    isDr={props.isDr}
                                     />}
                             </>
                         }

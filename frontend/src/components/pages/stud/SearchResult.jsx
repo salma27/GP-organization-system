@@ -78,6 +78,7 @@ const StudentsSearchResult = (props) => {
                                         id={p.ecomId}
                                         key={i}
                                         teamId={p.teamId}
+                                        isDr={search.type==="doctors"}
                                     />
                                 ))}
                             </Paginate>

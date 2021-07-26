@@ -4,7 +4,8 @@ import { Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { AskToBeMySupervisor, getAllMyProjects_Student, 
         doctorRequestToBeSuberVisorProject, TARequestToBeSuberVisor, 
-        staffGetTeamProjects, staffgetProfile } from "requests";
+        staffGetTeamProjects, staffgetProfile,
+        askTeamToAskTaToSupervise } from "requests";
 import { useRequest, useAuthContext } from "hooks";
 
 function AskToJoinMyTeam(props) {
@@ -16,6 +17,7 @@ function AskToJoinMyTeam(props) {
     const [requestMyProjects, requestingMyProjects] = useRequest(getAllMyProjects_Student);
     const [teamProjectsRequest,loading] = useRequest(staffGetTeamProjects);
     const [requestStaffProfile,profileLoding] = useRequest(staffgetProfile);
+    const [requestAskTeamToAskTaToSupervise,askTeamToAskTaToSuperviseLoading]=useRequest(askTeamToAskTaToSupervise);
 
     const changeHandler = (e) => {
         setSelectedProject(e.target.value);
@@ -49,15 +51,27 @@ function AskToJoinMyTeam(props) {
 
                 })
         }else{
-            console.log({ supervisorId: props, projectId: selectedProject});
-            request({ supervisorId: props.supervisorID, projectId: selectedProject})
-            .then((r) => {
-                toast.success("Request sent successfully");
-            })
-            .catch(({ response }) => {
-                toast.error(response.data.message);
-                toast.error("Error sending request");
-            });
+            if(props.isDr){
+                console.log({ supervisorId: props, projectId: selectedProject});
+                request({ supervisorId: props.supervisorID, projectId: selectedProject})
+                .then((r) => {
+                    toast.success("Request sent successfully");
+                })
+                .catch(({ response }) => {
+                    toast.error(response.data.message);
+                    toast.error("Error sending request");
+                });
+            }else{
+                requestAskTeamToAskTaToSupervise({ supervisorId: props.supervisorID, projectId: selectedProject})
+                .then((r) => {
+                    toast.success("Request sent successfully");
+                })
+                .catch(({ response }) => {
+                    toast.error(response.data.message);
+                    toast.error("Error sending request");
+                });
+            }
+            
         }
         
     };
