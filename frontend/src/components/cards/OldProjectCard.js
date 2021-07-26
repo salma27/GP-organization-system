@@ -28,6 +28,7 @@ const OldProjectCard = ({
     const [requestStaffProfile,profileLoding] = useRequest(staffgetProfile);
     const [taRequest,taRequestin] = useRequest(TARequestToBeSuberVisor);
 
+
     const confirm = () => { 
         if(!isStaff){
             confirmAction({
@@ -84,8 +85,10 @@ const OldProjectCard = ({
     const [dr, setDr] = useState([]);
     useEffect(() => {
         if (showDr) {
-            reuestDrName({ projectId: project.ownerId })
+            console.log(project.ownerId);
+            reuestDrName({ id: project.ownerId })
                 .then((r) => {
+                    // console.log(r.data);
                     setDr(r.data);
                 })
                 .catch(({ response }) => {
