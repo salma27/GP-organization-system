@@ -16,9 +16,9 @@ function FieldsOfExperience(props) {
         setMyTech(props.profile.technologies);
     }, [props.profile.technologies]);
 
-    function editProfile() {
+    function editProfile(newValue) {
         const techID = [];
-        myTech.forEach((t) => {
+        newValue.forEach((t) => {
             techID.push(t.id);
         });
         console.log(techID);
@@ -38,7 +38,7 @@ function FieldsOfExperience(props) {
         });
         if (oneTech && !techID.includes(oneTech.id) && oneTech.id !== "-1") {
             setMyTech([...myTech, oneTech]);
-            editProfile();
+            editProfile([...myTech, oneTech]);
         }
     };
     const setOneItem = (e) => {
@@ -52,7 +52,7 @@ function FieldsOfExperience(props) {
             }
         });
         setMyTech(temp);
-        editProfile();
+        editProfile(temp);
     };
     const [allTech] = useTechnology();
     return (

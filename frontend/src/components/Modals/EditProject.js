@@ -34,7 +34,7 @@ function EditProject(props) {
     const removeItem = (index) => {
         const temp = [];
         tech.forEach((v) => {
-            if (index !== v.i) {
+            if (index !== v.id) {
                 temp.push(v);
             }
         });
@@ -70,6 +70,7 @@ function EditProject(props) {
                 })
                     .then((r) => {
                         toast.success("Project Added Successfully");
+                        window.location.reload();
                     })
                     .catch(({ response }) => {
                         toast.error(response.data.message);
@@ -105,6 +106,8 @@ function EditProject(props) {
                 })
                     .then((r) => {
                         toast.success("Project Updated Successfully");
+                        window.location.reload();
+
                     })
                     .catch(({ response }) => {
                         toast.error(response.data.message);
