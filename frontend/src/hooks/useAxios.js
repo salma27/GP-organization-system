@@ -7,7 +7,7 @@ export default function useAxios() {
     const {access_token} = {...auth};
 
     // const baseURL = "http://192.168.1.11:8000";
-    const baseURL = "https://3533789ffb85.ngrok.io";
+    const baseURL = "http://localhost:8000";
 
     const defaultAxios = Axios.create({
         baseURL,
