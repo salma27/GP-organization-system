@@ -74,7 +74,7 @@ function EditProject(props) {
                     })
                     .catch(({ response }) => {
                         toast.error(response.data.message);
-                        toast.error("Invalid Input");
+                        // toast.error("Invalid Input");
                     });
             })
             .catch(({ response }) => {
