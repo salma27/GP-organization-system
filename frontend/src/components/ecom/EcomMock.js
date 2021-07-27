@@ -8,6 +8,7 @@ import { Form } from "react-bootstrap";
 import { useDepartments, useRequest } from "hooks";
 import { useHistory } from "react-router";
 import { studentRegisterRoute, supervisorRegisterRoute } from "routes/routes";
+import { Link } from "react-router-dom";
 
 const style = {
     // backgrounds from 1 to 5 i.e. feed_4
@@ -25,6 +26,7 @@ const EcomMock = () => {
         departmentId: "",
         type: "",
     });
+    const [link, setLink] = useState("");
     const [studentRequest, requestingStudent] = useRequest((axios, data) =>
         axios.post("/student/ecom/encode-token", data)
     );
@@ -44,7 +46,7 @@ const EcomMock = () => {
         setUser(newUser);
     };
     const onSelectHandler = ({ target: { name, value } }) => {
-        const newUser = { ...user, [name]: value.value };
+        const newUser = { ...user, [name]: value ? value.value : "" };
         setUser(newUser);
     };
     function submit(event) {
@@ -54,15 +56,18 @@ const EcomMock = () => {
                 .then((r) => {
                     const token = r.data;
                     const route = studentRegisterRoute.replace(":token", token);
-                    history.push(route);
+                    setLink(route);
                 })
                 .catch(() => {});
         else
             supervisorRequest(user)
                 .then((r) => {
                     const token = r.data;
-                    const route = supervisorRegisterRoute.replace(":token", token);
-                    history.push(route);
+                    const route = supervisorRegisterRoute.replace(
+                        ":token",
+                        token
+                    );
+                    setLink(route);
                 })
                 .catch(() => {});
     }
@@ -122,11 +127,20 @@ const EcomMock = () => {
                                     requestingSupervisor ? (
                                         <i className="fas fa-spinner fa-spin"></i>
                                     ) : (
-                                        "Take me to register"
+                                        "Generate register link"
                                     )
                                 }
                             />
                         </Form>
+                        <div className="ecom-link">
+                            {link.length ? (
+                                <Link to={link} className="link-danger">
+                                    {link}
+                                </Link>
+                            ) : (
+                                "no link yet"
+                            )}
+                        </div>
                     </Container>
                 </Col>
             </Row>
