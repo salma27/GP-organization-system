@@ -1,4 +1,5 @@
 export * from "./admin";
+export * from "./staff";
 export { default as loginRequests } from "./loginRequests";
 export { default as adminLoginRequest } from "./adminLoginRequest";
 export { default as getAllDepartments } from "./getAllDepartments";
@@ -25,4 +26,7 @@ export { default as AskToBeMySupervisor } from "./AskToBeMySupervisor";
 export { default as getAllMyProjects_Student } from "./getAllMyProjects_Student";
 export { default as getStudentNotificationList } from "./getStudentNotificationList";
 export { default as StudentRequestToJoinTeam } from "./StudentRequestToJoinTeam";
-
+export {getStudentRequest} from "./studentRequests";
+export {studentVote} from "./studentRequests";
+export { default as getStudentRequests } from "./getStudentRequests";
+export {default as askTeamToAskTaToSupervise} from "./askTeamToAskTaToSupervise";

@@ -16,21 +16,21 @@ const StatNum = (props) => {
                 <VscSymbolNumeric />
             </div>
 
-            <h3 className="stat-num-header">100</h3>
+            <h3 className="stat-num-header">{props.total}</h3>
             <hr />
             <div className="row">
                 {props.data.map((item,index) => <div className="col-6" key={index}>
                     <>
                         <div>
-                            <label className="stat-label mr-1">{item.department}</label>
-                            <VscSymbolNumeric />
+                            <label className="stat-label mr-1">{item.name}</label>
+                            {/* <VscSymbolNumeric /> */}
                         </div>
 
-                        {props.head==="Doctors" ? 
-                            <h3 className="stat-num">{item.numOfDr}</h3>:
-                            props.head === "Students" ? <h3 className="stat-num">{item.numOfStud}</h3> :
-                            <h3 className="stat-num">{item.numOfTAS}</h3>
-                        }
+                        {/* {props.head==="Doctors" ?  */}
+                            <h5 className="stat-num">{item.count}</h5>
+                            {/* props.head === "Students" ? <h3 className="stat-num">{item.numOfStud}</h3> :
+                            <h3 className="stat-num">{item.numOfTAS}</h3> */}
+                        {/* } */}
                     </>
                 </div>)}
 

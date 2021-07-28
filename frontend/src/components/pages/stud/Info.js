@@ -11,6 +11,7 @@ const style = {
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
+height: "100%"
     // height:"100vh",
 };
 
@@ -40,7 +41,7 @@ const Info = (props) => {
                         </Tab>
                         {isStaff && (
                             <Tab eventKey="projects" title="Projects">
-                                <pages.Projects />
+                                <pages.Projects res={res} student={student} teamId={res.teamId} btn={true}/>
                             </Tab>
                         )}
                     </Tabs>

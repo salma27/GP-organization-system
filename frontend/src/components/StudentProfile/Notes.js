@@ -18,7 +18,8 @@ function Notes(props) {
             .then((r) => {
                 toast.success("Updated successully");
             })
-            .catch((e) => {
+            .catch(({ response }) => {
+                toast.error(response.data.message);
                 toast.error("Error updating profile");
             });
     };
@@ -40,6 +41,7 @@ function Notes(props) {
                             opacity: 1,
                         }}
                         value={note.value}
+                        placeholder={"Any Notes?"}
                         name="value"
                         id="value"
                         onChange={handleChange}

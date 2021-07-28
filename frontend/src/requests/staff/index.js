@@ -1,0 +1,15 @@
+export {staffGetNotification} from "./staffNotification";
+export {staffgetProfile} from "./staffProfile";
+export {staffGetStudentProjects} from "./staffGetStudentProjects";
+export {staffGetTeamProjects} from "./staffGetTeamProjects";
+export {doctorRequestToBeSuberVisorProject} from "./doctorRequestToBeSuberVisorProject";
+export {TARequestToBeSuberVisor} from "./TARequestToBeSuberVisor";
+export {staffGetItsTeams} from "./staffTeams";
+export {staffGetDoctorProjects} from "./staffDoctorProjects";
+export {staffAddDoctorProject} from "./staffDoctorProjects";
+export {staffLeaveTeam} from "./staffTeams";
+export {staffDeleteDoctorProject} from "./staffDoctorProjects";
+export {staffEditDoctorProject} from "./staffDoctorProjects";
+export {staffGetPolls} from "./staffPoll";
+export {staffEditProfile} from "./staffProfile";
+export {staffVote as stafftVote} from "./staffPoll";

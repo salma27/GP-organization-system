@@ -1,7 +1,10 @@
 import { ProjectCard } from "components/cards";
 import { CardColumns } from "react-bootstrap";
-import { EditProject } from "components/Modals";
-import React, { useState } from "react";
+import { AddDoctorProject } from "components/Modals";
+import React, { useState, useEffect } from "react";
+import {staffGetDoctorProjects, staffAddDoctorProject} from "requests";
+import {useRequest} from "hooks";
+import { toast } from "react-toastify";
 
 const projects = [
     {
@@ -53,6 +56,19 @@ const projects = [
 
 const StudentProjectsPage = () => {
     const [showModal, setShowModal] = useState(false);
+    const [data,setData] = useState([]);
+    const [request,requesting] = useRequest(staffGetDoctorProjects);
+
+    useEffect(() => {
+        request({})
+            .then(res=>{
+                setData(res.data);
+            })
+            .catch(e=>{
+                toast.error("Can't load")
+            })
+    }, [])
+
     return (
         <div>
             <button
@@ -66,21 +82,25 @@ const StudentProjectsPage = () => {
             >
                 Add New Project
             </button>
-            <EditProject
+            <AddDoctorProject
                 show={showModal}
                 hide={() => setShowModal(false)}
                 title=""
-                brief_description=""
+                description=""//
                 tech={[]}
                 btn="Add Project"
+                request={staffAddDoctorProject}
+                type="Add"
             />
 
             <div className="row">
-                <CardColumns>
-                    {projects.map((p, i) => (
-                        <ProjectCard {...p} key={i} />
+                {/* <CardColumns> */}
+                <div className="container" >
+                    {data.map((p, i) => (
+                        <ProjectCard {...p} key={i} docotorDeleteProject={true} />
                     ))}
-                </CardColumns>
+                </div>
+                {/* </CardColumns> */}
             </div>
         </div>
     );

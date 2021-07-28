@@ -1,41 +1,46 @@
 import {RequestCard} from "components/cards";
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {CardColumns} from "react-bootstrap";
+import {useRequest} from 'hooks';
+import {getStudentRequest, studentVote} from "requests";
+import { toast } from "react-toastify";
 
-const requests = [
-    {
-        name: "Alen douglas",
-        join: true,
-    },
-    {
-        name: "Mike mikey",
-        join: true,
-    },
-    {
-        name: "Ali kory",
-        join: false,
-    },
-    {
-        name: "My name",
-        join: false,
-    },
-    {
-        name: "Tarzan",
-        join: true,
-    },
-    {
-        name: "Elsa",
-        join: false,
-    },
-];
 const StudentRequestsPage = () => {
+    const [data,setData] = useState([]);
+    const [request,requestin] = useRequest(getStudentRequest);
+    const [voteRequest,voteRequestin] = useRequest(studentVote);
+
+    useEffect(() => {
+        request()
+            .then(res=>{
+                // console.log(res.data);
+                setData(res.data.polls)
+            })
+            .catch(error=>{
+                if(error.response !== undefined) toast.error(error.response.data.message);
+                toast.error("Error viewing requests");
+            })
+    }, [])
+
+    const vote = (pollId,pollOptionId)=>{
+        voteRequest({pollId,pollOptionId})
+            .then(res=>{
+                toast.success("Done");
+            })
+            .catch(error=>{
+                toast.error("faild");
+            })
+    }
+
+
     return (
         <div>
             <div className="row">
                 <CardColumns>
-                    {requests.map((r, i) => (
-                        <RequestCard {...r} key={i} />
+                    {data&& data.map((r, i) => (
+                        <RequestCard {...r} key={i} vote={vote} />
                     ))}
+                    {!data && "No available Requests"}
                 </CardColumns>
             </div>
         </div>

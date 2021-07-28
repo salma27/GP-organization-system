@@ -1,5 +1,9 @@
 export const root = "/";
 export const loginRoute = "/login";
+export const loginRouteWithEcom = "/login/:ecomId";
+export const ecomMockRoute = "/ecom-mock";
+export const studentRegisterRoute = "/register/student/:token";
+export const supervisorRegisterRoute = "/register/supervisor/:token";
 
 export const studentBase = "/student";
 export const studentDashboardRoute = `${studentBase}/dashboard`;
@@ -32,6 +36,7 @@ export const teamsDataTable = `${adminDashboard}/teams-data-table`;
 export const adminNewsFeed = `${adminDashboard}/news-feed`;
 export const adminOldProjects = `${adminDashboard}/old-projects`;
 export const adminProjects = `${adminDashboard}/projects`;
+export const AdminTechnologies = `${adminDashboard}/technologies`;
 
 export const staffBase = "/staff";
 export const staffDashboradRoute = `${staffBase}/dashboard`;

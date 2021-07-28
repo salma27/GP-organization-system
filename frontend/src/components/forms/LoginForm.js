@@ -5,7 +5,7 @@ import "./Login.css";
 import { useAuthContext, useRequest, useValidation } from "hooks";
 import loginFormValidations from "./loginFormValidations";
 import { loginRequests } from "requests";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 import {
     studentDashboardRoute,
     staffDashboradRoute,
@@ -14,14 +14,18 @@ import {
 } from "routes/routes";
 import { toast } from "react-toastify";
 
-function LoginForm() {
-    const [user, setUser] = useState({ id: "", password: "" });
+function LoginForm(props) {
+    const { ecomId } = useParams();
+    const [user, setUser] = useState({
+        id: ecomId ? ecomId : "",
+        password: "",
+    });
     const [isStudent, setIsStudent] = useState(false);
     const { errors, validate, addErrors } = useValidation(loginFormValidations);
     const [request, requesting] = useRequest(loginRequests);
     const history = useHistory();
     const { setAuth } = useAuthContext();
-
+    console.log(ecomId);
     const onChangeHandler = ({ target: { name, value } }) => {
         const newUser = { ...user, [name]: value };
         validate(newUser, name).catch((e) => {});
@@ -47,11 +51,14 @@ function LoginForm() {
                         if (isStudent) history.push("/student/dashboard");
                         else history.push("/staff/dashboard");
                     })
-                    .catch((e) => {
+                    .catch(({ response }) => {
+                        if(response !== undefined) toast.error(response.data.message);
                         toast.error("Invalid ID/Password");
                     });
             })
-            .catch((e) => {});
+            .catch(({ response }) => {
+                toast.error(response.data.message);
+            });
     }
 
     return (

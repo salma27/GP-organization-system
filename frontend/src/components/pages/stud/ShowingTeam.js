@@ -5,7 +5,7 @@ import { useAuthContext, useRequest } from "hooks";
 import { confirmAction } from "utils";
 import AskToJoinMyTeam from "components/Modals/AskToJoinMyTeam";
 import { toast } from "react-toastify";
-import { getSearchStudentTeamInfo } from "requests";
+import { getSearchStudentTeamInfo, StudentRequestToJoinTeam } from "requests";
 
 const projects = ["pro1", "pro4", "pro5"];
 
@@ -15,6 +15,7 @@ const style = {
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
+height: "100%"
     // height:"100vh",
 };
 //const students = ["sara", "salma"];
@@ -27,8 +28,10 @@ const ShowinTeam = (props) => {
     const [students, setStudents] = useState([]);
     const [doctors, setDoctors] = useState([]);
     const [TAs, setTAs] = useState([]);
-    const [technologies,setTechnologies] = useState([]);
-
+    const [technologies, setTechnologies] = useState([]);
+    const [requestJoinTeam, requestingJoionTeam] = useRequest(
+        StudentRequestToJoinTeam
+    );
     useEffect(() => {
         request({ id: props.res.teamId })
             .then((r) => {
@@ -46,11 +49,9 @@ const ShowinTeam = (props) => {
                 });
                 r.data.students.forEach((element) => {
                     arr3.push(element);
-                    element.technologyIds.forEach(tech=>{
-                        if(!arr4.includes(tech))
-                            arr4.push(tech);
-                    })
-                    
+                    element.technologyIds.forEach((tech) => {
+                        if (!arr4.includes(tech)) arr4.push(tech);
+                    });
                 });
 
                 setDoctors(arr1);
@@ -60,15 +61,24 @@ const ShowinTeam = (props) => {
                 setTechnologies(arr4);
                 toast.success("data loaded successfully");
             })
-            .catch((e) => {
+            .catch(({ response }) => {
+                toast.error(response.data.message);
                 toast.error("Error showing team information");
             });
     }, []);
-    //console.log("ta: ", TAs, "doc:", doctors);
     const confirm = () => {
         confirmAction({
             message: "Are you sure you want to send this request?",
-            onConfirm: () => {},
+            onConfirm: () => {
+                requestJoinTeam({ teamId: props.res.teamId })
+                    .then((r) => {
+                        toast.success("Request sent successfully");
+                    })
+                    .catch(({ response }) => {
+                        toast.error(response.data.message);
+                        toast.error("Error sending request");
+                    });
+            },
         });
     };
 
@@ -90,13 +100,15 @@ const ShowinTeam = (props) => {
                                 <RiMailSendLine className="mr-1" />
                                 {isStaff
                                     ? "Ask To Be Supervisor"
-                                    : "Ask to join my team"}
+                                    : "Ask to join"}
                             </button>
+                            {showModal&&
                             <AskToJoinMyTeam
                                 show={showModal}
                                 hide={() => setShowModal(false)}
                                 projects={projects}
-                            />
+                                teamId={props.res.teamId}
+                            />}
                         </div>
                     </div>
 

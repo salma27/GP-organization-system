@@ -5,17 +5,23 @@ import useRequest from "./useRequest";
 
 const useTechnology = () => {
     const [technologies, setTech] = useState([]);
+    const [technologiesLabelValue, setTechnologiesLabelValue] = useState([]);
     const [request, requesting] = useRequest(getAllTechnologies);
     useEffect(() => {
         request()
             .then((r) => {
                 setTech(r.data);
+                const valueObj = r.data.map((d) => {
+                    return { label: d.name, value: d.id };
+                });
+                setTechnologiesLabelValue(valueObj);
             })
-            .catch((e) => {
+            .catch(({ response }) => {
+                toast.error(response.data.message);
                 toast.error("Error getting technologies");
             });
     }, []);
-    return [technologies];
+    return [technologies, requesting, technologiesLabelValue];
 };
 
 export default useTechnology;

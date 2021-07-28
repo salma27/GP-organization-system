@@ -13,6 +13,7 @@ const style = {
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
+height: "100%"
     // height:"100vh",
 };
 
@@ -55,12 +56,16 @@ const InfoStaff = (props) => {
                                 btn={true}
                             />
                         </Tab>
+                        {state.res.type===0?
                         <Tab eventKey="projects" title="Projects">
                             <pages.Projects
                                 btn={isStaff ? false : true}
                                 state={state}
+                                isDr={true}
                             />
-                        </Tab>
+                        </Tab>:
+                        <></>
+                        }
                     </Tabs>
                 </div>
             </div>

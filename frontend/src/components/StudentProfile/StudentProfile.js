@@ -18,7 +18,8 @@ function StudentProfile() {
             .then((r) => {
                 setProfile(r.data);
             })
-            .catch((e) => {
+            .catch(({ response }) => {
+                toast.error(response.data.message);
                 toast.error("Error loading profile info");
             });
     }, []);

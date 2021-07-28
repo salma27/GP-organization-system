@@ -1,15 +1,15 @@
-import { useRequest } from "hooks";
+import { useRequest, useAuthContext } from "hooks";
 import React, { useEffect, useState } from "react";
 import { Badge, Card, Toast } from "react-bootstrap";
 import { RiMailSendLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { getOneSupervisor, StudentAskToTakeSupervisorIdea } from "requests";
+import { getOneSupervisor, StudentAskToTakeSupervisorIdea, doctorRequestToBeSuberVisorProject, staffgetProfile, TARequestToBeSuberVisor } from "requests";
 import * as r from "routes/routes";
 import { confirmAction } from "utils";
 
 const OldProjectCard = ({
-    project = [],
+    project,
     btn = false,
     showDr = false,
     showTeam = false,
@@ -23,29 +23,76 @@ const OldProjectCard = ({
         width: "1px",
     };
     const [request, requesting] = useRequest(StudentAskToTakeSupervisorIdea);
-    const confirm = () => {
-        confirmAction({
+    const [doctorRequest,doctorRequesting] = useRequest(doctorRequestToBeSuberVisorProject);
+    const {isStaff} = useAuthContext();
+    const [requestStaffProfile,profileLoding] = useRequest(staffgetProfile);
+    const [taRequest,taRequestin] = useRequest(TARequestToBeSuberVisor);
+
+
+    const confirm = () => { 
+        if(!isStaff){
+            confirmAction({
             message: "Are you sure you want to send this request?",
             onConfirm: () => {
-                request({ id: project.id })
+                request({ projectId: project.id })
                     .then((r) => {
                         toast.success("Request sent successfully");
                     })
-                    .catch((e) => {
+                    .catch(({ response }) => {
+                        toast.error(response.data.message);
                         toast.error("Error sending the request");
                     });
             },
-        });
+            });
+        }
+        else{
+            requestStaffProfile({})
+                .then(res=>{
+                    if(res.data.type===0){
+                        confirmAction({
+                            message: "Are you sure you want to send this request?",
+                            onConfirm: () => {
+                                doctorRequest({ projectId: project.id })
+                                    .then((r) => {
+                                        toast.success("Request sent successfully");
+                                    })
+                                    .catch((e) => {
+                                        toast.error(e.response.data.message);
+                                    });
+                            },
+                        });
+                    }else{
+                        confirmAction({
+                            message: "Are you sure you want to send this request?",
+                            onConfirm: () => {
+                                taRequest({ projectId: project.id })
+                                    .then((r) => {
+                                        toast.success("Request sent successfully");
+                                    })
+                                    .catch((e) => {
+                                        toast.error(e.response.data.message);
+                                    });
+                            },
+                        });
+                    }
+                })
+                .catch((e) => {
+
+                })
+        }
     };
     const [reuestDrName, reuestingDrName] = useRequest(getOneSupervisor);
     const [dr, setDr] = useState([]);
     useEffect(() => {
         if (showDr) {
+            console.log(project.ownerId);
             reuestDrName({ id: project.ownerId })
                 .then((r) => {
+                    // console.log(r.data);
                     setDr(r.data);
                 })
-                .catch((e) => {
+                .catch(({ response }) => {
+                    toast.error(response.data.message);
                     toast.error("couldn't get idea's owner");
                 });
         }
@@ -57,6 +104,9 @@ const OldProjectCard = ({
                 <Card.Title className="row team-header mw-100">
                     <div className="col-12 col-lg-8">
                         <b>{project.title}</b>
+                        <p style={{ fontSize: "small" }}>
+                            Department: <b>{project.departmentId}</b>
+                        </p>
                         {showDr && (
                             <Link
                                 to={{
@@ -73,10 +123,10 @@ const OldProjectCard = ({
                             </Link>
                         )}
                         {showTeam && (
-                            <Link to={r.teamInfo}>
-                                <p style={{ fontSize: "small" }}>
-                                    team / <b>team</b>
-                                </p>
+                            <Link to={{ pathname:r.teamInfo, state:{teamId: project.ownerId}}}>
+                                <span style={{ fontSize: "small",display:"block" }}>
+                                    Go To The Team
+                                </span>
                             </Link>
                         )}
                     </div>
@@ -86,8 +136,7 @@ const OldProjectCard = ({
                                 className="primary-btn py-1 px-2 mr-1 mb-1"
                                 onClick={confirm}
                             >
-                                <RiMailSendLine className="mr-1" /> Ask To take
-                                this idea
+                                <RiMailSendLine className="mr-1" /> Ask To Supervise
                             </button>
                         </div>
                     )}

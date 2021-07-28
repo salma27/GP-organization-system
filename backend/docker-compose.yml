@@ -1,0 +1,60 @@
+version: "3.7"
+
+services:
+  web:
+    container_name: "gp-organization-api"
+
+    build:
+      context: .
+      target: development
+
+    volumes:
+      - "./src:/home/node/app/src"
+
+    environment:
+      DB_HOST: mongo-db
+      DB_PORT: 27027
+      DB_NAME: "gp-organization"
+
+    depends_on:
+      - mongo-db
+
+    ports:
+      - "${SERVER_PORT}:80"
+
+    command: "npm run dev"
+  
+  python-api:
+    container_name: "python-api"
+
+    build:
+      context: ./pyApi/
+    
+    volumes:
+      - "./pyApi:/usr/src/app"
+
+    depends_on:
+      - mongo-db
+
+    ports:
+      - "5000:5000"
+
+
+  mongo-db:
+    image: mongo
+
+    ports:
+      - "27027:27027"
+
+    restart: always
+
+    command: mongod --port 27027
+
+    volumes:
+      - "mongodb:/data/db"
+
+    logging:
+      driver: none
+
+volumes:
+  mongodb:

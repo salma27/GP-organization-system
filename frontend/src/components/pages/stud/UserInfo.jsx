@@ -18,6 +18,7 @@ const style = {
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
+height: "100%"
     // height:"100vh",
 };
 
@@ -31,7 +32,7 @@ const isStudent = student;
 const show = props.show?props.show:false;
 const btn = props.btn?props.btn:false;
 
-
+console.log(res);
     const [request, requesting] = useRequest(isStudent?getOneStudent:getOneSupervisor);
     const [user, setUser] = useState([]);
     
@@ -41,7 +42,8 @@ useEffect(() => {
         setUser(r.data);
         toast.success("data loaded successfully");
     })
-    .catch((e)=>{
+    .catch(({response})=>{
+        toast.error(response.data.message);
         toast.error(isStudent?"Error showing student information":"Error showing supervisor information");
     })
 }, []);
@@ -54,7 +56,7 @@ useEffect(() => {
                 
                 <div className="col-12 col-lg-12 m-auto" >
                     
-                    <PersonInfo show={show} btn={btn} info={user} isStudent={isStudent}/>
+                    <PersonInfo show={show} btn={btn} info={user} isStudent={isStudent} isDr={res.type==0}/>
                     <hr />
                     
                     <div className="personinfo-block">

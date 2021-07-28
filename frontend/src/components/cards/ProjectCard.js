@@ -1,32 +1,47 @@
-import { EditProject } from "components/Modals";
+import { EditProject, AddDoctorProject } from "components/Modals";
 import { useRequest } from "hooks";
 import React, { useState } from "react";
 import { Badge, Card } from "react-bootstrap";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { toast } from "react-toastify";
-import { deleteTeamProjectRequests } from "requests";
+import { deleteTeamProjectRequests, staffEditDoctorProject, staffDeleteDoctorProject } from "requests";
 import { confirmAction } from "utils";
 
-const ProjectCard = ({ title, description, technologyIds, id }) => {
+const ProjectCard = ({ title, description, technologyIds=[], id,docotorDeleteProject=false, technologies=[] }) => {
     const [showModal, setShowModal] = useState(false);
     const [request, requesting] = useRequest(deleteTeamProjectRequests);
+    const [deleteRequest,deleteRequesting] = useRequest(staffDeleteDoctorProject);
+
     const deleteProject = () => {
         confirmAction({
             message: "Are you sure you want to delete this project?",
             onConfirm: () => {
-                request({ projectId: id })
+                if(docotorDeleteProject){
+                    deleteRequest({projectId:id})
+                        .then(res=>{
+                            toast.success(res.data.message);
+                            window.location.reload();
+                        })
+                        .catch(e=>{
+                            toast.error("Failed");
+                        })
+                }else{
+                    request({ projectId: id })
                     .then((r) => {
                         toast.success("Project deleted successfully");
                     })
-                    .catch((e) => {
+                    .catch(({ response }) => {
+                        toast.error(response.data.message);
                         toast.error("Coudln't delete the project");
                     });
+                }
+                
             },
         });
     };
     return (
         <>
-            <Card className="mb-3">
+            <Card className="mb-3 w-100">
                 <Card.Body>
                     <Card.Title className="d-flex">
                         <b>{title}</b>
@@ -42,16 +57,32 @@ const ProjectCard = ({ title, description, technologyIds, id }) => {
                             >
                                 <AiFillEdit />
                             </button>
-                            <EditProject
-                                btn="Update"
-                                show={showModal}
-                                hide={() => setShowModal(false)}
-                                title={title}
-                                brief_description={description}
-                                tech={technologyIds}
-                                projectId={id}
-                                type="Edit"
-                            />
+                            {(!docotorDeleteProject && showModal) &&
+                                <EditProject
+                                    btn="Update"
+                                    show={showModal}
+                                    hide={() => setShowModal(false)}
+                                    title={title}
+                                    brief_description={description}
+                                    tech={technologies}
+                                    projectId={id}
+                                    type="Edit"
+                                    technologies={technologies}
+                                />
+                            }
+                            {(docotorDeleteProject && showModal) &&///
+                                <AddDoctorProject
+                                    btn="Update"
+                                    show={showModal}
+                                    hide={() => setShowModal(false)}
+                                    title={title}
+                                    description={description}
+                                    tech={technologyIds}
+                                    projectId={id}
+                                    type="Edit"
+                                    request={staffEditDoctorProject}
+                                />
+                            }
                             <button
                                 className="btn btn-lg btn-outline-danger py-1 px-2 mr-1"
                                 onClick={deleteProject}
@@ -64,23 +95,27 @@ const ProjectCard = ({ title, description, technologyIds, id }) => {
                     <Card.Text>{description}</Card.Text>
                     <hr />
                     <Card.Text>
-                        {technologyIds.map((t, i) => (
-                            <Badge
-                                pill
-                                style={{
-                                    // backgroundColor: "white",
-                                    color: "#00BFA6",
-                                    borderColor: "#00BFA6",
-                                    borderWidth: "1px",
-                                    borderStyle: "solid",
-                                }}
-                                className="mr-1 mb-1"
-                                key={i}
-                            >
-                                {t}
-                            </Badge>
-                        ))}
-                        {!technologyIds.length && "No technologies provided"}
+                        {technologyIds &&
+                            technologyIds.length &&
+                            technologyIds.map((t, i) => (
+                                <Badge
+                                    pill
+                                    style={{
+                                        // backgroundColor: "white",
+                                        color: "#00BFA6",
+                                        borderColor: "#00BFA6",
+                                        borderWidth: "1px",
+                                        borderStyle: "solid",
+                                    }}
+                                    className="mr-1 mb-1"
+                                    key={i}
+                                >
+                                    {t}
+                                </Badge>
+                            ))}
+                        {technologyIds &&
+                            !technologyIds.length &&
+                            "No technologies provided"}
                     </Card.Text>
                 </Card.Body>
             </Card>

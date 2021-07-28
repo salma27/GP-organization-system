@@ -32,7 +32,7 @@ function RulesDataTable() {
     //     ["DS", "1", "5", "2", "3", "1", "1"],
     // ];
     const columns = [
-        { name: "name", label:"Department", options: { filterType: "checkbox" } },
+        { name: "name", label:"Department", options: { filterType: "multiselect" } },
         { name: "minNumberOfStudents", label:"Min students per team" },
         { name: "maxNumberOfStudents", label:"Max students per team" },
         { name: "minNumberOfSupervisors", label:"Min supervisors to supervise" },
@@ -114,7 +114,7 @@ function RulesDataTable() {
 
     return (
         <>
-            <DataTable title={"Students List"} loading={loading} data={data} columns={columns} options={options}/>
+            <DataTable title={"Departments List"} loading={loading} data={data} columns={columns} options={options}/>
         </>
     );
 }

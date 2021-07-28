@@ -61,12 +61,12 @@ const ProfileSidebar = () => {
                             Requests
                         </NavLink>
                     </li>
-                    <li>
+                    {/* <li>
                         <NavLink to={r.studentSendedRequests}>
                             <RiMailSendFill />
                             Sended Requests
                         </NavLink>
-                    </li>
+                    </li> */}
                     <li>
                         <NavLink to={r.studentProfileRoute}>
                             <RiProfileLine />

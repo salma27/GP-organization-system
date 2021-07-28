@@ -10,6 +10,7 @@ const style = {
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
+height: "100%"
 };
 
 const AdminRoutes = () => {
@@ -52,6 +53,7 @@ const AdminRoutes = () => {
                 <Route path={r.adminNewsFeed} component={pages.AdminNewsfeed} />
                 <Route path={r.adminOldProjects} component={pages.AdminOldProjects} />
                 <Route path={r.adminProjects} component={pages.AdminProjects} />
+                <Route path={r.AdminTechnologies} component={pages.AdminTechnologies} />
 
                 <Route
                     path="*"

@@ -1,24 +1,29 @@
 import React from "react";
-import {Card} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import * as r from "routes/routes";
 import { confirmAction } from "utils";
 import { useAuthContext } from "hooks";
+import moment from "moment";
 
-const RequestCard = ({name, join,ShowAcceptBtn=true}) => {
-    const { isStaff } = useAuthContext();
-
+const RequestCard = ({title, join,ShowAcceptBtn=true,id,options,vote}) => {
+    // const { isStaff } = useAuthContext();
+    // const [request, requesting] = useRequest(getStudentRequests);
     const accept = () => {
         confirmAction({
             message: "Are you sure you want to accept this request?",
-            onConfirm: () => {},
+            onConfirm: () => {
+                vote(id,options[0].id);
+            },
         });
     };
 
     const decline = () => {
         confirmAction({
             message: "Are you sure you want to decline this request?",
-            onConfirm: () => {},
+            onConfirm: () => {
+                vote(id,options[1].id);
+            },
         });
     };
 
@@ -28,19 +33,19 @@ const RequestCard = ({name, join,ShowAcceptBtn=true}) => {
                 <Card.Title>
                     {/* {isStaff &&  */}
                         <Link to={r.teamInfo}>
-                            <b>{name}</b>
+                            <b>{title}</b>
                         </Link>
                     {/* } */}
                 </Card.Title>
-                <Card.Text>
+                {/* <Card.Text>
                     {join
                         ? "This student wants you to join their team!"
                         : "This supervisor wants to supervise your team!"}
-                </Card.Text>
+                </Card.Text> */}
                 <hr/>
                 <Card.Text className="d-flex">
                     <div className="ml-auto">
-                        {ShowAcceptBtn && 
+                        {ShowAcceptBtn && (
                             <button
                                 className="btn btn-primary py-1 px-2 mr-1"
                                 style={{
@@ -51,8 +56,11 @@ const RequestCard = ({name, join,ShowAcceptBtn=true}) => {
                             >
                                 Accept
                             </button>
-                        }
-                        <button className="btn btn-outline-danger py-1 px-2 mr-1" onClick={decline}>
+                        )}
+                        <button
+                            className="btn btn-outline-danger py-1 px-2 mr-1"
+                            onClick={decline}
+                        >
                             Decline
                         </button>
                     </div>

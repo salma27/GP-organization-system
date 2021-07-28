@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Link } from "react";
 import { BsCheckCircle } from "react-icons/bs";
 // import { FormattedMessage } from "react-intl";
-import { useRequest } from "hooks";
+import { useRequest, useAuthContext } from "hooks";
 //import { clientSubInfo } from "requests";
 import moment from "moment";
 import { BsTrashFill } from "react-icons/bs";
@@ -13,28 +13,28 @@ import {
 } from "components/cards";
 import getMyProfile from "requests/getMyProfile";
 import { toast } from "react-toastify";
-import { getStudentNotificationList } from "requests";
+import {
+    getStudentNotificationList,
+    staffGetNotification,
+    staffgetProfile,
+} from "requests";
 
 const NotificationDropdown = () => {
-    const [requestStudentID, requestingStudentID] = useRequest(getMyProfile);
+    const { isStaff } = useAuthContext();
+    const [requestStudentID, requestingStudentID] = useRequest(
+        isStaff ? staffgetProfile : getMyProfile
+    );
     const [requestNotiList, requestingNotiList] = useRequest(
-        getStudentNotificationList
+        isStaff ? staffGetNotification : getStudentNotificationList
     );
     const [notiList, setNotiList] = useState([]);
-    const [myID, setMyID] = useState();
     useEffect(() => {
-        requestStudentID({})
-            .then((r) => {
-                setMyID(r.data.ecomId);
-                requestNotiList({ ownerId: r.data.ecomId })
-                    .then((res) => {
-                        setNotiList(res.data);
-                    })
-                    .catch((err) => {
-                        toast.error("Error loading notifications");
-                    });
+        requestNotiList()
+            .then((res) => {
+                setNotiList(res.data.reverse());
             })
-            .catch((e) => {
+            .catch(({ response }) => {
+                toast.error(response.data.message);
                 toast.error("Error loading notifications");
             });
     }, []);

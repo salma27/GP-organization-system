@@ -10,7 +10,8 @@ import * as r from "routes/routes";
 
 const TeamInfoCard = ({}) => {
     const [requestLeave, requestingLeave] = useRequest(studentLeaveTeam);
-    const leaveTeam = () => {
+    const leaveTeam = (e) => {
+        e.preventDefault();
         confirmAction({
             message: "Are you sure you want to leave the team?",
             onConfirm: () => {
@@ -18,7 +19,8 @@ const TeamInfoCard = ({}) => {
                     .then((r) => {
                         toast.success("You left the team");
                     })
-                    .catch((e) => {
+                    .catch(({ response }) => {
+                        toast.error(response.data.message);
                         toast.error("Coudln't leave the team");
                     });
             },
@@ -49,7 +51,8 @@ const TeamInfoCard = ({}) => {
 
                 toast.success("data loaded successfully");
             })
-            .catch((e) => {
+            .catch(({ response }) => {
+                toast.error(response.data.message);
                 toast.error("Error showing team information");
             });
     }, []);
@@ -135,11 +138,11 @@ const TeamInfoCard = ({}) => {
                         </dd>
 
                         <dt>Team's selected project</dt>
-                        <dd>{team.mainProject}</dd>
+                        <dd>{team.mainProject && team.mainProject.title}</dd>
 
                         <dt>Team's technologies</dt>
                         <dd>
-                            {/*
+                            
                             {team.technologies &&
                                 team.technologies.map((tech, i) => (
                                     <>
@@ -150,7 +153,7 @@ const TeamInfoCard = ({}) => {
                             {team.technologies &&
                                 !team.technologies &&
                             "No Provided Technologies"}
-                            */}
+                           
                         </dd>
                     </dl>
                 </Card.Text>

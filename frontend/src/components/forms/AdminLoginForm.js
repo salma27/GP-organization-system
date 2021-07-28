@@ -18,7 +18,7 @@ function AdminLoginForm() {
 
     const onChangeHandler = ({ target: { name, value } }) => {
         const newUser = { ...user, [name]: value };
-        validate(newUser, name).catch((e) => { });
+        validate(newUser, name).catch((e) => {});
         setUser(newUser);
     };
     function submit(event) {
@@ -27,22 +27,29 @@ function AdminLoginForm() {
             .then(() => {
                 request({ username: user.id, password: user.password })
                     .then((r) => {
-                        console.log({...r});
-                        setAuth({ access_token: r.data.token, is_logged_in: true, account_type: TYPES.ADMIN }); ///sureeee??????
+                        console.log({ ...r });
+                        setAuth({
+                            access_token: r.data.token,
+                            is_logged_in: true,
+                            account_type: TYPES.ADMIN,
+                        }); ///sureeee??????
                         history.push(adminDashboard);
                         // console.log(r.data);
                     })
-                    .catch((e) => {
-                        console.log(e);
+                    .catch(({ response }) => {
+                        //console.log(e);
                         const err = {
                             id: "Invalid id/password",
                             password: "Invalid id/password",
                         };
                         addErrors(err);
-                        toast.error("Invalid username/password")
+                        // toast.error(response.data.message);
+                        toast.error("Invalid username/password");
                     });
             })
-            .catch((e) => { });
+            .catch(({ response }) => {
+                toast.error(response.data.message);
+            });
     }
 
     return (

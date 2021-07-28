@@ -3,21 +3,36 @@ import React, { useState } from "react";
 import { Badge, Card, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { ImExit } from "react-icons/im";
 import { confirmAction } from "utils";
+import { useRequest } from 'hooks';
+import { staffLeaveTeam } from "requests";
+import { toast } from "react-toastify";
 
 const SupervisedProjectCard = ({
-    title,
-    brief_description,
+    title="",
+    brief_description="",
     tech = [],
     students = [],
     TA = [],
     Dr = [],
+    id="",
+    showingStaff=true
 }) => {
     const [showModal, setShowModal] = useState(false);
+    const [request,requesting] = useRequest(staffLeaveTeam);
 
     const leaveTeam = () => {
         confirmAction({
             message: "Are you sure you want to leave this team?",
-            onConfirm: () => {},
+            onConfirm: () => {//leave team request
+                request({projectId:id})
+                .then((res) => {
+                    toast.success("you left team");
+                    window.location.reload();
+                })
+                .catch(error => {
+                    toast.error("Failed")
+                })
+            },
         });
     };
 
@@ -30,7 +45,7 @@ const SupervisedProjectCard = ({
         <Card className="mb-3">
             <Card.Body>
                 <Card.Title className="d-flex">
-                    <b>{title}</b>
+                    {title.length?<b>{title}</b>:<b>Not Choose Yet</b>}
                     <div className="ml-auto">
                         <OverlayTrigger
                             placement="right"
@@ -44,7 +59,7 @@ const SupervisedProjectCard = ({
                     </div>
                 </Card.Title>
                 <hr />
-                <Card.Text>{brief_description}</Card.Text>
+                <Card.Text>{brief_description.length?brief_description:"There isn't description yet"}</Card.Text>
                 <hr />
                 <Card.Text>
                     {tech.map((t, i) => (
@@ -88,6 +103,7 @@ const SupervisedProjectCard = ({
                         students={students}
                         TA={TA}
                         Dr={Dr}
+                        showingStaff={showingStaff}
                     />
                 </div>
             </Card.Body>

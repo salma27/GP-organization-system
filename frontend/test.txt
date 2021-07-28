@@ -1,0 +1,3 @@
+an automated way so the attendance gets recorded in 
+the database on-site with geo-location as a security 
+measure to prevent students from faking attendance.

@@ -3,6 +3,7 @@ import { Navbar } from "components/navbar";
 import * as pages from "components/pages";
 import { Tab, Tabs, Nav } from "react-bootstrap";
 import { useAuthContext } from "hooks";
+import { useLocation } from "react-router";
 
 const style = {
     // backgrounds from 1 to 5 i.e. feed_4
@@ -15,7 +16,9 @@ const style = {
 
 const TemaInfo = () => {
     // const { isStaff } = useAuthContext();
-    const isStaff = true;
+    const location = useLocation();
+    const state = location.state;
+
     return (
         <div className="container-fluid" style={style}>
             <div className="row">
@@ -31,10 +34,10 @@ const TemaInfo = () => {
                         className="nav-justified"
                     >
                         <Tab eventKey="team" title="Team">
-                            <pages.ShowingTeam />
+                            <pages.ShowingTeam res={state}/>
                         </Tab>
                         <Tab eventKey="projects" title="Projects">
-                            <pages.Projects />
+                            <pages.Projects teamId={state.teamId} btn={true}/>
                         </Tab>
                     </Tabs>
                 </div>

@@ -5,7 +5,7 @@ import { Badge, Card } from "react-bootstrap";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { confirmAction } from "utils";
 
-const NewsFeedCard = ({title, date, content}) => {
+const NewsFeedCard = ({ title, date, content }) => {
     const [showModal, setShowModal] = useState(false);
     const deleteProject = () => {
         confirmAction({
@@ -17,9 +17,9 @@ const NewsFeedCard = ({title, date, content}) => {
         <Card className="mb-3">
             <Card.Body>
                 <Card.Title className="d-flex">
-                    <div style={{display:"flex",flexDirection:"column"}}>    
+                    <div style={{ display: "flex", flexDirection: "column" }}>
                         <b>{title}</b>
-                        <span style={{fontSize:"small"}}>
+                        <span style={{ fontSize: "small" }}>
                             {moment(date).format("DD/MM/YYYY  hh:mm a")}
                         </span>
                     </div>
@@ -34,13 +34,13 @@ const NewsFeedCard = ({title, date, content}) => {
                         >
                             <AiFillEdit />
                         </button> */}
-                        
-                        <button
+
+                        {/* <button
                             className="btn btn-lg btn-outline-danger py-1 px-2 mr-1"
                             onClick={deleteProject}
                         >
                             <AiFillDelete />
-                        </button>
+                        </button> */}
                     </div>
                 </Card.Title>
                 <hr />

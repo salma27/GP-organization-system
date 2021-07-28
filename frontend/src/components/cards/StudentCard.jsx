@@ -19,17 +19,21 @@ const StudentCard = (props) => {
         minHeight: "100px",
         width: "1px",
     };
+    // console.log("kkkkkkkk",props);
     const [showModal, setShowModal] = useState(false);
     const [requestJoinTeam, requestingJoionTeam] = useRequest(StudentRequestToJoinTeam);
     const confirm = () => {
         confirmAction({
             message: "Are you sure you want to send this request?",
             onConfirm: () => {
-                requestJoinTeam({ecomId : props.result.ecomId})
+                requestJoinTeam({teamId : props.result.teamId})
                 .then((r)=>{
                     toast.success("Request sent successfully");
                 })
-                .catch((e)=>{
+                .catch(({response})=>{
+
+
+                    toast.error(response.data.message);
                     toast.error("Error sending request");
                 });
             },
@@ -69,18 +73,21 @@ const StudentCard = (props) => {
                                 <button
                                     className="btn primary-btn py-1 px-2 mr-1 mb-1"
                                     
-                                    onClick={() => (!isStaff && !props.isStudent)?setShowModal(true): confirm()}
+                                    onClick={() => ((!isStaff && !props.isStudent)||(isStaff&&props.isStudent))?setShowModal(true): confirm()}
                                     >
                                         <RiMailSendLine className="mr-1"/> {((!isStaff && !props.isStudent)  || (isStaff && props.isStudent))&& "Ask To Be Supervisor"}
                                         {!isStaff && props.isStudent && "Ask to join team"}
                                         
                                     </button>
+                                    {showModal&&
                                     <AskToJoinMyTeam
                                     show={showModal}
                                     hide={() => setShowModal(false)}
                                     projects={projects}     
-            
-                                    />
+                                    supervisorID={props.id}
+                                    teamId={props.teamId}
+                                    isDr={props.isDr}
+                                    />}
                             </>
                         }
                             </div>
