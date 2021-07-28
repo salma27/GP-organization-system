@@ -1,0 +1,9 @@
+flask
+pymongo
+gensim
+contractions
+python-Levenshtein
+nltk
+numpy
+pandas
+sklearn
