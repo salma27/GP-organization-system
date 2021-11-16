@@ -4,4 +4,29 @@ It is mainly to help the seniors of FCAI but it is also meant to help the doctor
 This project allows all users to browse through countless projects related to the computer science field that might become of help to the newer generations when searching for an idea for a specific field of technology.  
 the system is vote based, as any action by any student, doctor or TA will first require the majority of the team members to vote if the accept or not
 
+# Register:
+
+
+
+https://user-images.githubusercontent.com/36279740/141987820-d2c7c6d2-410f-404f-989d-99a8902f14a3.mp4
+
+# Student:
+
+
+https://user-images.githubusercontent.com/36279740/141987839-dee416dd-7c1e-49aa-9f84-7ebd6c4019d4.mp4
+
+# Supervisor:
+
+
+https://user-images.githubusercontent.com/36279740/141987870-cf073097-787c-45fd-9f1a-36b57b01d2e9.mp4
+
+# Admin:
+
+
+https://user-images.githubusercontent.com/36279740/141987905-e3e20312-4310-4a50-a4d7-08b22c06d473.mp4
+
+# NLP Dublicate Detection:
+
+
+https://user-images.githubusercontent.com/36279740/141987971-d7d5efde-1e02-4efa-926f-42dd616ebd60.mp4
 
