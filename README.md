@@ -36,7 +36,7 @@ https://user-images.githubusercontent.com/36279740/141987870-cf073097-787c-45fd-
 
 https://user-images.githubusercontent.com/36279740/141987905-e3e20312-4310-4a50-a4d7-08b22c06d473.mp4
 
-## 5.NLP Dublicate Detection:
+## 5.NLP Duplicate Detection:
 
 
 https://user-images.githubusercontent.com/36279740/141987971-d7d5efde-1e02-4efa-926f-42dd616ebd60.mp4
